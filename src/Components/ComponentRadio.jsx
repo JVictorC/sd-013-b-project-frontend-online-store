@@ -7,13 +7,7 @@ class ComponentRadio extends Component {
     return (
       <label htmlFor={ id }>
         {name}
-        <input
-          type="radio"
-          name="category"
-          id={ id }
-          data-testid="category"
-          onClick={ (e) => { console.log(e.target.id); } }
-        />
+        <input type="radio" name="category" id={ id } data-testid="category" />
       </label>
     );
   }
