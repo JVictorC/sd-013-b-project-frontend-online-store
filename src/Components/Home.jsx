@@ -14,16 +14,30 @@ class Home extends Component {
     super(props);
     this.state = {
       products: [],
-<<<<<<< HEAD
-      card: [],
-=======
->>>>>>> 5c7b5f681aaff766b21433ce9094791565e1b174
+      categorySelect: undefined,
     };
     this.getProducts = this.getProducts.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  async handleClick({ target }) {
+    const response = await getProductsFromCategoryAndQuery(
+      target.id,
+      null,
+      true,
+    );
+
+    const { results } = await response;
+
+    this.setState({
+      categorySelect: target.id,
+      products: results,
+    });
   }
 
   async getProducts(searchText) {
-    const items = await getProductsFromCategoryAndQuery(undefined, searchText)
+    const { categorySelect } = this.state;
+    const items = await getProductsFromCategoryAndQuery(categorySelect, searchText)
       .then((result) => result.results);
     this.setState({ products: items });
   }
@@ -37,7 +51,7 @@ class Home extends Component {
           <Link data-testid="shopping-cart-button" to="cart/">Cart</Link>
         </header>
         <main>
-          <Category />
+          <Category handleClick={ this.handleClick } />
           <ProductList products={ products } />
         </main>
       </>
