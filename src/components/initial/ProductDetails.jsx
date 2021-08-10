@@ -33,7 +33,6 @@ class ProductDetails extends Component {
 
   render() {
     const foundProduct = this.findProduct();
-    if (foundProduct.length === 0) return <div>Carregando...</div>;
     return (
       <div>
         {foundProduct.map((element) => (
