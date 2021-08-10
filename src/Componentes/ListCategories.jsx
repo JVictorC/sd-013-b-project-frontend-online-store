@@ -27,17 +27,18 @@ class ListCategories extends Component {
     const { handleChange } = this.props;
     return (
       <div>
-        <select onChange={ handleChange } name="category">
+        <form onChange={ handleChange } name="category">
           { categories.map(({ name, id }) => (
             <option
+              type="checkbox"
               key={ id }
               data-testid="category"
               value={ id }
-            >
+            >              
               { name }
             </option>
           )) }
-        </select>
+        </form>
       </div>
     );
   }
