@@ -15,7 +15,6 @@
 }
 
 
-
 /* radio buttons css */
 .radioButtonsParent {
   background-color: skyblue;
@@ -29,7 +28,7 @@
   padding: 1em;
 }
 
-.radioButtons { 
+.radioButtons {
   margin: 2px;
 }
 
