@@ -26,7 +26,11 @@ export default class ProductDetails extends Component {
         </p>
         <img src={ thumbnail } alt={ title } />
         <div>
-          <Link to="/">Voltar</Link>
+          <Link
+            to="/"
+          >
+            Voltar
+          </Link>
           <FormProduct />
         </div>
       </div>
