@@ -39,6 +39,9 @@ class Cart extends React.Component {
               <p data-testid="shopping-cart-product-name">{title}</p>
               <img src={ thumbnail } alt={ title } />
               <p>
+                { price }
+              </p>
+              <p data-testid="shopping-cart-product-quantity">
                 <button
                   onClick={ decrease }
                   type="button"
@@ -47,7 +50,9 @@ class Cart extends React.Component {
                 >
                   ➖
                 </button>
-                { price }
+                {' '}
+                {quantity}
+                {' '}
                 <button
                   onClick={ increase }
                   type="button"
@@ -57,7 +62,6 @@ class Cart extends React.Component {
                   ➕
                 </button>
               </p>
-              <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
               <button onClick={ del } type="button" id={ id }>
                 ❌
               </button>
