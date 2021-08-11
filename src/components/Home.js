@@ -13,12 +13,14 @@ class Home extends React.Component {
       categories: [],
       searchBar: '',
       productList: [],
+      cartItems: [],
     };
 
     this.fetchCategories = this.fetchCategories.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClickCategories = this.handleClickCategories.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +49,14 @@ class Home extends React.Component {
     this.setState({
       productList: categoriesResult,
     });
+  }
+
+  addToCart(product) {
+    const { id, title, thumbnail, price } = product;
+    const newItem = { id, title, thumbnail, price };
+    this.setState((previousState) => ({
+      cartItems: [...previousState.cartItems, newItem],
+    }));
   }
 
   async fetchCategories() {
@@ -104,7 +114,7 @@ class Home extends React.Component {
             </li>
           ))}
         </div>
-        <ProductList productList={ productList } />
+        <ProductList addToCart={ this.addToCart } productList={ productList } />
       </div>
     );
   }
