@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default class Search extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, addToCart } = this.props;
     return (
       product.map(({ id, title, thumbnail, price }) => (
         <div data-testid="product" key={ id }>
@@ -18,6 +18,14 @@ export default class Search extends React.Component {
               Mais detalhes
             </Link>
           </h3>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            id={ id }
+            onClick={ addToCart }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       ))
     );
@@ -26,4 +34,5 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   product: PropTypes.objectOf(PropTypes.string),
+  addToCart: PropTypes.func,
 }.isRequired;

@@ -8,9 +8,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.updateState = this.updateState.bind(this);
+    this.cartStateUpadte = this.cartStateUpadte.bind(this);
 
     this.state = {
       products: {},
+      cartList: [],
     };
   }
 
@@ -18,8 +20,14 @@ class App extends React.Component {
     this.setState({ products });
   }
 
+  cartStateUpadte(product) {
+    this.setState(({ cartList }) => ({
+      cartList: [...cartList, product],
+    }));
+  }
+
   render() {
-    const { products } = this.state;
+    const { products, cartList } = this.state;
     return (
       <div>
         <BrowserRouter>
@@ -30,14 +38,20 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              render={ () => <ProductList updateState={ this.updateState } /> }
+              render={
+                () => (
+                  <ProductList
+                    cartStateUpadte={ this.cartStateUpadte }
+                    updateState={ this.updateState }
+                  />)
+              }
             />
             <Route
               exact
               path="/product/:id"
               render={ (props) => <Product { ...props } products={ products } /> }
             />
-            <Route exact path="/cart" component={ Cart } />
+            <Route exact path="/cart" render={ () => <Cart cartList={ cartList } /> } />
           </Switch>
         </BrowserRouter>
       </div>

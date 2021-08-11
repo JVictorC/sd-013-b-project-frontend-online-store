@@ -11,6 +11,7 @@ export default class ProductList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.clickChange = this.clickChange.bind(this);
     this.categorieUpdater = this.categorieUpdater.bind(this);
+    this.addToCart = this.addToCart.bind(this);
 
     this.state = {
       loading: true,
@@ -44,6 +45,13 @@ export default class ProductList extends React.Component {
     });
   }
 
+  addToCart({ target: { id } }) {
+    const { products } = this.state;
+    const { cartStateUpadte } = this.props;
+    const foundProduct = products.find(({ id: producId }) => producId === id);
+    cartStateUpadte(foundProduct);
+  }
+
   async categorieUpdater(categorie) {
     await this.setState({ categorie });
     this.clickChange();
@@ -73,7 +81,7 @@ export default class ProductList extends React.Component {
           categorieUpdater={ this.categorieUpdater }
           categories={ categories }
         />}
-        <Search product={ products } />
+        <Search addToCart={ this.addToCart } product={ products } />
       </div>
     );
   }
