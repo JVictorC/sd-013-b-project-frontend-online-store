@@ -1,33 +1,67 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
 
+import {
+  getItemsFromLocalStorage,
+  setArrayToLocalStorage,
+} from '../utils/localStorageHelpers';
+
 class Cart extends React.Component {
   constructor() {
     super();
 
     this.state = {
       cartItems: [],
+      totalPrice: 0,
     };
   }
 
   componentDidMount() {
-    this.addProductToCart();
+    this.fetchProducts();
   }
 
-  addProductToCart = () => {
-    const itemsList = localStorage.getItem('cartItems');
+  fetchProducts = () => {
+    const cartItems = getItemsFromLocalStorage();
 
-    if (itemsList) {
-      const parsedItems = JSON.parse(itemsList);
+    this.setState({ cartItems });
 
-      this.setState({
-        cartItems: [...parsedItems],
-      });
-    }
+    this.getTotalPrice(cartItems);
+  };
+
+  getTotalPrice = (items) => {
+    const totalPrice = items.reduce(
+      (acc, curr) => acc + curr.price * curr.amount,
+      0,
+    );
+
+    this.setState({ totalPrice });
+  };
+
+  removeItemFromCart = (id) => {
+    const { cartItems } = this.state;
+
+    const newItems = cartItems.filter((item) => item.id !== id);
+
+    this.setState({ cartItems: [...newItems] });
+
+    this.getTotalPrice(newItems);
+    setArrayToLocalStorage(newItems);
+  };
+
+  updateItemAmount = (quantity, itemId) => {
+    const { cartItems } = this.state;
+
+    const newItems = cartItems.map((item) => (
+      item.id === itemId ? { ...item, amount: quantity } : item
+    ));
+
+    this.setState({ cartItems: [...newItems] });
+    this.getTotalPrice(newItems);
+    setArrayToLocalStorage(newItems);
   };
 
   render() {
-    const { cartItems } = this.state;
+    const { cartItems, totalPrice } = this.state;
 
     return (
       <div>
@@ -35,9 +69,13 @@ class Cart extends React.Component {
           cartItems.map((element) => (
             <CartItem
               key={ element.id }
+              id={ element.id }
               title={ element.title }
               thumbnail={ element.thumbnail }
               amount={ element.amount }
+              availableQuantity={ element.availableQuantity }
+              removeItemFromCart={ this.removeItemFromCart }
+              updateItemAmount={ this.updateItemAmount }
             />
           ))
         ) : (
@@ -45,6 +83,11 @@ class Cart extends React.Component {
             Seu carrinho está vazio
           </p>
         )}
+        <p>
+          Total:
+          {' '}
+          {totalPrice}
+        </p>
       </div>
     );
   }
