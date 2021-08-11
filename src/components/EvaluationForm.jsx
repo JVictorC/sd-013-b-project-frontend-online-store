@@ -23,7 +23,7 @@ export default class EvaluationForm extends React.Component {
     const { email, message } = this.state;
     return (
       <div>
-        <h4>Avaliações:</h4>
+        <h4>Avaliações: </h4>
         <div>
           <form>
             <div>
