@@ -1,42 +1,130 @@
-.App {
-  text-align: center;
+.app {
+  font-size: 15px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ----------------------------------------/
+/-----------LISTAGEM DE PRODUTOS-----------/
+/---------------------------------------- */
+
+.product-list-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin: 3em;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.main-product-list {
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+}
+
+/* ----------------------------------------/
+/------------------BUSCA-------------------/
+/---------------------------------------- */
+
+.search-and-cart-div {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.search-div {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.search-div label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-div input {
+  border: 1px solid black;
+  border-radius: 30px;
+  margin-top: 1em;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.search-div button {
+  background-color: rgb(225, 225, 225);
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 2.3em;
+  margin: 0 2em;
+}
+
+.shopping-cart-button {
+  align-items: center;
+  display: flex;
+  height: 2.3em;
   justify-content: center;
-  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+/* ----------------------------------------/
+/----------LISTAGEM DE CATEGORIAS----------/
+/---------------------------------------- */
+
+.category-list {
+  border: 1px solid black;
 }
 
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.category-list li {
+  line-height: 3em;
+  list-style-type: none;
 }
+
+/* ----------------------------------------/
+/-------------CARDS DE PRODUTOS------------/
+/---------------------------------------- */
+
+.products {
+  display: flex;
+  margin: 2em;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  margin: 1.5em;
+  width: 250px;
+}
+
+.card-title {
+  align-items: center;
+  background-color: rgb(225, 225, 225);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  height: 15%;
+}
+
+.card-title h4 {
+  padding: 0 1em;
+}
+
+.card-body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-image-div {
+  border: 1px solid black;
+  height: 130px;
+  width: 130px;
+}
+
+/* .card-image-div img {
+
+} */
