@@ -9,7 +9,7 @@ class ProductDetails extends React.Component {
     this.state = {
       productDetail: [],
     };
-    this.getProductdetais = this.getProductdetais.bind(this);
+    this.getDetails = this.getDetails.bind(this);
   }
 
   componentDidMount() {
@@ -18,14 +18,14 @@ class ProductDetails extends React.Component {
   }
 
   // shouldComponentUpdate() {
-  //   return this.getProductDetails();
+  //   return this.getDetails();
   // }
 
-  // getProductdetais() {
-  //   const { productDetail } = this.state;
-  //   const { attributes: specs } = productDetail;
-  //   return false;
-  // }
+  getDetails() {
+    const { productDetail } = this.state;
+    const { attributes: specs } = productDetail;
+    return false;
+  }
 
   async getProductDetails() {
     const { match: { params: { id } } } = this.props;
