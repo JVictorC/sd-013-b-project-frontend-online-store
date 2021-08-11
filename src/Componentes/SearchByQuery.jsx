@@ -1,6 +1,7 @@
 import React from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class SearchByQuery extends React.Component {
   constructor() {
@@ -26,12 +27,12 @@ class SearchByQuery extends React.Component {
 
   render() {
     const { produtos } = this.state;
-    const link = `/InfoProducts/${produtos.id}`;
     return (
       produtos.map((produto) => (
         <div data-testid="product" key={ produto.id }>
           <h5>{produto.title}</h5>
-          <Link data-testid="product-details-link" to={ link }>Detalhes</Link>
+          <Link href="whatever" data-testid="product-detail-link"
+          to={ `/details/${encodeURIComponent(produto.title)}` }>Detalhes</Link>
           <img src={ produto.thumbnail } alt={ produto.title } width="150px"/>
           <p>{`R$${produto.price}`}</p>
         </div>

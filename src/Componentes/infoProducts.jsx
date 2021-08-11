@@ -1,60 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
-class InfoProducts extends Component {
-  constructor() {
-    super();
+class DetailsCard extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      produto: [],
-      loading: false,
+      details: {},
     };
   }
 
   componentDidMount() {
-    this.infoProduct();
+    this.getAPI();
   }
 
-  infoProduct = () => {
-    const { match: { params: { Name } } } = this.props;
-    fetch(`https://api.mercadolibre.com//items?ids=${Name}`).then((object) =>
-    object.json()).then((result) => this.setState(
-      { produto: result, loading: true },
-    ));
+  getAPI = async () => {
+    const { match: { params: { title } } } = this.props;
+    const products = await getProductsFromCategoryAndQuery('', title);
+    this.setState({
+      details: products.results[0],
+    });
   }
-
-  info = (produto) => produto.map(({ body: { title, thumbnail, id, attributes } }) => (
-    <div key={ id }>
-      <img src={ thumbnail } alt={ title } />
-      <h3 data-testid="product-details-name">{ title }</h3>
-      { attributes.map((item) => <li key={ item.id }>{ item.name }</li>) }
-    </div>
-  ))
 
   render() {
-    const { produto, loading } = this.state;
+    const { details: { title, thumbnail, price } } = this.state;
     return (
       <div>
-        { loading && this.info(produto) }
+        <h2 data-testid=" product-detail-name">{ title }</h2>
+        <img src={ thumbnail } alt={ title } />
+        <p>{ price }</p>
       </div>
-    )
+    );
   }
 }
 
-InfoProducts.propTypes = {
+DetailsCard.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      name: PropTypes.string,
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
-  }),
+  }).isRequired,
 };
 
-info.defaultProps = {
-  match: {
-    params: {
-      name: '',
-    },
-  },
-};
-
-export default InfoProducts;
+export default DetailsCard;
