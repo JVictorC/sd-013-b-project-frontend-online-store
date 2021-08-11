@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { getProductsFromCategoryAndQuery as ApiProducts } from '../services/api';
+
 import ProductCard from '../components/ProductCard';
 import CategoryFilter from '../components/CategoryFilter';
 import CartButton from '../components/CartButton';
@@ -31,7 +33,6 @@ class ProductList extends React.Component {
     const products = await ApiProducts(categoryId, searchInput);
     this.setState({
       products: products.results,
-      searchInput: '',
     });
   }
 

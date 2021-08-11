@@ -9,22 +9,32 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      quantity: 0,
+      shopCart: [],
     };
 
-    this.handleAddCartChange = this.handleAddCartChange.bind(this);
+    this.addCartChange = this.addCartChange.bind(this);
   }
 
-  handleAddCartChange(event) {
+  addCartChange(product) {
+    const { shopCart } = this.state;
+    const productNotFound = undefined;
+    const enteringProduct = shopCart.find((Obj) => product.id === Obj.id);
+    const pushedCart = [...shopCart];
+    if (enteringProduct === productNotFound) {
+      pushedCart.push({
+        ...product,
+        quant: 1,
+      });
+    } else {
+      pushedCart.find((Obj) => product.id === Obj.id).quant += 1;
+    }
     this.setState({
-      title: event.target.value,
-      quantity: 1,
+      shopCart: pushedCart,
     });
   }
 
   render() {
-    const { title, quantity } = this.state;
+    const { shopCart } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -33,18 +43,21 @@ class App extends React.Component {
             path="/"
             render={ (props) => (<ProductList
               { ...props }
-              onClickButton={ this.handleAddCartChange }
+              onClickButton={ this.addCartChange }
             />) }
           />
           <Route
             exact
             path="/shopping-cart"
-            render={ () => <ShoppingCart title={ title } quantity={ quantity } /> }
+            render={ () => <ShoppingCart cartProducts={ shopCart } /> }
           />
           <Route
             exact
-            path="/product-details/:categoryId/:productName"
-            render={ (props) => <ProductDetails { ...props } /> }
+            path="/product-details/:id"
+            render={ (props) => (<ProductDetails
+              { ...props }
+              addCartChange={ this.addCartChange }
+            />) }
           />
         </Switch>
       </BrowserRouter>
