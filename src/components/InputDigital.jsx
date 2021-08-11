@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-​
+
 class InputDigital extends Component {
   render() {
     const { onChange, queryValue, onSubmit } = this.props;

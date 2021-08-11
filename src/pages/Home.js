@@ -3,7 +3,7 @@ import ProductList from '../components/ProductList';
 import Categories from '../components/Categories';
 import InputDigital from '../components/InputDigital';
 import * as api from '../services/api';
-​
+
 class Home extends React.Component {
   constructor() {
     super();
