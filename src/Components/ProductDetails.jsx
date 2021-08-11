@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FormProduct from './FormProduct';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -18,12 +19,21 @@ export default class ProductDetails extends Component {
     return (
       // thumbnail= imagem, price = preço, title = nome, installments = especificações
       <div>
+        <Link
+          to="/"
+        >
+          Voltar
+        </Link>
+        <Link data-testid="shopping-cart-button" to="/cart">
+          Cart
+        </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>
           Preço: R$
           {price}
         </p>
         <img src={ thumbnail } alt={ title } />
+
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
@@ -32,11 +42,10 @@ export default class ProductDetails extends Component {
           }
         >
           Adicionar ao Carrinho
-
         </button>
-        <Link data-testid="shopping-cart-button" to="/cart">
-          Cart
-        </Link>
+        <div>
+          <FormProduct />
+        </div>
       </div>
     );
   }
