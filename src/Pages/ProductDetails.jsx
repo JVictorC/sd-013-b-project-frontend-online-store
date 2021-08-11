@@ -83,7 +83,7 @@ class ProductDetails extends React.Component {
               onChange={ this.handleInputChange }
             />
             <br />
-            <button type="submit">Avaliar</button>
+            <button onClick={ () => { console.log('a'); } } type="button">Avaliar</button>
           </fieldset>
         </form>
       </div>
@@ -95,7 +95,7 @@ ProductDetails.propTypes = {
   clearSearch: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   category: PropTypes.string.isRequired,

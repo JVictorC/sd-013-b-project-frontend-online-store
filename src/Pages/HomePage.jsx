@@ -57,7 +57,7 @@ updateSelectCategory = (id) => {
 
 renderList = () => {
   const { itemText, selectCategory } = this.state;
-  const { setSearch, setCategory } = this.props;
+  const { setSearch, setCategory, updateProducts } = this.props;
   getProductsFromCategoryAndQuery(selectCategory, itemText)
     .then((list) => {
       this.setState({
@@ -68,6 +68,8 @@ renderList = () => {
             price={ item.price }
             thumbnail={ item.thumbnail }
             id={ item.id }
+            item = { item }
+            updateProducts = { updateProducts }
           />)),
         productsLoad: true,
       });
