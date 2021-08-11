@@ -8,7 +8,7 @@ function App() {
     <div>
       <Router>
         <Route exact path="/" component={ Home } />
-        <Route path="/carrinhodecompra" component={ CarrinhoDeCompra } />
+        <Route path="/cart" component={ CarrinhoDeCompra } />
       </Router>
     </div>
   );
