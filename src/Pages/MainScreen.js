@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProductList from '../Components/ProdructList';
+import ProductList from '../Components/ProductList';
 import RadioButtons from '../Components/RadioButtons';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 

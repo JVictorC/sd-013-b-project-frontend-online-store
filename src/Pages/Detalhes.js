@@ -30,6 +30,7 @@ class Detalhes extends React.Component {
         <h2>{ product.title }</h2>
         <img src={ product.thumbnail } alt="product_image" />
         <p>{ product.price }</p>
+        <button type="button">AddCart</button>
       </div>
     );
   }
