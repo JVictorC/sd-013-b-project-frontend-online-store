@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 import * as api from '../services/api';
-import Loading from './Loading';
+// import Loading from './Loading';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -11,32 +11,12 @@ class ProductDetails extends React.Component {
     this.state = {
       productDetail: [],
     };
-<<<<<<< HEAD
-    // this.getProductdetais = this.getProductdetais.bind(this);
-=======
->>>>>>> 8d63ba9da6fcdcf611cf8b5c1448f84cd1f8d171
   }
 
   componentDidMount() {
     this.getProductDetails();
   }
 
-<<<<<<< HEAD
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.state);
-    console.log(nextState);
-
-    return true;
-  }
-
-  // getProductdetais() {
-  //   const { productDetail } = this.state;
-  //   const { attributes: specs } = productDetail;
-  //   return false;
-  // }
-
-=======
->>>>>>> 8d63ba9da6fcdcf611cf8b5c1448f84cd1f8d171
   async getProductDetails() {
     const { match: { params: { id } } } = this.props;
     this.setState({ productDetail: await api.getProductsFromCategoryAndQuery({ id }) });
@@ -74,9 +54,7 @@ class ProductDetails extends React.Component {
               </div>
             </div>
           </div>
-        ) : (
-          <Loading />
-        )}
+        ) : '' }
       </div>
     );
   }
