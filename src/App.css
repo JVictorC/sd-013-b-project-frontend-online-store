@@ -83,6 +83,7 @@
 
 .products {
   display: flex;
+  flex-flow: row wrap;
   margin: 2em;
 }
 
@@ -94,7 +95,7 @@
   flex-direction: column;
   height: 280px;
   margin: 1.5em;
-  width: 250px;
+  width: 230px;
 }
 
 .card-title {
@@ -107,7 +108,10 @@
 }
 
 .card-title h4 {
+  overflow: hidden;
   padding: 0 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-body {
@@ -120,11 +124,15 @@
 }
 
 .card-image-div {
+  align-items: center;
   border: 1px solid black;
+  display: flex;
   height: 130px;
   width: 130px;
 }
 
-/* .card-image-div img {
-
-} */
+.card-image-div img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}

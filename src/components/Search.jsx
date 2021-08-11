@@ -19,6 +19,7 @@ class Search extends React.Component {
             data-testid="query-input"
             type="text"
             id="searchInput"
+            name="query"
             onChange={ onChange }
           />
         </label>

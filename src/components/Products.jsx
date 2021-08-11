@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 class Products extends React.Component {
@@ -7,7 +8,6 @@ class Products extends React.Component {
 
     return (
       <div className="products">
-        {/* {console.log(`${ list.title } AAAAA`)} */}
 
         { list.map((element) => (
           <ProductCard
@@ -22,5 +22,8 @@ class Products extends React.Component {
   }
 }
 
-export default Products;
+Products.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 
+export default Products;

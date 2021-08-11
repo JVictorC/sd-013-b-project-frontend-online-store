@@ -1,20 +1,23 @@
 import React from 'react';
-import * as api from '../services/api';
+import PropTypes from 'prop-types';
 
 class CategoryList extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, onChange } = this.props;
     return (
       <ul>
         {list.map((category) => (
           <li key={ category.id }>
             <label
               data-testid="category"
-              htmlFor={ category.name }
+              htmlFor={ category.id }
             >
               <input
-                type="checkbox"
-                id={ category.name }
+                type="radio"
+                id={ category.id }
+                value={ category.id }
+                name="categoryId"
+                onChange={ onChange }
               />
               { category.name }
             </label>
@@ -23,5 +26,10 @@ class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.any).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default CategoryList;
