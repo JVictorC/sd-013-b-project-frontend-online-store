@@ -3,22 +3,25 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 import * as api from '../services/api';
+import Loading from './Loading';
 
 class ProductDetails extends React.Component {
   constructor(props) {
-    console.log('constructor');
     super(props);
     this.state = {
       productDetail: [],
     };
+<<<<<<< HEAD
     // this.getProductdetais = this.getProductdetais.bind(this);
+=======
+>>>>>>> 8d63ba9da6fcdcf611cf8b5c1448f84cd1f8d171
   }
 
   componentDidMount() {
     this.getProductDetails();
-    console.log('teste');
   }
 
+<<<<<<< HEAD
   shouldComponentUpdate(nextProps, nextState) {
     console.log(this.state);
     console.log(nextState);
@@ -32,49 +35,48 @@ class ProductDetails extends React.Component {
   //   return false;
   // }
 
+=======
+>>>>>>> 8d63ba9da6fcdcf611cf8b5c1448f84cd1f8d171
   async getProductDetails() {
     const { match: { params: { id } } } = this.props;
     this.setState({ productDetail: await api.getProductsFromCategoryAndQuery({ id }) });
-    // console.log();
   }
 
   render() {
     const { productDetail } = this.state;
     const { attributes: specs } = productDetail;
-    console.log(specs);
     return (
       <div data-testid="product-detail-name">
-        <div className="product-header">
-          <Link to="/">Voltar</Link>
-          <Link
-            className="shopping-cart-button"
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            <img
-              className="cart-icon"
-              src={ shoppingCart }
-              alt="cart icon"
-            />
-          </Link>
-        </div>
-        <div className="product-name-price">
-          <h3>
-            oi
-            {/* { `${productDetail.title} = R$${productDetail.price}` } */}
-          </h3>
-        </div>
-        <div className="product-detais">
-          <div className="image-product-detais">image</div>
-          <div className="espec-product">
-            <div className="title-specs">
-              especificações técnicas
+        {specs ? (
+          <div>
+            <div className="product-header">
+              <Link to="/">Voltar</Link>
+              <Link
+                className="shopping-cart-button"
+                to="/cart"
+                data-testid="shopping-cart-button"
+              >
+                <img className="cart-icon" src={shoppingCart} alt="cart icon" />
+              </Link>
             </div>
-            <div className="every-spec">
-              teste
+            <div className="product-name-price">
+              <h3>
+                { `${productDetail.title} = R$${productDetail.price}` }
+              </h3>
+            </div>
+            <div className="product-detais">
+              <div className="image-product-detais">image</div>
+              <div className="espec-product">
+                <div className="title-specs">especificações técnicas</div>
+                <div className="every-spec">
+                  { specs.map((spec) => <p>{spec.name}</p> )}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }
