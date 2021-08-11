@@ -9,10 +9,28 @@ class App extends React.Component {
     super(props);
     this.state = { card: [] };
     this.getCardItem = this.getCardItem.bind(this);
+    this.increaseQt = this.increaseQt.bind(this);
+    this.decreaseQt = this.decreaseQt.bind(this);
   }
 
   getCardItem(newCard) {
     this.setState({ card: newCard });
+  }
+
+  increaseQt({ target }) {
+    const { card } = this.state;
+    const item = card.find((res) => res.id === target.id);
+    item.quantity += 1;
+    this.setState([...card]);
+  }
+
+  decreaseQt({ target }) {
+    const { card } = this.state;
+    const item = card.find((res) => res.id === target.id);
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    }
+    this.setState([...card]);
   }
 
   render() {
@@ -31,7 +49,11 @@ class App extends React.Component {
             <Route
               path="/cart"
               render={ () => (
-                <Cart card={ card } />
+                <Cart
+                  card={ card }
+                  increase={ this.increaseQt }
+                  decrease={ this.decreaseQt }
+                />
               ) }
             />
           </Switch>

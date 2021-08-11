@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
   render() {
-    const { card } = this.props;
-    console.log(card);
+    const { card, increase, decrease } = this.props;
     return (
       <div className="cart">
         {
@@ -17,12 +16,30 @@ class Cart extends React.Component {
             : <h1>Seu carrinho</h1>
         }
         {
-          card.map(({ title, price, thumbnail, id }) => (
+          card.map(({ title, price, thumbnail, id, quantity }) => (
             <div key={ id }>
               <p data-testid="shopping-cart-product-name">{title}</p>
               <img src={ thumbnail } alt={ title } />
-              <p>{price}</p>
-              <p data-testid="shopping-cart-product-quantity">1</p>
+              <p>
+                <button
+                  onClick={ decrease }
+                  type="button"
+                  data-testid="product-decrease-quantity"
+                  id={ id }
+                >
+                  ➖
+                </button>
+                { price }
+                <button
+                  onClick={ increase }
+                  type="button"
+                  data-testid="product-increase-quantity"
+                  id={ id }
+                >
+                  ➕
+                </button>
+              </p>
+              <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
             </div>
           ))
         }
@@ -35,4 +52,6 @@ export default Cart;
 
 Cart.propTypes = {
   card: PropTypes.arrayOf(String).isRequired,
+  increase: PropTypes.func.isRequired,
+  decrease: PropTypes.func.isRequired,
 };
