@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// Iniciando req 7
 export default class ProductCard extends Component {
   render() {
     const { product } = this.props;
