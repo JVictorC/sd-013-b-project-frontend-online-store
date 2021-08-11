@@ -5,8 +5,8 @@ import BtnAddToCart from './BtnAddToCart';
 
 export default class CardRender extends React.Component {
   render() {
-    const { results } = this.props;
-    const { title, price, category_id: categoryId, thumbnail } = results;
+    const { results, addToCart } = this.props;
+    const { title, price, category_id: categoryId, thumbnail, id } = results;
     const query = title.replace(/ /g,"+");
     return (
       <div>
@@ -20,7 +20,12 @@ export default class CardRender extends React.Component {
           >
             VER DETALHES
           </Link>
-          <BtnAddToCart categoryId={ categoryId } query={ query } />
+          <BtnAddToCart
+            title={ title }
+            thumbnail={ thumbnail }
+            price={ price }
+            id={ id }
+          />
         </div>
       </div>
     );
