@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class BtnAddToCart extends React.Component {
   constructor() {
@@ -35,3 +36,10 @@ export default class BtnAddToCart extends React.Component {
     );
   }
 }
+
+BtnAddToCart.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};

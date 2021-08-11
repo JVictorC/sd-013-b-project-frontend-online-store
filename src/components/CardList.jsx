@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CardRender from './CardRender';
 
 export default class CardList extends React.Component {
-
   render() {
     const { results } = this.props;
 
