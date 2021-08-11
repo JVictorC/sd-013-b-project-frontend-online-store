@@ -45,11 +45,18 @@ class Home extends Component {
 
   async addToCard({ title, price, thumbnail, id }) {
     const { getCardItem } = this.props;
-    const newItem = { title, price, thumbnail, id };
-    this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-      const { card: newCard } = this.state;
-      getCardItem(newCard);
-    });
+    const { card } = this.state;
+    const checkExist = card.find((product) => product.id === id);
+    if (!checkExist) {
+      const newItem = { title, price, thumbnail, id };
+      newItem.quantity = 1;
+      this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
+        const { card: newCard } = this.state;
+        getCardItem(newCard);
+      });
+    } else {
+      checkExist.quantity += 1;
+    }
   }
 
   render() {
