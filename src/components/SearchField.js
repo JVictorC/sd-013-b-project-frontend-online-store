@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import ListaCat from '../Components/ListaCat';
+import ListaCat from './ListaCat';
 
 class SearchField extends React.Component {
   render() {

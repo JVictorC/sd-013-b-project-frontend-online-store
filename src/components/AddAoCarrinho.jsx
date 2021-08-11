@@ -5,8 +5,6 @@ class AddAoCarrinho extends React.Component {
     super();
 
     AddCar() {
-      
-
     }
   }
   render() {
