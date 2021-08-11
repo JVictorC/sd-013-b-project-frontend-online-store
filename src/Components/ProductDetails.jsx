@@ -66,5 +66,4 @@ ProductDetails.propTypes = {
   productDetailsSelect: PropTypes.objectOf(PropTypes.string).isRequired,
   getCardItem: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
-
 };
