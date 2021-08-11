@@ -66,7 +66,11 @@ export default class SearchBar extends Component {
         </form>
         <div>
           {done
-            ? products.map(({ id }) => <CardProduct key={ id } products={ products } />)
+            ? products.map((product, { id }) => (
+              <CardProduct
+                key={ id }
+                products={ product }
+              />))
             : <p>Nenhum produto foi encontrado</p>}
         </div>
         <h3 data-testid="home-initial-message">

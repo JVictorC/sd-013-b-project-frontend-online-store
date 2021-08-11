@@ -7,9 +7,15 @@ export default class CardProduct extends Component {
     const { title, thumbnail, price } = products;
     return (
       <div data-testid="product">
-        <h3>{ title }</h3>
-        <p>{ price }</p>
+        <h3>{title}</h3>
+        <p>{price}</p>
         <img src={ thumbnail } alt="foto" />
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }

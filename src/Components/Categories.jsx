@@ -62,8 +62,8 @@ export default class Categories extends Component {
         </form>
         <div>
           {productsFromCategory.length !== 0 ? productsFromCategory
-            .map(({ id }) => (
-              <CardProduct key={ id } products={ productsFromCategory } />
+            .map((product, { id }) => (
+              <CardProduct key={ id } products={ product } />
             )) : ''}
         </div>
       </div>

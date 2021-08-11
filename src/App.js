@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import SearchBar from './Components/SearchBar';
-import Cart from './pages/Cart';
+import ShoppingCart from './pages/ShoppingCart';
 import Categories from './Components/Categories';
 
 export default class App extends React.Component {
@@ -11,7 +11,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" />
-          <Route exact path="/carrinho" component={ Cart } />
+          <Route exact path="/carrinho" component={ ShoppingCart } />
         </Switch>
         <SearchBar />
         <Categories />
