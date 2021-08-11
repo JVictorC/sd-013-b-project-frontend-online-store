@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import CategoriesList from './Components/CategoriesList';
 import CartButton from './Components/CartButton';
-import SearchBar from './Components/SearchBar';
 import ShoppingCart from './Pages/ShoppingCart';
 
 export default class App extends Component {
@@ -11,7 +10,6 @@ export default class App extends Component {
       <div>
         <BrowserRouter>
           <header>
-            <SearchBar />
             <CartButton />
           </header>
           <Route exact path="/shoppingcart" component={ ShoppingCart } />

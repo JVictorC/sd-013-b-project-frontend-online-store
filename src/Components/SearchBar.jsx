@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductCard from './ProductCard';
+import ProductList from './ProductList';
 import ProductInvalid from './ProductInvalid';
 
 export default class SearchBar extends Component {
@@ -19,7 +20,8 @@ export default class SearchBar extends Component {
 
   async handleClick() {
     const { searchbar } = this.state;
-    const productList = await getProductsFromCategoryAndQuery('', searchbar);
+    const { firstquery } = this.props;
+    const productList = await getProductsFromCategoryAndQuery(firstquery, searchbar);
     this.setState({
       products: productList.results,
       state: true,
@@ -34,10 +36,6 @@ export default class SearchBar extends Component {
 
   render() {
     const { searchbar, products, state } = this.state;
-
-    const searchListComponent = products.map((product) => (
-      <ProductCard key={ product.id } product={ product } />
-    ));
     return (
       <div>
         <label
@@ -61,9 +59,13 @@ export default class SearchBar extends Component {
         {products.length === 0 && state === true ? (
           <ProductInvalid />
         ) : (
-          searchListComponent
+          <ProductList products={ products } />
         )}
       </div>
     );
   }
 }
+
+SearchBar.propTypes = {
+  firstquery: PropTypes.string.isRequired,
+};
