@@ -25,12 +25,15 @@ export default class CardList extends Component {
     // const { loading } = this.state;
     const mapCart = productsList.map((product) => (<Card
       key={ product.id }
+      id={ product.id }
+      // object={ product }
       title={ product.title }
       thumbnail={ product.thumbnail }
       price={ product.price }
     />));
     return (
       <div className="cardlist">
+        console.log();
         { mapCart }
       </div>
     );

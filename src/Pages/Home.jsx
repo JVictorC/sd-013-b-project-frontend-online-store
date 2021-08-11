@@ -27,13 +27,6 @@ export default class Home extends Component {
     });
   }
 
-  // async handleClick(callback) {
-  //   const resultApi = await this.fetchProductsFromCategoryAndQuery();
-  //   this.setState({
-  //     productsArray: callback,
-  //   });
-  // }
-
   handleClick(callback) {
     this.setState({
       productsArray: callback,
