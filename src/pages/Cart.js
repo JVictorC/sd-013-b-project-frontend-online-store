@@ -7,6 +7,7 @@ class Cart extends React.Component {
 
     this.state = {
       cartItems: [],
+      totalPrice: 0,
     };
   }
 
@@ -23,11 +24,46 @@ class Cart extends React.Component {
       this.setState({
         cartItems: [...parsedItems],
       });
+
+      this.getTotalPrice(parsedItems);
     }
   };
 
-  render() {
+  getTotalPrice = (items) => {
+    const totalPrice = items.reduce((acc, curr) => acc + curr.price * curr.amount, 0);
+
+    this.setState({ totalPrice });
+  }
+
+  removeItemFromCart = (id) => {
     const { cartItems } = this.state;
+
+    const newItems = cartItems.filter((item) => item.id !== id);
+
+    this.setState({ cartItems: [...newItems] });
+
+    this.setArrayToLocalStorage(newItems);
+    this.getTotalPrice(newItems);
+  }
+
+  setArrayToLocalStorage = (array) => {
+    localStorage.setItem('cartItems', JSON.stringify(array));
+  }
+
+  updateItemAmount = (quantity, itemId) => {
+    const { cartItems } = this.state;
+
+    const newItems = cartItems.map((item) => (
+      item.id === itemId ? { ...item, amount: quantity } : item
+    ));
+
+    this.setState({ cartItems: [...newItems] });
+    this.setArrayToLocalStorage(newItems);
+    this.getTotalPrice(newItems);
+  }
+
+  render() {
+    const { cartItems, totalPrice } = this.state;
 
     return (
       <div>
@@ -35,9 +71,13 @@ class Cart extends React.Component {
           cartItems.map((element) => (
             <CartItem
               key={ element.id }
+              id={ element.id }
               title={ element.title }
               thumbnail={ element.thumbnail }
               amount={ element.amount }
+              availableQuantity={ element.availableQuantity }
+              removeItemFromCart={ this.removeItemFromCart }
+              updateItemAmount={ this.updateItemAmount }
             />
           ))
         ) : (
@@ -45,6 +85,11 @@ class Cart extends React.Component {
             Seu carrinho está vazio
           </p>
         )}
+        <p>
+          Total:
+          {' '}
+          { totalPrice }
+        </p>
       </div>
     );
   }
