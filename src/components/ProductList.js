@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class ProductList extends React.Component {
   render() {
     const { productList } = this.props;
-
+    const { category_id: categoryId } = productList;
     return (
       <div>
         {/* requisito passou, precisamos apenas verificar esta condição.
@@ -14,8 +14,8 @@ class ProductList extends React.Component {
           : productList.map((product) => (
             <div data-testid="product-detail-link" key={ product.id }>
               <Link
+                to={ `/product/${categoryId}/${product.title}` }
                 data-testid="product-detail-link"
-                to={ `/product/${product.id}` }
               >
                 <div data-testid="product">
                   <p data-testid="product-detail-name">{ product.title }</p>

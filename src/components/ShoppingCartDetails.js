@@ -11,10 +11,10 @@ class ShoppingCartDetails extends Component {
   }
 
   componentDidMount() {
-    this.getProduct();
+    this.fetchProduct();
   }
 
-  async getProduct() {
+  async fetchProduct() {
     const { match: { params: { categoryId, query } } } = this.props;
     await api.getProductsFromCategoryAndQuery(categoryId, query)
       .then((response) => {
@@ -25,7 +25,7 @@ class ShoppingCartDetails extends Component {
   render() {
     const { product } = this.state;
     const { title, price, thumbnail } = product;
-    console.log(product);
+
     return (
       <div>
 
@@ -41,6 +41,7 @@ class ShoppingCartDetails extends Component {
           <h1 data-testid="product-detail-name">{ title }</h1>
           <h2>{ `Preço: R$${price}` }</h2>
           <img alt="Product" src={ thumbnail } />
+          <h3>Especificações técnicas:</h3>
         </div>
       </div>
     );
@@ -52,8 +53,6 @@ ShoppingCartDetails.propTypes = {
     params: PropTypes.shape({
       categoryId: PropTypes.string.isRequired,
       query: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
