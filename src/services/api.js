@@ -9,3 +9,10 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const categoryzedProducts = await response.json();
   return categoryzedProducts;
 }
+
+export async function getItem(id) {
+  const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
+  const data = await response.json();
+  // console.log(getItem());
+  return data;
+}

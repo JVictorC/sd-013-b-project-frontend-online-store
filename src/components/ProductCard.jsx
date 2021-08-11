@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { product: { title, thumbnail, price, id } } = this.props;
-    const { search } = this.props;
+    const { product: { title, thumbnail, price, id }, categoryId } = this.props;
+    // const { search } = this.props;
     return (
       <div data-testid="product" className="card">
         <h1>{ title }</h1>
@@ -13,7 +13,7 @@ class ProductCard extends React.Component {
         <p>{ price }</p>
         <Link
           data-testid="product-detail-link"
-          to={ `/product/${search}/${id}` }
+          to={ `/products/${categoryId}/${id}` }
         >
           Detalhes
         </Link>
@@ -29,11 +29,11 @@ ProductCard.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
-  search: PropTypes.string,
+  categoryId: PropTypes.string.isRequired,
 };
 
-ProductCard.defaultProps = {
-  search: '',
-};
+// ProductCard.defaultProps = {
+//   search: '',
+// };
 
 export default ProductCard;
