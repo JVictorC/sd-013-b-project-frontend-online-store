@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import * as api from '../services/api';
+import PropTypes from 'prop-types';
+import CartButton from '../Components/CartButton';
+import ButtonHome from '../Components/ButtonHome';
 
+// REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 export default class CardDetails extends Component {
-  constructor(props) {
-    super(props);
-
-    // this.getItemById = this.getItemById.bind(this);
-  }
-
-  // getItemById() {
-    
-  // }
-  
   render() {
-    const { match: { params: { id } } } = this.props;
+    const { location: { state: { object } } } = this.props;
+    const { title, thumbnail, price } = object;
+    console.log(this.props);
     return (
-      <p>xablau { console.log(id) }</p>
+      <div>
+        <ButtonHome />
+        <p data-testid="product-detail-name">{title}</p>
+        <img src={ thumbnail } alt="Produto" />
+        <p>
+          Preço: R$
+          { price }
+        </p>
+        <CartButton />
+      </div>
     );
   }
 }
+
+CardDetails.propTypes = {
+  location: PropTypes.objectOf(PropTypes.object).isRequired,
+};

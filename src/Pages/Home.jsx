@@ -6,6 +6,8 @@ import SearchButton from '../Components/SearchButton';
 import CardList from '../Components/CardList';
 import * as api from '../services/api';
 
+// REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
+
 export default class Home extends Component {
   constructor() {
     super();
