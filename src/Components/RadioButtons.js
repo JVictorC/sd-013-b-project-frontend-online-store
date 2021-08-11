@@ -6,9 +6,9 @@ class CategoryList extends React.Component {
     const { categories, onClick } = this.props;
     return (
 
-      <form>
+      <form className="radioButtonsParent">
         { categories.map((category, index) => (
-          <div key={ index }>
+          <div key={ index } className="radioButtons">
             <input
               type="radio"
               key={ category.id }
