@@ -29,6 +29,8 @@ Card.propTypes = {
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Card;
