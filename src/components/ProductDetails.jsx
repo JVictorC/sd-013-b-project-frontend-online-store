@@ -39,7 +39,10 @@ export default class ProductDetails extends React.Component {
     const displayLoading = <span>Loading...</span>;
     return (
       <div data-testid="product-detail-name">
-        {loading ? displayLoading : <DetailedProduct item={ searchResult } getQuery={ getQuery } />}
+        {loading ? displayLoading : <DetailedProduct
+          item={ searchResult }
+          getQuery={ getQuery }
+        />}
       </div>
     );
   }
@@ -51,4 +54,5 @@ ProductDetails.propTypes = {
       nameTitle: PropTypes.string,
     }),
   }).isRequired,
+  getQuery: PropTypes.func.isRequired,
 };

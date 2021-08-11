@@ -35,7 +35,9 @@ class App extends React.Component {
           <Route exact path="/" render={ () => <Main getQuery={ this.getQuery } /> } />
           <Route
             path="/product-details/:id"
-            render={ (props) => <ProductDetails { ...props } getQuery={ this.getQuery } /> }
+            render={
+              (props) => <ProductDetails { ...props } getQuery={ this.getQuery } />
+            }
           />
         </Switch>
       </BrowserRouter>

@@ -23,6 +23,7 @@ export default class DetailedProduct extends React.Component {
           Adicionar ao carrinho
         </button>
         <Link to="/">Voltar</Link>
+        <Link to="/shopping-cart">Carrinho</Link>
       </div>
     );
   }
@@ -34,4 +35,5 @@ DetailedProduct.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
+  getQuery: PropTypes.func.isRequired,
 };
