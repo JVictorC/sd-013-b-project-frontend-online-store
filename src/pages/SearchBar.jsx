@@ -1,28 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchByQuery from '../Componentes/SearchByQuery';
+import ProductList from '../Componentes/ProductList';
 import HomeFilter from '../Componentes/HomeFilter';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class SearchBar extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      searchText: '',
+      products: [],
     };
-    this.handleInput = this.handleInput.bind(this);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleInput(event) {
-    const inputValue = event.target.value;
-    return inputValue;
+  handleChange(event) {
+    const text = event.target.value;
+    this.setState({
+      searchText: text,
+    })
+  }
+
+  async handleClick() {
+    const { searchText } = this.state;
+    const object = await getProductsFromCategoryAndQuery(null, searchText);
+    const products = object.results;
+    this.setState({
+      products: products,
+    });
   }
 
   render() {
+    const { products } = this.state;
     return (
       <div>
         <div>
-          <input data-testid="query-input" type="text" onChange={ this.handleInput } />
-          <button data-testid="query-button" type="button">Pesquisar</button>
+          <input data-testid="query-input" type="text" onChange={ this.handleChange } />
+          <button data-testid="query-button" type="button" onClick={ this.handleClick }>Pesquisar</button>
           <h3 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h3>
@@ -31,8 +48,8 @@ class SearchBar extends React.Component {
           Carrinho
         </Link>
         <HomeFilter />
-        <SearchByQuery
-          onChange={ this.handleInput }
+        <ProductList
+          products={ products }
         />
       </div>
     );
