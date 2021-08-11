@@ -1,36 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
 
-class Categories extends React.Component {
+class Categories extends Component {
   constructor() {
     super();
     this.state = {
-      productCategories: [],
+      productCategory: [],
     };
   }
 
   componentDidMount() {
     getCategories().then((data) => {
-      this.setState({ productCategories: data });
+      this.setState({ productCategory: data });
     });
   }
 
   render() {
-    const { productCategories, name } = this.state;
+    const { productCategory } = this.state;
+    const { setCategory } = this.props;
     return (
       <div>
-        <section>
-          <h2>Categorias</h2>
-          <ul>
-            {productCategories.map((category) => (
-              <li key={ category.id } data-testid="category">{ name }</li>
-            ))}
-          </ul>
-        </section>
+        <h1>Categorias:</h1>
+        <ul>
+          {productCategory.map(({ id, name }) => (
+            <li key={ id }>
+              <input
+                data-testid="category"
+                type="radio"
+                name="category"
+                value={ id }
+                onClick={ ({ target: { value } }) => setCategory(value) }
+              />
+              { name }
+            </li>)) }
+        </ul>
       </div>
-
     );
   }
 }
+
+Categories.propTypes = {
+  setCategory: PropTypes.func,
+}.isRequired;
 
 export default Categories;
