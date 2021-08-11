@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
 
 class CategoriesList extends React.Component {
@@ -7,6 +8,7 @@ class CategoriesList extends React.Component {
     this.state = {
       categories: [],
     };
+    this.getCategoryHandler = this.getCategoryHandler.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +19,12 @@ class CategoriesList extends React.Component {
     });
   }
 
+  getCategoryHandler(event) {
+    // console.log(this.props);
+    const { onFilter } = this.props;
+    onFilter(event.target.id);
+  }
+
   render() {
     const { categories } = this.state;
     return (
@@ -25,10 +33,18 @@ class CategoriesList extends React.Component {
           {categories.length !== 0
             && categories.map((category) => (
               <li
-                data-testid="category"
+                id={ category.id }
                 key={ category.id }
               >
-                { category.name }
+                <label htmlFor={ category.id }>{ category.name }</label>
+                <input
+                  name="category-filter"
+                  id={ category.id }
+                  type="radio"
+                  data-testid="category"
+                  onKeyDown={ this.getCategoryHandler }
+                  onClick={ this.getCategoryHandler }
+                />
               </li>
             ))}
         </ul>
@@ -36,5 +52,9 @@ class CategoriesList extends React.Component {
     );
   }
 }
+
+CategoriesList.propTypes = {
+  onFilter: PropTypes.func.isRequired,
+};
 
 export default CategoriesList;

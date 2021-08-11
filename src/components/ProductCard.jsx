@@ -20,11 +20,11 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
-  product: PropTypes.objectOf(PropTypes.shape({
+  product: PropTypes.shape({
     title: PropTypes.string,
     thumbmail: PropTypes.string,
     price: PropTypes.number,
-  })).isRequired,
+  }).isRequired,
 };
 
 export default ProductCard;
