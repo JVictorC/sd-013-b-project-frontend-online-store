@@ -31,8 +31,7 @@ ProductList.propTypes = {
       thumbnail: PropTypes.string,
       price: PropTypes.number,
     }),
-  ),
+  ).isRequired,
 };
-
 
 export default ProductList;
