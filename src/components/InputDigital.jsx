@@ -1,57 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-class InputDigital extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      queryValue: '',
-    };
-
-    this.searchValue = this.searchValue.bind(this);
-  }
-
-  searchValue(event) {
-    this.setState({
-      queryValue: event.target.value,
-    });
-  }
-
+​
+class InputDigital extends Component {
   render() {
-    const { queryValue } = this.state;
-    const { pegandoDaApi } = this.props;
-
+    const { onChange, queryValue, onSubmit } = this.props;
     return (
-      <form>
+      <form onSubmit={ onSubmit }>
         <input
-          type="text"
           data-testid="query-input"
-          value={ queryValue }
-          onChange={ this.searchValue }
+          type="text"
+          queryValue={ queryValue }
+          onChange={ onChange }
         />
-
         <button
-          type="button"
           data-testid="query-button"
-          onClick={ (event) => {
-            pegandoDaApi(queryValue);
-            event.preventDefault();
-          } }
+          type="submit"
         >
-          Pesquisar
+          Buscar
         </button>
-
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+        <button type="submit">
+          <Link
+            to="/cart"
+            data-testid="shopping-cart-button"
+          >
+            Seu Carrinho de compras
+          </Link>
+        </button>
       </form>
     );
   }
 }
-
-export default InputDigital;
-
+​
 InputDigital.propTypes = {
-  pegandoDaApi: PropTypes.func.isRequired,
-};
+  onChange: PropTypes.func,
+  queryValue: PropTypes.string,
+  onSubmit: PropTypes.func,
+}.isRequired;
+​
+export default InputDigital;
