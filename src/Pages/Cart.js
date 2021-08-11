@@ -24,7 +24,7 @@ export default class Cart extends Component {
   renderCartDetail = () => (
     <h3>{this.state.cartItems[0].title}</h3>
   )
-
+  
   render() {
     const { cartItems } = this.state;
     console.log(cartItems);
