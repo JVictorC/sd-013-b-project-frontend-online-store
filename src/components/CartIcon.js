@@ -9,7 +9,7 @@ class CartIcon extends React.Component {
   render() {
     return (
       <Link to="/shopping-cart" data-testid="shopping-cart-button">
-        <FontAwesomeIcon icon={ faCartPlus } className="shoppingCart" size="3x" />
+        <FontAwesomeIcon icon={ faCartPlus } size="3x" />
       </Link>
     );
   }
