@@ -46,7 +46,6 @@ class Home extends Component {
 
   async fetchProducts(catId) {
     const { input } = this.state;
-    console.log(catId, input);
     const fetch = await api.getProductsFromCategoryAndQuery(catId, input);
     const results = await fetch.results;
     this.setState({ products: results });
