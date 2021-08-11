@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+//
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import ProductList from './ProductList';
