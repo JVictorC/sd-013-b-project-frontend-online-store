@@ -19,7 +19,7 @@ export default class CardLibrary extends React.Component {
   }
 
   componentDidMount() {
-
+    localStorage.setItem('cart', '');
   }
   /*
   componentDidUpdate(prevs) {
