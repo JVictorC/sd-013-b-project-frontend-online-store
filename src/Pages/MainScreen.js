@@ -11,28 +11,35 @@ class MainScreen extends React.Component {
     this.state = {
       categories: [],
       products: [],
-      search: {
-        id: 0,
-        query: '',
-      },
+      id: 0,
+      query: '',
     };
 
     this.fetchCategories = this.fetchCategories.bind(this);
-    // this.handleSelect = this.handleSelect.bind(this);
+    this.handleRadioButton = this.handleRadioButton.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.fetchCategories();
-    this.fetchProducts();
+    // this.fetchProducts();
   }
 
-  handleInputChange(event) {
+  handleInputChange({ target }) {
     this.setState({
-      search: {
-        query: event.target.value,
-      },
+      query: target.value,
+    });
+  }
+
+  async handleRadioButton({ target }) {
+    this.setState({
+      id: target.id,
+    })
+
+    const getResponse = await getProductsFromCategoryAndQuery(target.id);
+    this.setState({
+      products: getResponse,
     });
   }
 
@@ -50,7 +57,7 @@ class MainScreen extends React.Component {
 
   // pega os produtos
   async fetchProducts() {
-    const { search: { id, query } } = this.state;
+    const { id, query } = this.state;
     const getResponse = await getProductsFromCategoryAndQuery(id, query);
     this.setState({
       products: getResponse,
@@ -71,17 +78,17 @@ class MainScreen extends React.Component {
             onChange={ this.handleInputChange }
           />
         </label>
-        <lable htmlFor="searchButton">
-          Pesquisar
+        
+          
           <button
             type="button"
             onClick={ this.handleClick }
             id="searchButton"
             data-testid="query-button"
           >
-            pesquisar
+            Pesquisar
           </button>
-        </lable>
+        
 
         <Link
           to="/ShoppCart"
@@ -89,7 +96,7 @@ class MainScreen extends React.Component {
         >
           Carrinho
         </Link>
-        <RadioButtons categories={ categories } />
+        <RadioButtons categories={ categories } onClick={ this.handleRadioButton } />
         {products.results === undefined
           ? <div> sem produtos </div> : <ProductList products={ products } /> }
 
