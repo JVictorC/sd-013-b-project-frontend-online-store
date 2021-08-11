@@ -41,6 +41,9 @@ class Product extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        {product.freeShipping && (
+          <p data-testid="free-shipping">IT&apos;S FREE SHIPPING!</p>
+        )}
       </div>
     );
   }
@@ -52,6 +55,7 @@ Product.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    freeShipping: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

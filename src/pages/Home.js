@@ -43,6 +43,7 @@ class Home extends React.Component {
       price: product.price,
       attributes: product.attributes,
       availableQuantity: product.available_quantity,
+      freeShipping: product.shipping.free_shipping,
     }));
 
     this.setState({
