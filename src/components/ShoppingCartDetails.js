@@ -2,33 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from './ShoppingCartIcon';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import * as api from '../services/api';
 
 class ShoppingCartDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { product: {} };
-    this.catchProduct = this.catchProduct.bind(this);
+    this.state = { product: [] };
   }
 
   componentDidMount() {
-    this.catchProduct();
+    this.getProduct();
   }
 
-  catchProduct = async () => {
-    const product = await getProductsFromCategoryAndQuery();
-    this.setState({ product });
+  async getProduct() {
+    const { match: { params: { categoryId, query } } } = this.props;
+    await api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((response) => {
+        this.setState({ product: response.results[0] });
+      });
   }
 
   render() {
     const { product } = this.state;
-    const { title, thumbnail, price } = product;
+    const { title, price, thumbnail } = product;
     console.log(product);
     return (
       <div>
-        <p data-testid="product-detail-name">{ title }</p>
-        <img src={ thumbnail } alt={ title } />
-        <p>{ price }</p>
+
         <Link
           to="/cart"
           data-testid="shopping-cart-button"
@@ -37,8 +37,12 @@ class ShoppingCartDetails extends Component {
           <ShoppingCartIcon />
         </Link>
         <Link to="/" className="back-button">Voltar</Link>
+        <div>
+          <h1 data-testid="product-detail-name">{ title }</h1>
+          <h2>{ `Preço: R$${price}` }</h2>
+          <img alt="Product" src={ thumbnail } />
+        </div>
       </div>
-
     );
   }
 }
@@ -46,8 +50,10 @@ class ShoppingCartDetails extends Component {
 ShoppingCartDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
+      categoryId: PropTypes.string.isRequired,
+      query: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

@@ -15,7 +15,7 @@ class ProductList extends React.Component {
             <div data-testid="product-detail-link" key={ product.id }>
               <Link
                 data-testid="product-detail-link"
-                to="/product-detail"
+                to={ `/product/${product.id}` }
               >
                 <div data-testid="product">
                   <p data-testid="product-detail-name">{ product.title }</p>
