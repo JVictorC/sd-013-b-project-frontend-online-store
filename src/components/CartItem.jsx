@@ -35,5 +35,8 @@ export default class CartItem extends React.Component {
 
 CartItem.propTypes = {
   quantity: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
