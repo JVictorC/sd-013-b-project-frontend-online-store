@@ -29,9 +29,6 @@ export default class CardList extends Component {
       thumbnail={ product.thumbnail }
       price={ product.price }
     />));
-    // if (productsList.length === 0) {
-    //   return <p>Nenhum produto foi encontrado</p>;
-    // }
     return (
       <div className="cardlist">
         { mapCart }
