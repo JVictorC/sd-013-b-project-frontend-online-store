@@ -37,5 +37,5 @@ InputDigital.propTypes = {
   queryValue: PropTypes.string,
   onSubmit: PropTypes.func,
 }.isRequired;
-​
+
 export default InputDigital;
