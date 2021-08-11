@@ -28,6 +28,11 @@ class App extends Component {
           <Switch>
             <Route
               exact
+              path="/product/:id"
+              component={ ProductDetails }
+            />
+            <Route
+              exact
               path="/"
               render={ (props) => (<Home { ...props } addToCart={ this.addToCart } />) }
             />
@@ -38,7 +43,6 @@ class App extends Component {
                 { ...props }
                 cartItems={ cartItems }
               />) }
-
             />
           </Switch>
         </BrowserRouter>

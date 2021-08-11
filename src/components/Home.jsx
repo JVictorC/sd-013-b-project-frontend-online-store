@@ -37,6 +37,7 @@ class Home extends React.Component {
   async handleClick() {
     const { search } = this.state;
     const { results } = await getProductsFromCategoryAndQuery('', search);
+    console.log(results);
     this.setState({
       results,
       showCard: true,
