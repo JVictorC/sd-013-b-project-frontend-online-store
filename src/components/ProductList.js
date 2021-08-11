@@ -12,7 +12,7 @@ class ProductList extends React.Component {
         Já inicia mostrando a mensagem de produto não encontrado. */}
         {productList.length === 0 ? <p>Nenhum produto encontrado</p>
           : productList.map((product) => (
-            <div data-testid="product-detail-link" key={ product.id }>
+            <div key={ product.id }>
               <Link
                 to={ `/product/${categoryId}/${product.title}` }
                 data-testid="product-detail-link"
