@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
@@ -7,13 +8,20 @@ class ProductCard extends React.Component {
     const { title, thumbnail, price } = product;
     return (
       <div data-testid="product">
-        <p>
+        <h3>
           { title }
-        </p>
+        </h3>
         <img src={ thumbnail } alt="test" />
-        <h2>
+        <h4>
           { price }
-        </h2>
+        </h4>
+        <Link
+          data-testid="product-detail-link"
+          to={ `/product/${product.id}` }
+          onClick={ () => localStorage.setItem('item', JSON.stringify(product)) }
+        >
+          Detalhes
+        </Link>
       </div>
     );
   }
