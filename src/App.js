@@ -11,8 +11,21 @@ class App extends React.Component {
     this.state = {
       search: '',
       category: '',
+      products: [],
     };
   }
+
+  updateProducts = (product) => {
+    const productPlusQuantity = product;
+    productPlusQuantity.quantity = 1;
+    this.setState((previousState) => ({
+      products: [...previousState.products, productPlusQuantity],
+    }));
+  }
+
+  // updateQuantity = () => {
+
+  // }
 
   setSearch = (search) => {
     this.setState({
@@ -34,7 +47,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { category, search } = this.state;
+    const { category, search, products } = this.state;
     return (
       <div>
         <BrowserRouter>
@@ -47,9 +60,17 @@ class App extends React.Component {
                   { ...props }
                   setCategory={ this.setCategory }
                   setSearch={ this.setSearch }
+                  updateProducts={ this.updateProducts }
                 />) }
             />
-            <Route path="/cart" component={ Cart } />
+            <Route
+              path="/cart"
+              render={ (props) => (
+                <Cart
+                  { ...props }
+                  products={ products }
+                />) }
+            />
             <Route
               path="/:id"
               render={ (props) => (
