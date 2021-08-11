@@ -30,11 +30,6 @@ class CategoryList extends React.Component {
 export default CategoryList;
 
 CategoryList.propTypes = {
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      query: PropTypes.string,
-    }),
-
-  ).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

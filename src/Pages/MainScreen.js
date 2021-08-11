@@ -35,7 +35,7 @@ class MainScreen extends React.Component {
   async handleRadioButton({ target }) {
     this.setState({
       id: target.id,
-    })
+    });
 
     const getResponse = await getProductsFromCategoryAndQuery(target.id);
     this.setState({
@@ -78,18 +78,14 @@ class MainScreen extends React.Component {
             onChange={ this.handleInputChange }
           />
         </label>
-        
-          
-          <button
-            type="button"
-            onClick={ this.handleClick }
-            id="searchButton"
-            data-testid="query-button"
-          >
-            Pesquisar
-          </button>
-        
-
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          id="searchButton"
+          data-testid="query-button"
+        >
+          Pesquisar
+        </button>
         <Link
           to="/ShoppCart"
           data-testid="shopping-cart-button"
