@@ -22,7 +22,11 @@ class App extends React.Component {
     this.setState({ productDetailsSelect: newProduct });
   }
 
-  getCardItem(newCard) {
+  getCardItem(newCard, productDetails = false) {
+    if (productDetails) {
+      this.setState((prevState) => ({ card: [...prevState.card, newCard] }));
+      return null;
+    }
     this.setState({ card: newCard });
   }
 
@@ -80,7 +84,10 @@ class App extends React.Component {
         <Route
           path="/productDetails/:id"
           render={ () => (
-            <ProductDetails productDetailsSelect={ productDetailsSelect } />
+            <ProductDetails
+              productDetailsSelect={ productDetailsSelect }
+              getCardItem={ this.getCardItem }
+            />
           ) }
         />
       </BrowserRouter>
