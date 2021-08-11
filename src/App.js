@@ -75,7 +75,6 @@ class App extends React.Component {
                 />
               ) }
             />
-            <Route path="/cart" render={ () => <Cart card={ card } /> } />
           </Switch>
         </div>
         <Route

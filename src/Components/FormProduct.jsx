@@ -4,7 +4,7 @@ export default class FormProduct extends Component {
   render() {
     return (
       <div>
-        <form action="GET">
+        <form action="SUBMIT">
           <label htmlFor="product-evaluator">
             Avalie nosso Produto
             <input
