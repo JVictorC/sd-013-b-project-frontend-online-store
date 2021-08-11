@@ -18,10 +18,11 @@ class Home extends React.Component {
     this.fetchCategories = this.fetchCategories.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClickCategories = this.handleClickCategories.bind(this);
   }
 
-  async componentDidMount() {
-    await this.fetchCategories();
+  componentDidMount() {
+    this.fetchCategories();
   }
 
   handleChange(event) {
@@ -36,6 +37,15 @@ class Home extends React.Component {
     const productsInfo = productList.results;
     this.setState({
       productList: productsInfo,
+    });
+  }
+
+  async handleClickCategories(event) {
+    const categoryId = event.target.value;
+    const getCategoryId = await getProductsFromCategoryAndQuery(categoryId, ' ');
+    const categoriesResult = getCategoryId.results;
+    this.setState({
+      productList: categoriesResult,
     });
   }
 
@@ -81,9 +91,14 @@ class Home extends React.Component {
                 htmlFor="categorie"
                 name="categorie"
                 key={ categorie.id }
-                data-testid="category"
               >
-                <input type="radio" name="categorie" />
+                <input
+                  data-testid="category"
+                  value={ categorie.id }
+                  type="radio"
+                  name="categorie"
+                  onClick={ this.handleClickCategories }
+                />
                 { categorie.name }
               </label>
             </li>
