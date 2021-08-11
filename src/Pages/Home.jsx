@@ -53,7 +53,7 @@ export default class Home extends Component {
       .getProductsFromCategoryAndQuery(categoryId, '');
     return response.results;
   }
-  
+
   render() {
     const { searchValueHome, productsArray, categoryId } = this.state;
     return (
