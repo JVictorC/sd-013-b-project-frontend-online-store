@@ -36,12 +36,15 @@ class ProductDetails extends React.Component {
                 to="/cart"
                 data-testid="shopping-cart-button"
               >
-                <img className="cart-icon" src={shoppingCart} alt="cart icon" />
+                <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
               </Link>
             </div>
             <div className="product-name-price">
+              <h3 data-testid="product-detail-name">
+                {productDetail.title}
+              </h3>
               <h3>
-                { `${productDetail.title} = R$${productDetail.price}` }
+                {`R$ ${productDetail.price}`}
               </h3>
             </div>
             <div className="product-detais">
@@ -55,7 +58,7 @@ class ProductDetails extends React.Component {
             </div>
           </div>
         ) : (
-          <Loading />
+          ""
         )}
       </div>
     );
