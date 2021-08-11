@@ -85,4 +85,6 @@ export default Home;
 Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
   getDetailsProduct: PropTypes.func.isRequired,
+  QuantityItemCard: PropTypes.number.isRequired,
+  card: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
