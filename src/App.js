@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SearchBar from './pages/SearchBar';
 import ShoppingCart from './pages/ShoppingCart';
-import InfoProducts from './Componentes/infoProducts'
+import InfoProducts from './Componentes/infoProducts';
 import './App.css';
 
 function App() {
