@@ -14,6 +14,7 @@ class ProductList extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   handleClick() {
@@ -39,11 +40,23 @@ class ProductList extends React.Component {
     }
   }
 
+  handleFilter(id) {
+    const { text } = this.state;
+    getProductsFromCategoryAndQuery(id, text).then((response) => {
+      this.setState({
+        results: response.results,
+        didSearch: true,
+      });
+      console.log(id, text);
+      console.log(response);
+    });
+  }
+
   render() {
     const { text, results, didSearch } = this.state;
     return (
       <div className="main-container">
-        <CategoriesList />
+        <CategoriesList onFilter={ this.handleFilter } />
         <section>
           <input
             type="text"
