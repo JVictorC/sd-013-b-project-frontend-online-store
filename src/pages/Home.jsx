@@ -35,6 +35,7 @@ class Home extends Component {
 
   render() {
     const { searchText, products } = this.state;
+    const { getProductData } = this.props;
     return (
       <div>
         <SearchBar
@@ -44,7 +45,7 @@ class Home extends Component {
         />
         <Link to="/shoppingKart" data-testid="shopping-cart-button">Carrinho</Link>
         <Category handleRadioButton={ this.handleRadioButton } />
-        <ProductsList products={ products } />
+        <ProductsList products={ products } getProductData={ getProductData } />
       </div>
     );
   }
