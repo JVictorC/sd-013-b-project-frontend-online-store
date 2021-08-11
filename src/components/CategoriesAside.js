@@ -26,7 +26,7 @@ class CategoriesAside extends React.Component {
   }
 
   render() {
-    const { handleChange } = this.props;
+    const { handleCategory } = this.props;
     const { categories } = this.state;
 
     return (
@@ -39,9 +39,10 @@ class CategoriesAside extends React.Component {
               data-testid="category"
               key={ id }
               type="radio"
+              id={ id }
               value={ name }
               name="category"
-              onClick={ handleChange }
+              onClick={ handleCategory }
             />
           </label>
         ))}
@@ -51,7 +52,7 @@ class CategoriesAside extends React.Component {
 }
 
 CategoriesAside.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleCategory: PropTypes.func.isRequired,
 };
 
 export default CategoriesAside;

@@ -10,12 +10,14 @@ class Home extends React.Component {
 
     this.state = {
       query: '',
-      category: '',
+      categoryId: '',
       submit: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
+    this.renderMain = this.renderMain.bind(this);
   }
 
   handleChange({ target }) {
@@ -29,11 +31,28 @@ class Home extends React.Component {
   handleClick() {
     this.setState({
       submit: true,
+      categoryId: '',
     });
   }
 
+  handleCategory({ target }) {
+    const { id } = target;
+
+    this.setState({
+      categoryId: id,
+      submit: false,
+    });
+  }
+
+  renderMain() {
+    const { query, categoryId } = this.state;
+    return (
+      <RenderProducts query={ query } categoryId={ categoryId } />
+    );
+  }
+
   render() {
-    const { query, category, submit } = this.state;
+    const { query, categoryId, submit } = this.state;
     const message = (
       <p
         data-testid="home-initial-message"
@@ -50,8 +69,9 @@ class Home extends React.Component {
             handleClick={ this.handleClick }
           />
         </div>
-
-        {(query !== '' && submit) ? <RenderProducts query={ query } /> : message}
+        <div>
+          {!submit && categoryId === '' ? message : this.renderMain()}
+        </div>
 
         <Link to="/shopping-cart">
           <button
@@ -62,7 +82,7 @@ class Home extends React.Component {
           </button>
         </Link>
         <aside>
-          <CategoriesAside value={ category } handleChange={ this.handleChange } />
+          <CategoriesAside handleCategory={ this.handleCategory } />
         </aside>
       </div>
     );

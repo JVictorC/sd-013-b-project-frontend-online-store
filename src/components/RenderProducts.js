@@ -18,9 +18,21 @@ class RenderProducts extends React.Component {
     this.fetchProducts();
   }
 
+  componentDidUpdate() {
+    this.fetchProducts();
+  }
+
   async fetchProducts() {
-    const { query } = this.props;
-    const products = await getProductsFromCategoryAndQuery(false, query);
+    const { query = '', categoryId = '' } = this.props;
+    let products;
+
+    if (query !== '') {
+      products = await getProductsFromCategoryAndQuery(false, query);
+    }
+
+    if (categoryId !== '') {
+      products = await getProductsFromCategoryAndQuery(categoryId, false);
+    }
 
     this.setState(() => ({
       products: products.results,
@@ -56,6 +68,7 @@ class RenderProducts extends React.Component {
 
 RenderProducts.propTypes = {
   query: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
 };
 
 export default RenderProducts;
