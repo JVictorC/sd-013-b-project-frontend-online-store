@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import CheckoutProducts from './pages/CheckoutProducts';
 
 class App extends React.Component {
   constructor(props) {
@@ -65,6 +66,15 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
+          <Route
+            exact
+            path="/shopping-cart/checkout-products"
+            render={ (props) => (
+              <CheckoutProducts
+                { ...props }
+                cart={ cart }
+              />) }
+          />
           <Route
             exact
             path="/shopping-cart"
