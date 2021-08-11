@@ -40,6 +40,8 @@ export default class ListItems extends React.Component {
   }
 }
 
+// alterar requisições
+
 ListItems.propTypes = {
   productsList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
