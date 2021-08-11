@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 
 export default class CardList extends Component {
-
   render() {
     const { productsList } = this.props;
     const mapCart = productsList.map((product) => (<Card

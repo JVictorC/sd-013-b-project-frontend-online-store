@@ -8,7 +8,7 @@ export default class CardDetails extends Component {
   render() {
     const { location: { state: { object } } } = this.props;
     const { title, thumbnail, price } = object;
-    console.log(object);
+    console.log(this.props);
     return (
       <div>
         <ButtonHome />
