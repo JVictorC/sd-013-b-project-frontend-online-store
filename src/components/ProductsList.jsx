@@ -18,7 +18,10 @@ export default class ProductsList extends Component {
       return <span>{products}</span>;
     }
 
+    const { getProductData } = this.props;
+
     return (
+<<<<<<< HEAD
       products.map(({ id, title, thumbnail, price }) => (
         <div data-testid="product" key={ id } className="product-card" >
           <h4>{title}</h4>
@@ -26,6 +29,21 @@ export default class ProductsList extends Component {
           <Link to={`/product/${id}`}>Detalhes</Link>
           <span>{`R$${price}`}</span>
         </div>
+=======
+      products.map((product) => (
+        <Link
+          to={ `/product/${product.id}` }
+          key={ product.id }
+          onClick={ () => getProductData(product) }
+          data-testid="product-detail-link"
+        >
+          <div data-testid="product" className="product-card">
+            <h4>{product.title}</h4>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <span>{`R$${product.price}`}</span>
+          </div>
+        </Link>
+>>>>>>> d7a7dcc5d78245839f96d68d052021f2c8303038
       ))
     );
   };
