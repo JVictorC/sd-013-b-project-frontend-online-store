@@ -24,8 +24,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.fetchCategoriesList();
-    const cat = api.getCategories();
-    console.log(cat);
   }
 
   onSearchSubmit(value) {
