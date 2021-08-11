@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css';
 import PropTypes from 'prop-types';
+import Cart from './Cart';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -11,8 +12,9 @@ class ProductCard extends React.Component {
     // this.onClick = this.onClick.bind(this);
   }
 
-  OnClick = () => {
-    console.log('olá');
+  onClick = (event) => {
+    const { selectedProductToCart, product } = this.props;
+    selectedProductToCart(product);
   }
 
   render() {

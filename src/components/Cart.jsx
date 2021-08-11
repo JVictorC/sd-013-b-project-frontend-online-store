@@ -6,10 +6,20 @@ class Cart extends React.Component {
     this.state = [];
   }
 
+  selectedProductToCart(product) {
+    console.log(product);
+    return product;
+  }
+
   render() {
+    const { location } = this.props;
+
+    // const { productToCart } = state;
+
+    console.log(location);
     return (
       <div>
-        <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
+        <h2 data-testid="shopping-cart-empty-message">productId</h2>
       </div>
     );
   }
