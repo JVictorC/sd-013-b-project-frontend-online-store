@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EvaluationForm from './EvaluationForm';
 
 export default class DetailedProduct extends React.Component {
   render() {
@@ -10,6 +11,9 @@ export default class DetailedProduct extends React.Component {
         <h2>{ title }</h2>
         <img src={ thumbnail } alt="produto detalhado" />
         <p>{`R$: ${price}`}</p>
+        <span>
+          <EvaluationForm />
+        </span>
       </div>
     );
   }
