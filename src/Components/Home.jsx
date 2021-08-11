@@ -38,8 +38,10 @@ class Home extends Component {
 
   async getProducts(searchText) {
     const { categorySelect } = this.state;
-    const items = await getProductsFromCategoryAndQuery(categorySelect, searchText)
-      .then((result) => result.results);
+    const items = await getProductsFromCategoryAndQuery(
+      categorySelect,
+      searchText,
+    ).then((result) => result.results);
     this.setState({ products: items });
   }
 
@@ -61,15 +63,22 @@ class Home extends Component {
 
   render() {
     const { products } = this.state;
+    const { getDetailsProduct } = this.props;
     return (
       <>
         <header>
           <BarSearch getProducts={ this.getProducts } />
-          <Link data-testid="shopping-cart-button" to="cart/">Cart</Link>
+          <Link data-testid="shopping-cart-button" to="cart/">
+            Cart
+          </Link>
         </header>
         <main>
           <Category handleClick={ this.handleClick } />
-          <ProductList products={ products } addToCard={ this.addToCard } />
+          <ProductList
+            products={ products }
+            addToCard={ this.addToCard }
+            getDetailsProduct={ getDetailsProduct }
+          />
         </main>
       </>
     );
@@ -80,4 +89,5 @@ export default Home;
 
 Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
+  getDetailsProduct: PropTypes.func.isRequired,
 };
