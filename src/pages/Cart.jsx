@@ -8,8 +8,7 @@ export default class Cart extends React.Component {
     super();
 
     this.state = {
-      items: ['teste'],
-      quantity: 1,
+      items: [],
     };
 
     this.increment = this.increment.bind(this);
@@ -32,9 +31,10 @@ export default class Cart extends React.Component {
 
   setItems() {
     const data = localStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
 
     this.setState({
-      items: data,
+      items: parsedData,
     });
   }
 
@@ -53,14 +53,14 @@ export default class Cart extends React.Component {
   }
 
   render() {
-    const { items, quantity } = this.state;
+    const { items } = this.state;
 
     return (
       <div>
         <Link to="/">Voltar</Link>
         <h1>Carrinho de compras</h1>
         { items.length >= 1
-          ? <CartItems quantity={ quantity } onClick={ this.onClick } items={ items } />
+          ? <CartItems onClick={ this.onClick } items={ items } />
           : <EmptyCart />}
       </div>
     );
