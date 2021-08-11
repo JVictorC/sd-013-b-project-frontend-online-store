@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
         >
           Detalhes
         </Link>
-        <button type="button">Add to cart</button>
+        <button type="button" data-testid="product-add-to-cart">Add to cart</button>
       </div>
     );
   }
@@ -34,7 +34,7 @@ ProductCard.propTypes = {
       title: PropTypes.string,
       thumbnail: PropTypes.string,
       price: PropTypes.string,
-    }).isRequired,
+    }),
   ).isRequired,
 };
 
