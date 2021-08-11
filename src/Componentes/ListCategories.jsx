@@ -29,14 +29,17 @@ class ListCategories extends Component {
       <div>
         <form onChange={ handleChange } name="category">
           { categories.map(({ name, id }) => (
-            <option
-              type="checkbox"
-              key={ id }
-              data-testid="category"
-              value={ id }
-            >
-              { name }
-            </option>
+            <div key={ id }>
+              <label htmlFor={ id }>
+                <input
+                  type="checkbox"
+                  key={ id }
+                  data-testid="category"
+                  value={ id }
+                />
+                { name }
+              </label>
+            </div>
           )) }
         </form>
       </div>
