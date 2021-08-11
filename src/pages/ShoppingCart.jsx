@@ -7,25 +7,28 @@ class ShoppingCart extends React.Component {
     super(props);
 
     this.state = {
-      productState: []
+      productState: [],
     };
+  }
 
-    componentDidMount() {
-      const { location } = this.props;
-      const { state } = location;
-      const { addToCart } = state.product;
-      this.setState({
-        productState:
-      });
-    }
-    
-    render() {
+  countRepeatedElements(array, elementToFilter) {
+    return array.reduce((accumulator, checkingElement) => (
+      elementToFilter === checkingElement? accumulator + 1: accumulator)
+    , 0)
+  }
+
+  render() {
+    // const { productState } = this.state;
     const { location } = this.props;
     const { state } = location;
     const { addToCart } = state.product;
-    // this.state.productState // []
-    console.log(addToCart);
-    // <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+    const noRepetElementsAddToCart = [...new Set(addToCart)];
+    // this.setState({
+    //   productState: [...productState, ...addToCart],
+    // });
+
+    console.log(this.countRepeatedElements(addToCart, noRepetElementsAddToCart[0]))
+    console.log(addToCart)
     return (
       <div>
         <Link
@@ -39,12 +42,13 @@ class ShoppingCart extends React.Component {
           voltar
         </Link>
         {
-          addToCart ? addToCart.map((product) => (
-            <div>
+          noRepetElementsAddToCart ? noRepetElementsAddToCart.map((product) => (
+            <div key={ product.id }>
               <p data-testid="shopping-cart-product-name">{ product.title }</p>
               <img src={ product.thumbnail } alt="foto" width="100px" />
               <p>{ product.price }</p>
               <p>{ product.price }</p>
+              <p>{ this.countRepeatedElements(addToCart, product) }</p>
             </div>
 
           ))
