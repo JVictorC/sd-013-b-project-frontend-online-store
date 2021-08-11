@@ -6,6 +6,7 @@
 
 .App {
   display: flex;
+  padding: 0 10%;
 }
 
 .home-page {

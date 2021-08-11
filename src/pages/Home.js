@@ -35,6 +35,7 @@ class Home extends React.Component {
 
   listProducts = async (category, query) => {
     const response = await api.getProductsFromCategoryAndQuery(category, query);
+    console.log(response.results[0]);
 
     const list = response.results.map((product) => ({
       id: product.id,
@@ -42,6 +43,7 @@ class Home extends React.Component {
       thumbnail: product.thumbnail,
       price: product.price,
       attributes: product.attributes,
+      available_quantity: product.available_quantity,
     }));
 
     this.setState({
