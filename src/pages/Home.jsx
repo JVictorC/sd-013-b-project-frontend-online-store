@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
+import ProductDetails from './ProductDetails';
 
 class Home extends React.Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class Home extends React.Component {
           </Link>
           <Categories handleClick={ this.handleClick } />
         </label>
+        {/* <ProductDetails products={ products } filterText={ filterText } /> */}
         <div className="product-list">
           {products.map((product) => (
             <ProductCard
