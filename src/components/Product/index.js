@@ -2,17 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import getItemsFromLocalStorage from '../../utils/getItemsFromLocalStorage';
+import {
+  getItemsFromLocalStorage,
+  saveProductToLocalStorage,
+} from '../../utils/localStorageHelpers';
 
 // import './style.css';
 
 class Product extends React.Component {
-  saveProductToLocalStorage = () => {
-    const { product } = this.props;
-
-    localStorage.setItem('productDetails', JSON.stringify(product));
-  };
-
   handleClick = () => {
     const { product } = this.props;
 
@@ -20,7 +17,7 @@ class Product extends React.Component {
     const newItems = [...items, { ...product, amount: 1 }];
 
     localStorage.setItem('cartItems', JSON.stringify(newItems));
-  }
+  };
 
   render() {
     const { product } = this.props;
@@ -33,7 +30,7 @@ class Product extends React.Component {
         <Link
           data-testid="product-detail-link"
           to={ `/product/${product.id}` }
-          onClick={ this.saveProductToLocalStorage }
+          onClick={ () => saveProductToLocalStorage(product) }
         >
           Detalhes
         </Link>

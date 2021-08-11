@@ -1,6 +1,11 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
 
+import {
+  getItemsFromLocalStorage,
+  setArrayToLocalStorage,
+} from '../utils/localStorageHelpers';
+
 class Cart extends React.Component {
   constructor() {
     super();
@@ -12,28 +17,25 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    this.addProductToCart();
+    this.fetchProducts();
   }
 
-  addProductToCart = () => {
-    const itemsList = localStorage.getItem('cartItems');
+  fetchProducts = () => {
+    const cartItems = getItemsFromLocalStorage();
 
-    if (itemsList) {
-      const parsedItems = JSON.parse(itemsList);
+    this.setState({ cartItems });
 
-      this.setState({
-        cartItems: [...parsedItems],
-      });
-
-      this.getTotalPrice(parsedItems);
-    }
+    this.getTotalPrice(cartItems);
   };
 
   getTotalPrice = (items) => {
-    const totalPrice = items.reduce((acc, curr) => acc + curr.price * curr.amount, 0);
+    const totalPrice = items.reduce(
+      (acc, curr) => acc + curr.price * curr.amount,
+      0,
+    );
 
     this.setState({ totalPrice });
-  }
+  };
 
   removeItemFromCart = (id) => {
     const { cartItems } = this.state;
@@ -42,13 +44,9 @@ class Cart extends React.Component {
 
     this.setState({ cartItems: [...newItems] });
 
-    this.setArrayToLocalStorage(newItems);
     this.getTotalPrice(newItems);
-  }
-
-  setArrayToLocalStorage = (array) => {
-    localStorage.setItem('cartItems', JSON.stringify(array));
-  }
+    setArrayToLocalStorage(newItems);
+  };
 
   updateItemAmount = (quantity, itemId) => {
     const { cartItems } = this.state;
@@ -58,9 +56,9 @@ class Cart extends React.Component {
     ));
 
     this.setState({ cartItems: [...newItems] });
-    this.setArrayToLocalStorage(newItems);
     this.getTotalPrice(newItems);
-  }
+    setArrayToLocalStorage(newItems);
+  };
 
   render() {
     const { cartItems, totalPrice } = this.state;
@@ -88,7 +86,7 @@ class Cart extends React.Component {
         <p>
           Total:
           {' '}
-          { totalPrice }
+          {totalPrice}
         </p>
       </div>
     );

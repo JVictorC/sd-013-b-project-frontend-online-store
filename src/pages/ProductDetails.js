@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import getItemsFromLocalStorage from '../utils/getItemsFromLocalStorage';
+import {
+  getItemsFromLocalStorage,
+  getItemFromLocalStorage,
+  setArrayToLocalStorage,
+} from '../utils/localStorageHelpers';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -18,11 +22,9 @@ class ProductDetails extends React.Component {
   }
 
   getProductFromLocalStorage = () => {
-    const savedProduct = localStorage.getItem('productDetails');
+    const savedProduct = getItemFromLocalStorage();
 
-    if (savedProduct) {
-      this.setState({ loading: false, product: JSON.parse(savedProduct) });
-    }
+    this.setState({ loading: false, product: savedProduct });
   };
 
   handleClick = () => {
@@ -31,8 +33,8 @@ class ProductDetails extends React.Component {
     const items = getItemsFromLocalStorage();
     const newItems = [...items, { ...product, amount: 1 }];
 
-    localStorage.setItem('cartItems', JSON.stringify(newItems));
-  }
+    setArrayToLocalStorage(newItems);
+  };
 
   render() {
     const { loading, product } = this.state;
