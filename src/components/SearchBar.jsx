@@ -62,6 +62,7 @@ class SearchBar extends React.Component {
     this.setState({
       selectCategory: filteredCategory,
     });
+    console.log(this.props);
   }
 
   getQuery() {
@@ -138,6 +139,7 @@ class SearchBar extends React.Component {
                   >
                     Detalhes
                   </Link>
+                  
                   <Link
                     to={ {
                       pathname: '/shopping-cart',
