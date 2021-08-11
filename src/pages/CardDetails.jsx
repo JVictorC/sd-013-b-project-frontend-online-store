@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import EvaluationForm from '../components/EvaluationForm';
 
 export default class CardDetails extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class CardDetails extends React.Component {
 
   render() {
     const { product } = this.state;
-    const { title, price, thumbnail } = product;
+    const { title, price, thumbnail, id } = product;
     return (
       <section>
         <div>
@@ -38,8 +39,13 @@ export default class CardDetails extends React.Component {
           <h3>Especificações técnicas:</h3>
 
         </div>
-        <Link to="/">VOLTAR</Link>
-        <Link to="/cart">CARRINHO</Link>
+        <div>
+          <Link to="/">VOLTAR</Link>
+          <Link to="/cart">CARRINHO</Link>
+        </div>
+        <div>
+          <EvaluationForm id={ id } />
+        </div>
       </section>
     );
   }
