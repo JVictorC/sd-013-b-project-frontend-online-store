@@ -1,34 +1,32 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
-// import * as api from './services/api';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.subProduct = this.subProduct.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.state = {
-      cart: [{
-        id: 'MLB1324585293',
-        available_quantity: 5,
-        price: 54.9,
-        title: 'Bola Fut Campo Oficial Topper Slick Ii',
-        thumbnail: 'http://http2.mlstatic.com/D_868421-MLB41330463670_042020-O.jpg',
-        quantity: 3,
-      },
-      {
-        id: 'MLB1873504309',
-        available_quantity: 50000,
-        price: 95.9,
-        title: 'Chuteira Campo Adulto Infantil + Relógio + Meião Promoção',
-        thumbnail: 'http://http2.mlstatic.com/D_953550-MLB45982200233_052021-O.jpg',
-        quantity: 5,
-      },
-      ],
+      cart: [],
     };
+  }
+
+  addToCart = (product) => {
+    const {
+      id,
+      available_quantity: availableQuantity,
+      price,
+      title,
+      thumbnail,
+    } = product;
+    const newItem = { id, availableQuantity, price, title, thumbnail, quantity: 1 };
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, newItem],
+    }));
   }
 
   subProduct(id) {
@@ -66,11 +64,24 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ Home } />
+          <Route exact path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
           <Route
             exact
             path="/shopping-cart"
-            render={ (props) => <ShoppingCart { ...props } cart={ cart } onSubClick={ this.subProduct } onAddClick={ this.addProduct } /> }
+            render={ (props) => (
+              <ShoppingCart
+                { ...props }
+                cart={ cart }
+                onSubClick={ this.subProduct }
+                onAddClick={ this.addProduct }
+              />) }
+          />
+          <Route
+            exact
+            path="/product-details"
+            render={ (props) => (
+              <ProductDetails addToCart={ this.addToCart } { ...props } />
+            ) }
           />
         </Switch>
       </BrowserRouter>
