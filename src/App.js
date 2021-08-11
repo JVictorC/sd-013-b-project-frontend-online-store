@@ -6,14 +6,14 @@ import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
-    <BrowserRouter>
-      <main>
+    <div className="app">
+      <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ ProductList } />
           <Route exact path="/shopping-cart" component={ ShoppingCart } />
         </Switch>
-      </main>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 }
 
