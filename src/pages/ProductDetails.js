@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import EvaluatingForm from '../components/EvaluatingForm';
+import EvaluationsZone from '../components/EvaluationsZone';
+
 import {
   getItemsFromLocalStorage,
   getItemFromLocalStorage,
@@ -60,6 +63,8 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        <EvaluatingForm id={ product.id } />
+        <EvaluationsZone id={ product.id } />
       </div>
     );
   }
