@@ -31,7 +31,7 @@ class InputDigital extends Component {
     );
   }
 }
-​
+
 InputDigital.propTypes = {
   onChange: PropTypes.func,
   queryValue: PropTypes.string,

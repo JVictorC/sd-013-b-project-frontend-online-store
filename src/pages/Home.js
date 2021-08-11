@@ -13,7 +13,7 @@ class Home extends React.Component {
       productFilter: '',
     };
   }
-​
+
   handleSubmit = async (element) => {
     element.preventDefault();
     const { queryValue, productFilter } = this.state;
