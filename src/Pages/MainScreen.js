@@ -14,12 +14,14 @@ class MainScreen extends React.Component {
       products: [],
       id: 0,
       query: '',
+      shoppingCart: [],
     };
 
     this.fetchCategories = this.fetchCategories.bind(this);
     this.handleRadioButton = this.handleRadioButton.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +48,14 @@ class MainScreen extends React.Component {
 
   handleClick() {
     this.fetchProducts();
+  }
+
+  addToCart(product) {
+    const { shoppingCart } = this.state;
+    this.setState({
+      shoppingCart: [...shoppingCart, product],
+    });
+    localStorage.setItem('cart', JSON.stringify(shoppingCart));
   }
 
   // pega as categorias
@@ -99,7 +109,8 @@ class MainScreen extends React.Component {
         </header>
         <RadioButtons categories={ categories } onClick={ this.handleRadioButton } />
         {products.results === undefined
-          ? <NoProduct /> : <ProductList products={ products } /> }
+          ? <NoProduct />
+          : <ProductList products={ products } addToCart={ this.addToCart } /> }
       </div>
     );
   }
