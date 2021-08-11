@@ -26,16 +26,25 @@ class ListaCat extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { getId } = this.props;
     return (
       <div>
         <ul>
           { categories.map((categorie) => (
-            <li
-              data-testid="category"
-              key={ categorie.name }
-            >
-              { categorie.name }
-            </li>
+            <div key={ categorie.id }>
+              <label htmlFor="category">
+                <input
+                  query={ categorie.name }
+                  type="radio"
+                  name="categoria"
+                  id={ categorie.id }
+                  data-testid="category"
+                  key={ categorie.name }
+                  onClick={ getId }
+                />
+                { categorie.name }
+              </label>
+            </div>
           ))}
         </ul>
       </div>
