@@ -20,7 +20,7 @@ class Home extends React.Component {
     const data = await api.getProductsFromCategoryAndQuery(productFilter, queryValue);
     this.setState({ data });
   };
-​
+
   handleCategory = (category) => {
     const { queryValue } = this.state;
     api.getProductsFromCategoryAndQuery(category, queryValue)
@@ -28,11 +28,11 @@ class Home extends React.Component {
         this.setState({ productFilter: category, data });
       });
   }
-​
+
   handleSearch = ({ target: { value } }) => {
     this.setState({ queryValue: value });
   }
-​
+
   render() {
     const { queryValue, data: { results } } = this.state;
     return (
@@ -52,5 +52,5 @@ class Home extends React.Component {
     );
   }
 }
-​
+
 export default Home;
