@@ -10,12 +10,22 @@ export default class ProductDetails extends Component {
     this.state = {
       productDetailsSelect,
     };
+    this.hadlerClick = this.hadlerClick.bind(this);
+  }
+
+  hadlerClick(product) {
+    const { getCardItem } = this.props;
+    const { title, price, thumbnail, id } = product;
+    getCardItem({ title, price, thumbnail, quantity: 1 }, true);
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    localStorage.setItem('card',
+      JSON.stringify([...cardLocal, { title, price, thumbnail, id }]));
   }
 
   render() {
     const { productDetailsSelect } = this.state;
     const { thumbnail, price, title } = productDetailsSelect;
-    const { getCardItem, QuantityItemCard } = this.props;
+    const { QuantityItemCard } = this.props;
     return (
       // thumbnail= imagem, price = preço, title = nome, installments = especificações
       <div>
@@ -39,7 +49,7 @@ export default class ProductDetails extends Component {
           data-testid="product-detail-add-to-cart"
           type="button"
           onClick={
-            () => getCardItem({ title, price, thumbnail, quantity: 1 }, true)
+            () => this.hadlerClick(productDetailsSelect)
           }
         >
           Adicionar ao Carrinho

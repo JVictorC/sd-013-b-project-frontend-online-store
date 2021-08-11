@@ -22,15 +22,6 @@ class Home extends Component {
     this.addToCard = this.addToCard.bind(this);
   }
 
-  componentDidUpdate(_, prevState) {
-    const { card } = this.state;
-    let cardLocal = localStorage.getItem('card');
-    cardLocal = JSON.parse(cardLocal);
-    if (prevState.card.length !== card.length) {
-      localStorage.setItem('card', JSON.stringify([...cardLocal, card]));
-    }
-  }
-
   async handleClick({ target }) {
     const response = await getProductsFromCategoryAndQuery(
       target.id,
@@ -60,8 +51,7 @@ class Home extends Component {
     const newItem = { title, price, thumbnail, id };
     newItem.quantity = 1;
     this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-      const { card: newCard } = this.state;
-      getCardItem(newCard);
+      getCardItem(newItem);
     });
   }
 

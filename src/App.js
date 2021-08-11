@@ -21,12 +21,15 @@ class App extends React.Component {
 
   componentDidMount() {
     const cardLocal = JSON.parse(localStorage.getItem('card'));
-    if (cardLocal === null) { return null; }
-    this.getCardInLocal(cardLocal);
+    if (cardLocal === null) {
+      localStorage.setItem('card', JSON.stringify([]));
+    }
+    this.getCardInLocal();
   }
 
-  getCardInLocal(parameter) {
-    this.setState({ card: parameter });
+  getCardInLocal() {
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    this.setState({ card: cardLocal });
   }
 
   getDetailsProduct(newProduct) {
@@ -38,7 +41,9 @@ class App extends React.Component {
       this.setState((prevState) => ({ card: [...prevState.card, newCard] }));
       return null;
     }
-    this.setState({ card: newCard });
+    this.setState((prevState) => ({
+      card: [...prevState.card, newCard],
+    }));
   }
 
   increaseQt({ target }) {

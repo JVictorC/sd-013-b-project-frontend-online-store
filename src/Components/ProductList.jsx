@@ -3,8 +3,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default class ProductList extends Component {
+  constructor(props) {
+    super(props);
+    this.hadlerClick = this.hadlerClick.bind(this);
+  }
+
+  hadlerClick(product) {
+    const { addToCard } = this.props;
+    const { title, price, thumbnail, id } = product;
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    addToCard(product);
+    localStorage.setItem('card',
+      JSON.stringify([...cardLocal, { title, price, thumbnail, id }]));
+  }
+
   render() {
-    const { products, addToCard, getDetailsProduct } = this.props;
+    const { products, getDetailsProduct } = this.props;
     return (
       <div className="product-list">
         <ul>
@@ -23,7 +37,7 @@ export default class ProductList extends Component {
               <p>{product.price}</p>
               <button
                 type="button"
-                onClick={ () => addToCard(product) }
+                onClick={ () => this.hadlerClick(product) }
                 data-testid="product-add-to-cart"
               >
                 Adicionar no Carrinho
