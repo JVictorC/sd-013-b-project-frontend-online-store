@@ -76,6 +76,7 @@ class App extends React.Component {
               render={ (props) => (
                 <ProductDetails
                   { ...props }
+                  updateProducts={ this.updateProducts }
                   category={ category }
                   search={ search }
                   clearSearch={ this.clearSearch }
