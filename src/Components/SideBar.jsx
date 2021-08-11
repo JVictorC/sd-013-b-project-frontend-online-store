@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class SideBar extends Component {
@@ -7,10 +8,16 @@ export default class SideBar extends Component {
     this.state = {
       categories: [],
     };
+    this.handleId = this.handleId.bind(this);
   }
 
   componentDidMount() {
     this.requestCategoriesTypeRadio();
+  }
+
+  handleId({ target }) {
+    const { handleCategoriesId } = this.props;
+    handleCategoriesId(target.id);
   }
 
   async requestCategoriesTypeRadio() {
@@ -21,13 +28,26 @@ export default class SideBar extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
+      <>
         { categories.map((category) => (
-          <li data-testid="category" key={ category.id }>
-            { category.name }
-          </li>
+          <div key={ category.name }>
+            <label htmlFor={ category.id }>
+              <input
+                name="inputList"
+                id={ category.id }
+                type="radio"
+                data-testid="category"
+                onClick={ this.handleId }
+              />
+              { category.name }
+            </label>
+          </div>
         ))}
-      </div>
+      </>
     );
   }
 }
+
+SideBar.propTypes = {
+  handleCategoriesId: PropTypes.func.isRequired,
+};

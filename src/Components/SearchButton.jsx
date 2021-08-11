@@ -5,7 +5,6 @@ import * as api from '../services/api';
 export default class SearchButton extends Component {
   constructor() {
     super();
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -15,10 +14,10 @@ export default class SearchButton extends Component {
     await onButtonClick(resultApi.results);
   }
 
-  async fetchProductsFromCategoryAndQuery() {
-    const { searchValueHome } = this.props;
+  fetchProductsFromCategoryAndQuery = async () => {
+    const { searchValueHome, categoryId } = this.props;
     const response = await api
-      .getProductsFromCategoryAndQuery('$CATEGORY_ID', searchValueHome);
+      .getProductsFromCategoryAndQuery(categoryId, searchValueHome);
     return response;
   }
 
@@ -36,4 +35,5 @@ export default class SearchButton extends Component {
 SearchButton.propTypes = {
   onButtonClick: PropTypes.func.isRequired,
   searchValueHome: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
 };
