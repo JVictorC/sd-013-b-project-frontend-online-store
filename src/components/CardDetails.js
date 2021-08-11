@@ -11,7 +11,7 @@ export default class CardDetails extends Component {
         <div>
           <img
             src={ thumbnail }
-            alt="Product Appearence"
+            alt="Product appearence"
             className="product-detail-image"
           />
           <p data-testid="product-detail-name" className="product-detail-name">
