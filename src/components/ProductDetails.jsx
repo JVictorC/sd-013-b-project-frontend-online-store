@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 import * as api from '../services/api';
 
 class ProductDetails extends React.Component {
@@ -7,10 +9,6 @@ class ProductDetails extends React.Component {
     super(props);
 
     const { location: { state } } = this.props;
-    this.state = {
-      productCategoryId: state.category_id,
-      productName: state.name,
-    };
   }
 
   componentDidMount() {
@@ -19,13 +17,31 @@ class ProductDetails extends React.Component {
 
   async getProductDetails() {
     const { match: { params: { id } } } = this.props;
-    console.log(await api.getProductsFromCategoryAndQuery({ id }));
   }
 
   render() {
     return (
       <div data-testid="product-detail-name">
-        Ola
+        <div className="product-header">
+          <Link to="/">Voltar</Link>
+          <Link
+            className="shopping-cart-button"
+            to="/cart"
+            data-testid="shopping-cart-button"
+          >
+            <img
+              className="cart-icon"
+              src={ shoppingCart }
+              alt="cart icon"
+            />
+          </Link>
+        </div>
+        <div className="product-name-price">
+          <h3>
+            oi
+            {/* { `${productDetail.title} = R$${productDetail.price}` } */}
+          </h3>
+        </div>
       </div>
     );
   }
