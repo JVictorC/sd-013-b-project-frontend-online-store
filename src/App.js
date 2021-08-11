@@ -1,20 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingKart from './pages/ShoppingKart';
+import ProductDetails from './pages/ProductDetails';
 import './App.css';
 
 import Home from './pages/Home';
 
 function App() {
+  
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route exact path="/shoppingKart" component={ ShoppingKart } />
+        <Route exact path="/product/:idProduct" component={ProductDetails}  />
         {/* <Route component={ NotFound } /> */}
-        {/* ahds */}
       </Switch>
-    </Router>
+    </BrowserRouter>
+    
+
+  
   );
 }
 

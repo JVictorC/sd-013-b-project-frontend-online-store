@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class ProductsList extends Component {
   initialMessage = () => (
@@ -19,9 +20,10 @@ export default class ProductsList extends Component {
 
     return (
       products.map(({ id, title, thumbnail, price }) => (
-        <div data-testid="product" key={ id } className="product-card">
+        <div data-testid="product" key={ id } className="product-card" >
           <h4>{title}</h4>
           <img src={ thumbnail } alt={ title } />
+          <Link to={`/product/${id}`}>Detalhes</Link>
           <span>{`R$${price}`}</span>
         </div>
       ))
