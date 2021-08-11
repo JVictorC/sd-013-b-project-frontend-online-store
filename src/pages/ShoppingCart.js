@@ -4,7 +4,7 @@ import ShoppingCartCards from '../components/ShoppingCartCards';
 
 class ShoppingCart extends React.Component {
   render() {
-    const { cartProducts } = this.props;
+    const { cartProducts, handleQuant } = this.props;
     if (cartProducts.length === 0) {
       return (
         <h4 data-testid="shopping-cart-empty-message">
@@ -14,7 +14,7 @@ class ShoppingCart extends React.Component {
     }
     return (
       <div>
-        <ShoppingCartCards cartProducts={ cartProducts } />
+        <ShoppingCartCards cartProducts={ cartProducts } handleQuant={ handleQuant } />
       </div>
     );
   }
@@ -22,6 +22,7 @@ class ShoppingCart extends React.Component {
 
 ShoppingCart.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleQuant: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

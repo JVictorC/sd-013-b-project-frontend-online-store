@@ -13,6 +13,27 @@ class App extends React.Component {
     };
 
     this.addCartChange = this.addCartChange.bind(this);
+    this.onQuantChange = this.onQuantChange.bind(this);
+  }
+
+  async onQuantChange(product, operation) {
+    const { shopCart } = this.state;
+    const foundProduct = shopCart.find((obj) => product.id === obj.id);
+    const pushedCart = [...shopCart];
+    if (operation === '-' && foundProduct.quant === 1) {
+      return;
+    }
+    if (operation === '+') {
+      pushedCart.find((Obj) => product.id === Obj.id).quant += 1;
+      this.setState({
+        shopCart: pushedCart,
+      });
+    } else {
+      pushedCart.find((Obj) => product.id === Obj.id).quant -= 1;
+      this.setState({
+        shopCart: pushedCart,
+      });
+    }
   }
 
   addCartChange(product) {
@@ -49,7 +70,10 @@ class App extends React.Component {
           <Route
             exact
             path="/shopping-cart"
-            render={ () => <ShoppingCart cartProducts={ shopCart } /> }
+            render={ () => (<ShoppingCart
+              handleQuant={ this.onQuantChange }
+              cartProducts={ shopCart }
+            />) }
           />
           <Route
             exact
