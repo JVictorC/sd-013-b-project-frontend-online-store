@@ -1,32 +1,41 @@
 import React from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
-import * as api from '../services/api';
+// import * as api from '../services/api';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      product: {},
+      // products: [],
+      // product: [],
+      id: '',
+      search: '',
     };
   }
 
   componentDidMount() {
-    this.getProducts();
+    this.setStateFunc();
   }
 
-  async getProducts() {
-    const { match: { params: { categoryId, id } } } = this.props;
-    const products = await api.getProductsFromCategoryAndQuery(categoryId);
-    console.log(categoryId);
-    const filterFoundProducts = products.results.find((resultId) => resultId === id);
-    console.log(filterFoundProducts);
+  setStateFunc() {
+    const { id, search } = useParams();
     this.setState({
-      product: filterFoundProducts,
+      id,
+      search,
     });
+  }
+
+  getProducts() {
+    // const { search } = this.state;
+    // const products = await api.getProductsFromCategoryAndQuery(search);
+    // console.log(products);
+    // this.setState({
+    //   products: products.results,
+    // });
   }
 
   // findProduct
@@ -34,26 +43,21 @@ class ProductDetails extends React.Component {
   render() {
     // const { products } = this.state;
     // console.log(products);
-    // const { product } = this.state;
-    // console.log(product);
+    const { id, search } = this.state;
     return (
-      <div className="card" data-testid="product-detail-name">
-        {/* <p>{ product.title }</p>
-        <img src={ product.thumbnail } alt={ product.title } />
-        <p>{ product.price }</p> */}
-        kkk
+      <div>
+        <p>
+          { `${id}       ${search}` }
+        </p>
       </div>
     );
   }
 }
 
 ProductDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-      categoryId: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  search: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  // products: PropTypes.shape().isRequired,
 };
 
 export default ProductDetails;
