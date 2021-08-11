@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ProductList from './pages/ProductList';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
 import './App.css';
 
 class App extends React.Component {
@@ -82,6 +83,11 @@ class App extends React.Component {
               { ...props }
               addCartChange={ this.addCartChange }
             />) }
+          />
+          <Route
+            exact
+            path="/checkout"
+            render={ (props) => (<Checkout { ...props } cart={ shopCart } />) }
           />
         </Switch>
       </BrowserRouter>

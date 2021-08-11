@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ShoppingCartCards from '../components/ShoppingCartCards';
 
 class ShoppingCart extends React.Component {
@@ -14,7 +15,17 @@ class ShoppingCart extends React.Component {
     }
     return (
       <div>
-        <ShoppingCartCards cartProducts={ cartProducts } handleQuant={ handleQuant } />
+        <div>
+          <ShoppingCartCards cartProducts={ cartProducts } handleQuant={ handleQuant } />
+        </div>
+        <div>
+          <Link
+            data-testid="checkout-products"
+            to="/checkout"
+          >
+            Finalizar Compra
+          </Link>
+        </div>
       </div>
     );
   }
