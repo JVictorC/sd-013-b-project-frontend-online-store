@@ -18,6 +18,7 @@ class CategoriesAside extends React.Component {
 
   async fetchCategories() {
     const categories = await getCategories();
+
     this.setState(() => ({
       categories,
     }));
@@ -26,8 +27,9 @@ class CategoriesAside extends React.Component {
   render() {
     const { handleChange } = this.props;
     const { categories } = this.state;
+
     return (
-      <div>
+      <div className="aside">
         <p>Categorias</p>
         {categories.map(({ id, name }) => (
           <label key={ id } htmlFor="category">

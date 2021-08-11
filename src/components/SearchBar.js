@@ -1,41 +1,25 @@
 import React from 'react';
-import RenderProducts from './RenderProducts';
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange({ target }) {
-    this.setState(() => ({
-      query: target.value,
-    }));
-  }
-
   render() {
-    const { query } = this.state;
+    const { query, handleChange, handleClick } = this.props;
+
     return (
       <div>
         <input
           type="text"
           data-testid="query-input"
+          name="query"
           value={ query }
-          onChange={ this.handleChange }
+          onChange={ handleChange }
         />
         <button
           type="submit"
           data-testid="query-button"
-          onClick={ () => <RenderProducts query={ query } /> }
+          onClick={ handleClick }
         >
           Pesquisar
         </button>
-        {/* <div>
-          { submit ? <RenderProducts query={ query } /> : noReturn }
-        </div> */}
       </div>
     );
   }

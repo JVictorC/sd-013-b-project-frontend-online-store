@@ -4,9 +4,11 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 class RenderProducts extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       products: [],
     };
+
     this.renderProducts = this.renderProducts.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
   }
@@ -18,6 +20,7 @@ class RenderProducts extends React.Component {
   async fetchProducts() {
     const { query } = this.props;
     const products = await getProductsFromCategoryAndQuery(false, query);
+
     this.setState(() => ({
       products: products.results,
     }));
@@ -25,6 +28,7 @@ class RenderProducts extends React.Component {
 
   renderProducts() {
     const { products } = this.state;
+
     return (
       <div>
         {products.map(({ id, title, thumbnail, price }) => (
