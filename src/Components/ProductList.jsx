@@ -12,6 +12,9 @@ export default class ProductList extends Component {
             <li data-testid="product" key={ product.id }>
               <span>{product.title}</span>
               <img src={ product.thumbnail } alt={ product.title } />
+              {product.shipping.free_shipping
+                ? <div data-testid="free-shipping">📦 Frete Grátis</div>
+                : false}
               <Link
                 data-testid="product-detail-link"
                 to={ `/ProductDetails/${product.id}` }

@@ -6,7 +6,6 @@ class ComponentRadio extends Component {
     const { name, id, handleClick } = this.props;
     return (
       <label htmlFor={ id }>
-        {name}
         <input
           type="radio"
           name="category"
@@ -14,6 +13,7 @@ class ComponentRadio extends Component {
           data-testid="category"
           onClick={ handleClick }
         />
+        {name}
       </label>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -24,6 +25,11 @@ class Cart extends React.Component {
     const { card, increase, decrease, del } = this.props;
     return (
       <div className="cart">
+        <Link
+          to="/"
+        >
+          Home
+        </Link>
         {
           card.length === 0
             ? (
