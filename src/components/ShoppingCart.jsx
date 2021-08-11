@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import AddCart from './AddCart';
 
 export default class ShoppingCart extends React.Component {
   // constructor(props) {
@@ -10,8 +12,17 @@ export default class ShoppingCart extends React.Component {
   // }
 
   render() {
+    const { query } = this.props;
+
     return (
-      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+      <div>
+        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        <AddCart query={ query } />
+      </div>
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  query: PropTypes.string.isRequired,
+};

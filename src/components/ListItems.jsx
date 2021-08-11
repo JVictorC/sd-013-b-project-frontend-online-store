@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 class ListItems extends React.Component {
   render() {
-    const { items } = this.props;
+    const { items, getQuery } = this.props;
     return (
       <div>
         { items.length === 0 ? 'Nenhum produto foi encontrado'
-          : items.map(({ thumbnail, price, title, id }) => (
+          : items.map(({ thumbnail, price, title, id }, index) => (
             <div key={ id }>
               <Link
                 data-testid="product-detail-link"
@@ -20,6 +20,13 @@ class ListItems extends React.Component {
                   <p>{ `R$: ${price}` }</p>
                 </div>
               </Link>
+              <button
+                type="button"
+                onClick={ () => getQuery(items[index]) }
+                data-testid="product-add-to-cart"
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           ))}
       </div>
@@ -29,6 +36,7 @@ class ListItems extends React.Component {
 
 ListItems.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getQuery: PropTypes.func.isRequired,
 };
 
 export default ListItems;
