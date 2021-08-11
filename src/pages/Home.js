@@ -23,7 +23,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.fetchCategoriesList();
-    api.getCategories();
   }
 
   onSearchSubmit(value) {
