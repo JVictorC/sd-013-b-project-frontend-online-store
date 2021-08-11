@@ -7,13 +7,13 @@ class ProductCard extends React.Component {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
     return (
-      <div data-testid="product">
-        <h3>
+      <div data-testid="product" className="productCard">
+        <h3 className="title">
           { title }
         </h3>
-        <img src={ thumbnail } alt="test" />
-        <h4>
-          { price }
+        <img src={ thumbnail } alt="test" className="thumbnail" />
+        <h4 className="price">
+          {`R$ ${price}` }
         </h4>
         <Link
           data-testid="product-detail-link"

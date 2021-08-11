@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProductList from '../Components/ProductList';
 import RadioButtons from '../Components/RadioButtons';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import NoProduct from './NoProduct';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -67,35 +68,38 @@ class MainScreen extends React.Component {
   render() {
     const { categories, products } = this.state;
     return (
-      <div data-testid="home-initial-message">
-        <label htmlFor="searchBar">
-          Digite algum termo de pesquisa ou escolha uma
-          categoria.
-          <input
-            type="text"
-            name="searchBar"
-            data-testid="query-input"
-            onChange={ this.handleInputChange }
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ this.handleClick }
-          id="searchButton"
-          data-testid="query-button"
-        >
-          Pesquisar
-        </button>
-        <Link
-          to="/ShoppCart"
-          data-testid="shopping-cart-button"
-        >
-          Carrinho
-        </Link>
+      <div data-testid="home-initial-message" className="mainScreen">
+        <header className="header">
+          {' '}
+          <label htmlFor="searchBar">
+            Digite algum termo de pesquisa ou escolha uma
+            categoria.
+            <input
+              type="text"
+              name="searchBar"
+              data-testid="query-input"
+              className="searchInput"
+              onChange={ this.handleInputChange }
+            />
+          </label>
+          <button
+            type="button"
+            onClick={ this.handleClick }
+            id="searchButton"
+            data-testid="query-button"
+          >
+            Pesquisar
+          </button>
+          <Link
+            to="/ShoppCart"
+            data-testid="shopping-cart-button"
+          >
+            Carrinho
+          </Link>
+        </header>
         <RadioButtons categories={ categories } onClick={ this.handleRadioButton } />
         {products.results === undefined
-          ? <div> sem produtos </div> : <ProductList products={ products } /> }
-
+          ? <NoProduct /> : <ProductList products={ products } /> }
       </div>
     );
   }

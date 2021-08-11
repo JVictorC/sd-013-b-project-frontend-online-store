@@ -1,42 +1,79 @@
-.App {
-  text-align: center;
+/* main screen css  */
+.mainScreen {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
+/* header css */
+.header {
   align-items: center;
-  background-color: #282c34;
-  color: white;
+  background-color: rosybrown;
+  display: flex;
+  height: 2em;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* radio buttons css */
+.radioButtonsParent {
+  background-color: skyblue;
+  border: solid;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  height: 46em;
+  justify-content: flex-start;
+  margin: 2em;
+  margin-right: 7em;
+  padding: 1em;
+}
+
+.radioButtons {
+  margin: 2px;
+}
+
+
+/* product list css */
+.productList {
+  background-color: cornflowerblue;
+  border: solid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  min-height: 100vh;
+  margin-top: 2em;
+  width: 90em;
 }
 
-.App-link {
-  color: #61dafb;
+/* product card css */
+.productCard {
+  align-items: center;
+  background-color: snow;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  height: 22em;
+  margin: 1em;
+  padding: 1em;
+  width: 20em;
 }
 
-@keyframes App-logo-spin {
+.thumbnail {
+  border: 1px solid;
+  height: 10em;
+  width: 10em;
+}
 
-  from {
-    transform: rotate(0deg);
-  }
+/* product details css */
+.productDetails {
+  align-items: center;
+  background-color: tan;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 29em;
+  width: 50%;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.productDetailsImage {
+  border: 1px solid;
 }
