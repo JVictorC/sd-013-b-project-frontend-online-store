@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import ShoppingCartIcon from './ShoppingCartIcon';
 
 class ShoppingCart extends React.Component {
@@ -14,12 +16,16 @@ class ShoppingCart extends React.Component {
             <div key={ id }>
               <img src={ thumbnail } alt={ title } />
               <p data-testid="shopping-cart-product-name">{ title }</p>
-              <p>{ price }</p>
+              <p data-testid="shopping-cart-product-quantity">{ price }</p>
             </div>
           ))}
       </div>
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  location: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+};
 
 export default ShoppingCart;
