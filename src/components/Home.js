@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//
+
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import ProductList from './ProductList';
@@ -67,11 +67,14 @@ class Home extends React.Component {
   }
 
   render() {
-    const { categories, productList } = this.state;
+    const { categories, productList, cartItems } = this.state;
     return (
       <div>
         <Link
-          to="/shopping-cart"
+          to={ {
+            pathname: '/shopping-cart',
+            state: cartItems,
+          } }
           data-testid="shopping-cart-button"
         >
           <ShoppingCartIcon />
