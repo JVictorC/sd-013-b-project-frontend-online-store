@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import SearchField from './components/SearchField';
+
+import HomePage from './components/HomePage';
 import CardDetails from './components/CardDetails';
 import Cart from './components/Cart';
 import NotFound from './components/NotFound';
@@ -28,7 +29,7 @@ export default class App extends Component {
       <div className="">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ SearchField } />
+            <Route exact path="/" component={ HomePage } />
             <Route
               exact
               path="/product/:id"
