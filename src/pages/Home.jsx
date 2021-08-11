@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SearchBar from '../components/SearchBar';
 import Category from '../components/Category';
 import ProductsList from '../components/ProductsList';
@@ -35,6 +36,7 @@ class Home extends Component {
 
   render() {
     const { searchText, products } = this.state;
+    const { getProductData } = this.props;
     return (
       <div>
         <SearchBar
@@ -44,10 +46,14 @@ class Home extends Component {
         />
         <Link to="/shoppingKart" data-testid="shopping-cart-button">Carrinho</Link>
         <Category handleRadioButton={ this.handleRadioButton } />
-        <ProductsList products={ products } />
+        <ProductsList products={ products } getProductData={ getProductData } />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  getProductData: PropTypes.func,
+}.isRequerid;
 
 export default Home;
