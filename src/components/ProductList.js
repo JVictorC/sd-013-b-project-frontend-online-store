@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class ProductList extends React.Component {
   render() {
-    const { productList } = this.props;
+    const { productList, addToCart } = this.props;
 
     return (
       <div>
@@ -18,6 +18,7 @@ class ProductList extends React.Component {
               <button
                 type="button"
                 data-testid="product-add-to-cart"
+                onClick={ () => addToCart(product) }
               >
                 Adicionar ao carrinho
               </button>
@@ -30,6 +31,7 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
