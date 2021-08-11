@@ -1,23 +1,25 @@
 import React from 'react';
 
 export default class BtnAddToCart extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
-    this.state = {
-      cart: [],
-    };
-
-    this.handleClick = this.handleClick.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
-  async handleClick() {
-    const { cart } = this.state;
-//    let cart = localStorage.getItem('cart');
-    this.setState({ cart: cart.push({ xablau: 1 }) }, () => {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    });
-//    localStorage.setItem('cart', JSON.stringify(cart));
+  addToCart() {
+    /* baseado na ideia do grupo 3 https://github.com/tryber/sd-013-b-project-frontend-online-store/blob/d5291bf6ee4efe61472a347f4980c1a96b7b3028/src/components/Product/index.js#L9
+    */
+    const { title, price, thumbnail, id } = this.props;
+
+    const prevsItems = localStorage.getItem('cart');
+    let items = [];
+    if (prevsItems) {
+      items = JSON.parse(prevsItems);
+    }
+    const fullItems = [...items, { title, price, thumbnail, id, quantity: 1 }];
+
+    localStorage.setItem('cart', JSON.stringify(fullItems));
   }
 
   render() {
@@ -26,7 +28,7 @@ export default class BtnAddToCart extends React.Component {
         id="product-add-to-cart"
         data-testid="product-add-to-cart"
         type="button"
-        onClick={ this.handleClick }
+        onClick={ this.addToCart }
       >
         ADICIONAR AO CARRINHO
       </button>
