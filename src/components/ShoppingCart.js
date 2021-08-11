@@ -24,7 +24,7 @@ class ShoppingCart extends React.Component {
         <ShoppingCartIcon />
         { state.length === 0
           ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          : state.map(({ id, title, thumbnail, quantity }) => (
+          : quant.map(({ id, title, thumbnail, quantity }) => (
             <div key={ id }>
               <img src={ thumbnail } alt={ title } />
               <p data-testid="shopping-cart-product-name">{ title }</p>
