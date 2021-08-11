@@ -18,22 +18,11 @@ class RenderProducts extends React.Component {
     this.fetchProducts();
   }
 
-  componentDidUpdate() {
-    this.fetchProducts();
-  }
-
   async fetchProducts() {
-    const { query = '', categoryId = '' } = this.props;
-    let products;
-
-    if (query !== '') {
-      products = await getProductsFromCategoryAndQuery(false, query);
-    }
-
-    if (categoryId !== '') {
-      products = await getProductsFromCategoryAndQuery(categoryId, false);
-    }
-
+    const { query, categoryId } = this.props;
+    const products = await getProductsFromCategoryAndQuery(categoryId, query);
+    console.log(products);
+ 
     this.setState(() => ({
       products: products.results,
     }));

@@ -25,6 +25,7 @@ class Home extends React.Component {
 
     this.setState({
       [name]: value,
+      submit: false,
     });
   }
 
@@ -46,6 +47,7 @@ class Home extends React.Component {
 
   renderMain() {
     const { query, categoryId } = this.state;
+
     return (
       <RenderProducts query={ query } categoryId={ categoryId } />
     );
@@ -53,6 +55,7 @@ class Home extends React.Component {
 
   render() {
     const { query, categoryId, submit } = this.state;
+
     const message = (
       <p
         data-testid="home-initial-message"
@@ -69,6 +72,7 @@ class Home extends React.Component {
             handleClick={ this.handleClick }
           />
         </div>
+
         <div>
           {!submit && categoryId === '' ? message : this.renderMain()}
         </div>
@@ -81,6 +85,7 @@ class Home extends React.Component {
             Carrinho de Compras
           </button>
         </Link>
+
         <aside>
           <CategoriesAside handleCategory={ this.handleCategory } />
         </aside>
