@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import getItemsFromLocalStorage from '../utils/getItemsFromLocalStorage';
+import EvaluatingForm from '../components/EvaluatingForm';
+import EvaluationsZone from '../components/EvaluationsZone';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -58,6 +60,8 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        <EvaluatingForm id={ product.id } />
+        <EvaluationsZone id={ product.id } />
       </div>
     );
   }
