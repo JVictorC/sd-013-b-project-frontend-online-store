@@ -5,7 +5,7 @@ class Product extends Component {
   render() {
     const { title, thumbnail, price } = this.props;
     return (
-      <section data-testid="product">
+      <section className="product" data-testid="product">
         <div>
           <p>{ title }</p>
           <img src={ thumbnail } alt={ title } />
