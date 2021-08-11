@@ -21,6 +21,7 @@ export default class CardLibrary extends React.Component {
   componentDidMount() {
 
   }
+
   /*
   componentDidUpdate(prevs) {
     const { searchText, selectedCategory } = this.state;
