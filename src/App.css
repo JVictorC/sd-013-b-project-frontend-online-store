@@ -1,82 +1,80 @@
-
 /* main screen css  */
-.mainScreen{
+.mainScreen {
   display: flex;
   flex-wrap: wrap;
 }
 
 /* header css */
-.header{
-  display: flex;
+.header {
   align-items: center;
+  background-color: rosybrown;
+  display: flex;
+  height: 2em;
   justify-content: center;
   width: 100%;
-  height: 2em;
-  background-color: rosybrown;
 }
 
 
 
 /* radio buttons css */
-.radioButtonsParent{
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding: 1em;
+.radioButtonsParent {
   background-color: skyblue;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  height: 46em;
+  justify-content: flex-start;
   margin: 2em;
   margin-right: 7em;
-  border: solid;
-  height: 46em;
+  padding: 1em;
 }
 
-.radioButtons{
+.radioButtons { 
   margin: 2px;
 }
 
 
 /* product list css */
-.productList{
+.productList {
+  background-color: cornflowerblue;
+  border: solid;
   display: flex;
   flex-wrap: wrap;
-  width: 90em;
-  margin-top: 2em;
-  border: solid;
-  background-color: cornflowerblue;
   justify-content: center;
+  margin-top: 2em;
+  width: 90em;
 }
 
 /* product card css */
-.productCard{
+.productCard {
+  align-items: center;
+  background-color: snow;
   border: solid;
   display: flex;
   flex-direction: column;
-  width: 20em;
   height: 22em;
-  padding: 1em;
   margin: 1em;
-  align-items: center;
-  background-color: snow;
+  padding: 1em;
+  width: 20em;
 }
 
-.thumbnail{
+.thumbnail {
+  border: 1px solid;
   height: 10em;
   width: 10em;
-  border: 1px solid;
 }
 
 /* product details css */
-
-.productDetails{
-  display: flex;
-  width: 50%;
-  margin-left: 29em;
-  justify-content: center;
+.productDetails {
   align-items: center;
-  flex-direction: column;
   background-color: tan;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 29em;
+  width: 50%;
 }
 
-.productDetailsImage{
+.productDetailsImage {
   border: 1px solid;
 }
