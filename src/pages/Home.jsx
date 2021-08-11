@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SearchBar from '../components/SearchBar';
 import Category from '../components/Category';
 import ProductsList from '../components/ProductsList';
@@ -50,5 +51,9 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  getProductData: PropTypes.func,
+}.isRequerid;
 
 export default Home;

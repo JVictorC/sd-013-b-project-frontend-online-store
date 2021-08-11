@@ -22,7 +22,12 @@ export default class ProductsList extends Component {
 
     return (
       products.map((product) => (
-        <Link to={ `/product/${product.id}` } key={ product.id } onClick={ () => getProductData(product) } data-testid="product-detail-link">
+        <Link
+          to={ `/product/${product.id}` }
+          key={ product.id }
+          onClick={ () => getProductData(product) }
+          data-testid="product-detail-link"
+        >
           <div data-testid="product" className="product-card">
             <h4>{product.title}</h4>
             <img src={ product.thumbnail } alt={ product.title } />

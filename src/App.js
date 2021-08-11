@@ -22,9 +22,17 @@ export default class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" render={ () => <Home getProductData={ this.getProductData } /> } />
+          <Route
+            exact
+            path="/"
+            render={ () => <Home getProductData={ this.getProductData } /> }
+          />
           <Route exact path="/shoppingKart" component={ ShoppingKart } />
-          <Route exact path="/product/:id" render={ () => <ProductDetails productData={ productData } /> } />
+          <Route
+            exact
+            path="/product/:id"
+            render={ () => <ProductDetails productData={ productData } /> }
+          />
           {/* <Route component={ NotFound } /> */}
         </Switch>
       </Router>
