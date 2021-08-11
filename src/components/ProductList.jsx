@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Product from './Product';
 
-export default class ProductList extends React.Component {
+class ProductList extends Component {
   render() {
-    const { title, thumbnail, price } = this.props;
+    const { products } = this.props;
+
+    if (products === undefined) {
+      return (
+        <h4 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h4>
+      );
+    }
+    if (products.length === 0) {
+      return (
+        <h2>Nenhum produto foi encontrado.</h2>
+      );
+    }
 
     return (
-      <div data-testid="product">
-        <p>{ title }</p>
-        <img src={ thumbnail } alt={ title } />
-        <p>{ price }</p>
-        <hr />
-      </div>
+      <section>
+        {products.map((obj) => (
+          <Product key={ obj.id } { ...obj } />
+        ))}
+      </section>
     );
   }
 }
 
 ProductList.propTypes = {
-  title: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default ProductList;
