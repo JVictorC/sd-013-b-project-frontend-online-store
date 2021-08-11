@@ -11,7 +11,7 @@ class ProductDetails extends React.Component {
     this.state = {
       productDetail: [],
     };
-    this.getProductdetais = this.getProductdetais.bind(this);
+    // this.getProductdetais = this.getProductdetais.bind(this);
   }
 
   componentDidMount() {
@@ -19,9 +19,12 @@ class ProductDetails extends React.Component {
     console.log('teste');
   }
 
-  // shouldComponentUpdate() {
-  //   return this.getProductDetails();
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.state);
+    console.log(nextState);
+
+    return true;
+  }
 
   // getProductdetais() {
   //   const { productDetail } = this.state;
