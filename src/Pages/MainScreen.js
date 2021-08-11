@@ -51,11 +51,10 @@ class MainScreen extends React.Component {
   }
 
   addToCart(product) {
-    const { shoppingCart } = this.state;
-    this.setState({
-      shoppingCart: [...shoppingCart, product],
+    this.setState((state) => ({ shoppingCart: [...state.shoppingCart, product] }), () => {
+      const { shoppingCart } = this.state;
+      localStorage.setItem('cart', JSON.stringify(shoppingCart));
     });
-    localStorage.setItem('cart', JSON.stringify(shoppingCart));
   }
 
   // pega as categorias

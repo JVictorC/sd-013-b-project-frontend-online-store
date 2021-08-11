@@ -23,4 +23,5 @@ ProductList.propTypes = {
   products: PropTypes.shape({
     results: PropTypes.arrayOf(),
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };

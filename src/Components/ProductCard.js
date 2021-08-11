@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
         >
           Detalhes
         </Link>
-        <button type="button" onClick={ addToCart }>Add to cart</button>
+        <button type="button" onClick={ () => addToCart(product) }>Add to cart</button>
       </div>
     );
   }
@@ -36,6 +36,7 @@ ProductCard.propTypes = {
       price: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
