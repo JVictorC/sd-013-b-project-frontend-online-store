@@ -12,7 +12,7 @@ export default class BtnAddToCart extends React.Component {
   }
 
   handleClick() {
-    let cart = localStorage.getItem('cart');
+    const cart = localStorage.getItem('cart');
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 

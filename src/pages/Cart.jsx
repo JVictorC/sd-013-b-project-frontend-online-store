@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CartItems from '../components/CartItems';
+import CartItems from '../components/CartRender';
 import EmptyCart from '../components/EmptyCart';
 
 export default class Cart extends React.Component {
@@ -14,6 +14,28 @@ export default class Cart extends React.Component {
 
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.setItems = this.setItems.bind(this);
+  }
+
+  componentDidMount() {
+    this.setItems();
+  }
+
+  onClick({ target }) {
+    if (target.id === 'product-decrease-quantity') {
+      this.decrement();
+    } else if (target.id === 'product-increase-quantity') {
+      this.increment();
+    }
+  }
+
+  setItems() {
+    const data = localStorage.getItem('cart');
+
+    this.setState({
+      items: data,
+    });
   }
 
   increment() {
@@ -38,7 +60,7 @@ export default class Cart extends React.Component {
         <Link to="/">Voltar</Link>
         <h1>Carrinho de compras</h1>
         { items.length >= 1
-          ? <CartItems quantity={ quantity } decrement={ this.decrement } increment={ this.increment } />
+          ? <CartItems quantity={ quantity } onClick={ this.onClick } items={ items } />
           : <EmptyCart />}
       </div>
     );
