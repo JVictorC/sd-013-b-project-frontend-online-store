@@ -4,6 +4,7 @@ import ProductList from '../Components/ProductList';
 import RadioButtons from '../Components/RadioButtons';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import NoProduct from './NoProduct';
+import ShoppCart from './ShoppCart';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class MainScreen extends React.Component {
   }
 
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, shoppingCart } = this.state;
     return (
       <div data-testid="home-initial-message" className="mainScreen">
         <header className="header">
@@ -110,6 +111,8 @@ class MainScreen extends React.Component {
         {products.results === undefined
           ? <NoProduct />
           : <ProductList products={ products } addToCart={ this.addToCart } /> }
+
+        <ShoppCart />
       </div>
     );
   }
