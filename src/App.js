@@ -10,7 +10,12 @@ class App extends React.Component {
     super(props);
     this.state = { card: [], productDetailsSelect: {} };
     this.getCardItem = this.getCardItem.bind(this);
+
     this.getDetailsProduct = this.getDetailsProduct.bind(this);
+
+    this.increaseQt = this.increaseQt.bind(this);
+    this.decreaseQt = this.decreaseQt.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   getDetailsProduct(newProduct) {
@@ -19,6 +24,28 @@ class App extends React.Component {
 
   getCardItem(newCard) {
     this.setState({ card: newCard });
+  }
+
+  increaseQt({ target }) {
+    const { card } = this.state;
+    const item = card.find((res) => res.id === target.id);
+    item.quantity += 1;
+    this.setState([...card]);
+  }
+
+  decreaseQt({ target }) {
+    const { card } = this.state;
+    const item = card.find((res) => res.id === target.id);
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    }
+    this.setState([...card]);
+  }
+
+  deleteItem({ target }) {
+    const { card } = this.state;
+    const filtered = card.filter((res) => res.id !== target.id);
+    this.setState({ card: filtered });
   }
 
   render() {
@@ -34,6 +61,17 @@ class App extends React.Component {
                 <Home
                   getCardItem={ this.getCardItem }
                   getDetailsProduct={ this.getDetailsProduct }
+                />
+              ) }
+            />
+            <Route
+              path="/cart"
+              render={ () => (
+                <Cart
+                  card={ card }
+                  increase={ this.increaseQt }
+                  decrease={ this.decreaseQt }
+                  del={ this.deleteItem }
                 />
               ) }
             />
