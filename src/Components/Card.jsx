@@ -11,6 +11,8 @@ class Card extends React.Component {
         <img src={ thumbnail } alt="" />
         <p>{ `R$: ${price}` }</p>
         <Link data-testid="product-detail-link" to={ `/${id}` }>Mais detalhes</Link>
+        <br />
+        <br />
         <button
           type="button"
           onClick={ () => {
@@ -20,6 +22,8 @@ class Card extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        { item.shipping.free_shipping
+        && <p data-testid="free-shipping">Frete Grátis</p> }
       </div>
     );
   }
@@ -28,6 +32,9 @@ class Card extends React.Component {
 Card.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   updateProducts: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
