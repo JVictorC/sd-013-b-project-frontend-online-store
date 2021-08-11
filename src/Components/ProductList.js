@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProdructCard from './ProductCard';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
   render() {
     const { products: { results } } = this.props;
     return (
       <div>
-        {results.map((product) => (<ProdructCard
+        {results.map((product) => (<ProductCard
           key={ product.id }
           product={ product }
         />))}

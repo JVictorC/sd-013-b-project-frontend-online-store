@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class CategoryList extends React.Component {
   render() {
-    const { categories } = this.props;
+    const { categories, onClick } = this.props;
     return (
 
       <form>
@@ -15,6 +15,7 @@ class CategoryList extends React.Component {
               name="radio"
               id={ category.id }
               data-testid="category"
+              onClick={ onClick }
             />
             <label htmlFor={ category.id }>
               { category.name }
@@ -29,11 +30,6 @@ class CategoryList extends React.Component {
 export default CategoryList;
 
 CategoryList.propTypes = {
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      query: PropTypes.string,
-    }),
-
-  ).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
