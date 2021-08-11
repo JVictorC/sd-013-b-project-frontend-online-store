@@ -34,7 +34,6 @@ class ListaCat extends React.Component {
             <div key={ categorie.id }>
               <label htmlFor="category">
                 <input
-                  query={ categorie.name }
                   type="radio"
                   name="categoria"
                   id={ categorie.id }
