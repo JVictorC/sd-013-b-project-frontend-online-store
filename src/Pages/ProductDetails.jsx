@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductDetails extends React.Component {
@@ -13,6 +14,7 @@ class ProductDetails extends React.Component {
       email: 'Email',
       text: 'Mensagem(opcional)',
       num: '',
+      product: {},
     };
   }
 
@@ -33,6 +35,7 @@ class ProductDetails extends React.Component {
           price: product.price,
           thumbnail: product.thumbnail,
           loaded: true,
+          product,
         });
       });
   }
@@ -47,12 +50,22 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { title, price, thumbnail, loaded, email, text, num } = this.state;
+    const { updateProducts } = this.props;
+    const { title, price, thumbnail, loaded, email, text, num, product } = this.state;
     const success = (
       <div>
         <h1 data-testid="product-detail-name">{ title }</h1>
         <h2>{ price }</h2>
         <img src={ thumbnail } alt={ title } />
+        <button
+          type="button"
+          onClick={ () => {
+            updateProducts(product);
+          } }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
     return (
@@ -92,6 +105,7 @@ class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
+  onClickButton: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
