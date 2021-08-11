@@ -4,22 +4,21 @@ import PropTypes from 'prop-types';
 
 export default class CardDetails extends Component {
   render() {
-    const { product } = this.props;
-    const { title, image, price, specs } = product;
+    const { location } = this.props;
+    const { title, thumbnail, price } = location.item;
     return (
       <section className="card-detail">
         <div>
+          <img
+            src={ thumbnail }
+            alt="Product appearence"
+            className="product-detail-image"
+          />
           <p data-testid="product-detail-name" className="product-detail-name">
             { title }
           </p>
-          <p className="product-detail-image">
-            { image }
-          </p>
           <p className="product-detail-price">
             { price }
-          </p>
-          <p className="product-detail-specs">
-            { specs }
           </p>
         </div>
         <Link
@@ -36,10 +35,11 @@ export default class CardDetails extends Component {
 }
 
 CardDetails.propTypes = {
-  product: PropTypes.objectOf({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    specs: PropTypes.string.isRequired,
+  location: PropTypes.objectOf({
+    item: PropTypes.objectOf({
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
 };

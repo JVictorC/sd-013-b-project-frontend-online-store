@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+
 import ListaCat from '../Components/ListaCat';
 import ListItems from '../componentes/ListItems';
 
