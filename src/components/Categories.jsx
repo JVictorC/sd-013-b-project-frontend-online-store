@@ -7,7 +7,7 @@ export default class Categories extends React.Component {
     return (
       <label
         key={ id }
-        htmlFor="category"
+        htmlFor={ id }
       >
         { name }
         <input
