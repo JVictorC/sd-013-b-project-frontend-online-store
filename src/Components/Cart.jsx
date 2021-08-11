@@ -2,8 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.totalCart = this.totalCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.totalCart();
+  }
+
+  totalCart() {
+    const { card } = this.props;
+    let total = 0;
+    card.forEach((item) => {
+      total += (item.price * item.quantity);
+    });
+    return total.toFixed(2);
+  }
+
   render() {
-    const { card, increase, decrease } = this.props;
+    const { card, increase, decrease, del } = this.props;
     return (
       <div className="cart">
         {
@@ -40,9 +58,18 @@ class Cart extends React.Component {
                 </button>
               </p>
               <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
+              <button onClick={ del } type="button" id={ id }>
+                ❌
+              </button>
             </div>
           ))
         }
+        <p>
+          Valor total da compra:
+          {' '}
+          {this.totalCart()}
+        </p>
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }
@@ -54,4 +81,5 @@ Cart.propTypes = {
   card: PropTypes.arrayOf(String).isRequired,
   increase: PropTypes.func.isRequired,
   decrease: PropTypes.func.isRequired,
+  del: PropTypes.func.isRequired,
 };

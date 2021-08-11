@@ -11,6 +11,7 @@ class App extends React.Component {
     this.getCardItem = this.getCardItem.bind(this);
     this.increaseQt = this.increaseQt.bind(this);
     this.decreaseQt = this.decreaseQt.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   getCardItem(newCard) {
@@ -33,6 +34,12 @@ class App extends React.Component {
     this.setState([...card]);
   }
 
+  deleteItem({ target }) {
+    const { card } = this.state;
+    const filtered = card.filter((res) => res.id !== target.id);
+    this.setState({ card: filtered });
+  }
+
   render() {
     const { card } = this.state;
     return (
@@ -53,6 +60,7 @@ class App extends React.Component {
                   card={ card }
                   increase={ this.increaseQt }
                   decrease={ this.decreaseQt }
+                  del={ this.deleteItem }
                 />
               ) }
             />
