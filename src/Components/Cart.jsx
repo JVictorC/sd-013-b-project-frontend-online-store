@@ -28,7 +28,7 @@ class Cart extends React.Component {
         <Link
           to="/"
         >
-          Home
+          🏠
         </Link>
         {
           card.length === 0

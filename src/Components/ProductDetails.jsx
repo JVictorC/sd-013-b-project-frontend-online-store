@@ -22,10 +22,10 @@ export default class ProductDetails extends Component {
         <Link
           to="/"
         >
-          Home
+          🏠
         </Link>
         <Link data-testid="shopping-cart-button" to="/cart">
-          Cart
+          🛒
         </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>
