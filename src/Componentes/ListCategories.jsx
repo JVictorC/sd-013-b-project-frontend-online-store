@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import ProductList from './ProductList';
 
 class ListCategories extends Component {
   constructor() {
@@ -8,11 +9,23 @@ class ListCategories extends Component {
 
     this.state = {
       categories: [],
+      products: [],
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.requestApi();
+  }
+
+  async handleClick(event) {
+    const id = event.target.value;
+    const object = await getProductsFromCategoryAndQuery(id, null);
+    const products = object.results;
+    this.setState({
+      products,
+    });
   }
 
   requestApi = async () => {
@@ -23,7 +36,7 @@ class ListCategories extends Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, products } = this.state;
     const { handleChange } = this.props;
     return (
       <div>
@@ -36,12 +49,14 @@ class ListCategories extends Component {
                   key={ id }
                   data-testid="category"
                   value={ id }
+                  onClick={ this.handleClick }
                 />
                 { name }
               </label>
             </div>
           )) }
         </form>
+        <ProductList products={ products } />
       </div>
     );
   }
