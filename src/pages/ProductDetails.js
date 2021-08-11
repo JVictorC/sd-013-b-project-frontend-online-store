@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
-
 import CartButton from '../components/CartButton';
+import CostumerEvaluation from '../components/CostumerEvaluation';
 
 class ProductDetails extends React.Component {
   render() {
@@ -49,6 +48,9 @@ class ProductDetails extends React.Component {
           >
             Adicionar ao carrinho
           </button>
+        </div>
+        <div>
+          <CostumerEvaluation title={ title } />
         </div>
       </div>
     );
