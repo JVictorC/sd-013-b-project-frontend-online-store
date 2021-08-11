@@ -4,7 +4,7 @@ export async function getCategories() {
     const categories = await fetchCategories.json();
     return categories;
   } catch {
-    return (error);
+    return (Error);
   }
 }
 
@@ -14,6 +14,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     const idQuery = await getIdQuery.json();
     return idQuery;
   } catch {
-    return (error);
+    return (Error);
   }
 }
