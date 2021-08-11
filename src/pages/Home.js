@@ -53,17 +53,19 @@ class Home extends React.Component {
     const { searchTerm, productList, selectedCategory } = this.state;
 
     return (
-      <div>
-        <SearchBar
-          searchTerm={ searchTerm }
-          onChange={ this.handleSearchTermChange }
-          onClick={ this.listProducts }
-        />
+      <div className="home-page">
         <CategoryList
           selectedCategory={ selectedCategory }
           onChange={ this.handleCategoryChange }
         />
-        <ProductList productList={ productList } />
+        <div className="main-content">
+          <SearchBar
+            searchTerm={ searchTerm }
+            onChange={ this.handleSearchTermChange }
+            onClick={ this.listProducts }
+          />
+          <ProductList productList={ productList } />
+        </div>
       </div>
     );
   }

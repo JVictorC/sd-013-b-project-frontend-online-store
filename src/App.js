@@ -9,12 +9,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
         <Switch>
           <Route exact path="/" component={ Home } />
           <Route exact path="/cart" component={ Cart } />
           <Route exact path="/product/:id" component={ ProductDetails } />
         </Switch>
+        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
       </div>
     </BrowserRouter>
   );
