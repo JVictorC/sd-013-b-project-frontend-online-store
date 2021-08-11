@@ -21,7 +21,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchProducts();
     this.fetchCategoriesList();
   }
 
@@ -56,7 +55,6 @@ class Home extends Component {
 
   render() {
     const { products, categories, input, catId } = this.state;
-
     return (
       <>
         <input
