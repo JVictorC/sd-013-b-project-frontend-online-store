@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductDetails extends React.Component {
@@ -96,9 +96,15 @@ class ProductDetails extends React.Component {
               onChange={ this.handleInputChange }
             />
             <br />
-            <button onClick={ () => { console.log('a'); } } type="button">Avaliar</button>
+            <button type="button">Avaliar</button>
           </fieldset>
         </form>
+        <Link
+          to="/cart"
+          data-testid="shopping-cart-button"
+        >
+          Carrinho
+        </Link>
       </div>
     );
   }
@@ -114,6 +120,6 @@ ProductDetails.propTypes = {
   }).isRequired,
   category: PropTypes.string.isRequired,
   search: PropTypes.string.isRequired,
-};
+}.isRequired;
 
 export default ProductDetails;
