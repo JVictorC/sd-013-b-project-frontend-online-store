@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Empty from './Empty';
-import CartItem from './CartItem';
+import CartItems from './CartItems';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class ShoppingCart extends Component {
     } if (products.length !== 0) {
       return (
         <div>
-          <CartItem products={ products } />
+          <CartItems products={ products } />
           <Link to="/">Home</Link>
         </div>);
     }

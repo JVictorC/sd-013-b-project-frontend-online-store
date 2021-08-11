@@ -3,18 +3,33 @@ import PropTypes from 'prop-types';
 
 class ProductDetail extends Component {
   render() {
-    const { product: { title, thumbnail, price } } = this.props;
+    const { addToCart } = this.props;
+    const { product } = this.props;
     return (
       <div>
-        <img alt={ title } src={ thumbnail } />
-        <p data-testid="product-detail-name">{ title }</p>
-        <p>{ price }</p>
+        <img alt={ product.title } src={ product.thumbnail } />
+        <p
+          data-testid="product-detail-name"
+        >
+          { product.title }
+        </p>
+        <p>{ product.price }</p>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => {
+            addToCart(product);
+          } }
+        >
+          Add to Cart!
+        </button>
       </div>
     );
   }
 }
 
 ProductDetail.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,

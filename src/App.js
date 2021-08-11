@@ -29,7 +29,10 @@ class App extends Component {
             <Route
               exact
               path="/product/:id"
-              component={ ProductDetails }
+              render={ (props) => (<ProductDetails
+                { ...props }
+                addToCart={ this.addToCart }
+              />) }
             />
             <Route
               exact
