@@ -21,27 +21,39 @@ class ProductCard extends React.Component {
 
   updateState = (results) => {
     this.setState({ results });
-  }
+  };
 
   showResults() {
+    const { addToCart } = this.props;
     const { results } = this.state;
     const card = results.map((result) => {
       const { title, thumbnail, price, id } = result;
       return (
-        <Link
-          data-testid="product-detail-link"
-          to={ {
-            pathname: `/product/${id}`,
-            productInfo: result,
-          } }
-          key={ title }
-        >
+        <div key={ title }>
           <div data-testid="product">
-            <p>{ title }</p>
+            <p>{title}</p>
             <img src={ thumbnail } alt={ title } />
-            <p>{ price }</p>
+            <p>{price}</p>
+            <Link
+              data-testid="product-detail-link"
+              to={ {
+                pathname: `/product/${id}`,
+                productInfo: result,
+              } }
+            >
+              See product details
+            </Link>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+              onClick={ () => {
+                addToCart(result);
+              } }
+            >
+              Add to Cart
+            </button>
           </div>
-        </Link>
+        </div>
       );
     });
     return card;
@@ -49,14 +61,15 @@ class ProductCard extends React.Component {
 
   render() {
     const { results } = this.state;
-    return (
-      results.length === 0 ? 'Nenhum produto foi encontrado' : this.showResults()
-    );
+    return results.length === 0
+      ? 'Nenhum produto foi encontrado'
+      : this.showResults();
   }
 }
 
 ProductCard.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

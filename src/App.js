@@ -8,17 +8,41 @@ import ProductDetails from './components/ProductDetails';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      cartItems: [],
+    };
+  }
+
+  addToCart = (item) => {
+    this.setState((prevState) => ({ cartItems: [...prevState.cartItems, item] }));
+  }
+
   render() {
+    const { cartItems } = this.state;
     return (
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route exact path="/shoppingcart" component={ ShoppingCart } />
             <Route
               exact
               path="/product/:id"
               component={ ProductDetails }
+            />
+            <Route
+              exact
+              path="/"
+              render={ (props) => (<Home { ...props } addToCart={ this.addToCart } />) }
+            />
+            <Route
+              exact
+              path="/shoppingcart"
+              render={ (props) => (<ShoppingCart
+                { ...props }
+                cartItems={ cartItems }
+              />) }
             />
           </Switch>
         </BrowserRouter>
