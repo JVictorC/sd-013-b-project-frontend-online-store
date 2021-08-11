@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import FormProduct from './FormProduct';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -22,6 +25,14 @@ export default class ProductDetails extends Component {
           {price}
         </p>
         <img src={ thumbnail } alt={ title } />
+        <div>
+          <Link
+            to="/"
+          >
+            Voltar
+          </Link>
+          <FormProduct />
+        </div>
       </div>
     );
   }
