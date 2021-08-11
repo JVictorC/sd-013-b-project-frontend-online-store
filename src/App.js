@@ -18,7 +18,7 @@ class App extends Component {
             <Route
               exact
               path="/product/:id"
-              render={ (props) => <ProductDetails { ...props } /> }
+              component={ ProductDetails }
             />
           </Switch>
         </BrowserRouter>

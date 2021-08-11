@@ -30,11 +30,14 @@ class ProductCard extends React.Component {
       return (
         <Link
           data-testid="product-detail-link"
-          to={ `/product/${id}` }
+          to={ {
+            pathname: `/product/${id}`,
+            productInfo: result,
+          } }
           key={ title }
         >
           <div data-testid="product">
-            <p data-testid="product-detail-name">{ title }</p>
+            <p>{ title }</p>
             <img src={ thumbnail } alt={ title } />
             <p>{ price }</p>
           </div>
@@ -54,7 +57,6 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
-
 };
 
 export default ProductCard;

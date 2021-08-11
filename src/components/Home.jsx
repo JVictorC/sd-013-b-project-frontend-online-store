@@ -14,7 +14,6 @@ class Home extends React.Component {
       results: [],
       search: '',
       showCard: false,
-      categoryId: '',
     };
 
     this.handleCategoriesList = this.handleCategoriesList.bind(this);
@@ -28,9 +27,7 @@ class Home extends React.Component {
 
   async handleCategoriesList({ target }) {
     const { results } = await getProductsFromCategoryAndQuery(target.value, '');
-    console.log(results, target.value);
     this.setState({
-      categoryId: target.value,
       results,
       showCard: true,
     });
