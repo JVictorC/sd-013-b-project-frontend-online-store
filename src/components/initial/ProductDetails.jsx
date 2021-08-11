@@ -1,47 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as api from '../../services/api';
 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    const { match: { params: { id } } } = this.props;
+    const { location: { state: { products } } } = this.props;
     this.state = {
-      returnOfApi: [],
-      id,
+      products,
     };
-    this.findProduct = this.findProduct.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchApi();
-  }
-
-  async fetchApi() {
-    const { location: { state: { foo } } } = this.props;
-    const returnApiCategories = await api.getProductsFromCategoryAndQuery(null, foo);
-    this.setState({ returnOfApi: returnApiCategories.results });
-  }
-
-  findProduct() {
-    const { id, returnOfApi } = this.state;
-    const map = returnOfApi.filter((element) => element.id === id)
-      .map((element) => element);
-    return map;
   }
 
   render() {
-    const foundProduct = this.findProduct();
+    const { products } = this.state;
     return (
       <div>
-        {foundProduct.map((element) => (
-          <section key={ element.id }>
-            <h1 data-testid="product-detail-name">{element.title}</h1>
-            <img src={ element.thumbnail } alt="imagem" />
-            <p>{element.price}</p>
-          </section>
-        )) }
+        <h1 data-testid="product-detail-name">{products.title}</h1>
+        <img src={ products.thumbnail } alt="" />
+        <p>{products.price}</p>
         <Link to="/shop">Shopping Cart</Link>
       </div>
     );
@@ -49,14 +25,9 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
   location: PropTypes.shape({
     state: PropTypes.shape({
-      foo: PropTypes.string,
+      products: PropTypes.string,
     }),
   }).isRequired,
 };

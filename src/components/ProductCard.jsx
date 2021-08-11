@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
   render() {
-    const { product, query } = this.props;
+    const { product } = this.props;
     const { title, thumbnail, price } = product;
     return (
       <div data-testid="product" className="">
@@ -14,7 +14,8 @@ class ProductCard extends Component {
         <p>{ price }</p>
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: `/productDetails/${product.id} `, state: { foo: query } } }
+          to={ { pathname: `/productDetails/${product.id} `,
+            state: { products: product } } }
         >
           Ver Detalhes
         </Link>

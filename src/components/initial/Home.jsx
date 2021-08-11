@@ -21,6 +21,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.fetchProducts();
     this.fetchCategoriesList();
   }
 
@@ -54,7 +55,7 @@ class Home extends Component {
   }
 
   render() {
-    const { products, categories, input } = this.state;
+    const { products, categories, input, catId } = this.state;
 
     return (
       <>
@@ -76,7 +77,7 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
         <CategoriesList categories={ categories } />
-        <ProductList products={ products } query={ input } />
+        <ProductList products={ products } query={ input } catid={ catId } />
         <Link to="/shop" data-testid="shopping-cart-button">
           Carrinho de compras
           <RiShoppingCartLine />
