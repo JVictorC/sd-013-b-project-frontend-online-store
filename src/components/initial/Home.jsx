@@ -18,6 +18,7 @@ class Home extends Component {
     this.fetchCategoriesList = this.fetchCategoriesList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.submitQuery = this.submitQuery.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   componentDidMount() {
@@ -31,12 +32,21 @@ class Home extends Component {
     });
   }
 
-  submitQuery() {
-    this.fetchProducts();
+  handleChangeCategory(radioValue) {
+    this.setState({
+      catId: radioValue,
+    });
+    this.fetchProducts(radioValue);
   }
 
-  async fetchProducts() {
-    const { catId, input } = this.state;
+  submitQuery() {
+    const { catId } = this.state;
+    this.fetchProducts(catId);
+  }
+
+  async fetchProducts(catId) {
+    const { input } = this.state;
+    console.log(catId, input);
     const fetch = await api.getProductsFromCategoryAndQuery(catId, input);
     const results = await fetch.results;
     this.setState({ products: results });
@@ -54,7 +64,8 @@ class Home extends Component {
   }
 
   render() {
-    const { products, categories, input, catId } = this.state;
+    const { products, categories, catId } = this.state;
+
     return (
       <>
         <input
@@ -74,8 +85,12 @@ class Home extends Component {
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
-        <CategoriesList categories={ categories } />
-        <ProductList products={ products } query={ input } catid={ catId } />
+        <CategoriesList
+          categories={ categories }
+          handleChangeCategory={ this.handleChangeCategory }
+          catId={ catId }
+        />
+        <ProductList products={ products } />
         <Link to="/shop" data-testid="shopping-cart-button">
           Carrinho de compras
           <RiShoppingCartLine />

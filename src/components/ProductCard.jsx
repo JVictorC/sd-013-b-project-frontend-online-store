@@ -9,13 +9,14 @@ class ProductCard extends Component {
     return (
       <div data-testid="product" className="">
         Product Card
-        <h4>{ title }</h4>
+        <h4>{title}</h4>
         <img src={ thumbnail } alt={ title } />
-        <p>{ price }</p>
+        <p>{price}</p>
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: `/productDetails/${product.id} `,
-            state: { products: product } } }
+          to={ {
+            pathname: `/productDetails/${product.id}/${product.title} `,
+          } }
         >
           Ver Detalhes
         </Link>
