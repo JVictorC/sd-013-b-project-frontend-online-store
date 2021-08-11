@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import ShoppingCartCards from '../components/ShoppingCartCards';
 
 class ShoppingCart extends React.Component {
   render() {
-    const { title, quantity } = this.props;
-    if (title === '') {
+    const { cartProducts } = this.props;
+    if (cartProducts.length === 0) {
       return (
         <h4 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
@@ -13,20 +15,24 @@ class ShoppingCart extends React.Component {
     }
     return (
       <div>
-        <h4 data-testid="shopping-cart-product-name">{ title }</h4>
-        <h3 data-testid="shopping-cart-product-quantity">
-          Quantidade:
-          { quantity }
-          Und.
-        </h3>
+        <div>
+          <ShoppingCartCards cartProducts={ cartProducts } />
+        </div>
+        <div>
+          <Link
+            data-testid="checkout-products"
+            to="/checkout"
+          >
+            Finalizar Compra
+          </Link>
+        </div>
       </div>
     );
   }
 }
 
 ShoppingCart.propTypes = {
-  title: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ShoppingCart;

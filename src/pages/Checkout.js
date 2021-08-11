@@ -75,39 +75,6 @@ class Checkout extends React.Component {
     );
   }
 
-  complement() {
-    return (
-      <input
-        type="text"
-        id="complement"
-        name="complement"
-        placeholder="Complemento"
-      />
-    );
-  }
-
-  num() {
-    return (
-      <input
-        type="text"
-        id="num"
-        name="num"
-        placeholder="Número"
-      />
-    );
-  }
-
-  city() {
-    return (
-      <input
-        type="text"
-        id="city"
-        name="city"
-        placeholder="Cidade"
-      />
-    );
-  }
-
   render() {
     const { cart } = this.props;
     const total = cart.reduce((acc, { price }) => (acc + price), 0).toFixed(2);
@@ -123,21 +90,23 @@ class Checkout extends React.Component {
           <div>
             <h4>Revise seus Produtos</h4>
             <table>
-              {cart.map(({ id, title, price }) => (
-                <tr key={ id }>
-                  <td><img src="" alt="checked" /></td>
-                  <td>{`${title}`}</td>
-                  <td>R$: </td>
-                  <td>{price}</td>
-                </tr>
-              ))}
+              <tbody>
+                {cart.map(({ id, title, price }) => (
+                  <tr key={ id }>
+                    <td><img src="" alt="checked" /></td>
+                    <td>{`${title}`}</td>
+                    <td>R$: </td>
+                    <td>{price}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
             <h4>
               Total: R$
               {total}
             </h4>
           </div>
-          <div className="buyer-info-container">
+          <div>
             <h4>Informações do Comprador</h4>
             <div>
               {this.fullName()}
@@ -146,9 +115,6 @@ class Checkout extends React.Component {
               {this.phone()}
               {this.zip()}
               {this.address()}
-              {this.complement()}
-              {this.num()}
-              {this.city()}
             </div>
           </div>
           <div>
