@@ -49,7 +49,14 @@ class App extends React.Component {
             <Route
               exact
               path="/product/:id"
-              render={ (props) => <Product { ...props } products={ products } /> }
+              render={
+                (props) => (
+                  <Product
+                    { ...props }
+                    products={ products }
+                    cartStateUpadte={ this.cartStateUpadte }
+                  />)
+              }
             />
             <Route exact path="/cart" render={ () => <Cart cartList={ cartList } /> } />
           </Switch>
