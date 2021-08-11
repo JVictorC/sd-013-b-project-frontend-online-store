@@ -15,7 +15,7 @@ export default class ProductDetails extends Component {
   render() {
     const { productDetailsSelect } = this.state;
     const { thumbnail, price, title } = productDetailsSelect;
-    const { getCardItem } = this.props;
+    const { getCardItem, QuantityItemCard } = this.props;
     return (
       // thumbnail= imagem, price = preço, title = nome, installments = especificações
       <div>
@@ -26,6 +26,7 @@ export default class ProductDetails extends Component {
         </Link>
         <Link data-testid="shopping-cart-button" to="/cart">
           Cart
+          <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
         </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>

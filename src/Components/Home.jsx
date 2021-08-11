@@ -11,14 +11,24 @@ import ProductList from './ProductList';
 class Home extends Component {
   constructor(props) {
     super(props);
+    const { card } = this.props;
     this.state = {
       products: [],
       categorySelect: undefined,
-      card: [],
+      card,
     };
     this.getProducts = this.getProducts.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addToCard = this.addToCard.bind(this);
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { card } = this.state;
+    let cardLocal = localStorage.getItem('card');
+    cardLocal = JSON.parse(cardLocal);
+    if (prevState.card.length !== card.length) {
+      localStorage.setItem('card', JSON.stringify([...cardLocal, card]));
+    }
   }
 
   async handleClick({ target }) {
@@ -47,29 +57,24 @@ class Home extends Component {
 
   async addToCard({ title, price, thumbnail, id }) {
     const { getCardItem } = this.props;
-    const { card } = this.state;
-    const checkExist = card.find((product) => product.id === id);
-    if (!checkExist) {
-      const newItem = { title, price, thumbnail, id };
-      newItem.quantity = 1;
-      this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-        const { card: newCard } = this.state;
-        getCardItem(newCard);
-      });
-    } else {
-      checkExist.quantity += 1;
-    }
+    const newItem = { title, price, thumbnail, id };
+    newItem.quantity = 1;
+    this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
+      const { card: newCard } = this.state;
+      getCardItem(newCard);
+    });
   }
 
   render() {
     const { products } = this.state;
-    const { getDetailsProduct } = this.props;
+    const { getDetailsProduct, QuantityItemCard } = this.props;
     return (
       <>
         <header>
           <BarSearch getProducts={ this.getProducts } />
           <Link data-testid="shopping-cart-button" to="cart/">
             Cart
+            <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
           </Link>
         </header>
         <main>
