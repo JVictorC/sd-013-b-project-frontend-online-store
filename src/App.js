@@ -19,9 +19,13 @@ class App extends React.Component {
     const productPlusQuantity = product;
     productPlusQuantity.quantity = 1;
     this.setState((previousState) => ({
-      products: [...previousState.products, productPlusQuantity]
-    }))
+      products: [...previousState.products, productPlusQuantity],
+    }));
   }
+
+  // updateQuantity = () => {
+
+  // }
 
   setSearch = (search) => {
     this.setState({
@@ -59,7 +63,14 @@ class App extends React.Component {
                   updateProducts={ this.updateProducts }
                 />) }
             />
-            <Route path="/cart" render={(props) => (<Cart { ...props } products={ products } />)} />
+            <Route
+              path="/cart"
+              render={ (props) => (
+                <Cart
+                  { ...props }
+                  products={ products }
+                />) }
+            />
             <Route
               path="/:id"
               render={ (props) => (

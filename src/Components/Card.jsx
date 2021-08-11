@@ -11,15 +11,25 @@ class Card extends React.Component {
         <img src={ thumbnail } alt="" />
         <p>{ `R$: ${price}` }</p>
         <Link data-testid="product-detail-link" to={ `/${id}` }>Mais detalhes</Link>
-        <button onClick={ ()  => {
-          updateProducts(item);
-        } } data-testid="product-add-to-cart" >Adicionar ao carrinho</button>
+        <button
+          type="button"
+          onClick={ () => {
+            updateProducts(item);
+          } }
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
 }
 
 Card.propTypes = {
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  updateProducts: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,

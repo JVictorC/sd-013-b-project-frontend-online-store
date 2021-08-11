@@ -1,9 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { products } = this.props;
 
@@ -15,11 +13,18 @@ class Cart extends React.Component {
               <p data-testid="shopping-cart-product-name">{ product.title }</p>
               <p>{ product.price }</p>
               <img src={ product.thumbnail } alt="" />
-              <p>{ `Quantidade:`} <span data-testid="shopping-cart-product-quantity">{product.quantity}</span></p>
+              <p>
+                Quantidade:
+                <span
+                  data-testid="shopping-cart-product-quantity"
+                >
+                  {product.quantity}
+                </span>
+              </p>
             </div>
           )) }
         </div>
-      )
+      );
     }
 
     return (
@@ -29,4 +34,15 @@ class Cart extends React.Component {
     );
   }
 }
+
+Cart.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.number,
+    }),
+  ).isRequired,
+};
+
 export default Cart;

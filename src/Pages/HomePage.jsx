@@ -68,8 +68,8 @@ renderList = () => {
             price={ item.price }
             thumbnail={ item.thumbnail }
             id={ item.id }
-            item = { item }
-            updateProducts = { updateProducts }
+            item={ item }
+            updateProducts={ updateProducts }
           />)),
         productsLoad: true,
       });
@@ -124,6 +124,7 @@ render() {
 HomePage.propTypes = {
   setSearch: PropTypes.func.isRequired,
   setCategory: PropTypes.func.isRequired,
+  updateProducts: PropTypes.func.isRequired,
 };
 
 export default HomePage;
