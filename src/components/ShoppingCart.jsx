@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CreateCardCartItems from './CreateCardCartItems';
+import PropTypes from 'prop-types';
+import AddCart from './AddCart';
 
 export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      emptyCart: true,
       cartList: props.items,
       amountPrice: 0,
       totalItems: 0,
@@ -36,12 +36,12 @@ export default class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { emptyCart, cartList } = this.state;
+    const { query } = this.props;
     const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
-        {emptyCart ? cEpt : <CreateCardCartItems
-          cartItems={ cartList }
+        {query.length <= 0 ? cEpt : <AddCart
+          query={ query }
           onClickAdd={ this.handleAddClick }
           onClickRemove={ this.handleRemoveClick }
         />}
@@ -51,3 +51,7 @@ export default class ShoppingCart extends React.Component {
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  query: PropTypes.string.isRequired,
+};
