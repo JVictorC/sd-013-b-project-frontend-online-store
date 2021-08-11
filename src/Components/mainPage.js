@@ -5,7 +5,7 @@ import ListaCat from './ListaCat';
 import ListItems from './ListItems';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
-class mainPage extends React.Component {
+class MainPage extends React.Component {
   constructor() {
     super();
 
@@ -50,4 +50,4 @@ class mainPage extends React.Component {
   }
 }
 
-export default mainPage;
+export default MainPage;

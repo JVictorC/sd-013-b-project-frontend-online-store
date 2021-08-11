@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import mainPage from './components/mainPage';
+import MainPage from './components/MainPage';
 import Cart from './components/Cart';
 import NotFound from './components/NotFound';
 
@@ -20,7 +20,7 @@ export default class App extends Component {
       <div className="">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ mainPage } />
+            <Route exact path="/" component={ MainPage } />
             <Route
               exact
               path="/cart"
