@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
     const text = event.target.value;
     this.setState({
       searchText: text,
-    })
+    });
   }
 
   async handleClick() {
@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
     const object = await getProductsFromCategoryAndQuery(null, searchText);
     const products = object.results;
     this.setState({
-      products: products,
+      products,
     });
   }
 
@@ -39,7 +39,13 @@ class SearchBar extends React.Component {
       <div>
         <div>
           <input data-testid="query-input" type="text" onChange={ this.handleChange } />
-          <button data-testid="query-button" type="button" onClick={ this.handleClick }>Pesquisar</button>
+          <button
+            data-testid="query-button"
+            type="button"
+            onClick={ this.handleClick }
+          >
+            Pesquisar
+          </button>
           <h3 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h3>
