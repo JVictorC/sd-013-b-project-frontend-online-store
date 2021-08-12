@@ -1,5 +1,7 @@
 import React from 'react';
+
 import CartItem from '../components/CartItem';
+import CartLink from '../components/CartLink';
 
 import {
   getItemsFromLocalStorage,
@@ -13,11 +15,13 @@ class Cart extends React.Component {
     this.state = {
       cartItems: [],
       totalPrice: 0,
+      itemCount: 0,
     };
   }
 
   componentDidMount() {
     this.fetchProducts();
+    this.updateItemCount();
   }
 
   fetchProducts = () => {
@@ -27,6 +31,14 @@ class Cart extends React.Component {
 
     this.getTotalPrice(cartItems);
   };
+
+  updateItemCount = () => {
+    const items = getItemsFromLocalStorage();
+
+    const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
+
+    this.setState({ itemCount });
+  }
 
   getTotalPrice = (items) => {
     const totalPrice = items.reduce(
@@ -45,6 +57,7 @@ class Cart extends React.Component {
     this.setState({ cartItems: [...newItems] });
 
     this.getTotalPrice(newItems);
+    this.updateItemCount();
     setArrayToLocalStorage(newItems);
   };
 
@@ -57,14 +70,16 @@ class Cart extends React.Component {
 
     this.setState({ cartItems: [...newItems] });
     this.getTotalPrice(newItems);
+    this.updateItemCount();
     setArrayToLocalStorage(newItems);
   };
 
   render() {
-    const { cartItems, totalPrice } = this.state;
+    const { cartItems, totalPrice, itemCount } = this.state;
 
     return (
       <div>
+        <CartLink itemCount={ itemCount } />
         {cartItems.length !== 0 ? (
           cartItems.map((element) => (
             <CartItem
@@ -76,6 +91,7 @@ class Cart extends React.Component {
               availableQuantity={ element.availableQuantity }
               removeItemFromCart={ this.removeItemFromCart }
               updateItemAmount={ this.updateItemAmount }
+              updateItemCount={ this.updateItemCount }
             />
           ))
         ) : (

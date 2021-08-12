@@ -1,26 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CartLink from '../CartLink';
 import Product from '../Product';
+
+import { getItemsFromLocalStorage } from '../../utils/localStorageHelpers';
 
 // import './style.css';
 
 class ProductList extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      itemCount: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.updateItemCount();
+  }
+
+  updateItemCount = () => {
+    const items = getItemsFromLocalStorage();
+
+    const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
+
+    this.setState({ itemCount });
+  }
+
   render() {
+    const { itemCount } = this.state;
     const { productList } = this.props;
 
     if (!productList.length) {
       return (
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+        <div>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <CartLink itemCount={ itemCount } />
+        </div>
       );
     }
 
     return (
       <div>
+        <CartLink itemCount={ itemCount } />
         {productList.map((product) => (
-          <Product key={ product.id } product={ product } />
+          <Product
+            key={ product.id }
+            product={ product }
+            updateItemCount={ this.updateItemCount }
+          />
         ))}
       </div>
     );

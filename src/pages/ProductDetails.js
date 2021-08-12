@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CartLink from '../components/CartLink';
 import EvaluatingForm from '../components/EvaluatingForm';
 import EvaluationsZone from '../components/EvaluationsZone';
 
@@ -17,11 +18,21 @@ class ProductDetails extends React.Component {
     this.state = {
       loading: true,
       product: {},
+      itemCount: 0,
     };
   }
 
   componentDidMount() {
     this.getProductFromLocalStorage();
+    this.updateItemCount();
+  }
+
+  updateItemCount = () => {
+    const items = getItemsFromLocalStorage();
+
+    const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
+
+    this.setState({ itemCount });
   }
 
   getProductFromLocalStorage = () => {
@@ -37,10 +48,11 @@ class ProductDetails extends React.Component {
     const newItems = [...items, { ...product, amount: 1 }];
 
     setArrayToLocalStorage(newItems);
+    this.updateItemCount();
   };
 
   render() {
-    const { loading, product } = this.state;
+    const { loading, product, itemCount } = this.state;
 
     if (loading) {
       return <p>Loading</p>;
@@ -48,6 +60,7 @@ class ProductDetails extends React.Component {
 
     return (
       <div>
+        <CartLink itemCount={ itemCount } />
         <p data-testid="product-detail-name">{product.title}</p>
         <img src={ product.thumbnail } alt={ product.title } />
         <p>{product.price}</p>

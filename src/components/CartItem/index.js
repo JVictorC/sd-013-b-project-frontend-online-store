@@ -22,7 +22,12 @@ class CartItem extends React.Component {
   };
 
   handleClick = ({ target }) => {
-    const { availableQuantity, updateItemAmount, id } = this.props;
+    const {
+      availableQuantity,
+      updateItemAmount,
+      updateItemCount,
+      id,
+    } = this.props;
     const { quantity } = this.state;
     const {
       dataset: { action },
@@ -34,6 +39,7 @@ class CartItem extends React.Component {
       this.setState({ quantity: newQuantity });
 
       updateItemAmount(newQuantity, id);
+      updateItemCount();
     }
   };
 
@@ -42,7 +48,7 @@ class CartItem extends React.Component {
     const { quantity } = this.state;
     return (
       <div>
-        <button type="button" onClick={ () => removeItemFromCart(id) }>
+        <button type="button" onClick={ () => removeItemFromCart(id, quantity) }>
           x
         </button>
         <p data-testid="shopping-cart-product-name">{title}</p>
@@ -79,6 +85,7 @@ CartItem.propTypes = {
   availableQuantity: PropTypes.number.isRequired,
   removeItemFromCart: PropTypes.func.isRequired,
   updateItemAmount: PropTypes.func.isRequired,
+  updateItemCount: PropTypes.func.isRequired,
 };
 
 export default CartItem;

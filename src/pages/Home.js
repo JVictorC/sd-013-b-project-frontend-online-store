@@ -66,7 +66,9 @@ class Home extends React.Component {
             onChange={ this.handleSearchTermChange }
             onClick={ this.listProducts }
           />
-          <ProductList productList={ productList } />
+          <ProductList
+            productList={ productList }
+          />
         </div>
       </div>
     );

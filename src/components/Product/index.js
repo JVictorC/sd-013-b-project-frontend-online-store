@@ -11,12 +11,13 @@ import {
 
 class Product extends React.Component {
   handleClick = () => {
-    const { product } = this.props;
+    const { product, updateItemCount } = this.props;
 
     const items = getItemsFromLocalStorage();
     const newItems = [...items, { ...product, amount: 1 }];
 
     localStorage.setItem('cartItems', JSON.stringify(newItems));
+    updateItemCount();
   };
 
   render() {
@@ -57,6 +58,7 @@ Product.propTypes = {
     price: PropTypes.number.isRequired,
     freeShipping: PropTypes.bool.isRequired,
   }).isRequired,
+  updateItemCount: PropTypes.func.isRequired,
 };
 
 export default Product;
