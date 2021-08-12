@@ -39,7 +39,7 @@ export default class BtnAddToCart extends React.Component {
 }
 
 BtnAddToCart.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

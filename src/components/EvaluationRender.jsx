@@ -1,19 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EvaluationCard from './EvaluationCard';
 import EmptyEvaluation from './EmptyEvaluation';
 
 export default class EvaluationRender extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.parseEvaluation = this.parseEvaluation.bind(this);
+  }
+
+  parseEvaluation() {
+    const data = localStorage.getItem('evaluations');
+    let parsedData = [];
+    if (data) {
+      parsedData = JSON.parse(data);
+      return parsedData;
+    }
+    return parsedData;
+  }
+
   render() {
     const { id } = this.props;
-    const match = JSON.parse(localStorage.getItem('evaluations'))
-      .filter((evaluation) => evaluation.id === id);
+    const match = this.parseEvaluation().filter((evaluation) => evaluation.id === id);
+    const HEXAMIN = 0xfffff;
+    const HEXAMAX = 1000000;
+    const BITS = 16;
     return (
       <section>
         <div>
           { (match.length !== 0)
             ? (match.map((evaluation) => {
               const { email, comment, rating } = evaluation;
-              const key = (Math.random() * 0xfffff * 1000000).toString(16);
+              const key = (Math.random() * HEXAMIN * HEXAMAX).toString(BITS);
               return (
                 <EvaluationCard
                   key={ key }
@@ -29,3 +48,7 @@ export default class EvaluationRender extends React.Component {
     );
   }
 }
+
+EvaluationRender.propTypes = {
+  id: PropTypes.string.isRequired,
+};

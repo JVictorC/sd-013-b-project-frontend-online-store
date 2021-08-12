@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class BtnSubmitEvaluation extends React.Component {
   constructor(props) {
@@ -30,3 +31,10 @@ export default class BtnSubmitEvaluation extends React.Component {
     );
   }
 }
+
+BtnSubmitEvaluation.propTypes = {
+  comment: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+};
