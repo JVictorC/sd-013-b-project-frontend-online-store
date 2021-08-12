@@ -7,15 +7,34 @@ export default class Cart extends Component {
     super();
     this.createCart = this.createCart.bind(this);
     this.state = {
-      cartProducts: [],
+      quantity: 1,
     };
   }
 
+  handleRemove = ({ target }) => {
+    // const { cartProducts } = this.state;
+  }
+
+  handleClick = (parameter) => {
+    const { quantity } = this.state;
+    if (parameter === 'plus') {
+      return this.setState((old) => ({
+        quantity: old.quantity + 1,
+      }));
+    }
+    if (quantity === 0) return;
+    this.setState((old) => ({
+      quantity: old.quantity - 1,
+    }));
+  }
+
   createCart() {
-    const { location: { state: { object } } } = this.props;
-    const { title, thumbnail, price } = object;
+    const { quantity } = this.state;
+    const { cartProducts } = this.props;
+    const { title, thumbnail, price } = cartProducts;
     return (
       <div>
+        <button type="button" onClick={ this.handleRemove }>X</button>
         <ButtonHome />
         <p data-testid="shopping-cart-product-name">{title}</p>
         <img src={ thumbnail } alt="Produto" />
@@ -25,16 +44,24 @@ export default class Cart extends Component {
         </p>
         <p data-testid="shopping-cart-product-quantity">
           Quantidade:
-          {/* {
-            object.available_quantity
-          } */}
+          { quantity }
+          <div>
+            <p>
+              Total:
+              {price * quantity}
+            </p>
+            <button type="button" onClick={ () => this.handleClick() }>-</button>
+            { quantity }
+            <button type="button" onClick={ () => this.handleClick('plus') }>+</button>
+          </div>
+
         </p>
       </div>
     );
   }
 
   render() {
-    const { cartProducts } = this.state;
+    const { cartProducts } = this.props;
     const emptyCart = (
       <div>
         <ButtonHome />

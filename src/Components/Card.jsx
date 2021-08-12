@@ -7,18 +7,24 @@ import './card.css';
 export default class Card extends Component {
   constructor(props) {
     super(props);
-
-    // this.handleCartClick = this.handleCartClick.bind(this);
+    this.state = {
+      cartProducts: [],
+    };
+    this.addItemToCart = this.addItemToCart.bind(this);
   }
 
-  // handleCartClick() {
-  //   this.setState({
-  //     object,
-  //   });
-  // }
+  addItemToCart() {
+    const { location: { state: { object } } } = this.props;
+    const { cartProducts } = this.state;
+    // const { title, thumbnail, price } = object;
+    this.setState({
+      cartProducts: [...cartProducts, object],
+    });
+  }
 
   render() {
     const { thumbnail, title, price, id, object } = this.props;
+    const { cartProducts } = this.state;
     return (
       <div data-testid="product" className="product-card">
         <p>{ title }</p>
@@ -34,7 +40,8 @@ export default class Card extends Component {
           <p>Ver detalhes</p>
         </Link>
         <Link
-          to={ { pathname: '/cart', state: { object } } }
+          onClick={ this.addItemToCart }
+          to={ { pathname: '/cart', state: { cartProducts } } }
           data-testid="product-add-to-cart"
         >
           <p>Adicionar ao carrinho</p>
