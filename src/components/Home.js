@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CategoriesAside from './CategoriesAside';
 import SearchBar from './SearchBar';
 import RenderProducts from './RenderProducts';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      products: [],
       query: '',
-      categoryId: '',
-      submit: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
-    this.renderMain = this.renderMain.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
   }
 
   handleChange({ target }) {
@@ -25,36 +25,35 @@ class Home extends React.Component {
 
     this.setState({
       [name]: value,
-      submit: false,
     });
   }
 
   handleClick() {
-    this.setState({
-      submit: true,
-      categoryId: '',
-    });
+    const { query } = this.state;
+
+    this.fetchProducts('', query);
   }
 
   handleCategory({ target }) {
     const { id } = target;
 
     this.setState({
-      categoryId: id,
-      submit: false,
+      query: '',
     });
+
+    this.fetchProducts(id);
   }
 
-  renderMain() {
-    const { query, categoryId } = this.state;
+  async fetchProducts(categoryId, query) {
+    const products = await getProductsFromCategoryAndQuery(categoryId, query);
 
-    return (
-      <RenderProducts query={ query } categoryId={ categoryId } />
-    );
+    this.setState(() => ({
+      products: products.results,
+    }));
   }
 
   render() {
-    const { query, categoryId, submit } = this.state;
+    const { query, products } = this.state;
 
     const message = (
       <p
@@ -74,7 +73,9 @@ class Home extends React.Component {
         </div>
 
         <div>
-          {!submit && categoryId === '' ? message : this.renderMain()}
+          {/* Uso de operador lógico && em substituição do if */}
+          {products.length !== 0 && <RenderProducts products={ products } /> }
+          {products.length === 0 && message }
         </div>
 
         <Link to="/shopping-cart">

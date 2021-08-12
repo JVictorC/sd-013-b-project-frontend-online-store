@@ -1,63 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 
-class RenderProducts extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      products: [],
-    };
-
-    this.renderProducts = this.renderProducts.bind(this);
-    this.fetchProducts = this.fetchProducts.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  async fetchProducts() {
-    const { query, categoryId } = this.props;
-    const products = await getProductsFromCategoryAndQuery(categoryId, query);
-    console.log(products);
- 
-    this.setState(() => ({
-      products: products.results,
-    }));
-  }
-
-  renderProducts() {
-    const { products } = this.state;
-
-    return (
-      <div>
-        {products.map(({ id, title, thumbnail, price }) => (
-          <div key={ id } data-testid="product">
-            <p>{ title }</p>
-            <img src={ thumbnail } alt={ title } />
-            <p>{ price }</p>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
+class RenderProducts extends Component {
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     const noReturn = <span>Nenhum produto foi encontrado</span>;
     return (
-      <div>
-        {(products.length > 0) ? this.renderProducts() : noReturn }
-      </div>
+      products === [] ? noReturn : (
+        <div>
+          {products.map(({ id, title, thumbnail, price }) => (
+            <div key={ id } data-testid="product">
+              <p>{ title }</p>
+              <img src={ thumbnail } alt={ title } />
+              <p>{ price }</p>
+            </div>
+          ))}
+        </div>
+      )
     );
   }
 }
 
 RenderProducts.propTypes = {
-  query: PropTypes.string.isRequired,
-  categoryId: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
 };
 
 export default RenderProducts;

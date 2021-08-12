@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
 
-class CategoriesAside extends React.Component {
+class CategoriesAside extends Component {
   constructor(props) {
     super(props);
 
