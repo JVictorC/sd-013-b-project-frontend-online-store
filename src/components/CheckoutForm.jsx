@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CheckoutForm extends React.Component {
   render() {
@@ -56,5 +57,9 @@ class CheckoutForm extends React.Component {
     );
   }
 }
+
+CheckoutForm.propTypes = {
+  handleOnChange: PropTypes.func.isRequired,
+};
 
 export default CheckoutForm;
