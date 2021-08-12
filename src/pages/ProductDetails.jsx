@@ -48,7 +48,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product: { title, thumbnail, price, id } } = this.state;
+    const { product: { title, thumbnail, price } } = this.state;
     // const { title, thumbnail, price, id, attributes } = product;
     return (
       <div>
