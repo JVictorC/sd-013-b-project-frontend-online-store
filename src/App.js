@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Route exact path="/" component={ Home } />
         <Route path="/cart" component={ CarrinhoDeCompra } />
-        <Route path="/productdetails" component={ ProductDetails} />
+        <Route path="/details/:id" component={ ProductDetails } />
       </Router>
     </div>
   );
