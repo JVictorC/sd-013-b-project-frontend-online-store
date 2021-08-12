@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import SetTotalItems from './SetTotalItems';
 
 export default class AddCart extends React.Component {
   constructor(props) {
@@ -11,37 +10,14 @@ export default class AddCart extends React.Component {
 
     this.state = {
       item: [],
-      count: 0,
     };
 
     this.displayItem = this.displayItem.bind(this);
     this.setItem = this.setItem.bind(this);
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
     this.setItem();
-  }
-
-  handleAddClick(id) {
-    const { totalItem } = this.props;
-    this.setState(({ count }) => ({
-      count: count + totalItem[id],
-    }));
-  }
-
-  handleRemoveClick(id) {
-    const { count } = this.state;
-    const { totalItem } = this.props;
-    this.setState(() => ({
-      count: count - totalItem[id],
-    }));
-    if (count === 0) {
-      this.setState({
-        count: 0,
-      });
-    }
   }
 
   setItem() {
@@ -51,10 +27,10 @@ export default class AddCart extends React.Component {
 
   displayItem() {
     const { item } = this.state;
-    const { totalItem } = this.props;
+    const { totalItem, onClickAdd, onClickRemove } = this.props;
     return (
       <div>
-        {item.map(({ id, title, thumbnail, price, available_quantity: qtty }, index) => (
+        {item.map(({ id, title, thumbnail, price, available_quantity: qtty }) => (
           <div key={ id } data-testid="product">
             <h3 data-testid="shopping-cart-product-name">{ title }</h3>
             <img src={ thumbnail } alt="Produto" />
@@ -68,14 +44,16 @@ export default class AddCart extends React.Component {
             <button
               data-testid="product-increase-quantity"
               type="button"
-              onClick={ this.handleAddClick(id) }
+              onClick={ () => onClickAdd(id) }
+              name={ id }
             >
               <AddCircleOutlineIcon />
             </button>
             <button
               data-testid="product-decrease-quantity"
               type="button"
-              onClick={ this.handleRemoveClick(id) }
+              onClick={ () => onClickRemove(id) }
+              name={ id }
             >
               <RemoveCircleOutlineIcon />
             </button>
@@ -108,4 +86,7 @@ AddCart.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
   }),
+  onClickAdd: PropTypes.func.isRequired,
+  onClickRemove: PropTypes.func.isRequired,
+  totalItem: PropTypes.shape(PropTypes.object).isRequired,
 };

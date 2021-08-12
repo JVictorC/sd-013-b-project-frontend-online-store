@@ -7,29 +7,31 @@ export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
       cartList: props.query,
       amountPrice: 0,
-      totalItems: 1,
-      quantity: '',
+      itemsQuantity: props.itemQuantity,
       available: 0,
     };
     this.productsAvailable = this.productsAvailable.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
     this.sumcartPrices();
     this.productsAvailable();
-    this.getTotalItem();
   }
 
-  getTotalItem() {
-    const { query } = this.props;
-    query.map(({ id }) => (
-      this.setState(({ quantity }) => ({
-        quantity: { ...quantity, [id]: 1 },
-      }))
-    ));
+  handleAddClick(id) {
+    this.setState(({ itemsQuantity }) => ({
+      itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] + 1 },
+    }));
+  }
+
+  handleRemoveClick(id) {
+    this.setState(({ itemsQuantity }) => ({
+      itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] - 1 },
+    }));
   }
 
   productsAvailable() {
@@ -50,7 +52,7 @@ export default class ShoppingCart extends React.Component {
 
   render() {
     const { query } = this.props;
-    const { quantity, loading, available, amountPrice } = this.state;
+    const { loading, available, amountPrice, itemsQuantity } = this.state;
     const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
@@ -58,7 +60,7 @@ export default class ShoppingCart extends React.Component {
           query={ query }
           onClickAdd={ this.handleAddClick }
           onClickRemove={ this.handleRemoveClick }
-          totalItem={ quantity }
+          totalItem={ itemsQuantity }
           available={ available }
         />}
         <span>{`Preço a pagar: ${amountPrice}`}</span>
@@ -71,4 +73,5 @@ export default class ShoppingCart extends React.Component {
 
 ShoppingCart.propTypes = {
   query: PropTypes.string.isRequired,
+  itemQuantity: PropTypes.shape(PropTypes.object).isRequired,
 };
