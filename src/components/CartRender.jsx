@@ -15,6 +15,7 @@ export default class CartRender extends React.Component {
           price={ item.price }
           key={ item.id }
           onClick={ onClick }
+          buttonId="product-detail-add-to-cart"
         />))}
         <div className="total-price">
           <h2>
