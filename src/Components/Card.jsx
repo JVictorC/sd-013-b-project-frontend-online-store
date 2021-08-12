@@ -5,11 +5,11 @@ import './card.css';
 
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 export default class Card extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    // this.handleCartClick = this.handleCartClick.bind(this);
-  }
+  //   this.handleCartClick = this.handleCartClick.bind(this);
+  // }
 
   // handleCartClick() {
   //   this.setState({
@@ -19,6 +19,7 @@ export default class Card extends Component {
 
   render() {
     const { thumbnail, title, price, id, object } = this.props;
+    const number = 1;
     return (
       <div data-testid="product" className="product-card">
         <p>{ title }</p>
@@ -34,7 +35,7 @@ export default class Card extends Component {
           <p>Ver detalhes</p>
         </Link>
         <Link
-          to={ { pathname: '/cart', state: { object } } }
+          to={ { pathname: '/cart', state: { object, number } } }
           data-testid="product-add-to-cart"
         >
           <p>Adicionar ao carrinho</p>
