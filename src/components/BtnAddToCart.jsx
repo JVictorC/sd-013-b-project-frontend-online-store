@@ -15,12 +15,18 @@ export default class BtnAddToCart extends React.Component {
 
     const prevsItems = localStorage.getItem('cart');
     let items = [];
+
     if (prevsItems) {
       items = JSON.parse(prevsItems);
     }
+    const haveItemAlready = items.find((item) => item.id === id);
     const fullItems = [...items, { title, price, thumbnail, id, quantity: 1 }];
-
-    localStorage.setItem('cart', JSON.stringify(fullItems));
+    if (haveItemAlready) {
+      haveItemAlready.quantity += 1;
+      localStorage.setItem('cart', JSON.stringify([...items]));
+    } else {
+      localStorage.setItem('cart', JSON.stringify(fullItems));
+    }
   }
 
   render() {
@@ -39,7 +45,7 @@ export default class BtnAddToCart extends React.Component {
 }
 
 BtnAddToCart.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

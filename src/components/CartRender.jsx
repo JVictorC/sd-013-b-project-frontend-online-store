@@ -9,6 +9,7 @@ export default class CartRender extends React.Component {
     return (
       <section>
         {items.map((item) => (<CartItem
+          id={ item.id }
           title={ item.title }
           thumbnail={ item.thumbnail }
           quantity={ item.quantity }

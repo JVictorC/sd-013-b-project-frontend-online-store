@@ -22,10 +22,12 @@ export default class Cart extends React.Component {
   }
 
   onClick({ target }) {
-    if (target.id === 'product-decrease-quantity') {
-      this.decrement();
-    } else if (target.id === 'product-increase-quantity') {
-      this.increment();
+    const targetId = target.id;
+    const increase = target.id.includes('increase');
+    if (increase === false) {
+      this.decrement(targetId);
+    } else if (increase === true) {
+      this.increment(targetId);
     }
   }
 
@@ -39,18 +41,26 @@ export default class Cart extends React.Component {
     }
   }
 
-  increment() {
-    this.setState((prevState) => ({ quantity: prevState.quantity + 1 }));
+  increment(targetId) {
+    const data = localStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
+    const foundItem = parsedData
+      .find((item) => `${item.id}-product-increase-quantity` === targetId);
+    foundItem.quantity += 1;
+    localStorage.setItem('cart', JSON.stringify([...parsedData]));
+    this.setItems();
   }
 
-  decrement() {
-    const { quantity } = this.state;
-
-    if (quantity === 0) {
-      this.setState(() => ({ quantity: 0 }));
-    } else {
-      this.setState((prevState) => ({ quantity: prevState.quantity - 1 }));
+  decrement(targetId) {
+    const data = localStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
+    const foundItem = parsedData
+      .find((item) => `${item.id}-product-decrease-quantity` === targetId);
+    if (foundItem.quantity > 0) {
+      foundItem.quantity -= 1;
     }
+    localStorage.setItem('cart', JSON.stringify([...parsedData]));
+    this.setItems();
   }
 
   render() {
