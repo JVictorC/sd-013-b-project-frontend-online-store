@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shoppingCart from '../assets/shoppingCart.png';
+import addCart from '../assets/addCart.png';
 import '../App.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -14,10 +15,15 @@ class ProductDetails extends Component {
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
+    this.handleClickAddCart = this.handleClickAddCart.bind(this);
   }
 
   componentDidMount() {
     this.fetchProduct();
+  }
+
+  handleClickAddCart() {
+
   }
 
   async fetchProduct() {
@@ -52,6 +58,18 @@ class ProductDetails extends Component {
             </div>
           </div>
         )}
+
+          <button
+            data-testid="product-add-to-cart"
+            type="button"
+            onClick={ this.handleClickAddCart() }
+          >
+            <img
+              src={ addCart }
+              alt="Add cart icon"
+              className="icons"
+            />
+          </button>
         <Link to="/shopping-cart">
           <img
             data-testid="shopping-cart-button"
