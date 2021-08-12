@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BtnSubmitEvaluation from './BtnSubmitEvaluation';
 import CommentBox from './CommentBox';
 import Rating from './Rating';
@@ -26,6 +27,7 @@ export default class EvaluationForm extends React.Component {
 
   render() {
     const { id } = this.props;
+
     const { comment, rating } = this.state;
     return (
       <section>
@@ -38,3 +40,7 @@ export default class EvaluationForm extends React.Component {
     );
   }
 }
+
+EvaluationForm.propTypes = {
+  id: PropTypes.number.isRequired,
+};

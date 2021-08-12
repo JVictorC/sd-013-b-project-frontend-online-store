@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class CommentBox extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class CommentBox extends React.Component {
 
   render() {
     const { getComment } = this.props;
+
     return (
       <label htmlFor="product-detail-evaluation">
         <textarea
@@ -23,3 +25,7 @@ export default class CommentBox extends React.Component {
     );
   }
 }
+
+CommentBox.propTypes = {
+  getComment: PropTypes.func.isRequired,
+};
