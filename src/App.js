@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import CartButton from './Components/CartButton';
 import ShoppingCart from './Pages/ShoppingCart';
-import Searches from './Components/Searches';
+import ProductsLibrary from './Components/ProductsLibrary';
 
 export default class App extends Component {
   render() {
@@ -9,11 +10,11 @@ export default class App extends Component {
       <div>
         <BrowserRouter>
           <header>
-            <Searches />
+            <CartButton />
           </header>
           <Route exact path="/shoppingcart" component={ ShoppingCart } />
         </BrowserRouter>
-
+        <ProductsLibrary />
       </div>
     );
   }
