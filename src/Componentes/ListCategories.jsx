@@ -40,7 +40,7 @@ class ListCategories extends Component {
     const { handleChange } = this.props;
     return (
       <div>
-        <form onChange={ handleChange } name="category">
+        <form onChange={ handleChange } className="categories" name="category">
           { categories.map(({ name, id }) => (
             <div key={ id }>
               <label htmlFor={ id }>

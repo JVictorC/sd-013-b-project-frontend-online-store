@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProductList from '../Componentes/ProductList';
 import HomeFilter from '../Componentes/HomeFilter';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import '../App.css';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class SearchBar extends React.Component {
     const { products } = this.state;
     return (
       <div>
-        <div>
+        <div className="search-bar">
           <input data-testid="query-input" type="text" onChange={ this.handleChange } />
           <button
             data-testid="query-button"
@@ -51,7 +52,7 @@ class SearchBar extends React.Component {
           </h3>
         </div>
         <Link to="ShoppingCart" data-testid="shopping-cart-button">
-          Carrinho
+          <button type="button" className="cart-button">Cart</button>
         </Link>
         <HomeFilter />
         <ProductList
