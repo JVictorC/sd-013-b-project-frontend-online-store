@@ -5,8 +5,13 @@ import { Link } from 'react-router-dom';
 class Card extends React.Component {
   render() {
     const { product, addToCart } = this.props;
-    const { title, price, thumbnail, id } = product;
-
+    const {
+      title,
+      price,
+      thumbnail,
+      id,
+      shipping: { free_shipping: freeShipping },
+    } = product;
     return (
       <div>
         <Link
@@ -16,6 +21,9 @@ class Card extends React.Component {
           <div data-testid="product">
             <div>
               <img src={ thumbnail } alt="product" />
+            </div>
+            <div>
+              { freeShipping && <span data-testid="free-shipping">Frete Grátis</span> }
             </div>
             <div>
               { title }
@@ -43,6 +51,9 @@ Card.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
