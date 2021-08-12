@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { selectedProductToCart, product } = this.props;
+    const { product } = this.props;
     const { title, price, thumbnail, id } = product;
     return (
       <div
@@ -56,7 +56,6 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
-  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
