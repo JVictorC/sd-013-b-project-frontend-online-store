@@ -32,12 +32,21 @@ export default class ProductDetails extends React.Component {
     const { match: { params: { id } } } = this.props;
 
     const { addToCart, addRate, ratings } = this.props;
-    const { title, price, thumbnail, attributes } = product;
+    const {
+      title,
+      price,
+      thumbnail,
+      attributes,
+      shipping: { free_shipping: freeShipping },
+    } = product;
     return (
       <div>
         <h4 data-testid="product-detail-name">{title}</h4>
         <h4>{`R$ ${price}`}</h4>
         <img src={ thumbnail } alt="" />
+        <div>
+          { freeShipping && <span data-testid="free-shipping">Frete Grátis</span> }
+        </div>
         <ul>
           {attributes.map((attribute) => (
             <li key={ attribute.id }>{`${attribute.name}: ${attribute.value_name}`}</li>
