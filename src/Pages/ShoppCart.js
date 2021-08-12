@@ -3,8 +3,8 @@ import React from 'react';
 class ShoppCart extends React.Component {
   render() {
     const cartItems = JSON.parse(localStorage.getItem('cart'));
-    return (
-      <div key="1" data-testid="shopping-cart-empty-message">
+    if (cartItems.length > 0) {
+      return (<div key="1" data-testid="shopping-cart-empty-message">
         {cartItems.map((item) => {
           const product = JSON.parse(item);
           const { title, thumbnail, price } = product;
@@ -21,7 +21,10 @@ class ShoppCart extends React.Component {
             </div>
           );
         })}
-      </div>
+      </div>);
+    }
+    return (
+      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
     );
   }
 }
