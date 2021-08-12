@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CartItem from '../components/CartItem';
 import CartLink from '../components/CartLink';
@@ -47,6 +48,7 @@ class Cart extends React.Component {
     );
 
     this.setState({ totalPrice });
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
   };
 
   removeItemFromCart = (id) => {
@@ -104,6 +106,12 @@ class Cart extends React.Component {
           {' '}
           {totalPrice}
         </p>
+        <Link
+          to="/purchase"
+          data-testid="checkout-products"
+        >
+          Ir para tela de finalização...
+        </Link>
       </div>
     );
   }
