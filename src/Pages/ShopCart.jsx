@@ -44,6 +44,10 @@ export default class ShopCart extends Component {
     return (
       cartProducts.map((product) => (
         <div key={ product.id }>
+<<<<<<< HEAD
+=======
+          <ButtonHome />
+>>>>>>> f22a2026239a4592f8be1afd1c2b38920377dcdf
           <button type="button" onClick={ this.handleRemove }>X</button>
           <p data-testid="shopping-cart-product-name">{product.title}</p>
           <img src={ product.thumbnail } alt="Produto" />
@@ -66,6 +70,10 @@ export default class ShopCart extends Component {
     const { cartProducts } = this.props;
     const emptyCart = (
       <div>
+<<<<<<< HEAD
+=======
+        <ButtonHome />
+>>>>>>> f22a2026239a4592f8be1afd1c2b38920377dcdf
         <p>Seu carrinho está vazio</p>
       </div>
     );
