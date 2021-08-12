@@ -73,6 +73,7 @@ export default class ShopCart extends Component {
     );
     return (
       <div data-testid="shopping-cart-empty-message">
+        <ButtonHome />
         { cartProducts.length === 0 ? emptyCart : this.createCart()}
       </div>
     );
