@@ -11,6 +11,7 @@ export default class App extends Component {
     this.state = {
       productData: '',
       cartItems: [],
+      totalPrice: 0
     };
   }
 
