@@ -11,6 +11,7 @@ export default class AddCart extends React.Component {
 
     this.displayItem = this.displayItem.bind(this);
     this.setItem = this.setItem.bind(this);
+    this.cartEmpty = this.cartEmpty.bind(this);
   }
 
   componentDidMount() {
@@ -43,27 +44,44 @@ export default class AddCart extends React.Component {
     );
   }
 
-  render() {
+  cartEmpty() {
     return (
-      this.displayItem()
+      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+    );
+  }
+
+  render() {
+    const { item } = this.state;
+    return (
+      // this.displayItem()
+      <div>
+        {item !== '' ? this.displayItem() : this.cartEmpty()}
+      </div>
     );
   }
 }
 
-AddCart.defaultProps = {
-  query: PropTypes.shape({
-    id: '',
-    title: '',
-    thumbnail: '',
-    price: 0,
-  }),
-};
+// AddCart.defaultProps = {
+//   query: PropTypes.shape({
+//     id: '',
+//     title: '',
+//     thumbnail: '',
+//     price: 0,
+//   }),
+// };
+
+// AddCart.propTypes = {
+//   query: PropTypes.shape({
+//     id: PropTypes.string,
+//     title: PropTypes.string,
+//     thumbnail: PropTypes.string,
+//     price: PropTypes.number,
+//   }),
+// };
 
 AddCart.propTypes = {
-  query: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    thumbnail: PropTypes.string,
-    price: PropTypes.number,
-  }),
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
