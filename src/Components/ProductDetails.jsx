@@ -17,7 +17,7 @@ export default class ProductDetails extends Component {
   }
 
   async productsRequisition() {
-    const { match: { params: { category_id, query, title } } } = this.props;
+    // const { match: { params: { category_id, query, title } } } = this.props;
     const response = await api.getProductsFromCategoryAndQuery(category_id, query);
     const products = response.results;
     const productSearched = products.find((product) => product.title === title);
