@@ -43,6 +43,22 @@ class ShoppingCartDetails extends Component {
           <img alt="Product" src={ thumbnail } />
           <h3>Especificações técnicas:</h3>
         </div>
+        <form>
+          <h3>Avaliações: </h3>
+          <fieldset>
+            <legend>Email: </legend>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="exemplo@exemplo.com"
+            />
+            <legend>Avalie o produto: </legend>
+            <textarea data-testid="product-detail-evaluation" />
+            <legend>Dê uma nota para o produto: </legend>
+            <input type="number" min="0" max="5" />
+          </fieldset>
+        </form>
       </div>
     );
   }
