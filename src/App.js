@@ -12,7 +12,9 @@ class App extends React.Component {
     super(props);
     this.subProduct = this.subProduct.bind(this);
     this.addProduct = this.addProduct.bind(this);
+    this.addRate = this.addRate.bind(this);
     this.state = {
+      ratings: {},
       cart: this.readCart() ? this.readCart() : [],
     };
   }
@@ -31,6 +33,22 @@ class App extends React.Component {
     this.setState((prevState) => ({
       cart: [...prevState.cart, newItem],
     }));
+  }
+
+  addRate(id, rate) {
+    this.setState((prevState) => {
+      let value;
+      const { ratings } = this.state;
+      if (!ratings[id]) value = [rate];
+      else value = [...prevState.ratings[id], rate];
+
+      return ({
+        ratings: {
+          ...prevState.ratings,
+          [id]: value,
+        },
+      });
+    });
   }
 
   subProduct(id) {
@@ -64,47 +82,46 @@ class App extends React.Component {
   }
 
   render() {
-    const { cart } = this.state;
+    const { cart, ratings } = this.state;
     return (
-      <div>
-        <BrowserRouter>
-          <CartIcon cart={ cart } />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={ () => <Home addToCart={ this.addToCart } /> }
-            />
-            <Route
-              exact
-              path="/shopping-cart/checkout-products"
-              render={ (props) => (
-                <CheckoutProducts
-                  { ...props }
-                  cart={ cart }
-                />) }
-            />
-            <Route
-              exact
-              path="/shopping-cart"
-              render={ (props) => (
-                <ShoppingCart
-                  { ...props }
-                  cart={ cart }
-                  onSubClick={ this.subProduct }
-                  onAddClick={ this.addProduct }
-                />) }
-            />
-            <Route
-              exact
-              path="/product-details"
-              render={ (props) => (
-                <ProductDetails addToCart={ this.addToCart } { ...props } cart={ cart } />
-              ) }
-            />
-          </Switch>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <CartIcon cart={ cart } />
+        <Switch>
+          <Route exact path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
+          <Route
+            exact
+            path="/shopping-cart/checkout-products"
+            render={ (props) => (
+              <CheckoutProducts
+                { ...props }
+                cart={ cart }
+              />) }
+          />
+          <Route
+            exact
+            path="/shopping-cart"
+            render={ (props) => (
+              <ShoppingCart
+                { ...props }
+                cart={ cart }
+                onSubClick={ this.subProduct }
+                onAddClick={ this.addProduct }
+              />) }
+          />
+          <Route
+            exact
+            path="/product-details/:id"
+            render={ (props) => (
+              <ProductDetails
+                addToCart={ this.addToCart }
+                addRate={ this.addRate }
+                ratings={ ratings }
+                { ...props }
+              />
+            ) }
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
