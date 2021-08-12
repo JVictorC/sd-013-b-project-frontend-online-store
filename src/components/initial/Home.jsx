@@ -122,7 +122,7 @@ class Home extends Component {
           data-testid="shopping-cart-button"
         >
           Carrinho de compras com
-          <span>{` ${productsCart.length} `}</span>
+          <span data-testid="shopping-cart-size">{` ${productsCart.length} `}</span>
           itens
         </Link>
       </>
