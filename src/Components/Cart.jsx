@@ -84,7 +84,7 @@ class Cart extends React.Component {
           Valor total da compra:
           {this.totalCart()}
         </p>
-        <button type="button">Finalizar Compra</button>
+        <Link data-testid="checkout-products" to="/checkout">Finalizar Compra</Link>
       </div>
     );
   }

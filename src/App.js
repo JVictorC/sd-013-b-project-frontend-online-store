@@ -1,8 +1,11 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
 import Home from './Components/Home';
 import Cart from './Components/Cart';
 import ProductDetails from './Components/ProductDetails';
+import Checkout from './Components/Checkout';
+
 import './Style/App.css';
 
 class App extends React.Component {
@@ -96,6 +99,10 @@ class App extends React.Component {
                   del={ this.deleteItem }
                 />
               ) }
+            />
+            <Route
+              path="/checkout"
+              component={ Checkout }
             />
           </Switch>
           <Route
