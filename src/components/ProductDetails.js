@@ -57,7 +57,7 @@ class ProductDetails extends Component {
             data-testid="shopping-cart-button"
             className="icons"
             src={ shoppingCart }
-            alt="my image"
+            alt="Shopping cart icon"
           />
         </Link>
       </div>
