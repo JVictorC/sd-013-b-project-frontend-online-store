@@ -18,7 +18,7 @@ class ProductCard extends React.Component {
 
   render() {
     const { product } = this.props;
-    const { title, price, thumbnail, id } = product;
+    const { title, price, thumbnail, id, shipping } = product;
     return (
       <div
         data-testid="product"
@@ -31,6 +31,8 @@ class ProductCard extends React.Component {
           } }
           data-testid="product-detail-link"
         >
+          {shipping.free_shipping
+            ? <p data-testid="free-shipping">Free shipping</p> : null}
           <p>{title}</p>
           <div className="image-card">
             <img src={ thumbnail } alt={ `Capa do ${title}` } />
@@ -55,6 +57,9 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }),
   }).isRequired,
 };
 
