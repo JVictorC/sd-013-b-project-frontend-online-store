@@ -84,7 +84,6 @@ ProductDetails.propTypes = {
     thumbnail: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
-  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
