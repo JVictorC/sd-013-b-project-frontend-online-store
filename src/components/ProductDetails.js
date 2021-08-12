@@ -28,8 +28,8 @@ class ProductDetails extends Component {
     const { id, title, thumbnail, price } = product;
 
     this.setState({
-      cartItems: [{id, title, thumbnail, price}],
-    })
+      cartItems: [{ id, title, thumbnail, price }],
+    });
   }
 
   async fetchProduct() {
@@ -65,25 +65,26 @@ class ProductDetails extends Component {
           </div>
         )}
 
-          <button
-            data-testid="product-detail-add-to-cart"
-            type="button"
-            onClick={() => this.handleClickAddCart() }
-          >
-            <img
-              src={ addCart }
-              alt="Add cart icon"
-              className="icons"
-            />
-          </button>
-          <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
-            <img
-              data-testid="shopping-cart-button"
-              className="icons"
-              src={ shoppingCart }
-              alt="Shopping cart icon"
-            />
-          </Link>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => this.handleClickAddCart() }
+        >
+          <img
+            src={ addCart }
+            alt="Add cart icon"
+            className="icons"
+          />
+        </button>
+
+        <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
+          <img
+            data-testid="shopping-cart-button"
+            className="icons"
+            src={ shoppingCart }
+            alt="Shopping cart icon"
+          />
+        </Link>
       </div>
     );
   }
