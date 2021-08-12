@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CategoriesAside from './CategoriesAside';
-import SearchBar from './SearchBar';
+import SearchBar from '../pages/SearchBar';
 import RenderProducts from './RenderProducts';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
