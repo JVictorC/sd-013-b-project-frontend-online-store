@@ -29,7 +29,7 @@ export default class SearchBar extends Component {
         {products.length === 0 && state === true ? (
           <ProductInvalid />
         ) : (
-          <ProductList products={ products } />
+          <ProductList products={ products } searchbar={ searchbar } />
         )}
       </div>
     );

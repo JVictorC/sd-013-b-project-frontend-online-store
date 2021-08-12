@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
+import CartButton from './CartButton';
 import CategoriesList from './CategoriesList';
 import SearchBar from './SearchBar';
 
@@ -62,6 +63,7 @@ export default class ProductsLibrary extends Component {
           products={ products }
           state={ state }
         />
+        <CartButton />
       </div>
     );
   }

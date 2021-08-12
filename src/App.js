@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import CartButton from './Components/CartButton';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
+import ProductDetails from './Components/ProductDetails';
 import ProductsLibrary from './Components/ProductsLibrary';
 
 export default class App extends Component {
@@ -9,12 +9,24 @@ export default class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <header>
-            <CartButton />
-          </header>
-          <Route exact path="/shoppingcart" component={ ShoppingCart } />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={ ProductsLibrary }
+            />
+            <Route
+              exact
+              path="/shoppingcart"
+              component={ ShoppingCart }
+            />
+            <Route
+              exact
+              path="/:categoryID/:id"
+              render={ (props) => <ProductDetails { ...props } /> }
+            />
+          </Switch>
         </BrowserRouter>
-        <ProductsLibrary />
       </div>
     );
   }
