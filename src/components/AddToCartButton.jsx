@@ -3,22 +3,23 @@ import React from 'react';
 class AddToCartButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    /* this.state = {
       title: props.title,
       image: props.image,
       price: props.price,
       qts: 1,
-    };
+    }; */
 
     this.handleClik = this.handleClik.bind(this);
   }
 
   handleClik() {
-    const { onClick } = this.props;
-    onClick(this.state);
+    //Salvar produto do local storage
   }
 
   render() {
+    const { product } = this.props;
+
     return (
       <div>
         <button

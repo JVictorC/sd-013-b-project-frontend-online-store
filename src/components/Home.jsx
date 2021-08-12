@@ -12,7 +12,7 @@ class Home extends React.Component {
     };
   }
 
-  handleClick = (product) => {
+  /* handleClick = (product) => {
     const { cartProducts } = this.state;
     let counter = 0;
 
@@ -25,7 +25,7 @@ class Home extends React.Component {
 
     if (counter === 0) cartProducts.push(product);
     this.setState({ cartProducts: [...cartProducts] });
-  }
+  } */
 
   render() {
     const { cartProducts } = this.state;
@@ -37,12 +37,12 @@ class Home extends React.Component {
             <Route
               exact
               path="/"
-              render={ () => <ProductList onClick={ this.handleClick } /> }
+              component={ ProductList }
             />
             <Route
               exact
               path="/shopping-cart"
-              render={ () => <ShoppingCart cartProducts={ cartProducts } /> }
+              component={ ShoppingCart }
             />
             <Route
               path="/product-details/:name"

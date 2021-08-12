@@ -4,7 +4,7 @@ import AddToCartButton from './AddToCartButton';
 
 class DetailsCard extends React.Component {
   render() {
-    const { product, onClick } = this.props;
+    const { product } = this.props;
 
     return (
       <div
@@ -25,12 +25,7 @@ class DetailsCard extends React.Component {
           );
         }) }
 
-        <AddToCartButton
-          title={ product.title }
-          image={ product.image }
-          price={ product.price }
-          onClick={ onClick }
-        />
+        <AddToCartButton product={ product } />
       </div>
     );
   }
