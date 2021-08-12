@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class EvaluationCard extends React.Component {
   render() {
@@ -12,3 +13,9 @@ export default class EvaluationCard extends React.Component {
     );
   }
 }
+
+EvaluationCard.propTypes = {
+  email: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+};
