@@ -9,12 +9,14 @@ export default class Cart extends React.Component {
 
     this.state = {
       items: [],
+      sum: 0,
     };
 
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
     this.onClick = this.onClick.bind(this);
     this.setItems = this.setItems.bind(this);
+    this.sum = this.sum.bind(this);
   }
 
   componentDidMount() {
@@ -35,8 +37,11 @@ export default class Cart extends React.Component {
     const data = localStorage.getItem('cart');
     if (data) {
       const parsedData = JSON.parse(data);
+      const sum = this.sum();
+      console.log(sum);
       this.setState({
         items: parsedData,
+        sum,
       });
     }
   }
@@ -49,6 +54,7 @@ export default class Cart extends React.Component {
     foundItem.quantity += 1;
     localStorage.setItem('cart', JSON.stringify([...parsedData]));
     this.setItems();
+    this.sum();
   }
 
   decrement(targetId) {
@@ -61,10 +67,19 @@ export default class Cart extends React.Component {
     }
     localStorage.setItem('cart', JSON.stringify([...parsedData]));
     this.setItems();
+    this.sum();
+  }
+
+  sum() {
+    const data = localStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
+    const foundItem = parsedData.map((item) => item.price * item.quantity);
+    const sum = foundItem.reduce((a, b) => a + b);
+    return sum;
   }
 
   render() {
-    const { items } = this.state;
+    const { items, sum } = this.state;
 
     if (items.length === 0) {
       return (
@@ -79,7 +94,7 @@ export default class Cart extends React.Component {
         <Link to="/">Voltar</Link>
         <h1>Carrinho de compras</h1>
         { items.length >= 1
-          ? <CartItems onClick={ this.onClick } items={ items } />
+          ? <CartItems onClick={ this.onClick } items={ items } sum={ sum } />
           : <EmptyCart />}
       </div>
     );
