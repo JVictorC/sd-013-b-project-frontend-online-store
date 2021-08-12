@@ -33,6 +33,7 @@ export default class Cart extends Component {
 
   renderList() {
     const { list } = this.state;
+    this.setState({ empty: false });
     return (
       <div>
         <h3>Lista de compras:</h3>
