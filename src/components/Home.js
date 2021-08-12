@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CategoriesAside from './CategoriesAside';
-import SearchBar from '../pages/SearchBar';
+import SearchBar from './SearchBar';
 import RenderProducts from './RenderProducts';
+import shoppingCart from '../assets/shoppingCart.png';
+import '../App.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -12,12 +14,14 @@ class Home extends Component {
     this.state = {
       products: [],
       query: '',
+      cartItems: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.handleClickAddCart = this.handleClickAddCart.bind(this);
   }
 
   handleChange({ target }) {
@@ -32,6 +36,19 @@ class Home extends Component {
     const { query } = this.state;
 
     this.fetchProducts('', query);
+  }
+
+  handleClickAddCart(id, title, thumbnail, price) {
+    const newCartItem = {
+      id,
+      title,
+      thumbnail,
+      price,
+    };
+
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, newCartItem],
+    }));
   }
 
   handleCategory({ target }) {
@@ -53,43 +70,47 @@ class Home extends Component {
   }
 
   render() {
-    const { query, products } = this.state;
+    const { query, products, cartItems } = this.state;
 
     const message = (
       <p
+        className="initial-message"
         data-testid="home-initial-message"
       >
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>);
 
     return (
-      <div>
-        <div>
+      <div className="root">
+        <div className="header">
           <SearchBar
             query={ query }
             handleChange={ this.handleChange }
             handleClick={ this.handleClick }
           />
+          <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
+            <img
+              data-testid="shopping-cart-button"
+              className="icons"
+              src={ shoppingCart }
+              alt="Shopping cart icon"
+            />
+          </Link>
         </div>
 
-        <div>
+        <div className="main-content">
+          <CategoriesAside handleCategory={ this.handleCategory } />
+
           {/* Uso de operador lógico && em substituição do if */}
-          {products.length !== 0 && <RenderProducts products={ products } /> }
+          {products.length !== 0 && (
+            <RenderProducts
+              products={ products }
+              handleClickAddCart={ this.handleClickAddCart }
+            />
+          )}
           {products.length === 0 && message }
         </div>
 
-        <Link to="/shopping-cart">
-          <button
-            type="button"
-            data-testid="shopping-cart-button"
-          >
-            Carrinho de Compras
-          </button>
-        </Link>
-
-        <aside>
-          <CategoriesAside handleCategory={ this.handleCategory } />
-        </aside>
       </div>
     );
   }

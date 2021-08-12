@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import shoppingCart from '../assets/shoppingCart.png';
+import '../App.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductDetails extends Component {
@@ -51,12 +53,12 @@ class ProductDetails extends Component {
           </div>
         )}
         <Link to="/shopping-cart">
-          <button
-            type="button"
+          <img
             data-testid="shopping-cart-button"
-          >
-            Carrinho de Compras
-          </button>
+            className="icons"
+            src={ shoppingCart }
+            alt="Shopping cart icon"
+          />
         </Link>
       </div>
     );
