@@ -40,8 +40,8 @@ export default class Categories extends Component {
   render() {
     const { categories, loading, productsFromCategory } = this.state;
     if (loading) return <h4>Loading</h4>;
-    console.log(productsFromCategory);
-    console.log(this.props);
+    /* console.log(productsFromCategory); */
+    /* console.log(this.props); */
     return (
       <div>
         <form>
