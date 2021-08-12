@@ -14,7 +14,7 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { product, product: { id, title, thumbmail, price } } = this.props;
+    const { product, product: { id, title, thumbnail, price, shipping } } = this.props;
 
     return (
       <div>
@@ -27,10 +27,11 @@ class ProductCard extends React.Component {
           } }
         >
           <h2>{ title }</h2>
-          <img src={ thumbmail } alt="Product Thumbnail" />
+          <img src={ thumbnail } alt="Product Thumbnail" />
           <p>
             {`Preço R$ ${price}`}
           </p>
+          {shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
         </Link>
         <button
           type="button"
@@ -48,8 +49,9 @@ ProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
-    thumbmail: PropTypes.string,
+    thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.string,
   }).isRequired,
   onAdd: PropTypes.func.isRequired,
 };
