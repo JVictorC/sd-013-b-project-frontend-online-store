@@ -2,7 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      quanti: 1,
+    };
+  }
+
+  calculation = ({ target }) => {
+    if (target.id === 'add') {
+      this.toAdd();
+    } else if (target.id === 'decrease') {
+      this.toRemove();
+    }
+  }
+
+  toAdd = () => {
+    this.setState((prevState) => ({ quanti: prevState.quanti + 1 }));
+  }
+
+  toRemove = () => {
+    this.setState((prevState) => ({ quanti: prevState.quanti - 1 }));
+  }
+
   render() {
+    const { quanti } = this.state;
     const { products } = this.props;
 
     if (products.length > 0) {
@@ -18,11 +42,32 @@ class Cart extends React.Component {
                 <span
                   data-testid="shopping-cart-product-quantity"
                 >
-                  {product.quantity}
+                  {quanti}
                 </span>
+                <button
+                  type="button"
+                  data-testid="product-increase-quantity"
+                  onClick={ this.calculation }
+                  id="add"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  data-testid="product-decrease-quantity"
+                  id="decrease"
+                  onClick={ this.calculation }
+                >
+                  -
+                </button>
               </p>
             </div>
           )) }
+          <div>
+            <h1>
+              Valor total da compra:$
+            </h1>
+          </div>
         </div>
       );
     }
