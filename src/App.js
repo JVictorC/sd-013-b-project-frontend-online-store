@@ -73,7 +73,13 @@ class App extends React.Component {
           <Route exact path="/cart">
             <ShoppingCart onChangeQuantity={ this.changeQuantity } cart={ cart } />
           </Route>
-          <Route exact path="/product/:id" component={ ProductSelected } />
+          <Route
+            exact
+            path="/product/:id"
+            component={
+              (props) => <ProductSelected { ...props } onAdd={ this.addHandler } />
+            }
+          />
         </Switch>
       </BrowserRouter>
     );
