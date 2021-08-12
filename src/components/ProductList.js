@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductList extends React.Component {
   render() {
     const { productList } = this.props;
+    const { category_id: categoryId } = productList;
 
     return (
       <div>
@@ -12,9 +14,14 @@ class ProductList extends React.Component {
         { productList.length === 0 ? <p>Nenhum produto encontrado</p>
           : productList.map((product) => (
             <div key={ product.id } data-testid="product">
-              <p>{product.title}</p>
-              <img src={ product.thumbnail } alt={ product.title } />
-              <p>{ product.price }</p>
+              <Link
+                to={ `/product/${categoryId}/${product.title}` }
+                data-testid="product-detail-link"
+              >
+                <p>{product.title}</p>
+                <img src={ product.thumbnail } alt={ product.title } />
+                <p>{ product.price }</p>
+              </Link>
               <button
                 type="button"
                 data-testid="product-add-to-cart"
