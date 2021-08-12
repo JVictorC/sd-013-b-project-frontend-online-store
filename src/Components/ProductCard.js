@@ -22,7 +22,14 @@ class ProductCard extends React.Component {
         >
           Detalhes
         </Link>
-        <button type="button" onClick={ () => addToCart(product) }>Add to cart</button>
+        <button
+          type="button"
+          onClick={ addToCart }
+          name={ JSON.stringify(product) }
+          data-testid="product-add-to-cart"
+        >
+          Add to cart
+        </button>
       </div>
     );
   }

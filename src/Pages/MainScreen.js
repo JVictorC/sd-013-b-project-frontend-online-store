@@ -4,7 +4,6 @@ import ProductList from '../Components/ProductList';
 import RadioButtons from '../Components/RadioButtons';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import NoProduct from './NoProduct';
-import ShoppCart from './ShoppCart';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -51,11 +50,14 @@ class MainScreen extends React.Component {
     this.fetchProducts();
   }
 
-  addToCart(product) {
-    this.setState((state) => ({ shoppingCart: [...state.shoppingCart, product] }), () => {
-      const { shoppingCart } = this.state;
-      localStorage.setItem('cart', JSON.stringify(shoppingCart));
-    });
+  addToCart({ target }) {
+    // this.setState((state) => ({ shoppingCart: [...state.shoppingCart, product] }), () => {
+    //   const { shoppingCart } = this.state;
+    //   localStorage.setItem('cart', JSON.stringify(shoppingCart: [...state.shoppingCart, product]));
+    // });
+    const cartItems = JSON.parse(localStorage.getItem('cart'));
+    cartItems.push(target.name);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
   }
 
   // pega as categorias
@@ -75,8 +77,11 @@ class MainScreen extends React.Component {
     });
   }
 
+
+  //logica feita com ajuda do Allan Cardoso =)
   render() {
-    const { categories, products, shoppingCart } = this.state;
+    if (!localStorage.getItem('cart')) localStorage.setItem('cart', '[]');
+    const { categories, products } = this.state;
     return (
       <div data-testid="home-initial-message" className="mainScreen">
         <header className="header">
@@ -111,8 +116,6 @@ class MainScreen extends React.Component {
         {products.results === undefined
           ? <NoProduct />
           : <ProductList products={ products } addToCart={ this.addToCart } /> }
-
-        <ShoppCart />
       </div>
     );
   }
