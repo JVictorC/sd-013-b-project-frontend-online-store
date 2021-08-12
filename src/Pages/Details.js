@@ -36,32 +36,11 @@ class Detalhes extends React.Component {
   render() {
     const { product, email, rating, message } = this.state;
     return (
-      <div
-        data-testid="product-detail-name"
-        key={ product.id }
-        className="productDetails"
-      >
-        <h2
-          className="productDetailsTitle"
-        >
-          { product.title }
-        </h2>
-        <img
-          src={ product.thumbnail }
-          alt="product_image"
-          className="productDetailsImage"
-        />
-        <p
-          className="productDetailsPrice"
-        >
-          { `R$ ${product.price}` }
-        </p>
-        <button
-          type="button"
-          className="productDetailsButton"
-        >
-          AddCart
-        </button>
+      <div data-testid="product-detail-name" key={ product.id }>
+        <h2>{ product.title }</h2>
+        <img src={ product.thumbnail } alt="product_image" />
+        <p>{ product.price }</p>
+        <button type="button">AddCart</button>
         <div>
           <fieldset>
             <h3> Avaliação : </h3>
