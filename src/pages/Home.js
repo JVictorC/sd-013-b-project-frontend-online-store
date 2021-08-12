@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
-import CartIcon from '../components/CartIcon';
 import SearchBar from '../components/SearchBar';
 import CardList from '../components/CardList';
 import CategoriesList from '../components/CategoriesList';
@@ -75,7 +74,6 @@ class Home extends React.Component {
     return (
       <div>
         <SearchBar onSubmit={ this.onSearchSubmit } />
-        <CartIcon />
         {products.length > 0
           ? <CardList addToCart={ addToCart } products={ products } /> : message}
         {!loading
