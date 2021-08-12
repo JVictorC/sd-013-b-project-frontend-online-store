@@ -41,7 +41,9 @@ class BarSearch extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <button data-testid="query-button" type="submit">🔎</button>
+        <button data-testid="query-button" type="submit">
+          <span role="img" aria-label="search">🔎</span>
+        </button>
       </form>
     );
   }

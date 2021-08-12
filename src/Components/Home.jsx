@@ -62,9 +62,9 @@ class Home extends Component {
       <>
         <header>
           <BarSearch getProducts={ this.getProducts } />
+          <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
           <Link data-testid="shopping-cart-button" to="cart/">
-            <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
-            🛒
+            <span role="img" aria-label="shop">🛒</span>
           </Link>
         </header>
         <main>
@@ -86,5 +86,5 @@ Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
   getDetailsProduct: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
-  card: PropTypes.arrayOf(PropTypes.string).isRequired,
+  card: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

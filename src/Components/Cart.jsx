@@ -36,7 +36,7 @@ class Cart extends React.Component {
         <Link
           to="/"
         >
-          🏠
+          <span role="img" aria-label="home">🏠</span>
         </Link>
         {
           card.length === 0
@@ -62,29 +62,26 @@ class Cart extends React.Component {
                   data-testid="product-decrease-quantity"
                   id={ id }
                 >
-                  ➖
+                  <span role="img" aria-label="less">➖</span>
                 </button>
-                {' '}
                 {quantity}
-                {' '}
                 <button
                   onClick={ increase }
                   type="button"
                   data-testid="product-increase-quantity"
                   id={ id }
                 >
-                  ➕
+                  <span role="img" aria-label="plus">➕</span>
                 </button>
               </p>
               <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
-                ❌
+                <span role="img" aria-label="delete">❌</span>
               </button>
             </div>
           ))
         }
         <p>
           Valor total da compra:
-          {' '}
           {this.totalCart()}
         </p>
         <button type="button">Finalizar Compra</button>
