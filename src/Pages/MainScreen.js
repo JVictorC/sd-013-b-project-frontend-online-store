@@ -14,7 +14,6 @@ class MainScreen extends React.Component {
       products: [],
       id: 0,
       query: '',
-      shoppingCart: [],
     };
 
     this.fetchCategories = this.fetchCategories.bind(this);
@@ -77,8 +76,7 @@ class MainScreen extends React.Component {
     });
   }
 
-
-  //logica feita com ajuda do Allan Cardoso =)
+  // logica feita com ajuda do Allan Cardoso =)
   render() {
     if (!localStorage.getItem('cart')) localStorage.setItem('cart', '[]');
     const { categories, products } = this.state;
