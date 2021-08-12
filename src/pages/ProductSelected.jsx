@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+
 class ProductSelected extends React.Component {
   render() {
     const { props: { location: { state } } } = this;
