@@ -30,7 +30,7 @@ class DetailsCard extends React.Component {
       <div>
         <h2 data-testid=" product-detail-name">{ title }</h2>
         <img src={ thumbnail } alt={ title } />
-        <p>{ price }</p>
+        <p>{ `R$${ price }` }</p>
         <Rating />
       </div>
     );

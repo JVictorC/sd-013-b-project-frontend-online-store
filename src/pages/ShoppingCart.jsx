@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ProductList from '../Componentes/ProductList';
 
 export default class ShoppingCart extends Component {
   constructor() {
@@ -9,6 +10,8 @@ export default class ShoppingCart extends Component {
   }
 
   render() {
+    const items = JSON.parse(localStorage.getItem('shoppingCart'));
+    console.log(items);
     const { cart } = this.state;
     if (cart.length === 0) {
       return (
@@ -19,7 +22,8 @@ export default class ShoppingCart extends Component {
     }
     return (
       <div>
-        <h1>aaaa</h1>
+        {items.map((itemObj) => <ProductList key={ itemObj.title } itemObj={ itemObj } 
+        />)}
       </div>
     );
   }
