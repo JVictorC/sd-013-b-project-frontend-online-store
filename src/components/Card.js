@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 class Card extends React.Component {
   render() {
     const { product, addToCart } = this.props;
-    const { title, price, thumbnail } = product;
+    const { title, price, thumbnail, id } = product;
 
     return (
       <div>
         <Link
-          to={ { pathname: '/product-details', product } }
+          to={ { pathname: `/product-details/${id}`, product } }
           data-testid="product-detail-link"
         >
           <div data-testid="product">
@@ -42,6 +42,7 @@ Card.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
 };

@@ -1,11 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProductRates from '../components/ProductRates';
 import CartIcon from '../components/CartIcon';
+import RateForm from '../components/RateForm';
 
 export default class ProductDetails extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
+    this.fetchProduct(id);
+  }
+
+  async getProduct(id) {
+    const fetched = await fetch(`https://api.mercadolibre.com/items?ids=${id}`);
+    const product = await fetched.json();
+    return product[0].body;
+  }
+
+  async fetchProduct(id) {
+    this.getProduct(id).then((response) => this.setState({ product: response }));
+  }
+
   render() {
-    const { location: { product } } = this.props;
-    const { addToCart } = this.props;
+    const { product } = this.state;
+    if (!product) return <div>Loading...</div>;
+
+    const { match: { params: { id } } } = this.props;
+
+    const { addToCart, addRate, ratings } = this.props;
     const { title, price, thumbnail, attributes } = product;
     return (
       <div>
@@ -14,10 +41,9 @@ export default class ProductDetails extends React.Component {
         <h4>{`R$ ${price}`}</h4>
         <img src={ thumbnail } alt="" />
         <ul>
-          { attributes.map((attribute) => (
-            <li key={ attribute.id }>
-              {`${attribute.name}: ${attribute.value_name}`}
-            </li>))}
+          {attributes.map((attribute) => (
+            <li key={ attribute.id }>{`${attribute.name}: ${attribute.value_name}`}</li>
+          ))}
         </ul>
         <button
           type="button"
@@ -26,25 +52,22 @@ export default class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+
+        <RateForm addRate={ addRate } id={ id } />
+
+        <ProductRates rating={ ratings[id] } />
       </div>
     );
   }
 }
 
 ProductDetails.propTypes = {
-  location: PropTypes.shape({
-    product: PropTypes.shape({
-      title: PropTypes.string,
-      price: PropTypes.number,
-      thumbnail: PropTypes.string,
-      attributes: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string,
-          name: PropTypes.string,
-          value_name: PropTypes.string,
-        }),
-      ),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
+  addRate: PropTypes.func.isRequired,
+  ratings: PropTypes.objectOf(PropTypes.object).isRequired,
 };
