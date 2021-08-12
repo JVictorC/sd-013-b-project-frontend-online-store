@@ -13,13 +13,19 @@ class ShoppingCart extends Component {
   }
 
   addCount() {
-    const addNumber = 1;
-    this.setState((prevState) => ({ quantity: [...prevState.quantity, +addNumber] }));
+    this.setState(({ quantity }) => (
+      { quantity: quantity + 1 }
+    ));
   }
 
   subCount() {
-    const subNumber = 1;
-    this.setState((prevState) => ({ quantity: [...prevState.quantity, -subNumber] }));
+    const { quantity } = this.state;
+
+    if (quantity > 1) {
+      this.setState(() => (
+        { quantity: quantity - 1 }
+      ));
+    }
   }
 
   render() {
@@ -42,16 +48,16 @@ class ShoppingCart extends Component {
               <p>{`R$${price}`}</p>
               <div>
                 <label htmlFor="quantity">
-                  { quantity }
+                  Quantidade
                   <input
-                    name="quantity"
-                    type="number"
                     data-testid="shopping-cart-product-quantity"
-                    min="1"
+                    name="quantity"
+                    type="text"
+                    value={ quantity }
                   />
                 </label>
-                <button type="button" onClick={ this.addCount() }>+</button>
-                <button type="button" onClick={ this.subCount() }>-</button>
+                <button type="button" onClick={ () => this.addCount() }>+</button>
+                <button type="button" onClick={ () => this.subCount() }>-</button>
               </div>
             </div>
           ))
