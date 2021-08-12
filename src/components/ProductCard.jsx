@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { product: { title, thumbnail, price, id }, categoryId } = this.props;
-    // const { search } = this.props;
+    const { product: { title, thumbnail, price, id } } = this.props;
     return (
       <div data-testid="product" className="card">
         <h1>{ title }</h1>
@@ -29,11 +28,6 @@ ProductCard.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
-  categoryId: PropTypes.string.isRequired,
 };
-
-// ProductCard.defaultProps = {
-//   search: '',
-// };
 
 export default ProductCard;

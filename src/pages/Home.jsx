@@ -21,9 +21,11 @@ class Home extends React.Component {
   }
 
   handleClick = (event) => {
-    this.getProducts();
     this.setState({
       categoryId: event.target.id,
+    },
+    () => {
+      this.getProducts();
     });
   }
 
@@ -35,8 +37,12 @@ class Home extends React.Component {
     });
   }
 
+  buttonClick = () => {
+    this.getProducts();
+  }
+
   render() {
-    const { filterText, products, categoryId } = this.state;
+    const { filterText, products } = this.state;
     return (
       <div className="App">
         <label htmlFor="input-search" data-testid="home-initial-message">
@@ -52,7 +58,7 @@ class Home extends React.Component {
           <button
             data-testid="query-button"
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.buttonClick }
           >
             pesquisar
           </button>
@@ -71,8 +77,6 @@ class Home extends React.Component {
             <ProductCard
               key={ product.id }
               product={ product }
-              categoryId={ categoryId }
-              // search={ filterText }
             />
           ))}
         </div>

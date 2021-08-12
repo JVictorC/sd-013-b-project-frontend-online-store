@@ -1,63 +1,52 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
-// import * as api from '../services/api';
+import * as api from '../services/api';
+import Card from '../components/Card';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // products: [],
-      // product: [],
-      id: '',
-      search: '',
+      product: {},
     };
   }
 
   componentDidMount() {
-    this.setStateFunc();
+    this.getProducts();
   }
 
-  setStateFunc() {
-    const { id, search } = useParams();
+  async getProducts() {
+    const { match: { params: { id } } } = this.props;
+    const product = await api.getItem(id);
+    // this.setState({
+    //   product,
+    // });
+    return this.fuc(product);
+  }
+
+  fuc = (product) => {
     this.setState({
-      id,
-      search,
+      product,
     });
   }
 
-  getProducts() {
-    // const { search } = this.state;
-    // const products = await api.getProductsFromCategoryAndQuery(search);
-    // console.log(products);
-    // this.setState({
-    //   products: products.results,
-    // });
-  }
-
-  // findProduct
-
   render() {
-    // const { products } = this.state;
-    // console.log(products);
-    const { id, search } = this.state;
+    const { product } = this.state;
+    // console.log(product);
     return (
-      <div>
-        <p>
-          { `${id}       ${search}` }
-        </p>
-      </div>
+      <Card product={ product } />
     );
   }
 }
 
 ProductDetails.propTypes = {
-  search: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  // products: PropTypes.shape().isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+      search: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default ProductDetails;
