@@ -9,16 +9,14 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="shop-title">Front-end Online Store</h1>
-        <div className="main-box">
-          <BrowserRouter>
-            <header className="header">
-              <CartButton />
-            </header>
-            <Route exact path="/shoppingcart" component={ ShoppingCart } />
-          </BrowserRouter>
-          <ProductsLibrary />
-        </div>
+        <h1 className="shop-title">FrontEnd Online Store</h1>
+        <BrowserRouter>
+          <header className="header">
+            <ProductsLibrary />
+            <CartButton />
+          </header>
+          <Route exact path="/shoppingcart" component={ ShoppingCart } />
+        </BrowserRouter>
       </div>
     );
   }

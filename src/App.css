@@ -7,22 +7,12 @@ body {
   display: flex;
   align-content: center;
   justify-content: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 40px;
-
 }
 
-/* .main-box {
-  border: 1px solid red;
-} */
-
-/* .search {
-  border: 2px solid blue;
-} */
-
-
 .sidebar {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0;
   padding: 0;
   width: 250px;
@@ -31,6 +21,36 @@ body {
   margin-top: 4px;
 }
 
-/* .search-bar {
-  background-color: red;
-} */
+.search-bar {
+  display: block;
+  margin: auto;
+  width: 40%;
+  height: 100%;
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px transparent;
+  padding: 4px;
+  margin-bottom: 5px;
+}
+
+/* button style reference taken from: https://fdossena.com/?p=html5cool/buttons/i.frag (with a few changes) */
+.btn {
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#363333;
+  text-align:center;
+}
+
+.search-label {
+  padding-bottom: 40px;
+}
