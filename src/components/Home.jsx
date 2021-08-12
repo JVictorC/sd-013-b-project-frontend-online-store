@@ -36,7 +36,7 @@ class Home extends React.Component {
       this.setState({
         productsList: getListodProducts.results,
         haveProduct: true,
-        productToCart: undefined,
+        productToCart: [],
       });
     } else {
       return <NotFound />;
@@ -60,6 +60,8 @@ class Home extends React.Component {
   }
 
   selectedProductToCart(product) {
+
+    const x = [ product ]
     this.setState({
       productToCart: product,
     });

@@ -16,10 +16,11 @@ class Cart extends React.Component {
 
     // const { productToCart } = state;
 
-    console.log(location);
+    console.log(location.state);
     return (
-      <div>
-        <h2 data-testid="shopping-cart-empty-message">productId</h2>
+      <div data-testid="shopping-cart-product-name">
+        <h2 data-testid="shopping-cart-empty-message">{location.state.title}</h2>
+        <p data-testid="shopping-cart-product-quantity">1</p>
       </div>
     );
   }
