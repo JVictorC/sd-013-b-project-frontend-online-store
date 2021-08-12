@@ -9,6 +9,7 @@ export default class CheckoutPage extends React.Component {
 
       <BuyerInfo />
       <Payment />
+      BOTÃO
     )
   }
 }

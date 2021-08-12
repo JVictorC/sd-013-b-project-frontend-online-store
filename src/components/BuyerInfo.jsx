@@ -37,7 +37,7 @@ export default class BuyerInfo extends React.Component {
       complemento,
       number,
       city,
-      state
+      state,
     } = this.state;
     return (
       <div>
@@ -145,6 +145,7 @@ export default class BuyerInfo extends React.Component {
               <SelectState
                 value={ state }
                 onChange={ this.handleChange }
+                required
               />
             </div>
           </form>
