@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import CartItem from './CartItem';
 
 class Cart extends React.Component {
-  render() {
-    const { location } = this.props;
-    const { state } = location;
+  getProductFromStorage = () => {
+    const parse = JSON.parse(localStorage.getItem('cart'));
+    return (
+      <div className="product-in-cart">
+        {parse.map((product) => <CartItem key={ product.id } product={ product } />)}
+      </div>
+    );
+  }
 
-    if (state.length > 0) {
-      return (
-        <div className="product-in-cart">
-          {state.map((product) => <CartItem key={ product.id } product={ product } />)}
-        </div>
-      );
+  render() {
+    if (localStorage.key('cart')) {
+      return this.getProductFromStorage();
     }
     return (<h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>);
   }
