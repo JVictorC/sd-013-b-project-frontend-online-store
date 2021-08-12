@@ -20,6 +20,7 @@ class MainScreen extends React.Component {
     this.handleRadioButton = this.handleRadioButton.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,16 @@ class MainScreen extends React.Component {
     this.fetchProducts();
   }
 
+  addToCart({ target }) {
+    // this.setState((state) => ({ shoppingCart: [...state.shoppingCart, product] }), () => {
+    //   const { shoppingCart } = this.state;
+    //   localStorage.setItem('cart', JSON.stringify(shoppingCart: [...state.shoppingCart, product]));
+    // });
+    const cartItems = JSON.parse(localStorage.getItem('cart'));
+    cartItems.push(target.name);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }
+
   // pega as categorias
   async fetchCategories() {
     const getResponse = await getCategories();
@@ -65,7 +76,9 @@ class MainScreen extends React.Component {
     });
   }
 
+  // logica feita com ajuda do Allan Cardoso =)
   render() {
+    if (!localStorage.getItem('cart')) localStorage.setItem('cart', '[]');
     const { categories, products } = this.state;
     return (
       <div data-testid="home-initial-message" className="mainScreen">
@@ -99,7 +112,8 @@ class MainScreen extends React.Component {
         </header>
         <RadioButtons categories={ categories } onClick={ this.handleRadioButton } />
         {products.results === undefined
-          ? <NoProduct /> : <ProductList products={ products } /> }
+          ? <NoProduct />
+          : <ProductList products={ products } addToCart={ this.addToCart } /> }
       </div>
     );
   }
