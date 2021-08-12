@@ -25,6 +25,7 @@ export default class CardRender extends React.Component {
             thumbnail={ thumbnail }
             price={ price }
             id={ id }
+            buttonId="product-add-to-cart"
           />
         </div>
       </div>
