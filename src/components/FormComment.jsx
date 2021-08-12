@@ -139,3 +139,8 @@ export default class FormComment extends React.Component {
     );
   }
 }
+
+FormComment.propTypes = {
+  location: PropTypes.arrayOf(PropTypes.object).isRequired,
+  id: PropTypes.string.isRequired,
+};
