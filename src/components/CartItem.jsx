@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class CartItem extends React.Component {
   render() {
-    const { onClick, title, thumbnail, quantity, price } = this.props;
+    const { onClick, title, thumbnail, quantity, price, id } = this.props;
 
     return (
       <div className="cart-items">
@@ -13,7 +13,7 @@ export default class CartItem extends React.Component {
         <button
           type="submit"
           data-testid="product-decrease-quantity"
-          id="product-decrease-quantity"
+          id={ `${id}-product-decrease-quantity` }
           onClick={ onClick }
         >
           -
@@ -22,7 +22,7 @@ export default class CartItem extends React.Component {
         <button
           type="submit"
           data-testid="product-increase-quantity"
-          id="product-increase-quantity"
+          id={ `${id}-product-increase-quantity` }
           onClick={ onClick }
         >
           +
@@ -39,4 +39,5 @@ CartItem.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
