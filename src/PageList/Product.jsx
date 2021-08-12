@@ -8,10 +8,10 @@ export default class Product extends React.Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  addToCart({ target: { id } }) {
-    const { cartStateUpadte, products } = this.props;
-    const foundProduct = products.find(({ id: producId }) => producId === id);
-    cartStateUpadte(foundProduct);
+  addToCart(product) {
+    const { cartStateUpadte } = this.props;
+    product.quantity = 1;
+    cartStateUpadte(product);
   }
 
   render() {
@@ -29,7 +29,7 @@ export default class Product extends React.Component {
           type="button"
           data-testid="product-detail-add-to-cart"
           id={ id }
-          onClick={ this.addToCart }
+          onClick={ () => this.addToCart({ id, title, thumbnail, price }) }
         >
           Adicionar ao carrinho
         </button>
