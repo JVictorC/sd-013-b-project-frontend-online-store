@@ -1,6 +1,6 @@
 import React from 'react';
-import UserReview from '../Components/FormAvaliation';
 import PropTypes from 'prop-types';
+import Avaliation from '../Components/FormAvaliation';
 
 export default class Product extends React.Component {
   constructor() {
@@ -33,7 +33,7 @@ export default class Product extends React.Component {
         >
           Adicionar ao carrinho
         </button>
-        <UserReview />
+        <Avaliation />
       </div>
     );
   }
