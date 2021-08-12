@@ -28,6 +28,7 @@ export default class CardDetails extends React.Component {
   render() {
     const { product } = this.state;
     const { title, price, thumbnail, id } = product;
+
     return (
       <section>
         <div>
@@ -47,7 +48,7 @@ export default class CardDetails extends React.Component {
 
         </div>
         <Link to="/">VOLTAR</Link>
-        <Link to="/cart">CARRINHO</Link>
+        <Link data-testid="shopping-cart-button" to="/cart">CARRINHO</Link>
       </section>
     );
   }
