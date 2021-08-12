@@ -4,14 +4,22 @@
 }
 
 .barsearch {
+  align-items: baseline;
   display: flex;
   justify-content: space-around;
   margin: 15px;
   padding: 25px;
   text-align: center;
-
 }
 
+.form-search {
+  display: flex;
+  width: 50%;
+}
+
+.form-control {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 .category-container {
   width: 20%;

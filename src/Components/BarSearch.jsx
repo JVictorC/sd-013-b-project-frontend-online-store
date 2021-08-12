@@ -33,19 +33,27 @@ class BarSearch extends Component {
 
     return (
       <header className="barsearch">
-        <form onSubmit={ this.handleSubmit }>
+        <p data-testid="home-initial-message" className="lead">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+        <form onSubmit={ this.handleSubmit } className="form-search">
           <input
             type="text"
             placeholder="Digite algum termo de pesquisa ou escolha uma categoria."
             data-testid="query-input"
             name="searchText"
+            className="form-control"
             value={ searchText }
             onChange={ this.handleChange }
           />
-          <button data-testid="query-button" type="submit">🔎</button>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
+          <button
+            data-testid="query-button"
+            type="submit"
+            className="btn btn-success m-2 btn-lg"
+          >
+            🔎
+
+          </button>
         </form>
         <Link data-testid="shopping-cart-button" to="cart/">
           <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
@@ -58,6 +66,7 @@ class BarSearch extends Component {
 
 BarSearch.propTypes = {
   getProducts: PropTypes.func.isRequired,
+  QuantityItemCard: PropTypes.number.isRequired,
 };
 
 export default BarSearch;
