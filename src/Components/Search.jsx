@@ -7,7 +7,7 @@ export default class Search extends React.Component {
     const { product, addToCart } = this.props;
     const quantity = 1;
     return (
-      product.map(({ id, title, thumbnail, price }) => (
+      product.map(({ id, title, thumbnail, price, shipping }) => (
         <div data-testid="product" key={ id }>
           <div>
             <h2>{ title }</h2>
@@ -27,6 +27,7 @@ export default class Search extends React.Component {
           >
             Adicionar ao carrinho
           </button>
+          { shipping.free_shipping && <p data-testid="free-shipping">Frete Grátis</p> }
         </div>
       ))
     );
