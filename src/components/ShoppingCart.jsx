@@ -41,6 +41,18 @@ class ShoppingCart extends React.Component {
         >
           voltar
         </Link>
+        <Link
+          to={ {
+            pathname: '/checkout',
+            state: {
+              products: { noRepetElementsAddToCart },
+              addToCart: { addToCart },
+            },
+          } }
+          data-testid="checkout-products"
+        >
+          Comprar
+        </Link>
         {
           noRepetElementsAddToCart && noRepetElementsAddToCart.length > 0
             ? noRepetElementsAddToCart.map((product) => (
@@ -56,6 +68,7 @@ class ShoppingCart extends React.Component {
 
             ))
             : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+
         }
       </div>
     );
