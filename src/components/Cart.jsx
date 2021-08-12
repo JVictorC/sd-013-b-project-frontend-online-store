@@ -23,8 +23,6 @@ export default class Cart extends Component {
   async updateList() {
     const { cartList } = this.props;
     this.setState({ list: cartList });
-    const { list } = this.state;
-    list.forEach((item) => this.setState =({ [item.id]: 1 }));
   }
 
   clearList() {
@@ -38,14 +36,10 @@ export default class Cart extends Component {
       <div>
         <h3>Lista de compras:</h3>
         <ul>
-          { list.map((item) =>
-          <CartItems
-            { ...item }
-            key={ item.id }
-          />) }
+          { list.map((item) => <CartItems { ...item } key={ item.id } />) }
         </ul>
-          <button type="button" onClick={ this.clearList }>X</button>
-          <Link to="/">Voltar</Link>
+        <button type="button" onClick={ this.clearList }>X</button>
+        <Link to="/">Voltar</Link>
       </div>
     );
   }
@@ -63,6 +57,7 @@ export default class Cart extends Component {
     const { empty, list } = this.state;
     return (
       <section>
+        <h1>Shopping Cart</h1>
         { (empty && this.renderEmpty()) }
         { (list.length > 0 && this.renderList()) }
       </section>
@@ -76,4 +71,4 @@ Cart.propTypes = {
 
 Cart.defaultProps = {
   cartList: [],
-}
+};

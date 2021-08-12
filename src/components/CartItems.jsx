@@ -10,19 +10,19 @@ export default class CartItems extends Component {
 
     this.state = {
       quantity: 1,
-    }
+    };
   }
 
   handleChange({ target }) {
     if (target.value < 0) {
       this.setState({ quantity: 0 });
-    } else { this.setState({ quantity: target.value }); };
+    } else { this.setState({ quantity: target.value }); }
   }
 
-  handleQuantity(number, { target }) {
+  handleQuantity(number) {
     const { quantity } = this.state;
-    let newNumber = quantity + number;
-    if (newNumber < 0) { newNumber = 0 };
+    let newNumber = quantity + parseInt(number);
+    if (newNumber < 0) { newNumber = 0; }
     this.setState({ quantity: newNumber });
   }
 
@@ -48,12 +48,12 @@ export default class CartItems extends Component {
         <button
           type="button"
           data-testid="product-decrease-quantity"
-          onClick={ this.handleQuantity(-1, id) }
+          onClick={ this.handleQuantity('-1', id) }
         >
           -
         </button>
       </li>
-    )
+    );
   }
 }
 
@@ -62,5 +62,5 @@ CartItems.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    }).isRequired,
+  }).isRequired,
 };
