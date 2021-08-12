@@ -1,13 +1,6 @@
 import React from 'react';
 
 export default class Rating extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
   render() {
     const { getRating } = this.props;
     return (
@@ -19,6 +12,7 @@ export default class Rating extends React.Component {
           min={ 0 }
           max={ 5 }
           onChange={ getRating }
+          required
         />
       </label>
     );

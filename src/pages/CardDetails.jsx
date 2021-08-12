@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import EvaluationForm from '../components/EvaluationForm';
+import EvaluationRender from '../components/EvaluationRender';
 
 export default class CardDetails extends React.Component {
   constructor(props) {
@@ -45,6 +46,9 @@ export default class CardDetails extends React.Component {
         </div>
         <div>
           <EvaluationForm id={ id } />
+        </div>
+        <div>
+          <EvaluationRender id={ id } />
         </div>
       </section>
     );
