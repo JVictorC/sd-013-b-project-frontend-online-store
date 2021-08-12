@@ -1,18 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Pages/Home';
-import Cart from './Pages/Cart';
+import ShopCart from './Pages/ShopCart';
 import CardDetails from './Pages/CardDetails';
 // FEITO POR TODOS VIA PAIR PROGRAMING;
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" render={ () => <Home /> } />
-        <Route path="/cart" component={ Cart } />
-        <Route path="/details/:id" component={ CardDetails } />
-      </Switch>
-    </BrowserRouter>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cartProducts: [],
+    };
+  }
+
+  handleCartItems = (callback) => {
+    // const { cartProducts } = this.state;
+    this.setState((old) => ({
+      cartProducts: [...old.cartProducts, callback],
+    }));
+  }
+
+  render() {
+    const { cartProducts } = this.state;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ () => (<Home
+              handleCartItems={ this.handleCartItems }
+            />) }
+          />
+          <Route
+            path="/shopCart"
+            render={ () => <ShopCart cartProducts={ cartProducts } /> }
+          />
+          <Route
+            path="/details/:id"
+            render={ (props) => (<CardDetails
+              { ...props }
+              handleCartItems={ this.handleCartItems }
+            />) }
+          />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
-export default class SearchButton extends Component {
+export default class ButtonSearch extends Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
@@ -32,7 +32,7 @@ export default class SearchButton extends Component {
   }
 }
 
-SearchButton.propTypes = {
+ButtonSearch.propTypes = {
   onButtonClick: PropTypes.func.isRequired,
   searchValueHome: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
