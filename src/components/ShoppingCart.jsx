@@ -80,5 +80,5 @@ ShoppingCart.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
-  itemQuantity: PropTypes.shape(PropTypes.object),
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };

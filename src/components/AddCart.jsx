@@ -83,15 +83,6 @@ export default class AddCart extends React.Component {
   }
 }
 
-// AddCart.defaultProps = {
-//   query: PropTypes.shape({
-//     id: '',
-//     title: '',
-//     thumbnail: '',
-//     price: 0,
-//   }),
-// };
-
 // AddCart.propTypes = {
 //   query: PropTypes.shape({
 //     id: PropTypes.string,
@@ -101,6 +92,10 @@ export default class AddCart extends React.Component {
 //   }),
 // };
 
+AddCart.defaultProps = {
+ totalItem: {},
+};
+
 AddCart.propTypes = {
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
@@ -108,10 +103,6 @@ AddCart.propTypes = {
   ]).isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
-  totalItem: PropTypes.shape(PropTypes.object),
+  totalItem: PropTypes.objectOf(PropTypes.number),
   available: PropTypes.number.isRequired,
-};
-
-AddCart.defaultProps = {
-  totalItem: {},
 };
