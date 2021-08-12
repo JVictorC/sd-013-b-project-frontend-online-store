@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 export default class Avaliate extends React.Component {
   render() {
-    const { updated, avaliações } = this.props;
+    const { updated, avaliations } = this.props;
     return (
       <div>
-        {updated && avaliações.map(({ email, rate, text }, id) => (
+        {updated && avaliations.map(({ email, rate, text }, id) => (
           <div key={ id }>
             <p>{email}</p>
             <p>{rate}</p>
@@ -20,5 +20,5 @@ export default class Avaliate extends React.Component {
 
 Avaliate.propTypes = {
   updated: PropTypes.bool.isRequired,
-  avaliações: PropTypes.arrayOf(PropTypes.object).isRequired,
+  avaliations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

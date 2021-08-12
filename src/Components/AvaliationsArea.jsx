@@ -7,23 +7,23 @@ export default class AvaliationsArea extends React.Component {
     super();
     this.state = {
       updated: false,
-      avaliações: [],
+      avaliations: [],
     };
   }
 
   avaliateProduct = (rate, email, text) => {
     this.setState((prevState) => ({
       updated: true,
-      avaliações: [...prevState.avaliações, { rate, email, text }],
+      avaliations: [...prevState.avaliations, { rate, email, text }],
     }));
   };
 
   render() {
-    const { avaliações, updated } = this.state;
+    const { avaliations, updated } = this.state;
     return (
       <div>
         <FormProduct avaliateProduct={ this.avaliateProduct } />
-        <Avaliate avaliações={ avaliações } updated={ updated } />
+        <Avaliate avaliations={ avaliations } updated={ updated } />
       </div>
     );
   }
