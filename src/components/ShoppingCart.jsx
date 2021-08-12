@@ -18,9 +18,10 @@ export default class ShoppingCart extends React.Component {
     if (items) {
       const parsing = JSON.parse(items);
       this.setState({
-        local: [...parsing] });
+        local: [...parsing],
+      });
     }
-  }
+  };
 
   render() {
     const { local } = this.state;
@@ -37,6 +38,8 @@ export default class ShoppingCart extends React.Component {
         </div>
       );
     }
-    return <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>;
+    return (
+      <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+    );
   }
 }

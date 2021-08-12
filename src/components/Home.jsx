@@ -17,17 +17,20 @@ export default class Home extends React.Component {
     this.categoryOnclick = this.categoryOnclick.bind(this);
   }
 
+  categoryOnclick({ target }) {
+    this.setState(
+      {
+        categoryId: target.id,
+      },
+      () => this.cathProducts(),
+    );
+  }
+
   listner({ target }) {
     this.setState({
       search: target.value,
     });
     console.log(target.value);
-  }
-
-  categoryOnclick({ target }) {
-    this.setState({
-      categoryId: target.id,
-    }, () => this.cathProducts());
   }
 
   cathProducts() {
