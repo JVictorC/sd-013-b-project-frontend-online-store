@@ -18,21 +18,24 @@ class Home extends Component {
 
   handleChange = ({ target }) => {
     this.setState({ searchText: target.value });
-  }
+  };
 
   handleRadioButton = async ({ target }) => {
     // this.setState({ selectedCategory: target.value });
     const data = await getProductsFromCategoryAndQuery(target.value);
     this.setState({ products: data.results });
-  }
+  };
 
   handleSearchButton = () => {
     this.setState({ products: 'Carregando...' }, async () => {
       const { selectedCategory, searchText } = this.state;
-      const data = await getProductsFromCategoryAndQuery(selectedCategory, searchText);
+      const data = await getProductsFromCategoryAndQuery(
+        selectedCategory,
+        searchText,
+      );
       await this.setState({ products: data.results });
     });
-  }
+  };
 
   render() {
     const { searchText, products } = this.state;

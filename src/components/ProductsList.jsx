@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 export default class ProductsList extends Component {
   initialMessage = () => (
@@ -21,10 +25,12 @@ export default class ProductsList extends Component {
     const { getProductData, addItemsToCart } = this.props;
 
     return (
-      products.map((product) => (
+      products.map((product, props) => (
+
         <div data-testid="product" className="product-card" key={ product.id }>
           <h4>{product.title}</h4>
-          <img
+          <CardImg
+            top width="100%"
             src={ product.thumbnail }
             alt={ product.title }
             style={ { width: '150px' } }
