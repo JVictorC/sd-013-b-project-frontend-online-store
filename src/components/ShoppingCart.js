@@ -23,7 +23,9 @@ class ShoppingCart extends React.Component {
 }
 
 ShoppingCart.propTypes = {
-  location: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
 };
 
 export default ShoppingCart;
