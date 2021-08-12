@@ -43,12 +43,11 @@
 
 
 /* ------------------- ProductList.jsx ---------------- */
-
 * {
+  box-sizing: border-box;
+  font-family: Poppins , sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 button {
@@ -66,14 +65,25 @@ button {
   width: 80%;
 }
 
-.search-container {
-  display: block;
-  width: 100%;
-}
-
 .main-container main {
   margin-left: 20%;
   width: 80%;
+}
+
+.container-ul li {
+  border-top: 1px solid rgba(0, 0, 0, 0.164);
+  list-style: none;
+}
+
+.products-list-container li {
+  border: 1px solid grey;
+  font-size: 14px;
+  height: 20rem;
+  margin: 1rem 1%;
+  max-width: 300px;
+  padding: 1rem;
+  text-align: center;
+  width: 30%;
 }
 
 .main-container main li {
@@ -81,23 +91,23 @@ button {
 }
 
 .search-container {
-  width: 100%;
+  align-items: center;
   background-color: grey;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 999;
   height: 6rem;
+  justify-content: center;
   padding-top: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 }
 
 .search-container input {
   border: 1px solid grey;
-  height: 3rem;
-  width: 30rem;
   font-size: 24px;
+  height: 3rem;
   padding: 0 3px;
+  width: 30rem;
 }
 
 .search-container input:focus {
@@ -106,116 +116,97 @@ button {
 
 .search-container button {
   border: 1px solid grey;
+  font-size: 16px;
+  font-weight: 700;
   height: 3rem;
   padding: 0 2rem;
-  font-weight: bold;
-  font-size: 16px;
 }
 
 .search-container form {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin-bottom: 1rem;
   margin-left: 18.5%;
 }
 
 .btn-cart {
-  height: 100%;
-  font-size: 46px;
   color: rgba(0, 0, 0, 0.424);
+  font-size: 46px;
+  height: 100%;
   position: fixed;
-  top: 1rem;
   right: 2rem;
+  top: 1rem;
 }
 
 .message {
-  text-align: center;
-  padding-top: 8rem;
   font-size: 24px;
-}
-
-.products-list-container ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.products-list-container li {
-  width: 30%;
-  height: 20rem;
-  border: 1px solid grey;
+  padding-top: 8rem;
   text-align: center;
-  font-size: 14px;
-  margin: 1rem 1%;
-  max-width: 300px;
-  padding: 1rem;
 }
 
 .products-list-container li * {
   margin: 8px 0;
 }
 
+.products-list-container ul {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+  width: 90%;
+}
 
 /* ------------------- CategoriesList.jsx ---------------- */
-
-.container-ul::-webkit-scrollbar-track
-{
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.103);
-	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.103);
-	background-color: #F5F5F5;
-}
-
-.container-ul::-webkit-scrollbar
-{
-	width: 4px;
-	background-color: #F5F5F5;
-}
-
-.container-ul::-webkit-scrollbar-thumb
-{
-	background-color: #00000049;
-	border: 2px solid #555555;
-}
-
-
 .container-ul {
-  margin-top: 6rem;
-  width: 22%;
-  font-size: 30px;
   display: flex;
-  position: fixed;
+  font-size: 30px;
   height: calc(100% - 6rem);
   left: 0;
+  margin-top: 6rem;
   overflow: auto;
+  position: fixed;
+  width: 22%;
+}
+
+.container-ul::-webkit-scrollbar-track {
+  background-color: whitesmoke;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.103);
+}
+
+.container-ul::-webkit-box-shadow {
+  inset: 0 0 6px rgba(0, 0, 0, 0.103);
+}
+
+.container-ul::-webkit-scrollbar {
+  background-color: whitesmoke;
+  width: 4px;
+}
+
+.container-ul::-webkit-scrollbar-thumb {
+  background-color: #00000049;
+  border: 2px solid #555;
 }
 
 .container-ul ol {
-  font-size: 0px;
+  font-size: 0;
   width: 100%;
-}
-
-.container-ul li {
-  list-style: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.164);
 }
 
 .container-ul li button {
-  cursor: pointer;
-  padding-left: 1rem;
-  width: 100%;
   border: none;
+  cursor: pointer;
   font-size: 18px;
-  text-align: left;
   padding: 4px 1.5rem;
+  padding-left: 1rem;
+  text-align: left;
   transition: all 0.1s;
+  width: 100%;
 }
 
 .container-ul li button:hover {
-  background-color: #cccccc;
+  background-color: #ccc;
 }
 
 .selected {
@@ -223,7 +214,6 @@ button {
 }
 
 /* ------------------- ShoppingCartButton.jsx ---------------- */
-
 .shopping-cart-container {
   width: 100%;
 }
@@ -234,21 +224,21 @@ button {
 }
 
 .btn-return {
-  font-size: 48px;
   color: rgba(0, 0, 0, 0.637);
+  font-size: 48px;
 }
 
 .cart-body {
-  width: 100%;
-  text-align: center;
   font-size: 32px;
   margin-top: 10rem;
+  text-align: center;
+  width: 100%;
 }
 
 .cart-basket {
   font-size: 18px;
-  width: 50%;
   margin: 0 auto;
+  width: 50%;
 }
 
 .cart-basket div {
@@ -256,5 +246,5 @@ button {
 }
 
 .cart-basket b {
-  font-weight: bold;
+  font-weight: 700;
 }
