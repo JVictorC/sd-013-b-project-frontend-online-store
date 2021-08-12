@@ -20,11 +20,11 @@ export default class ProductList extends Component {
   render() {
     const { products, getDetailsProduct } = this.props;
     return (
-      <div className="product-list">
-        <ul>
+      <div className="product-container">
+        <ul className="product-list">
           {products.map((product) => (
-            <li data-testid="product" key={ product.id }>
-              <span>{product.title}</span>
+            <li data-testid="product" key={ product.id } className="product">
+              <p className="lead">{product.title}</p>
               <img src={ product.thumbnail } alt={ product.title } />
               {product.shipping.free_shipping
                 ? (
@@ -39,15 +39,16 @@ export default class ProductList extends Component {
                 data-testid="product-detail-link"
                 to={ `/ProductDetails/${product.id}` }
                 onClick={ () => getDetailsProduct(product) }
+                className="btn btn-outline-primary"
               >
-                <p>Ver detalhes</p>
+                Ver detalhes
               </Link>
-              R$
-              <p>{product.price}</p>
+              <p className="lead">{`R$: ${product.price}`}</p>
               <button
                 type="button"
                 onClick={ () => this.hadlerClick(product) }
                 data-testid="product-add-to-cart"
+                className="btn btn-outline-success"
               >
                 Adicionar no Carrinho
               </button>

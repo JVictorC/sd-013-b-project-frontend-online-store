@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import './App.css';
 import Home from './Components/Home';
 import Cart from './Components/Cart';
 import ProductDetails from './Components/ProductDetails';
+import './Style/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class App extends React.Component {
     const { card, productDetailsSelect } = this.state;
     return (
       <BrowserRouter>
-        <div className="App">
+        <>
           <Switch>
             <Route
               exact
@@ -98,17 +98,17 @@ class App extends React.Component {
               ) }
             />
           </Switch>
-        </div>
-        <Route
-          path="/productDetails/:id"
-          render={ () => (
-            <ProductDetails
-              productDetailsSelect={ productDetailsSelect }
-              getCardItem={ this.getCardItem }
-              QuantityItemCard={ card.length }
-            />
-          ) }
-        />
+          <Route
+            path="/productDetails/:id"
+            render={ () => (
+              <ProductDetails
+                productDetailsSelect={ productDetailsSelect }
+                getCardItem={ this.getCardItem }
+                QuantityItemCard={ card.length }
+              />
+            ) }
+          />
+        </>
       </BrowserRouter>
     );
   }
