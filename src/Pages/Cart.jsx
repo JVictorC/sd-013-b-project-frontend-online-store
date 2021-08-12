@@ -2,6 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
+  plusQuantity = (product) => {
+    if (product.quantity < product.available_quantity) {
+      const { updateQuantity } = this.props;
+      updateQuantity(product);
+    }
+  }
+
+  minusQuantity = (product) => {
+    if (product.quantity > 0) {
+      const { downDateQuantity } = this.props;
+      downDateQuantity(product);
+    }
+  }
+
   render() {
     const { products } = this.props;
 
@@ -18,9 +32,23 @@ class Cart extends React.Component {
                 <span
                   data-testid="shopping-cart-product-quantity"
                 >
-                  {product.quantity}
+                  { product.quantity }
                 </span>
               </p>
+              <button
+                onClick={ () => this.plusQuantity(product) }
+                data-testid="product-increase-quantity"
+                type="button"
+              >
+                +
+              </button>
+              <button
+                onClick={ () => this.minusQuantity(product) }
+                data-testid="product-decrease-quantity"
+                type="button"
+              >
+                -
+              </button>
             </div>
           )) }
         </div>
@@ -43,6 +71,8 @@ Cart.propTypes = {
       price: PropTypes.number,
     }),
   ).isRequired,
+  updateQuantity: PropTypes.func.isRequired,
+  downDateQuantity: PropTypes.func.isRequired,
 };
 
 export default Cart;
