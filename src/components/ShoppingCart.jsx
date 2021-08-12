@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import AddCart from './AddCart';
 
 export default class ShoppingCart extends React.Component {
@@ -66,12 +67,16 @@ export default class ShoppingCart extends React.Component {
         <span>{`Preço a pagar: ${amountPrice}`}</span>
         <button type="submit">Finalizar compra</button>
         <Link to="/">Voltar a tela inicial</Link>
+        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
       </div>
     );
   }
 }
 
 ShoppingCart.propTypes = {
-  query: PropTypes.string.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
   itemQuantity: PropTypes.shape(PropTypes.object).isRequired,
 };

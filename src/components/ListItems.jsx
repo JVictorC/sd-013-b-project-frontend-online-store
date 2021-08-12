@@ -36,7 +36,11 @@ class ListItems extends React.Component {
 
 ListItems.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getQuery: PropTypes.func.isRequired,
+  getQuery: PropTypes.func,
+};
+
+ListItems.defaultProps = {
+  getQuery: PropTypes.func,
 };
 
 export default ListItems;
