@@ -31,7 +31,7 @@ class ProductCard extends React.Component {
           } }
           data-testid="product-detail-link"
         >
-          {shipping.free_shipping 
+          {shipping.free_shipping
             ? <p data-testid="free-shipping">Free shipping</p> : null}
           <p>{title}</p>
           <div className="image-card">
@@ -57,6 +57,9 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }),
   }).isRequired,
 };
 
