@@ -15,7 +15,7 @@ class RenderProducts extends Component {
               <img src={ thumbnail } alt={ title } />
               <p>{ price }</p>
               <Link
-                to={ `product/${encodeURI(title)}` }
+                to={ `product/${encodeURI(title)}` } // Implementação do decodeURI segundo documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
                 data-testid="product-detail-link"
               >
                 Ver Detalhes

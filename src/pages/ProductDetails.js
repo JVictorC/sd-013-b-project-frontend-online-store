@@ -20,7 +20,7 @@ class ProductDetails extends Component {
 
   async fetchProduct() {
     const { match: { params: { id } } } = this.props;
-    const decodeId = decodeURI(id);
+    const decodeId = decodeURI(id); // Implementação do decodeURI segundo documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
 
     const products = await getProductsFromCategoryAndQuery('', decodeId);
     const productDetail = products.results.find((product) => product.title === id);
