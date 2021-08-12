@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import CategoriesAside from './CategoriesAside';
 import SearchBar from '../pages/SearchBar';
 import RenderProducts from './RenderProducts';
+import shoppingCart from '../assets/shoppingCart.png';
+import '../App.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -79,12 +81,12 @@ class Home extends Component {
         </div>
 
         <Link to="/shopping-cart">
-          <button
-            type="button"
+          <img
             data-testid="shopping-cart-button"
-          >
-            Carrinho de Compras
-          </button>
+            className="shopping-cart"
+            src={ shoppingCart }
+            alt="my image"
+          />
         </Link>
 
         <aside>

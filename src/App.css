@@ -5,3 +5,7 @@
   margin: 3px;
   max-width: max-content;
 }
+
+.shopping-cart {
+  max-width: 50px;
+}
