@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 
 class ProductDetails extends React.Component {
+  onClick = () => {
+    const { product } = this.props;
+
+    if (localStorage.key('cart')) {
+      const parse = JSON.parse(localStorage.getItem('cart'));
+      parse.push({ ...product, quantidade: 1 });
+      localStorage.setItem('cart', JSON.stringify(parse));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([{ ...product, quantidade: 1 }]));
+    }
+  }
+
   render() {
     const { location } = this.props;
     const { state: productDetail } = location;
@@ -13,7 +25,10 @@ class ProductDetails extends React.Component {
           <Link to="/">Voltar</Link>
           <Link
             className="shopping-cart-button"
-            to="/cart"
+            to={ {
+              pathname: '/cart',
+              state: location.state,
+            } }
             data-testid="shopping-cart-button"
           >
             <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
@@ -37,6 +52,13 @@ class ProductDetails extends React.Component {
             </div>
           </div>
         </div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.onClick }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
@@ -55,6 +77,13 @@ ProductDetails.propTypes = {
       name: PropTypes.string,
     }),
   }).isRequired,
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.string,
+    thumbnail: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
