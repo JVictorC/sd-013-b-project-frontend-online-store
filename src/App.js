@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Pages/Home';
 import ShopCart from './Pages/ShopCart';
 import CardDetails from './Pages/CardDetails';
+import CheckOut from './Pages/CheckOut';
 // FEITO POR TODOS VIA PAIR PROGRAMING;
 
 export default class App extends Component {
@@ -42,6 +43,10 @@ export default class App extends Component {
               { ...props }
               handleCartItems={ this.handleCartItems }
             />) }
+          />
+          <Route
+            path="/checkout"
+            component={ () => <CheckOut cartProducts={ cartProducts } /> }
           />
         </Switch>
       </BrowserRouter>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonHome from '../Components/ButtonHome';
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
@@ -44,7 +45,6 @@ export default class ShopCart extends Component {
     return (
       cartProducts.map((product) => (
         <div key={ product.id }>
-          <ButtonHome />
           <button type="button" onClick={ this.handleRemove }>X</button>
           <p data-testid="shopping-cart-product-name">{product.title}</p>
           <img src={ product.thumbnail } alt="Produto" />
@@ -67,7 +67,6 @@ export default class ShopCart extends Component {
     const { cartProducts } = this.props;
     const emptyCart = (
       <div>
-        <ButtonHome />
         <p>Seu carrinho está vazio</p>
       </div>
     );
@@ -75,6 +74,12 @@ export default class ShopCart extends Component {
       <div data-testid="shopping-cart-empty-message">
         <ButtonHome />
         { cartProducts.length === 0 ? emptyCart : this.createCart()}
+        <Link
+          to="/checkout"
+          data-testid="checkout-products"
+        >
+          PAGAMENTO
+        </Link>
       </div>
     );
   }
