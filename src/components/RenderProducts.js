@@ -17,7 +17,11 @@ class RenderProducts extends Component {
               <p>{ title }</p>
               <img src={ thumbnail } alt={ title } />
               <p>{ price }</p>
-              <button type="button" onClick={ handleClickAddCart }>
+              <button
+                data-testid="product-add-to-cart"
+                type="button"
+                onClick={ () => handleClickAddCart(id, title, thumbnail, price) }
+              >
                 <img
                   src={ addCart }
                   alt="Add cart icon"

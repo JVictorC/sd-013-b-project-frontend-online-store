@@ -14,6 +14,7 @@ class Home extends Component {
     this.state = {
       products: [],
       query: '',
+      cartItems: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,8 +38,17 @@ class Home extends Component {
     this.fetchProducts('', query);
   }
 
-  handleClickAddCart() {
-    console.log('clicou');
+  handleClickAddCart(id, title, thumbnail, price) {
+    const newCartItem = {
+      id,
+      title,
+      thumbnail,
+      price,
+    };
+
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, newCartItem],
+    }));
   }
 
   handleCategory({ target }) {
@@ -60,7 +70,7 @@ class Home extends Component {
   }
 
   render() {
-    const { query, products } = this.state;
+    const { query, products, cartItems } = this.state;
 
     const message = (
       <p
@@ -90,7 +100,7 @@ class Home extends Component {
           {products.length === 0 && message }
         </div>
 
-        <Link to="/shopping-cart">
+        <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
           <img
             data-testid="shopping-cart-button"
             className="icons"
