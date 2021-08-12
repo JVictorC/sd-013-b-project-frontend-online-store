@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Rating from './Rating';
 
 class DetailsCard extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class DetailsCard extends React.Component {
         <h2 data-testid=" product-detail-name">{ title }</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{ price }</p>
+        <Rating />
       </div>
     );
   }
