@@ -1,29 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartItem from './CartItem';
 
 class Cart extends React.Component {
-  mapProduct(product) {
+  getProductFromStorage = () => {
+    const parse = JSON.parse(localStorage.getItem('cart'));
     return (
-      <div>
-        <h4 data-testid="shopping-cart-product-name">{product.title}</h4>
-        <h5>{`R$ ${product.price}`}</h5>
-        <h5 data-testid="shopping-cart-product-quantity">
-          {`Quantidade: ${product.quantidade}`}
-        </h5>
+      <div className="product-in-cart">
+        {parse.map((product) => <CartItem key={ product.id } product={ product } />)}
       </div>
     );
   }
 
   render() {
-    const { location } = this.props;
-    const { state } = location;
-
-    if (state.length > 0) {
-      return (
-        <div className="product-in-cart">
-          {state.map((product) => this.mapProduct(product))}
-        </div>
-      );
+    if (localStorage.key('cart')) {
+      return this.getProductFromStorage();
     }
     return (<h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>);
   }
