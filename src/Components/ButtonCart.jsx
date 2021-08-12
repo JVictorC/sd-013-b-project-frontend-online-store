@@ -40,4 +40,5 @@ export default class ButtonCart extends Component {
 ButtonCart.propTypes = {
   product: PropTypes.objectOf(PropTypes.object).isRequired,
   handleCartItems: PropTypes.func.isRequired,
+  productDetail: PropTypes.string.isRequired,
 };
