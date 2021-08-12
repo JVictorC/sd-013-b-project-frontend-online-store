@@ -14,7 +14,7 @@ class ProductCard extends React.Component {
     } else {
       localStorage.setItem('cart', JSON.stringify([{ ...product, quantidade: 1 }]));
     }
-    console.log(countProductsCart());
+    countProductsCart();
   }
 
   render() {
@@ -32,7 +32,7 @@ class ProductCard extends React.Component {
           } }
           data-testid="product-detail-link"
         >
-          {shipping.free_shipping 
+          {shipping.free_shipping
             ? <p data-testid="free-shipping">Free shipping</p> : null}
           <p>{title}</p>
           <div className="image-card">
@@ -58,7 +58,11 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }),
   }).isRequired,
+  countProductsCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
