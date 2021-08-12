@@ -50,9 +50,12 @@ class SearchBar extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h3>
         </div>
-        <Link to="ShoppingCart" data-testid="shopping-cart-button">
-          Carrinho
-        </Link>
+        <div>
+          <Link to="ShoppingCart" data-testid="shopping-cart-button">
+            Carrinho
+          </Link>
+          <p>{localStorage.length}</p>
+        </div>
         <HomeFilter />
         <ProductList
           products={ products }
