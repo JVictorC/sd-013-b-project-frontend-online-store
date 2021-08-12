@@ -75,7 +75,7 @@ export default class AddCart extends React.Component {
     return (
       // this.displayItem()
       <div>
-        {item !== '' ? this.displayItem() : this.cartEmpty()}
+        {item.length !== 0 ? this.displayItem() : this.cartEmpty()}
       </div>
     );
   }
@@ -101,5 +101,5 @@ AddCart.propTypes = {
   ]).isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
-  totalItem: PropTypes.shape(PropTypes.object),
+  totalItem: PropTypes.objectOf(PropTypes.number),
 };
