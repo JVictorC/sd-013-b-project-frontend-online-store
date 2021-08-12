@@ -41,18 +41,44 @@
   }
 }
 
+
+/* ------------------- ProductList.jsx ---------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
 .main-container {
   display: flex;
+  margin: 0 auto;
+  width: 95%;
 }
+
+.container-searchbar {
+  width: 80%;
+}
+
+
+/* ------------------- CategoriesList.jsx ---------------- */
 
 .container-ul {
   width: 20%;
+  font-size: 20px;
 }
 
 .container-ul li {
   list-style: none;
 }
 
-.container-searchbar {
-  width: 80%;
+.container-ul li input {
+  border: 2px solid red;
+  background-color: #61dafb;
+  color: black;
+  font-size: 34px;
 }
+
+

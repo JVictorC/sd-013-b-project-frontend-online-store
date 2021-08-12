@@ -36,7 +36,6 @@ class CategoriesList extends React.Component {
               id={ category.name }
               key={ category.id }
             >
-              <label htmlFor={ category.id }>{ category.name }</label>
               <input
                 name="category-filter"
                 id={ category.id }
@@ -45,6 +44,7 @@ class CategoriesList extends React.Component {
                 onKeyDown={ this.getCategoryHandler }
                 onClick={ this.getCategoryHandler }
               />
+              <label htmlFor={ category.id }>{ category.name }</label>
             </li>))}
         </ol>
       </aside>
