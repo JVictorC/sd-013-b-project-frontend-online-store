@@ -17,7 +17,7 @@ export default class ProductDetails extends Component {
   }
 
   async productsRequisition() {
-    // const { match: { params: { category_id, query, title } } } = this.props;
+    const { match: { params: { category_id, query, title } } } = this.props;
     const response = await api.getProductsFromCategoryAndQuery(category_id, query);
     const products = response.results;
     const productSearched = products.find((product) => product.title === title);
@@ -33,8 +33,8 @@ export default class ProductDetails extends Component {
   render() {
     const { title, price, thumbnail, condition } = this.state;
     return (
-      <div>
-        <h3 data-testid="product-detail-name">{title}</h3>
+      <div data-testid="product-detail-name">
+        <h3>{title}</h3>
         <span>{`Preço: R$${price.toFixed(2)}`}</span>
         <img src={ thumbnail } alt="product.png" />
         <p>{`Condição: ${condition}`}</p>
