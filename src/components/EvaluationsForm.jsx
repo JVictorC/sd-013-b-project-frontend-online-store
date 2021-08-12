@@ -68,6 +68,7 @@ export default class EvaluationsForm extends React.Component {
           />
         </div>
         <div>
+           {/** source: https://felipegalvao.com.br/pt/blog/learn-react-events-and-forms/ */}
           <label>
             <input
               type="radio"
