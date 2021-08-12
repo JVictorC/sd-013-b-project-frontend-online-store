@@ -30,12 +30,13 @@ class ProductCard extends React.Component {
           <img
             src={ thumbnail }
             alt="Product Thumbnail"
-            style={ { width: '90%', maxHeight: '7rem' } }
+            style={ { width: '90%', maxHeight: '7rem', border: '1px solid grey' } }
           />
           <p>
             {`Preço R$ ${price}`}
           </p>
-          {shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
+          {shipping.free_shipping
+          && <p className="shipping" data-testid="free-shipping">Frete grátis</p>}
         </Link>
         <button
           type="button"
