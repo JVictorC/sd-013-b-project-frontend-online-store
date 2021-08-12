@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import * as api from '../services/api';
 import { Link } from 'react-router-dom';
+// import Quantidade from '../components/Quantidade';
 
 class ProductDetails extends React.Component {
   constructor(props) {
