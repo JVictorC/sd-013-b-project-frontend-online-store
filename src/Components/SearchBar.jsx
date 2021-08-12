@@ -1,41 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductList from './ProductList';
 import ProductInvalid from './ProductInvalid';
 
 export default class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchbar: '',
-      products: [],
-      state: false,
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  async handleClick() {
-    const { searchbar } = this.state;
-    const { firstquery } = this.props;
-    const productList = await getProductsFromCategoryAndQuery(firstquery, searchbar);
-    this.setState({
-      products: productList.results,
-      state: true,
-    });
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   render() {
-    const { searchbar, products, state } = this.state;
+    const { searchbar, products, state, handleClick, handleChange } = this.props;
     return (
       <div>
         <label
@@ -48,12 +18,12 @@ export default class SearchBar extends Component {
             id="home-initial-message"
             name="searchbar"
             value={ searchbar }
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           Digite algum termo de pesquisa ou escolha uma categoria.
           <br />
         </label>
-        <button type="button" data-testid="query-button" onClick={ this.handleClick }>
+        <button type="button" data-testid="query-button" onClick={ handleClick }>
           Pesquisar
         </button>
         {products.length === 0 && state === true ? (
@@ -67,5 +37,9 @@ export default class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  firstquery: PropTypes.string.isRequired,
+  searchbar: PropTypes.string.isRequired,
+  products: PropTypes.objectOf.isRequired,
+  state: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

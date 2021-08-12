@@ -1,45 +1,10 @@
 import React, { Component } from 'react';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
-
+import PropTypes from 'prop-types';
 import ProductInvalid from './ProductInvalid';
-import ProductList from './ProductList';
-import SearchBar from './SearchBar';
 
 export default class CategoriesList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      category: [],
-      products: [],
-      firstquery: '',
-    };
-    this.handleState = this.handleState.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.handleState();
-  }
-
-  async handleClick(event) {
-    const itemId = event.target.id;
-    console.log(itemId);
-    const productList = await getProductsFromCategoryAndQuery(itemId, '');
-    this.setState({
-      products: productList.results,
-      firstquery: itemId,
-    });
-  }
-
-  async handleState() {
-    const categories = await getCategories();
-    this.setState({
-      category: categories,
-    });
-  }
-
   render() {
-    const { category, products, firstquery } = this.state;
+    const { category, handleClick } = this.props;
     const categories = category.map(({ name, id }) => (
       <label htmlFor={ id } key={ id }>
         <input
@@ -47,7 +12,7 @@ export default class CategoriesList extends Component {
           type="radio"
           id={ id }
           name="categories"
-          onChange={ this.handleClick }
+          onClick={ handleClick }
         />
         {name}
       </label>
@@ -55,9 +20,12 @@ export default class CategoriesList extends Component {
     return (
       <div>
         { category !== [] ? categories : <ProductInvalid /> }
-        <SearchBar firstquery={ firstquery } />
-        { products !== [] ? <ProductList products={ products } /> : '' }
       </div>
     );
   }
 }
+
+CategoriesList.propTypes = {
+  category: PropTypes.objectOf.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
