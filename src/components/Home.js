@@ -51,9 +51,17 @@ class Home extends React.Component {
     });
   }
 
+  // setShoppingCart(product) {
+  //   const { id, title, thumbnail, price } = product;
+  //   const pegaProdutos = { id, title, thumbnail, price, quantity: 1 };
+  //   this.setState((state) => ({
+  //     productInCart: [...state.productInCart, pegaProdutos],
+  //   }));
+  // }
+
   addToCart(product) {
     const { id, title, thumbnail, price } = product;
-    const newItem = { id, title, thumbnail, price };
+    const newItem = { id, title, thumbnail, price, quantity: 1 };
     this.setState((previousState) => ({
       cartItems: [...previousState.cartItems, newItem],
     }));
@@ -117,7 +125,10 @@ class Home extends React.Component {
             </li>
           ))}
         </div>
-        <ProductList addToCart={ this.addToCart } productList={ productList } />
+        <ProductList
+          addToCart={ this.addToCart }
+          productList={ productList }
+        />
       </div>
     );
   }
