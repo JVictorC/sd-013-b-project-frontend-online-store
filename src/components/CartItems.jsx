@@ -14,21 +14,23 @@ export default class CartItems extends Component {
   }
 
   handleChange({ target }) {
-    if (target.value < 0) {
+    const { value } = target;
+    if (value < 0) {
       this.setState({ quantity: 0 });
-    } else { this.setState({ quantity: target.value }); }
+    } else { this.setState({ quantity: value }); }
   }
 
   handleQuantity(number) {
     const { quantity } = this.state;
-    let newNumber = quantity + parseInt(number);
+    let newNumber = quantity + parseInt(number, 1);
     if (newNumber < 0) { newNumber = 0; }
     this.setState({ quantity: newNumber });
   }
 
   render() {
+    const { quantity } = this.state;
     const { item } = this.props;
-    const { id, title, price } = item;
+    const { title, price } = item;
     return (
       <li>
         <p data-testid="shopping-cart-product-name">
@@ -37,21 +39,25 @@ export default class CartItems extends Component {
         <button
           type="button"
           data-testid="product-increase-quantity"
-          onClick={ this.handleQuantity(1, id) }
+          onClick={ this.handleQuantity('1') }
         >
           +
         </button>
         <input
           data-testid="shopping-cart-product-quantity"
-          onChange={ this.handleChange(id) }
+          onChange={ this.handleChange }
+          value={ quantity }
         />
         <button
           type="button"
           data-testid="product-decrease-quantity"
-          onClick={ this.handleQuantity('-1', id) }
+          onClick={ this.handleQuantity('-1') }
         >
           -
         </button>
+        <p>
+          { `Final Price: R$${price * quantity}` }
+        </p>
       </li>
     );
   }

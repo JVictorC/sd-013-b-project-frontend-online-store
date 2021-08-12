@@ -13,6 +13,7 @@ export default class Cart extends Component {
     this.state = {
       empty: true,
       list: [],
+      finalPrice: 0,
     };
   }
 
@@ -20,17 +21,21 @@ export default class Cart extends Component {
     this.updateList();
   }
 
-  async updateList() {
-    const { cartList } = this.props;
-    this.setState({ list: cartList });
+  handlePrice() {
+
   }
 
   clearList() {
     this.setState({ list: [] });
   }
 
+  async updateList() {
+    const { cartList } = this.props;
+    this.setState({ list: cartList });
+  }
+
   renderList() {
-    const { list } = this.state;
+    const { list, finalPrice } = this.state;
     this.setState({ empty: false });
     return (
       <div>
@@ -38,6 +43,9 @@ export default class Cart extends Component {
         <ul>
           { list.map((item) => <CartItems { ...item } key={ item.id } />) }
         </ul>
+        <p>
+          { `R$${finalPrice}` }
+        </p>
         <button type="button" onClick={ this.clearList }>X</button>
         <Link to="/">Voltar</Link>
       </div>
