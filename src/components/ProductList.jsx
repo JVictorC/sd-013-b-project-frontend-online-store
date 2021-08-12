@@ -3,14 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default class ProductList extends React.Component {
-  setLocalStorage = () => {
-    const { product } = this.props;
-    localStorage.setItem('details', JSON.stringify(product));
-  }
-
-  getLocalStorage = () => {
+  getCartStoarge = () => {
     const items = localStorage.getItem('cart');
-    if (items === true) {
+    if (items) {
       return JSON.parse(items);
     }
     return [];
@@ -18,7 +13,7 @@ export default class ProductList extends React.Component {
 
   handleLocalStorage = () => {
     const { product } = this.props;
-    const items = this.getLocalStorage();
+    const items = this.getCartStoarge();
     const wholeItems = [...items, { ...product, quantity: 1 }];
     localStorage.setItem('cart', JSON.stringify(wholeItems));
   }
