@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ButtonCart from '../Components/ButtonCart';
 import ButtonHome from '../Components/ButtonHome';
 
@@ -17,7 +18,13 @@ export default class CardDetails extends Component {
           Preço: R$
           { price }
         </p>
-        <ButtonCart product={ product } handleCartItems={ handleCartItems } />
+        <ButtonCart
+          data-testid="product-detail-add-to-cart"
+          product={ product }
+          productDetail="productDetail"
+          handleCartItems={ handleCartItems }
+        />
+        <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
       </div>
     );
   }
