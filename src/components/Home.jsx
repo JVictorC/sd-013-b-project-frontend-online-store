@@ -5,31 +5,7 @@ import ShoppingCart from '../pages/ShoppingCart';
 import ProductDetails from '../pages/ProductDetails';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartProducts: [],
-    };
-  }
-
-  /* handleClick = (product) => {
-    const { cartProducts } = this.state;
-    let counter = 0;
-
-    cartProducts.forEach((e) => {
-      if (e.title === product.title) {
-        counter += 1;
-        product.qts += 1;
-      }
-    });
-
-    if (counter === 0) cartProducts.push(product);
-    this.setState({ cartProducts: [...cartProducts] });
-  } */
-
   render() {
-    const { cartProducts } = this.state;
-
     return (
       <div>
         <BrowserRouter>

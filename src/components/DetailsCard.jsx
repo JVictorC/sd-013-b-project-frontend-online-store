@@ -25,7 +25,7 @@ class DetailsCard extends React.Component {
           );
         }) }
 
-        <AddToCartButton product={ product } />
+        <AddToCartButton product={ product } testid="product-detail-add-to-cart" />
       </div>
     );
   }
