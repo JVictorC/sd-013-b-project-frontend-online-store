@@ -37,7 +37,6 @@ export default class ShoppingCart extends React.Component {
 
   render() {
     const { query } = this.props;
-    const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
         {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
