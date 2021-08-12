@@ -17,24 +17,27 @@ export default class ProductDetails extends Component {
   }
 
   async productsRequisition() {
-    const { match: { params: { id } } } = this.props;
-    const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
-    const product = await response.json();
+    const { match: { params: { category_id, query, title } } } = this.props;
+    const response = await api.getProductsFromCategoryAndQuery(category_id, query);
+    const products = response.results;
+    const productSearched = products.find((product) => product.title === title);
     this.setState({
-      title: product.title,
-      price: product.price,
-      thumbnail: product.thumbnail,
+      title: productSearched.title,
+      price: productSearched.price,
+      thumbnail: productSearched.thumbnail,
+      condition: productSearched.condition,
     });
-    console.log(product);
+    console.log(productSearched);
   }
 
   render() {
-    const { title, price, thumbnail } = this.state;
+    const { title, price, thumbnail, condition } = this.state;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
-        <span>{price}</span>
+        <span>{`Preço: R$${price.toFixed(2)}`}</span>
         <img src={ thumbnail } alt="product.png" />
+        <p>{`Condição: ${condition}`}</p>
       </div>
     );
   }

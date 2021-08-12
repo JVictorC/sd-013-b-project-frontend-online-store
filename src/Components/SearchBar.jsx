@@ -36,7 +36,7 @@ export default class SearchBar extends Component {
     const { searchbar, products, state } = this.state;
 
     const searchListComponent = products.map((product) => (
-      <ProductCard key={ product.id } product={ product } />
+      <ProductCard key={ product.id } product={ product } query={ searchbar } />
     ));
     return (
       <div>

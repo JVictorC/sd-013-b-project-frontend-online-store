@@ -22,7 +22,7 @@ export default class App extends Component {
             />
             <Route
               exact
-              path="/:id"
+              path="/:categoryID/:query/:title"
               render={ (props) => <ProductDetails { ...props } /> }
             />
           </Switch>
