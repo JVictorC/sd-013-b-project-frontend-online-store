@@ -7,53 +7,75 @@ export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartList: props.items,
+      cartList: props.query,
       amountPrice: 0,
-      totalItems: 0,
+      itemsQuantity: props.itemQuantity,
+      available: 0,
     };
+    this.productsAvailable = this.productsAvailable.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
-  handleAddClick() {
-    const { totalItems, props: { items: { quantity } } } = this.state;
-    this.setState(() => ({ totalItems: totalItems + 1 }));
-    if (totalItems === quantity) {
-      this.setState({
-        totalItems: quantity,
-      });
-    }
+  componentDidMount() {
+    this.sumcartPrices();
+    this.productsAvailable();
   }
 
-  handleRemoveClick() {
-    const { totalItems } = this.state;
-    this.setState(() => ({ totalItems: totalItems - 1 }));
-    if (totalItems === 0) {
-      this.setState({
-        totalItems: 0,
-      });
-    }
+  handleAddClick(id) {
+    this.setState(({ itemsQuantity }) => ({
+      itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] + 1 },
+    }));
+  }
+
+  handleRemoveClick(id) {
+    this.setState(({ itemsQuantity }) => ({
+      itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] - 1 },
+    }));
+  }
+
+  productsAvailable() {
+    const { cartList } = this.state;
+    const quantity = cartList.map((item) => item.available_quantity);
+    this.setState({
+      available: quantity,
+    });
+  }
+
+  async sumcartPrices() {
+    const { cartList } = this.state;
+    const cartPrice = cartList.reduce((acc, { price }) => acc + price, 0);
+    this.setState(({ amountPrice }) => (
+      { amountPrice: amountPrice + parseFloat(cartPrice) }
+    ));
   }
 
   render() {
     const { query } = this.props;
+    const { loading, available, amountPrice, itemsQuantity } = this.state;
+    const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
-        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
-        <AddCart query={ query } query={ query }
+        {loading ? cEpt : <AddCart
+          query={ query }
           onClickAdd={ this.handleAddClick }
-          onClickRemove={ this.handleRemoveClick }/>
+          onClickRemove={ this.handleRemoveClick }
+          totalItem={ itemsQuantity }
+          available={ available }
+        />}
+        <span>{`Preço a pagar: ${amountPrice}`}</span>
         <button type="submit">Finalizar compra</button>
-        <Link to="/">Voltar</Link>
+        <Link to="/">Voltar a tela inicial</Link>
+        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
       </div>
     );
   }
 }
 
 ShoppingCart.propTypes = {
-  // query: PropTypes.arrayOf(PropTypes.object).isRequired,
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.shape(PropTypes.object).isRequired,
 };
