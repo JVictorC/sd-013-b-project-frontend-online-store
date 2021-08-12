@@ -76,20 +76,20 @@ h1 {
 .product-details {
   align-content: center;
   align-items: left;
+  border: 1px solid black;
+  border-radius: 10px;
   display: flex;
   flex-flow: column wrap;
-  border: 1px solid black;
   padding: 2em;
-  border-radius: 10px;
 }
 
 .product-details-unit {
   align-content: center;
   align-items: center;
-  display: flex;
-  flex-flow: column wrap;
   border: 1px solid black;
   border-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
   padding: 1em;
   width: 10em;
 }
