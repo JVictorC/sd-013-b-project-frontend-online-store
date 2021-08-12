@@ -40,18 +40,21 @@ export default class ShoppingCart extends React.Component {
     const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
-        {query.length <= 0 ? cEpt : <AddCart
-          query={ query }
+        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
+        <AddCart query={ query } query={ query }
           onClickAdd={ this.handleAddClick }
-          onClickRemove={ this.handleRemoveClick }
-        />}
+          onClickRemove={ this.handleRemoveClick }/>
         <button type="submit">Finalizar compra</button>
-        <Link to="/">Voltar a tela inicial</Link>
+        <Link to="/">Voltar</Link>
       </div>
     );
   }
 }
 
 ShoppingCart.propTypes = {
-  query: PropTypes.string.isRequired,
+  // query: PropTypes.arrayOf(PropTypes.object).isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
