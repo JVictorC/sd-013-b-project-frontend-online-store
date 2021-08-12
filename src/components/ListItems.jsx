@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ListItems extends React.Component {
+  freeShipping() {
+    return (
+      <span data-testid="free-shipping">Frete Grátis</span>
+    );
+  }
+
   render() {
     const { items, getQuery } = this.props;
     return (
       <div>
         { items.length === 0 ? 'Nenhum produto foi encontrado'
-          : items.map(({ thumbnail, price, title, id }, index) => (
+          : items.map(({ thumbnail, price, title, id, shipping }, index) => (
             <div key={ id }>
               <Link
                 data-testid="product-detail-link"
@@ -18,6 +24,7 @@ class ListItems extends React.Component {
                   <h3>{ title }</h3>
                   <img src={ thumbnail } alt="Produto" />
                   <p>{ `R$: ${price}` }</p>
+                  { shipping.free_shipping && this.freeShipping() }
                 </div>
               </Link>
               <button
