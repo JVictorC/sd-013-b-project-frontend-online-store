@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import EvaluationForm from '../components/EvaluationForm';
 import BtnAddToCart from '../components/BtnAddToCart';
 
 export default class CardDetails extends React.Component {
@@ -47,8 +48,13 @@ export default class CardDetails extends React.Component {
           <h3>Especificações técnicas:</h3>
 
         </div>
-        <Link to="/">VOLTAR</Link>
-        <Link data-testid="shopping-cart-button" to="/cart">CARRINHO</Link>
+        <div>
+          <Link to="/">VOLTAR</Link>
+          <Link data-testid="shopping-cart-button" to="/cart">CARRINHO</Link>
+        </div>
+        <div>
+          <EvaluationForm id={ id } />
+        </div>
       </section>
     );
   }

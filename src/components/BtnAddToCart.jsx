@@ -27,6 +27,7 @@ export default class BtnAddToCart extends React.Component {
     const { buttonId } = this.props;
     return (
       <button
+        id="product-add-to-cart"
         data-testid={ buttonId }
         type="button"
         onClick={ this.addToCart }

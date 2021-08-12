@@ -7,7 +7,7 @@ export default class CardRender extends React.Component {
   render() {
     const { results } = this.props;
     const { title, price, category_id: categoryId, thumbnail, id } = results;
-    const query = title.replace(/ /g, '+');
+    const query = title.replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '').replace(/ /g, '+');
     return (
       <div>
         <img alt="imagem" src={ thumbnail } data-testid="product" />
