@@ -59,15 +59,12 @@ class Home extends Component {
     const { products } = this.state;
     const { getDetailsProduct, QuantityItemCard } = this.props;
     return (
-      <>
-        <header>
-          <BarSearch getProducts={ this.getProducts } />
-          <Link data-testid="shopping-cart-button" to="cart/">
-            <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
-            🛒
-          </Link>
-        </header>
-        <main>
+      <div className="grid-container">
+        <BarSearch
+          getProducts={ this.getProducts }
+          QuantityItemCard={ QuantityItemCard }
+        />
+        <main className="Product-Show">
           <Category handleClick={ this.handleClick } />
           <ProductList
             products={ products }
@@ -75,7 +72,7 @@ class Home extends Component {
             getDetailsProduct={ getDetailsProduct }
           />
         </main>
-      </>
+      </div>
     );
   }
 }

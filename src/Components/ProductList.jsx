@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../Style/ProductList.css';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -20,10 +21,10 @@ export default class ProductList extends Component {
   render() {
     const { products, getDetailsProduct } = this.props;
     return (
-      <div className="product-list">
-        <ul>
+      <div>
+        <ul className="product-list">
           {products.map((product) => (
-            <li data-testid="product" key={ product.id }>
+            <li data-testid="product" key={ product.id } className="product">
               <span>{product.title}</span>
               <img src={ product.thumbnail } alt={ product.title } />
               {product.shipping.free_shipping

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import '../Style/Category.css';
 
 import { getCategories } from '../services/api';
 
@@ -25,7 +26,7 @@ class Category extends Component {
     const { handleClick } = this.props;
     return (
       <div>
-        <form>
+        <form className="categorys">
           {categories.map(({ id, name }) => (
             <ComponentRadio
               key={ id }

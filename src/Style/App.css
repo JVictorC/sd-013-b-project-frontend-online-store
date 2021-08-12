@@ -1,0 +1,47 @@
+.grid-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.barsearch {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+  padding: 25px;
+  text-align: center;
+}
+
+.categorys {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  margin: 15px;
+  padding: 15px;
+}
+
+.Product-Show {
+  display: flex;
+}
+
+/* CSS inspirado em Grids https://www.w3schools.com/css/css_grid.asp */
+.product-list {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, auto));
+  text-align: center;
+}
+
+.product-list img {
+  margin: 15px auto;
+  width: 50%;
+}
+
+.product {
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 15px;
+  transition: transform 100ms ease-in-out;
+}
