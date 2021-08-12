@@ -5,7 +5,7 @@ class ShoppCart extends React.Component {
     const cartItems = JSON.parse(localStorage.getItem('cart'));
     if (cartItems.length > 0) {
       return (
-        <div key="1" data-testid="shopping-cart-empty-message">
+        <div key="1">
           {cartItems.map((item) => {
             const product = JSON.parse(item);
             const { title, thumbnail, price } = product;

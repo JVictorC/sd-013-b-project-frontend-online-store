@@ -10,6 +10,8 @@ class Detalhes extends React.Component {
       message: '',
       rating: 0,
     };
+
+    this.addToCartDetails = this.addToCartDetails.bind(this);
   }
 
   componentDidMount() {
@@ -33,42 +35,66 @@ class Detalhes extends React.Component {
     }
   }
 
+  addToCartDetails() {
+    const cartItems = JSON.parse(localStorage.getItem('cart'));
+    const itemDetails = JSON.parse(localStorage.getItem('item'));
+    cartItems.push(JSON.stringify(itemDetails));
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }
+
   render() {
     const { product, email, rating, message } = this.state;
     return (
-      <div data-testid="product-detail-name" key={ product.id }>
-        <h2>{ product.title }</h2>
-        <img src={ product.thumbnail } alt="product_image" />
-        <p>{ product.price }</p>
-        <button type="button">AddCart</button>
-        <div>
-          <fieldset>
-            <h3> Avaliação : </h3>
-            <input
-              type="text"
-              name="email"
-              value={ email }
-              onChange={ this.handleInputChange }
-              placeholder="Digite seu email"
-            />
-            <input
-              type="number"
-              name="rating"
-              value={ rating }
-              onChange={ this.handleInputChange }
-              min={ 1 }
-              max={ 5 }
-            />
-            <textarea
-              type="text"
-              name="message"
-              data-testid="product-detail-evaluation"
-              value={ message }
-              onChange={ this.handleInputChange }
-              placeholder="Deixe sua opnião sobre o produto"
-            />
-            <button type="button">Avaliar</button>
-          </fieldset>
+      <div>
+        <button
+          data-testid="shopping-cart-button"
+          type="button"
+          name="detailsSopButton"
+        >
+          shop
+        </button>
+
+        <div data-testid="product-detail-name" key={ product.id }>
+          <h2 data-testid="shopping-cart-product-name">{ product.title }</h2>
+          <img src={ product.thumbnail } alt="product_image" />
+          <p>{ product.price }</p>
+          <p data-testid="shopping-cart-product-quantity"> 1 </p>
+          <button
+            type="button"
+            onClick={ this.addToCartDetails }
+            data-testid="product-detail-add-to-cart"
+          >
+            AddCart
+          </button>
+          <div>
+            <fieldset>
+              <h3> Avaliação : </h3>
+              <input
+                type="text"
+                name="email"
+                value={ email }
+                onChange={ this.handleInputChange }
+                placeholder="Digite seu email"
+              />
+              <input
+                type="number"
+                name="rating"
+                value={ rating }
+                onChange={ this.handleInputChange }
+                min={ 1 }
+                max={ 5 }
+              />
+              <textarea
+                type="text"
+                name="message"
+                data-testid="product-detail-evaluation"
+                value={ message }
+                onChange={ this.handleInputChange }
+                placeholder="Deixe sua opnião sobre o produto"
+              />
+              <button type="button">Avaliar</button>
+            </fieldset>
+          </div>
         </div>
       </div>
     );
