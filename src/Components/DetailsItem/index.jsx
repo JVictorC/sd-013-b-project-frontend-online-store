@@ -33,7 +33,7 @@ const CartItem = ({
     </button>
 
     <button
-      data-testid="product-increase-quantity"
+      data-testid="product-detail-add-to-cart"
       disabled={ quant >= availableQuantity }
       type="button"
       onClick={ onAddClick }
