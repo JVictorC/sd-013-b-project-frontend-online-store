@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Home, Cart, ProductDetails, PurchaseScreen } from './pages';
 
@@ -15,7 +15,6 @@ function App() {
           <Route exact path="/product/:id" component={ ProductDetails } />
           <Route exact path="/purchase" component={ PurchaseScreen } />
         </Switch>
-        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
       </div>
     </BrowserRouter>
   );
