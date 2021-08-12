@@ -41,7 +41,7 @@ ProductCard.propTypes = {
       title: PropTypes.string,
       thumbnail: PropTypes.string,
       price: PropTypes.string,
-    }).isRequired,
+    }),
   ).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
