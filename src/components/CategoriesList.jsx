@@ -21,7 +21,6 @@ class CategoriesList extends React.Component {
 
   getCategoryHandler(event) {
     const name = event.target.parentNode.id;
-    console.log(name);
     const { onFilter } = this.props;
     onFilter(event.target.id, name);
   }
@@ -29,27 +28,26 @@ class CategoriesList extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div className="container-ul">
-        <ul>
+      <aside className="container-ul">
+        <ol>
           {categories.length !== 0
-            && categories.map((category) => (
-              <li
-                id={ category.name }
-                key={ category.id }
-              >
-                <label htmlFor={ category.id }>{ category.name }</label>
-                <input
-                  name="category-filter"
-                  id={ category.id }
-                  type="radio"
-                  data-testid="category"
-                  onKeyDown={ this.getCategoryHandler }
-                  onClick={ this.getCategoryHandler }
-                />
-              </li>
-            ))}
-        </ul>
-      </div>
+          && categories.map((category) => (
+            <li
+              id={ category.name }
+              key={ category.id }
+            >
+              <label htmlFor={ category.id }>{ category.name }</label>
+              <input
+                name="category-filter"
+                id={ category.id }
+                type="radio"
+                data-testid="category"
+                onKeyDown={ this.getCategoryHandler }
+                onClick={ this.getCategoryHandler }
+              />
+            </li>))}
+        </ol>
+      </aside>
     );
   }
 }

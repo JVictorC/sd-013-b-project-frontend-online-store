@@ -49,8 +49,7 @@ class ProductList extends React.Component {
         results: response.results,
         didSearch: true,
       });
-      console.log(id, text);
-      console.log(response);
+      return true;
     });
   }
 
