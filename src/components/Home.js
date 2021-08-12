@@ -83,7 +83,7 @@ class Home extends Component {
         <Link to="/shopping-cart">
           <img
             data-testid="shopping-cart-button"
-            className="shopping-cart"
+            className="icons"
             src={ shoppingCart }
             alt="my image"
           />

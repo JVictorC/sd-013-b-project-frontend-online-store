@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../App.css';
 import addCart from '../assets/addCart.png';
+import productDetails from '../assets/productDetails.png';
 
 class RenderProducts extends Component {
   render() {
@@ -19,13 +20,17 @@ class RenderProducts extends Component {
               <img
                 src={ addCart }
                 alt="Add cart icon"
-                className="shopping-cart"
+                className="icons"
               />
               <Link
                 to={ `${categoryId}/${id}` }
                 data-testid="product-detail-link"
               >
-                Ver Detalhes
+                <img
+                  src={ productDetails }
+                  alt="Product details icon"
+                  className="icons"
+                />
               </Link>
             </div>
           ))}
