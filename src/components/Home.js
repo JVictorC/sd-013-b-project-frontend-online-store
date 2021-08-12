@@ -74,22 +74,33 @@ class Home extends Component {
 
     const message = (
       <p
+        className="initial-message"
         data-testid="home-initial-message"
       >
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>);
 
     return (
-      <div>
-        <div>
+      <div className="root">
+        <div className="header">
           <SearchBar
             query={ query }
             handleChange={ this.handleChange }
             handleClick={ this.handleClick }
           />
+          <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
+            <img
+              data-testid="shopping-cart-button"
+              className="icons"
+              src={ shoppingCart }
+              alt="Shopping cart icon"
+            />
+          </Link>
         </div>
 
-        <div>
+        <div className="main-content">
+          <CategoriesAside handleCategory={ this.handleCategory } />
+
           {/* Uso de operador lógico && em substituição do if */}
           {products.length !== 0 && (
             <RenderProducts
@@ -100,18 +111,6 @@ class Home extends Component {
           {products.length === 0 && message }
         </div>
 
-        <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
-          <img
-            data-testid="shopping-cart-button"
-            className="icons"
-            src={ shoppingCart }
-            alt="Shopping cart icon"
-          />
-        </Link>
-
-        <aside>
-          <CategoriesAside handleCategory={ this.handleCategory } />
-        </aside>
       </div>
     );
   }

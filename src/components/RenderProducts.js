@@ -11,33 +11,35 @@ class RenderProducts extends Component {
     const noReturn = <span>Nenhum produto foi encontrado</span>;
     return (
       products === [] ? noReturn : (
-        <div>
+        <div className="product-list">
           {products.map(({ id, category_id: categoryId, title, thumbnail, price }) => (
-            <div key={ id } data-testid="product">
-              <p>{ title }</p>
-              <img src={ thumbnail } alt={ title } />
-              <p>{ price }</p>
-              <button
-                data-testid="product-add-to-cart"
-                type="button"
-                onClick={ () => handleClickAddCart(id, title, thumbnail, price) }
-              >
-                <img
-                  src={ addCart }
-                  alt="Add cart icon"
-                  className="icons"
-                />
-              </button>
-              <Link
-                to={ `${categoryId}/${id}` }
-                data-testid="product-detail-link"
-              >
-                <img
-                  src={ productDetails }
-                  alt="Product details icon"
-                  className="icons"
-                />
-              </Link>
+            <div key={ id } data-testid="product" className="product-card">
+              <h4 className="product-card-title">{ title }</h4>
+              <img src={ thumbnail } alt={ title } className="product-card-image" />
+              <p className="product-card-price">{ `R$${price}` }</p>
+              <div className="product-card-details">
+                <button
+                  data-testid="product-add-to-cart"
+                  type="button"
+                  onClick={ () => handleClickAddCart(id, title, thumbnail, price) }
+                >
+                  <img
+                    src={ addCart }
+                    alt="Add cart icon"
+                    className="icons"
+                  />
+                </button>
+                <Link
+                  to={ `${categoryId}/${id}` }
+                  data-testid="product-detail-link"
+                >
+                  <img
+                    src={ productDetails }
+                    alt="Product details icon"
+                    className="icons"
+                  />
+                </Link>
+              </div>
             </div>
           ))}
         </div>

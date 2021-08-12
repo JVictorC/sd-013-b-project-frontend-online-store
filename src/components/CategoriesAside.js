@@ -31,21 +31,25 @@ class CategoriesAside extends Component {
 
     return (
       <div className="aside">
-        <p>Categorias</p>
-        {categories.map(({ id, name }) => (
-          <label key={ id } htmlFor="category">
-            { name }
-            <input
-              data-testid="category"
-              key={ id }
-              type="radio"
-              id={ id }
-              value={ name }
-              name="category"
-              onClick={ handleCategory }
-            />
-          </label>
-        ))}
+        <div className="aside-title">
+          <h3>Categorias</h3>
+        </div>
+        <div className="categories">
+          {categories.map(({ id, name }) => (
+            <label key={ id } htmlFor="category">
+              { name }
+              <input
+                data-testid="category"
+                key={ id }
+                type="radio"
+                id={ id }
+                value={ name }
+                name="category"
+                onClick={ handleCategory }
+              />
+            </label>
+          ))}
+        </div>
       </div>
     );
   }
