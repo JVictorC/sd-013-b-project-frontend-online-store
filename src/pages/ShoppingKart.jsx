@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class ShoppingKart extends Component {
   renderCartProducts = (cartItems) => (
-    cartItems.map(({ id, title, thumbnail, price, actualQtd }) => (
+    cartItems.map(({ id, title, thumbnail, price, actualAmount }) => (
       <div key={ id }>
         <h4 data-testid="shopping-cart-product-name">{ title }</h4>
         <img
@@ -15,7 +15,7 @@ export default class ShoppingKart extends Component {
         <p
           data-testid="shopping-cart-product-quantity"
         >
-          { `Quantidade ${actualQtd} unidade(s)` }
+          { `Quantidade ${actualAmount} unidade(s)` }
         </p>
       </div>
     ))

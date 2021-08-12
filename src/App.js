@@ -20,10 +20,10 @@ export default class App extends Component {
 
   addItemsToCart = (product) => {
     const { cartItems } = this.state;
-    const qtd = cartItems.filter(({ id }) => id === product.id).length;
+    const itemAmount = cartItems.filter(({ id }) => id === product.id).length;
 
-    if (!qtd) {
-      product.actualQtd = 1;
+    if (!itemAmount) {
+      product.actualAmount = 1;
       this.setState({ cartItems: [...cartItems, product] });
       return;
     }
@@ -31,11 +31,10 @@ export default class App extends Component {
     cartItems.forEach((item, index) => {
       if (item.id === product.id) {
         const deepCopy = [...cartItems];
-        deepCopy[index].actualQtd += 1;
+        deepCopy[index].actualAmount += 1;
         this.setState({ cartItems: deepCopy });
       }
     });
-    // this.setState({ cartItems: product });
   }
 
   render() {
