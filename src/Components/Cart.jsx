@@ -79,7 +79,7 @@ class Cart extends React.Component {
           {' '}
           {this.totalCart()}
         </p>
-        <button type="button">Finalizar Compra</button>
+        <Link to="/checkout">Finalizar Compra</Link>
       </div>
     );
   }
