@@ -52,17 +52,16 @@ export default class ShoppingCart extends React.Component {
 
   render() {
     const { query } = this.props;
-    const { loading, available, amountPrice, itemsQuantity } = this.state;
-    const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
+    const { available, amountPrice, itemsQuantity } = this.state;
     return (
       <div>
-        {loading ? cEpt : <AddCart
+        <AddCart
           query={ query }
           onClickAdd={ this.handleAddClick }
           onClickRemove={ this.handleRemoveClick }
           totalItem={ itemsQuantity }
           available={ available }
-        />}
+        />
         <span>{`Preço a pagar: ${amountPrice}`}</span>
         <button type="submit">Finalizar compra</button>
         <Link to="/">Voltar a tela inicial</Link>
@@ -72,10 +71,14 @@ export default class ShoppingCart extends React.Component {
   }
 }
 
+ShoppingCart.defaultProps = {
+  itemQuantity: {},
+};
+
 ShoppingCart.propTypes = {
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
-  itemQuantity: PropTypes.shape(PropTypes.object).isRequired,
+  itemQuantity: PropTypes.shape(PropTypes.object),
 };
