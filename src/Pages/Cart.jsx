@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
   plusQuantity = (product) => {
-    const { updateQuantity } = this.props;
-    updateQuantity(product);
+    if (product.quantity < product.available_quantity) {
+      const { updateQuantity } = this.props;
+      updateQuantity(product);
+    }
   }
 
   minusQuantity = (product) => {
