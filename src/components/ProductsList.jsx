@@ -18,22 +18,33 @@ export default class ProductsList extends Component {
       return <span>{products}</span>;
     }
 
-    const { getProductData } = this.props;
+    const { getProductData, addItemsToCart } = this.props;
 
     return (
       products.map((product) => (
-        <Link
-          to={ `/product/${product.id}` }
-          key={ product.id }
-          onClick={ () => getProductData(product) }
-          data-testid="product-detail-link"
-        >
-          <div data-testid="product" className="product-card">
-            <h4>{product.title}</h4>
-            <img src={ product.thumbnail } alt={ product.title } />
-            <span>{`R$${product.price}`}</span>
-          </div>
-        </Link>
+        <div data-testid="product" className="product-card" key={ product.id }>
+          <h4>{product.title}</h4>
+          <img
+            src={ product.thumbnail }
+            alt={ product.title }
+            style={ { width: '150px' } }
+          />
+          <span>{`R$${product.price}`}</span>
+          <Link
+            to={ `/product/${product.id}` }
+            onClick={ () => getProductData(product) }
+            data-testid="product-detail-link"
+          >
+            Ver detalhes
+          </Link>
+          <button
+            data-testid="product-add-to-cart"
+            type="submit"
+            onClick={ () => addItemsToCart(product) }
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
       ))
     );
   };
