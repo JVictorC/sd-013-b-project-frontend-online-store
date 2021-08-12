@@ -28,6 +28,7 @@ class ProductCard extends Component {
           data-testid="product-detail-link"
           to={ {
             pathname: `/productDetails/${product.id}/${product.title} `,
+            state: { product },
           } }
         >
           Ver Detalhes
