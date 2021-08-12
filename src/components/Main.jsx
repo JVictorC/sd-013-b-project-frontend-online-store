@@ -17,6 +17,10 @@ class Main extends React.Component {
     this.categoryClick = this.categoryClick.bind(this);
   }
 
+  // componentDidUpdate() {
+  //   this.getCartNumber();
+  // }
+
   handleChange({ target }) {
     const { value } = target;
     this.setState({
@@ -30,6 +34,13 @@ class Main extends React.Component {
     this.setState({ searchItemList: response.results });
   }
 
+  // getCartNumber() {
+  //   const { query } = this.props;
+  //   this.setState({
+  //     queryNumber: query.length,
+  //   });
+  // }
+
   async categoryClick(event) {
     // console.log(event.target.value);
     await this.setState({
@@ -40,7 +51,7 @@ class Main extends React.Component {
 
   render() {
     const { value, searchItemList } = this.state;
-    const { getQuery } = this.props;
+    const { getQuery, query } = this.props;
     return (
       <>
         <SearchBar
@@ -48,6 +59,7 @@ class Main extends React.Component {
           onChange={ this.handleChange }
           handleClick={ this.handleClick }
           categoryClick={ this.categoryClick }
+          query={ query }
         />
         <ListItems items={ searchItemList } getQuery={ getQuery } />
       </>

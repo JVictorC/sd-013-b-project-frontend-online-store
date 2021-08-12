@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EvaluationForm from './EvaluationForm';
+import '../css/DetailedProduct.css';
 
 export default class DetailedProduct extends React.Component {
+
   render() {
-    const { item, getQuery } = this.props;
+    const { item, getQuery, query } = this.props;
     const { title, price, thumbnail } = item;
+    const count = localStorage.getItem('count');
     return (
       <div>
         <h2>{ title }</h2>
@@ -23,7 +27,12 @@ export default class DetailedProduct extends React.Component {
           Adicionar ao carrinho
         </button>
         <Link to="/">Voltar</Link>
-        <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
+        <div className="div-class-count">
+          <Link data-testid="shopping-cart-button" to="/shopping-cart">
+            <ShoppingCartIcon style={ { color: '#22ba24' } } fontSize="large" />
+          </Link>
+          <p data-testid="shopping-cart-size">{count}</p>
+        </div>
       </div>
     );
   }

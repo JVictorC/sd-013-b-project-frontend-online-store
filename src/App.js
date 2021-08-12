@@ -14,7 +14,12 @@ class App extends React.Component {
     };
 
     this.getQuery = this.getQuery.bind(this);
+    // this.getCartNumber = this.getCartNumber.bind(this);
   }
+
+  // componentDidUpdate() {
+  //   this.getCartNumber();
+  // }
 
   getQuery(item) {
     this.setState((previous) => ({
@@ -22,8 +27,21 @@ class App extends React.Component {
     }));
   }
 
+  // getCartNumber() {
+  //   const { query } = this.state;
+  //   this.setState({
+  //     cartNumber: query.length,
+  //   });
+  //   // if (query === '') {
+  //   //   this.setState({
+  //   //     cartNumber: 0,
+  //   //   });
+  //   // }
+  // }
+
   render() {
     const { query } = this.state;
+    localStorage.setItem('count', query.length);
 
     return (
       <BrowserRouter>
@@ -32,11 +50,11 @@ class App extends React.Component {
             path="/shopping-cart"
             render={ () => <ShoppingCart query={ query } /> }
           />
-          <Route exact path="/" render={ () => <Main getQuery={ this.getQuery } /> } />
+          <Route exact path="/" render={ () => <Main getQuery={ this.getQuery } query={ query } /> } />
           <Route
             path="/product-details/:id"
             render={
-              (props) => <ProductDetails { ...props } getQuery={ this.getQuery } />
+              (props) => <ProductDetails { ...props } getQuery={ this.getQuery } query={ query } />
             }
           />
         </Switch>
