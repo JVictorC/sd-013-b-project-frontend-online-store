@@ -24,14 +24,6 @@ export default class CardDetails extends Component {
           productDetail="productDetail"
           handleCartItems={ handleCartItems }
         />
-        {/* <button
-          data-testid="product-detail-add-to-cart"
-          type="button"
-          cartProducts={ product }
-          onClick={ () => handleCartItems(product) }
-        >
-          Adicionar ao carrinho
-        </button> */}
         <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
       </div>
     );
