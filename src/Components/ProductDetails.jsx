@@ -22,10 +22,10 @@ export default class ProductDetails extends Component {
         <Link
           to="/"
         >
-          Voltar
+          🏠
         </Link>
         <Link data-testid="shopping-cart-button" to="/cart">
-          Cart
+          🛒
         </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>
@@ -33,7 +33,9 @@ export default class ProductDetails extends Component {
           {price}
         </p>
         <img src={ thumbnail } alt={ title } />
-
+        {productDetailsSelect.shipping.free_shipping
+          ? <div data-testid="free-shipping">📦 Frete Grátis</div>
+          : false}
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
