@@ -4,7 +4,7 @@ import Payment from './ Payment';
 
 export default class CheckoutPage extends React.Component {
   render() {
-    const { shoppingCart } = this.props;
+    
     return (
 
       <BuyerInfo />
