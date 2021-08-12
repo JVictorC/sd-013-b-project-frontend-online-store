@@ -28,10 +28,10 @@ export default class AddCart extends React.Component {
 
   displayItem() {
     const { item } = this.state;
-    const { totalItem, onClickAdd, onClickRemove } = this.props;
+    const { totalItem, onClickAdd, onClickRemove, available } = this.props;
     return (
       <div>
-        {item.map(({ id, title, thumbnail, price, available_quantity: qtty }) => (
+        {item.map(({ id, title, thumbnail, price }, index) => (
           <div key={ id } data-testid="product">
             <h3 data-testid="shopping-cart-product-name">{ title }</h3>
             <img src={ thumbnail } alt="Produto" />
@@ -41,12 +41,13 @@ export default class AddCart extends React.Component {
             >
               {totalItem[id]}
             </p>
-            <p>{`Quantidade em estoque: ${qtty}`}</p>
+            <p>{`Quantidade em estoque: ${available[index] - totalItem[id]}`}</p>
             <button
               data-testid="product-increase-quantity"
               type="button"
               onClick={ () => onClickAdd(id) }
               name={ id }
+              disabled={ available[index] - totalItem[id] === 0 }
             >
               <AddCircleOutlineIcon />
             </button>
@@ -55,6 +56,7 @@ export default class AddCart extends React.Component {
               type="button"
               onClick={ () => onClickRemove(id) }
               name={ id }
+              disabled={ totalItem[id] === 0 }
             >
               <RemoveCircleOutlineIcon />
             </button>
@@ -81,10 +83,6 @@ export default class AddCart extends React.Component {
   }
 }
 
-AddCart.defaultProps = {
-  totalItem: {},
-};
-
 // AddCart.propTypes = {
 //   query: PropTypes.shape({
 //     id: PropTypes.string,
@@ -94,6 +92,10 @@ AddCart.defaultProps = {
 //   }),
 // };
 
+AddCart.defaultProps = {
+  totalItem: {},
+};
+
 AddCart.propTypes = {
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
@@ -102,4 +104,5 @@ AddCart.propTypes = {
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
   totalItem: PropTypes.objectOf(PropTypes.number),
+  available: PropTypes.number.isRequired,
 };
