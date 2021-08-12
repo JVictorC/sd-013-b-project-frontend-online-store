@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddCart from '../components/AddCart';
 
 export default class CardItems extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class CardItems extends React.Component {
         <p>
           { item.price }
         </p>
+        <AddCart />
       </div>
     );
   }
