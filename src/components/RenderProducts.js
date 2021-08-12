@@ -7,7 +7,7 @@ import productDetails from '../assets/productDetails.png';
 
 class RenderProducts extends Component {
   render() {
-    const { products } = this.props;
+    const { products, handleClickAddCart } = this.props;
     const noReturn = <span>Nenhum produto foi encontrado</span>;
     return (
       products === [] ? noReturn : (
@@ -17,11 +17,13 @@ class RenderProducts extends Component {
               <p>{ title }</p>
               <img src={ thumbnail } alt={ title } />
               <p>{ price }</p>
-              <img
-                src={ addCart }
-                alt="Add cart icon"
-                className="icons"
-              />
+              <button type="button" onClick={ handleClickAddCart }>
+                <img
+                  src={ addCart }
+                  alt="Add cart icon"
+                  className="icons"
+                />
+              </button>
               <Link
                 to={ `${categoryId}/${id}` }
                 data-testid="product-detail-link"
@@ -44,6 +46,7 @@ RenderProducts.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
+  handleClickAddCart: PropTypes.func.isRequired,
 };
 
 export default RenderProducts;

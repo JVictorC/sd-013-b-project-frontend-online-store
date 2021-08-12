@@ -20,6 +20,7 @@ class Home extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.handleClickAddCart = this.handleClickAddCart.bind(this);
   }
 
   handleChange({ target }) {
@@ -34,6 +35,10 @@ class Home extends Component {
     const { query } = this.state;
 
     this.fetchProducts('', query);
+  }
+
+  handleClickAddCart() {
+    console.log('clicou');
   }
 
   handleCategory({ target }) {
@@ -76,7 +81,12 @@ class Home extends Component {
 
         <div>
           {/* Uso de operador lógico && em substituição do if */}
-          {products.length !== 0 && <RenderProducts products={ products } /> }
+          {products.length !== 0 && (
+            <RenderProducts
+              products={ products }
+              handleClickAddCart={ this.handleClickAddCart }
+            />
+          )}
           {products.length === 0 && message }
         </div>
 
