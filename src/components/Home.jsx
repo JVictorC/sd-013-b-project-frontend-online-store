@@ -23,7 +23,6 @@ class Home extends React.Component {
     this.searchText = this.searchText.bind(this);
     this.categorieSelected = this.categorieSelected.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.selectedProductToCart = this.selectedProductToCart.bind(this);
   }
 
   componentDidMount() {
@@ -59,18 +58,8 @@ class Home extends React.Component {
     });
   }
 
-  selectedProductToCart(newProduct) {
-    const { productToCart } = this.state;
-    const updatedProducts = [...productToCart, { ...newProduct, quantidade: 1 }];
-
-    this.setState({
-      productToCart: updatedProducts,
-    });
-  }
-
   render() {
     const { productsList, haveProduct, productToCart } = this.state;
-    const { selectedProductToCart } = this;
 
     return (
       <div className="main-div">
@@ -116,7 +105,6 @@ class Home extends React.Component {
                   className="card"
                   key={ product.id }
                   product={ product }
-                  selectedProductToCart={ selectedProductToCart }
                   data-testid="product-detail-link"
                 />
               ))}
