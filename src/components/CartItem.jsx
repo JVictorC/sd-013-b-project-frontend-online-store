@@ -12,29 +12,38 @@ class CartItem extends React.Component {
       available,
     };
     this.handleQuant = this.handleQuant.bind(this);
+    this.menos = this.menos.bind(this);
+    this.mais = this.mais.bind(this);
   }
 
-  handleQuant({ target }) {
+  handleQuant() {
     const { product: { price } } = this.props;
-    const { available, quantidade: quant } = this.state;
 
-    if (target.innerText === '-' && quant > 1) {
+    this.setState(({ quantidade }) => ({
+      totalPrice: price * (quantidade),
+    }));
+  }
+
+  menos() {
+    const { quantidade: quant } = this.state;
+
+    if (quant > 1) {
       this.setState(({ quantidade }) => ({
         quantidade: quantidade - 1,
       }));
-      this.setState(({ quantidade }) => ({
-        totalPrice: price * (quantidade),
-      }));
     }
+    this.handleQuant();
+  }
 
-    if (target.innerText === '+' && quant < available) {
+  mais() {
+    const { available, quantidade: quant } = this.state;
+
+    if (quant < available) {
       this.setState(({ quantidade }) => ({
         quantidade: quantidade + 1,
       }));
-      this.setState(({ quantidade }) => ({
-        totalPrice: price * (quantidade),
-      }));
     }
+    this.handleQuant();
   }
 
   render() {
@@ -44,11 +53,11 @@ class CartItem extends React.Component {
     return (
       <div className="cart-item">
         <h4 data-testid="shopping-cart-product-name">{product.title}</h4>
-        <h5>{`R$ ${totalPrice}`}</h5>
+        <h5>{`valor unitário: R$ ${product.price}`}</h5>
         <button
           style={ { width: '50px' } }
           type="button"
-          onClick={ this.handleQuant }
+          onClick={ this.menos }
           data-testid="product-decrease-quantity"
         >
           -
@@ -59,11 +68,12 @@ class CartItem extends React.Component {
         <button
           style={ { width: '50px' } }
           type="button"
-          onClick={ this.handleQuant }
+          onClick={ this.mais }
           data-testid="product-increase-quantity"
         >
           +
         </button>
+        <h5>{`Total: R$ ${totalPrice}`}</h5>
         <h5>
           {`Quantidade em estoque: ${available}`}
         </h5>
