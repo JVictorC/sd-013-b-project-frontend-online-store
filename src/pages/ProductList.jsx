@@ -15,8 +15,8 @@ class ProductList extends React.Component {
       productResults: [],
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   // FAZ A REQUISIÇÃO PRA LISTAR AS CATEGORIAS DISPONÍVEIS AO RENDERIZAR
@@ -24,17 +24,20 @@ class ProductList extends React.Component {
     this.getCategoriesApi();
   }
 
-  // CAPTURA O VALOR DO INPUT NO ESTADO
+  // CAPTURA O VALOR DO INPUT - CATEGORIA OU TERMO - NO ESTADO
   handleChange(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
+
+    if (event.target.name === 'categoryId') {
+      this.handleSearch();
+    }
   }
 
-  // ATIVADA NO ONCLICK BOTÃO DE BUSCA. ENVIA A CATEGORIA E TERMO DO ESTADO PARA API
+  // ATIVADA NO ONCLICK DO BOTÃO DE BUSCA. ENVIA A CATEGORIA E TERMO DO ESTADO PARA API
   handleSearch() {
     const { categoryId, query } = this.state;
 
     this.getSearchApi(categoryId, query);
-    console.log('AAAA');
   }
 
   // REQUISIÇÃO PRA API - LISTA DE CATEGORIAS
@@ -61,7 +64,7 @@ class ProductList extends React.Component {
     return (
       <div className="product-list-page">
         <aside className="category-list">
-          <CategoryList list={ categoryState } />
+          <CategoryList list={ categoryState } onChange={ this.handleChange } />
         </aside>
 
         <main className="main-product-list">

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   handleChange(event) {
@@ -19,6 +20,7 @@ class Search extends React.Component {
             data-testid="query-input"
             type="text"
             id="searchInput"
+            name="query"
             onChange={ onChange }
           />
         </label>
@@ -35,5 +37,10 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Search;
