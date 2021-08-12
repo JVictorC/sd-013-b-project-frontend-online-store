@@ -50,10 +50,6 @@ class MainScreen extends React.Component {
   }
 
   addToCart({ target }) {
-    // this.setState((state) => ({ shoppingCart: [...state.shoppingCart, product] }), () => {
-    //   const { shoppingCart } = this.state;
-    //   localStorage.setItem('cart', JSON.stringify(shoppingCart: [...state.shoppingCart, product]));
-    // });
     const cartItems = JSON.parse(localStorage.getItem('cart'));
     cartItems.push(target.name);
     localStorage.setItem('cart', JSON.stringify(cartItems));
