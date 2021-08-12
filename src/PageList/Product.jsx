@@ -1,4 +1,5 @@
 import React from 'react';
+import UserReview from '../Components/FormAvaliation';
 import PropTypes from 'prop-types';
 
 export default class Product extends React.Component {
@@ -32,6 +33,7 @@ export default class Product extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <UserReview />
       </div>
     );
   }
