@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartIcon from '../components/CartIcon';
 
 export default class ProductDetails extends React.Component {
   render() {
@@ -9,7 +8,6 @@ export default class ProductDetails extends React.Component {
     const { title, price, thumbnail, attributes } = product;
     return (
       <div>
-        <CartIcon />
         <h4 data-testid="product-detail-name">{title}</h4>
         <h4>{`R$ ${price}`}</h4>
         <img src={ thumbnail } alt="" />
