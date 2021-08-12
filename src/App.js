@@ -19,6 +19,20 @@ class App extends React.Component {
     this.increaseQt = this.increaseQt.bind(this);
     this.decreaseQt = this.decreaseQt.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.getCardInLocal = this.getCardInLocal.bind(this);
+  }
+
+  componentDidMount() {
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    if (cardLocal === null) {
+      localStorage.setItem('card', JSON.stringify([]));
+    }
+    this.getCardInLocal();
+  }
+
+  getCardInLocal() {
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    this.setState({ card: cardLocal });
   }
 
   getDetailsProduct(newProduct) {
@@ -30,7 +44,9 @@ class App extends React.Component {
       this.setState((prevState) => ({ card: [...prevState.card, newCard] }));
       return null;
     }
-    this.setState({ card: newCard });
+    this.setState((prevState) => ({
+      card: [...prevState.card, newCard],
+    }));
   }
 
   increaseQt({ target }) {
@@ -68,6 +84,8 @@ class App extends React.Component {
                 <Home
                   getCardItem={ this.getCardItem }
                   getDetailsProduct={ this.getDetailsProduct }
+                  QuantityItemCard={ card.length }
+                  card={ card }
                 />
               ) }
             />
@@ -94,6 +112,7 @@ class App extends React.Component {
             <ProductDetails
               productDetailsSelect={ productDetailsSelect }
               getCardItem={ this.getCardItem }
+              QuantityItemCard={ card.length }
             />
           ) }
         />
