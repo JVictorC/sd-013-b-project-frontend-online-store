@@ -12,8 +12,10 @@ class ProductCard extends React.Component {
     const { addToCart, product: { title, thumbnail, price, id } } = this.props;
     return (
       <div data-testid="product" className="card">
-        <h1>{ title }</h1>
-        <img className="image" src={ thumbnail } alt="Product Banner" />
+        <h2>{ title }</h2>
+        <div>
+          <img className="image" src={ thumbnail } alt="Product Banner" />
+        </div>
         <p>{ price }</p>
         <button
           data-testid="product-add-to-cart"
@@ -36,6 +38,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,

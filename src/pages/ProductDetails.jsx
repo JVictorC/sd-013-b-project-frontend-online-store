@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import * as api from '../services/api';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ class ProductDetails extends React.Component {
   }
 
   addCart = () => {
-    const { cart, product : { title, thumbnail, price, id } } = this.state;
+    const { cart, product: { title, thumbnail, price, id } } = this.state;
     const cartItem = {
       title,
       thumbnail,
@@ -66,14 +66,15 @@ class ProductDetails extends React.Component {
             src={ thumbnail }
             alt={ title }
           />
-          {/* {attributes.map((attribute) => (
+          {/* <h3>Descrição:</h3>
+          {attributes.map((attribute) => (
           <div key={ attribute.name }>
             <p>
               {`${attribute.name}: ${attribute.value_name}`}
             </p>
           </div>
         ))} */}
-          <p>{ price }</p>
+          <p>{ `Valor: R$${price}` }</p>
           <button
             data-testid="product-detail-add-to-cart"
             type="button"
@@ -86,14 +87,5 @@ class ProductDetails extends React.Component {
     );
   }
 }
-
-ProductDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-      search: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default ProductDetails;
