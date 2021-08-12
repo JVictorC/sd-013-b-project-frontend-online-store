@@ -25,10 +25,9 @@ class ProductDetails extends React.Component {
     const marca = title;
     const { cartTotal } = this.props;
     const condicao = condition;
-    console.log(product);
 
     return (
-      <main>
+      <main className="mainProductDetails">
         <CartButton quant={ quant } />
         <p data-testid="product-detail-name">
           {`Name: ${title}`}

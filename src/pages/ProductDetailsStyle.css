@@ -6,7 +6,7 @@
   width: 500px;
 }
 
-button {
+.mainProductDetails button {
   cursor: pointer;
   display: flex;
   justify-content: space-around;
