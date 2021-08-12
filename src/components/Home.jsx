@@ -22,6 +22,7 @@ class Home extends React.Component {
     this.searchText = this.searchText.bind(this);
     this.categorieSelected = this.categorieSelected.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.selectedProductToCart = this.selectedProductToCart.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,7 @@ class Home extends React.Component {
       this.setState({
         productsList: getListodProducts.results,
         haveProduct: true,
+        productToCart: [],
       });
     } else {
       return <NotFound />;
@@ -57,43 +59,65 @@ class Home extends React.Component {
     });
   }
 
+  selectedProductToCart(product) {
+
+    const x = [ product ]
+    this.setState({
+      productToCart: product,
+    });
+    console.log(product);
+    return product;
+  }
+
   render() {
-    const { productsList, haveProduct } = this.state;
+    const { productsList, haveProduct, productToCart } = this.state;
+    const { selectedProductToCart } = this;
+
     return (
       <div className="main-div">
         <div className="top-section">
           <Search
             clasName="search-bar"
-            searchText={ this.searchText }
-            onClick={ this.onClick }
+            searchText={this.searchText}
+            onClick={this.onClick}
           />
           <div>
-            <Link
-              className="shopping-cart-button"
-              to="/cart"
-              data-testid="shopping-cart-button"
-            >
-              <img
-                className="cart-icon"
-                src={ shoppingCart }
-                alt="cart icon"
-              />
-            </Link>
+            {productToCart ? (
+              <Link
+                className="shopping-cart-button"
+                to={ {
+                  pathname: '/cart',
+                  state: productToCart,
+                } }
+                data-testid="shopping-cart-button"
+              >
+                <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
+              </Link>
+            ) : (
+              <Link
+                className="shopping-cart-button"
+                to="/cart"
+                data-testid="shopping-cart-button"
+              >
+                <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
+              </Link>
+            )}
           </div>
         </div>
 
         <div className="main-content-list-cards">
           <div className="category-list">
-            <CategoryList categorieSelected={ this.categorieSelected } />
+            <CategoryList categorieSelected={this.categorieSelected} />
           </div>
 
-          { haveProduct ? (
+          {haveProduct ? (
             <div className="product-card">
-              { productsList.map((product) => (
+              {productsList.map((product) => (
                 <ProductCard
                   className="card"
-                  key={ product.id }
-                  product={ product }
+                  key={product.id}
+                  product={product}
+                  selectedProductToCart={selectedProductToCart}
                   data-testid="product-detail-link"
                 />
               ))}
@@ -102,10 +126,8 @@ class Home extends React.Component {
             <div className="text-main-page" data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </div>
-          ) }
-
+          )}
         </div>
-
       </div>
     );
   }
