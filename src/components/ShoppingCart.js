@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ShoppingCartIcon from './ShoppingCartIcon';
 
 class ShoppingCart extends React.Component {
   render() {
     const { location: { state } } = this.props;
-
     return (
       <div>
         <ShoppingCartIcon />
