@@ -18,12 +18,12 @@ export default class DetailedProduct extends React.Component {
         <button
           type="button"
           onClick={ () => getQuery(item) }
-          data-testid="product-add-to-cart"
+          data-testid="product-detail-add-to-cart"
         >
           Adicionar ao carrinho
         </button>
         <Link to="/">Voltar</Link>
-        <Link to="/shopping-cart">Carrinho</Link>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho</Link>
       </div>
     );
   }
