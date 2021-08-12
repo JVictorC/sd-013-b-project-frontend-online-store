@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddToCartButton from './AddToCartButton';
 
 class DetailsCard extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, onClick } = this.props;
 
     return (
       <div
@@ -23,6 +24,13 @@ class DetailsCard extends React.Component {
             </li>
           );
         }) }
+
+        <AddToCartButton
+          title={ product.title }
+          image={ product.image }
+          price={ product.price }
+          onClick={ onClick }
+        />
       </div>
     );
   }
