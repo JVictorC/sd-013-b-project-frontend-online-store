@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class RenderProducts extends Component {
@@ -13,6 +14,12 @@ class RenderProducts extends Component {
               <p>{ title }</p>
               <img src={ thumbnail } alt={ title } />
               <p>{ price }</p>
+              <Link
+                to={ `product/${encodeURI(title)}` }
+                data-testid="product-detail-link"
+              >
+                Ver Detalhes
+              </Link>
             </div>
           ))}
         </div>
