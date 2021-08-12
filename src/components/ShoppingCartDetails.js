@@ -43,6 +43,13 @@ class ShoppingCartDetails extends Component {
           <img alt="Product" src={ thumbnail } />
           <h3>Especificações técnicas:</h3>
         </div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          // onClick={ }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
