@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// import { useBeforeunload } from 'react-beforeunload';
+
 import ShoppingCart from './components/ShoppingCart';
 import Main from './components/Main';
 import ProductDetails from './components/ProductDetails';
@@ -15,6 +17,11 @@ class App extends React.Component {
     };
 
     this.getQuery = this.getQuery.bind(this);
+    this.updateFromStorage = this.updateFromStorage.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateFromStorage();
   }
 
   async getQuery(item) {
@@ -34,6 +41,19 @@ class App extends React.Component {
     }
   }
 
+  useBeforeunload() {
+    return 'sim';
+  }
+
+  updateFromStorage() {
+    if (localStorage.getItem('count')) {
+      const newQuery = localStorage.getItem('count');
+      this.setState({
+        query: JSON.parse(newQuery),
+      });
+    }
+  }
+
   render() {
     const { query, itemQuantity } = this.state;
 
@@ -47,11 +67,19 @@ class App extends React.Component {
               query={ query }
             />) }
           />
-          <Route exact path="/" render={ () => <Main getQuery={ this.getQuery } /> } />
+          <Route
+            exact
+            path="/"
+            render={ () => <Main getQuery={ this.getQuery } query={ query } /> }
+          />
           <Route
             path="/product-details/:id"
             render={
-              (props) => <ProductDetails { ...props } getQuery={ this.getQuery } />
+              (props) => (<ProductDetails
+                { ...props }
+                getQuery={ this.getQuery }
+                query={ query }
+              />)
             }
           />
         </Switch>

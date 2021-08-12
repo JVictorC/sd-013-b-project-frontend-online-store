@@ -31,7 +31,6 @@ class Main extends React.Component {
   }
 
   async categoryClick(event) {
-    // console.log(event.target.value);
     await this.setState({
       category: event.target.value,
     });
@@ -40,7 +39,7 @@ class Main extends React.Component {
 
   render() {
     const { value, searchItemList } = this.state;
-    const { getQuery } = this.props;
+    const { getQuery, query } = this.props;
     return (
       <>
         <SearchBar
@@ -48,6 +47,7 @@ class Main extends React.Component {
           onChange={ this.handleChange }
           handleClick={ this.handleClick }
           categoryClick={ this.categoryClick }
+          query={ query }
         />
         <ListItems items={ searchItemList } getQuery={ getQuery } />
       </>
@@ -57,6 +57,10 @@ class Main extends React.Component {
 
 Main.propTypes = {
   getQuery: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
 
 export default Main;

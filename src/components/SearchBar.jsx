@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import '../css/SearchBar.css';
 import CategoryList from './CategoryList';
+import CounterCart from './CounterCart';
 
 export default class SearchBar extends React.Component {
   render() {
-    const { onChange, value, handleClick, categoryClick } = this.props;
+    const { onChange, value, handleClick, categoryClick, query } = this.props;
     return (
       <div>
         <div className="input-container">
@@ -31,6 +32,8 @@ export default class SearchBar extends React.Component {
           <Link data-testid="shopping-cart-button" to="/shopping-cart">
             <ShoppingCartIcon style={ { color: '#22ba24' } } fontSize="large" />
           </Link>
+          {/* <p data-testid="shopping-cart-size">{query.length}</p> */}
+          <CounterCart query={ query } />
         </div>
         <p data-testid="home-initial-message" className="title">
           Digite algum termo de pesquisa ou escolha uma categoria.
@@ -46,4 +49,8 @@ SearchBar.propTypes = {
   value: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   categoryClick: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
