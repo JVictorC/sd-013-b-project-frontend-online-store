@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EvaluationForm from './EvaluationForm';
 import '../css/DetailedProduct.css';
+import CounterCart from './CounterCart';
 
 export default class DetailedProduct extends React.Component {
-
   render() {
     const { item, getQuery, query } = this.props;
     const { title, price, thumbnail } = item;
-    const count = localStorage.getItem('count');
     return (
       <div>
         <h2>{ title }</h2>
@@ -31,7 +30,7 @@ export default class DetailedProduct extends React.Component {
           <Link data-testid="shopping-cart-button" to="/shopping-cart">
             <ShoppingCartIcon style={ { color: '#22ba24' } } fontSize="large" />
           </Link>
-          <p data-testid="shopping-cart-size">{count}</p>
+          <CounterCart query={ query } />
         </div>
       </div>
     );
@@ -39,10 +38,22 @@ export default class DetailedProduct extends React.Component {
 }
 
 DetailedProduct.propTypes = {
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    price: PropTypes.number,
-    thumbnail: PropTypes.string,
-  }).isRequired,
+  // item: PropTypes.shape({
+  //   title: PropTypes.string,
+  //   price: PropTypes.number,
+  //   thumbnail: PropTypes.string,
+  // }).isRequired,
+  item: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.shape({
+      title: PropTypes.string,
+      price: PropTypes.number,
+      thumbnail: PropTypes.string,
+    }),
+  ]).isRequired,
   getQuery: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };

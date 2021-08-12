@@ -8,7 +8,6 @@ export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       category: '',
       searchResult: [],
     };
@@ -24,26 +23,22 @@ export default class ProductDetails extends React.Component {
     // const { nameTitle } = this.props.location.state;
     const { location: { state: { nameTitle } } } = this.props;
     const { category } = this.state;
-    this.setState({ loading: true }, async () => {
-      const result = await getProductsFromCategoryAndQuery(category, nameTitle);
-      this.setState({
-        loading: false,
-        searchResult: result.results[0],
-      });
+    const result = await getProductsFromCategoryAndQuery(category, nameTitle);
+    this.setState({
+      searchResult: result.results[0],
     });
   }
 
   render() {
-    const { searchResult, loading } = this.state;
+    const { searchResult } = this.state;
     const { getQuery, query } = this.props;
-    const displayLoading = <span>Loading...</span>;
     return (
       <div data-testid="product-detail-name">
-        {loading ? displayLoading : <DetailedProduct
+        <DetailedProduct
           item={ searchResult }
           getQuery={ getQuery }
           query={ query }
-        />}
+        />
       </div>
     );
   }
@@ -56,4 +51,8 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   getQuery: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };

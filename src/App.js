@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// import { useBeforeunload } from 'react-beforeunload';
+
 import ShoppingCart from './components/ShoppingCart';
 import Main from './components/Main';
 import ProductDetails from './components/ProductDetails';
@@ -14,12 +16,12 @@ class App extends React.Component {
     };
 
     this.getQuery = this.getQuery.bind(this);
-    // this.getCartNumber = this.getCartNumber.bind(this);
+    this.updateFromStorage = this.updateFromStorage.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   this.getCartNumber();
-  // }
+  componentDidMount() {
+    this.updateFromStorage();
+  }
 
   getQuery(item) {
     this.setState((previous) => ({
@@ -27,21 +29,21 @@ class App extends React.Component {
     }));
   }
 
-  // getCartNumber() {
-  //   const { query } = this.state;
-  //   this.setState({
-  //     cartNumber: query.length,
-  //   });
-  //   // if (query === '') {
-  //   //   this.setState({
-  //   //     cartNumber: 0,
-  //   //   });
-  //   // }
-  // }
+  useBeforeunload() {
+    return 'sim';
+  }
+
+  updateFromStorage() {
+    if (localStorage.getItem('count')) {
+      const newQuery = localStorage.getItem('count');
+      this.setState({
+        query: JSON.parse(newQuery),
+      });
+    }
+  }
 
   render() {
     const { query } = this.state;
-    localStorage.setItem('count', query.length);
 
     return (
       <BrowserRouter>
@@ -50,11 +52,19 @@ class App extends React.Component {
             path="/shopping-cart"
             render={ () => <ShoppingCart query={ query } /> }
           />
-          <Route exact path="/" render={ () => <Main getQuery={ this.getQuery } query={ query } /> } />
+          <Route
+            exact
+            path="/"
+            render={ () => <Main getQuery={ this.getQuery } query={ query } /> }
+          />
           <Route
             path="/product-details/:id"
             render={
-              (props) => <ProductDetails { ...props } getQuery={ this.getQuery } query={ query } />
+              (props) => (<ProductDetails
+                { ...props }
+                getQuery={ this.getQuery }
+                query={ query }
+              />)
             }
           />
         </Switch>

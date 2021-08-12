@@ -17,10 +17,6 @@ class Main extends React.Component {
     this.categoryClick = this.categoryClick.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   this.getCartNumber();
-  // }
-
   handleChange({ target }) {
     const { value } = target;
     this.setState({
@@ -34,15 +30,7 @@ class Main extends React.Component {
     this.setState({ searchItemList: response.results });
   }
 
-  // getCartNumber() {
-  //   const { query } = this.props;
-  //   this.setState({
-  //     queryNumber: query.length,
-  //   });
-  // }
-
   async categoryClick(event) {
-    // console.log(event.target.value);
     await this.setState({
       category: event.target.value,
     });
@@ -69,6 +57,10 @@ class Main extends React.Component {
 
 Main.propTypes = {
   getQuery: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
 
 export default Main;
