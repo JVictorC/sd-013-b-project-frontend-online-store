@@ -23,6 +23,7 @@ class ShoppingCart extends React.Component {
           <button
             data-testid="product-increase-quantity"
             type="button"
+            disabled={ product.quantity >= product.availableQuantity }
             onClick={ () => onAddClick(product.id) }
           >
             +
