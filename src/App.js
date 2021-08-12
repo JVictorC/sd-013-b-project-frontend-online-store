@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ProductList from './pages/ProductList';
 import './App.css';
+import ProductList from './pages/ProductList';
 import ShoppingCart from './pages/ShoppingCart';
+import ProductSelected from './pages/ProductSelected';
 
 class App extends React.Component {
   constructor() {
@@ -31,6 +32,7 @@ class App extends React.Component {
           <Route exact path="/cart">
             <ShoppingCart cart={ cart } />
           </Route>
+          <Route exact path="/product/:id" component={ ProductSelected } />
         </Switch>
       </BrowserRouter>
     );
