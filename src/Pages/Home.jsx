@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from '../Components/SearchBar';
-import CartButton from '../Components/CartButton';
+import ButtonCart from '../Components/ButtonCart';
 import SideBar from '../Components/SideBar';
-import SearchButton from '../Components/SearchButton';
+import ButtonSearch from '../Components/ButtonSearch';
 import CardList from '../Components/CardList';
 import * as api from '../services/api';
 
@@ -43,6 +44,11 @@ export default class Home extends Component {
     });
   }
 
+  handleCart = (callback) => {
+    const { handleCartItems } = this.props;
+    handleCartItems(callback);
+  }
+
   fetchProductsFromCategoryAndQuery = async (categoryId) => {
     const response = await api
       .getProductsFromCategoryAndQuery(categoryId, '');
@@ -54,15 +60,19 @@ export default class Home extends Component {
     return (
       <div>
         <SearchBar onInputChange={ this.handleChange } />
-        <SearchButton
+        <ButtonSearch
           searchValueHome={ searchValueHome }
           onButtonClick={ this.handleClick }
           categoryId={ categoryId }
         />
-        <CartButton />
+        <ButtonCart />
         <SideBar handleCategoriesId={ this.handleCategoriesId } />
-        <CardList productsList={ productsArray } />
+        <CardList productsList={ productsArray } handleCart={ this.handleCart } />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  handleCartItems: PropTypes.func.isRequired,
+};

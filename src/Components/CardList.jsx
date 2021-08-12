@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import { Link } from 'react-router-dom';
+import ButtonCart from './ButtonCart';
+
+// import Card from './Card';
 
 export default class CardList extends Component {
+  // handleClick = (item) =>{
+  // const { handleCart } = this.props;
+  // handleCart(item);
+  // }
+
   render() {
-    const { productsList } = this.props;
-    const mapCart = productsList.map((product) => (<Card
-      key={ product.id }
-      id={ product.id }
-      object={ product }
-      title={ product.title }
-      thumbnail={ product.thumbnail }
-      price={ product.price }
-    />));
+    const { productsList, handleCart } = this.props;
+    const mapCart = productsList.map((product) => (
+      <div key={ product.id } data-testid="product" className="product-card">
+        <p>{ product.title }</p>
+        <img src={ product.thumbnail } alt="product" />
+        <p>
+          R$
+          { product.price }
+        </p>
+        <Link
+          to={ { pathname: `/details/${product.id}`, state: { product } } }
+          data-testid="product-detail-link"
+        >
+          Ver detalhes
+        </Link>
+        <ButtonCart handleCartItems={ () => handleCart(product) } />
+      </div>
+    ));
     return (
       <div className="cardlist">
         { mapCart }
@@ -23,4 +40,5 @@ export default class CardList extends Component {
 
 CardList.propTypes = {
   productsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleCart: PropTypes.func.isRequired,
 };
