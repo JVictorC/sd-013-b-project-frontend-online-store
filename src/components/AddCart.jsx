@@ -81,14 +81,9 @@ export default class AddCart extends React.Component {
   }
 }
 
-// AddCart.defaultProps = {
-//   query: PropTypes.shape({
-//     id: '',
-//     title: '',
-//     thumbnail: '',
-//     price: 0,
-//   }),
-// };
+AddCart.defaultProps = {
+  totalItem: {},
+};
 
 // AddCart.propTypes = {
 //   query: PropTypes.shape({
@@ -106,5 +101,5 @@ AddCart.propTypes = {
   ]).isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
-  totalItem: PropTypes.shape(PropTypes.object).isRequired,
+  totalItem: PropTypes.shape(PropTypes.object),
 };
