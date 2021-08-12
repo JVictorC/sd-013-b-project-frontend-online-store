@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ProductList from './PageList/ProductList';
 import Product from './PageList/Product';
+import Cart from './PageList/Cart';
 import Checkout from './Components/Checkout';
 
 class App extends React.Component {
@@ -74,9 +75,8 @@ class App extends React.Component {
                   />)
               }
             />
+            <Route path="/checkout" component={ Checkout } />
             <Route
-              path="/checkout"
-              component={ Checkout }
               exact
               path="/cart"
               render={
