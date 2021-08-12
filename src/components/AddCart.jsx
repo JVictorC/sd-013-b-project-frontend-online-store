@@ -93,7 +93,7 @@ export default class AddCart extends React.Component {
 // };
 
 AddCart.defaultProps = {
- totalItem: {},
+  totalItem: {},
 };
 
 AddCart.propTypes = {
