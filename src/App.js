@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import CheckoutProducts from './pages/CheckoutProducts';
+import CartIcon from './components/CartIcon';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,10 +14,12 @@ class App extends React.Component {
     this.addProduct = this.addProduct.bind(this);
     this.addRate = this.addRate.bind(this);
     this.state = {
-      cart: [],
       ratings: {},
+      cart: this.readCart() ? this.readCart() : [],
     };
   }
+
+  readCart = () => JSON.parse(localStorage.getItem('cart'));
 
   addToCart = (product) => {
     const {
@@ -81,8 +85,18 @@ class App extends React.Component {
     const { cart, ratings } = this.state;
     return (
       <BrowserRouter>
+        <CartIcon cart={ cart } />
         <Switch>
           <Route exact path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
+          <Route
+            exact
+            path="/shopping-cart/checkout-products"
+            render={ (props) => (
+              <CheckoutProducts
+                { ...props }
+                cart={ cart }
+              />) }
+          />
           <Route
             exact
             path="/shopping-cart"
