@@ -5,12 +5,32 @@ import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      cart: [],
+    };
+    this.addHandler = this.addHandler.bind(this);
+  }
+
+  addHandler(product) {
+    const { cart } = this.state;
+    this.setState({
+      cart: [...cart, product],
+    });
+  }
+
   render() {
+    const { cart } = this.state;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ ProductList } />
-          <Route exact path="/cart" component={ ShoppingCart } />
+          <Route exact path="/">
+            <ProductList onAdd={ this.addHandler } />
+          </Route>
+          <Route exact path="/cart">
+            <ShoppingCart cart={ cart } />
+          </Route>
         </Switch>
       </BrowserRouter>
     );

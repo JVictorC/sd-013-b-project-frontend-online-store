@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CategoriesList from '../components/CategoriesList';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
@@ -15,6 +16,7 @@ class ProductList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.addHandler = this.addHandler.bind(this);
   }
 
   handleClick() {
@@ -40,9 +42,9 @@ class ProductList extends React.Component {
     }
   }
 
-  handleFilter(id) {
+  handleFilter(id, name) {
     const { text } = this.state;
-    getProductsFromCategoryAndQuery(id, text).then((response) => {
+    getProductsFromCategoryAndQuery(id, text || name).then((response) => {
       this.setState({
         results: response.results,
         didSearch: true,
@@ -50,6 +52,11 @@ class ProductList extends React.Component {
       console.log(id, text);
       console.log(response);
     });
+  }
+
+  addHandler(product) {
+    const { onAdd } = this.props;
+    onAdd(product);
   }
 
   render() {
@@ -93,7 +100,7 @@ class ProductList extends React.Component {
                   data-testid="product"
                   key={ result.id }
                 >
-                  <ProductCard product={ result } />
+                  <ProductCard product={ result } onAdd={ this.addHandler } />
                 </li>
               ))
             ) }
@@ -103,5 +110,9 @@ class ProductList extends React.Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+};
 
 export default ProductList;
