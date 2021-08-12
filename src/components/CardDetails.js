@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import FormComment from './FormComment';
+import Comment from './Comment';
 
 export default class CardDetails extends Component {
   render() {
     const { location } = this.props;
-    const { title, thumbnail, price } = location.item;
+    const { title, thumbnail, price, shipping } = location.item;
     return (
       <section className="card-detail">
         <div>
@@ -20,7 +22,11 @@ export default class CardDetails extends Component {
           <p className="product-detail-price">
             { price }
           </p>
+          { (shipping.free_shipping === true)
+            ? <p data-testid="free-shipping">Frete Grátis</p> : '' }
         </div>
+        <FormComment location={ location.item } />
+        <Comment location={ location.item } />
         <Link
           to="/cart"
           data-testid="shopping-cart-button"
