@@ -25,7 +25,10 @@ class ProductDetails extends React.Component {
           <Link to="/">Voltar</Link>
           <Link
             className="shopping-cart-button"
-            to="/cart"
+            to={ {
+              pathname: '/cart',
+              state: location.state,
+            } }
             data-testid="shopping-cart-button"
           >
             <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
@@ -49,6 +52,13 @@ class ProductDetails extends React.Component {
             </div>
           </div>
         </div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.onClick }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
@@ -67,6 +77,13 @@ ProductDetails.propTypes = {
       name: PropTypes.string,
     }),
   }).isRequired,
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.string,
+    thumbnail: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
