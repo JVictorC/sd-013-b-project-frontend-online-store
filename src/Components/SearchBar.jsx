@@ -7,7 +7,7 @@ export default class SearchBar extends Component {
   render() {
     const { searchbar, products, state, handleClick, handleChange } = this.props;
     return (
-      <div>
+      <div className="search-bar">
         <label
           htmlFor="home-initial-message"
           data-testid="home-initial-message"
@@ -19,6 +19,7 @@ export default class SearchBar extends Component {
             name="searchbar"
             value={ searchbar }
             onChange={ handleChange }
+            className="search-input"
           />
           Digite algum termo de pesquisa ou escolha uma categoria.
           <br />

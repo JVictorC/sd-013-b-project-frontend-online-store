@@ -50,17 +50,17 @@ export default class ProductsLibrary extends Component {
     const { searchbar, products, state, category } = this.state;
     return (
       <div>
-        <CategoriesList
-          category={ category }
-          products={ products }
-          handleClick={ this.handleClick }
-        />
         <SearchBar
           handleChange={ this.handleChange }
           handleClick={ this.handleClick }
           searchbar={ searchbar }
           products={ products }
           state={ state }
+        />
+        <CategoriesList
+          category={ category }
+          products={ products }
+          handleClick={ this.handleClick }
         />
       </div>
     );
