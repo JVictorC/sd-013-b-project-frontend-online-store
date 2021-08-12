@@ -5,7 +5,8 @@ import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 
 class ProductDetails extends React.Component {
   onClick = () => {
-    const { product } = this.props;
+    const { location } = this.props;
+    const { state: product } = location;
 
     if (localStorage.key('cart')) {
       const parse = JSON.parse(localStorage.getItem('cart'));
