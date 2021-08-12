@@ -25,6 +25,7 @@ export default class CardDetails extends Component {
           handleCartItems={ handleCartItems }
         />
         <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
+        <ButtonCart product={ product } handleCartItems={ handleCartItems } />
       </div>
     );
   }
