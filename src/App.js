@@ -51,14 +51,14 @@ class App extends React.Component {
 
   increaseQt({ target }) {
     const { card } = this.state;
-    const item = card.find((res) => res.id === target.id);
+    const item = card.find((res) => res.id === target.parentElement.id);
     item.quantity += 1;
     this.setState([...card]);
   }
 
   decreaseQt({ target }) {
     const { card } = this.state;
-    const item = card.find((res) => res.id === target.id);
+    const item = card.find((res) => res.id === target.parentElement.id);
     if (item.quantity > 1) {
       item.quantity -= 1;
     }

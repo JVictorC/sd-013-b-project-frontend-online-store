@@ -31,6 +31,7 @@ class Cart extends React.Component {
 
   render() {
     const { card, increase, decrease } = this.props;
+    console.log(card);
     return (
       <div className="cart">
         <Link
