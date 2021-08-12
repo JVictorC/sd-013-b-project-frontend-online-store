@@ -18,7 +18,7 @@ class Cart extends React.Component {
     const { location } = this.props;
     const { state } = location;
 
-    if (state.length > 0) {
+    if (state && state.length > 0) {
       return (
         <div className="product-in-cart">
           {state.map((product) => this.mapProduct(product))}
