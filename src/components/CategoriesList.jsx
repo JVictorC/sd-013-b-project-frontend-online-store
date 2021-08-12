@@ -20,8 +20,9 @@ class CategoriesList extends React.Component {
   }
 
   getCategoryHandler(event) {
+    const name = event.target.parentNode.id;
     const { onFilter } = this.props;
-    onFilter(event.target.id);
+    onFilter(event.target.id, name);
   }
 
   render() {
@@ -32,7 +33,7 @@ class CategoriesList extends React.Component {
           {categories.length !== 0 
           && categories.map((category) => (
               <li
-                id={ category.id }
+                id={ category.name }
                 key={ category.id }
               >
                 <label htmlFor={ category.id }>{ category.name }
