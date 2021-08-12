@@ -15,23 +15,28 @@ export default class ShoppingCart extends React.Component {
 
   updateCart = () => {
     const items = localStorage.getItem('cart');
-    const parsing = JSON.parse(items);
-    this.setState({
-      local: [...parsing] });
+    if (items) {
+      const parsing = JSON.parse(items);
+      this.setState({
+        local: [...parsing] });
+    }
   }
 
   render() {
     const { local } = this.state;
-    return (
-      <div>
-        {local.map((item) => (
-          <ShoppingCartCard
-            key={ item.id }
-            title={ item.title }
-            quantity={ item.quantity }
-          />
-        ))}
-      </div>
-    );
+    if (local.length > 0) {
+      return (
+        <div>
+          {local.map((item) => (
+            <ShoppingCartCard
+              key={ item.id }
+              title={ item.title }
+              quantity={ item.quantity }
+            />
+          ))}
+        </div>
+      );
+    }
+    return <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>;
   }
 }
