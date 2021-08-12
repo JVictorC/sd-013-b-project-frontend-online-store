@@ -12,6 +12,11 @@ img {
   max-width: 8em;
 }
 
+.details-img {
+  margin: 2em 0;
+  width: 100%;
+}
+
 html, body {
   display: flex;
   flex-flow: row wrap;
@@ -23,6 +28,7 @@ html, body {
 .all-content {
   margin: 1em;
 }
+
 
 h1 {
   text-align: center;
@@ -46,12 +52,15 @@ h1 {
   width: 100%;
 }
 
+.cart-btn {
+  margin-top: 1em;
+}
+
 .product {
   align-content: space-around;
   align-items: center;
   border: 1px solid black;
   border-radius: 10px;
-  cursor: pointer;
   display: flex;
   flex-flow: column wrap;
   margin: 1em;
@@ -61,10 +70,29 @@ h1 {
 }
 
 .product:hover {
-  scale: ;
   transition: 0.2s;
 }
 
+.product-details {
+  align-content: center;
+  align-items: left;
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  padding: 2em;
+  border-radius: 10px;
+}
+
+.product-details-unit {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  width: 10em;
+}
 
 @media ( prefers-reduced-motion : no-preference ) {
 
