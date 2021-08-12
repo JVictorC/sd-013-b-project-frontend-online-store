@@ -63,8 +63,8 @@ class Home extends Component {
         <header>
           <BarSearch getProducts={ this.getProducts } />
           <Link data-testid="shopping-cart-button" to="cart/">
-            Cart
             <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
+            🛒
           </Link>
         </header>
         <main>
