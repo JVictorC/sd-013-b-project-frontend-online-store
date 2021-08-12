@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   onClick = () => {
-    const { product } = this.props;
+    const { product, countProductsCart } = this.props;
 
     if (localStorage.key('cart')) {
       const parse = JSON.parse(localStorage.getItem('cart'));
@@ -14,6 +14,7 @@ class ProductCard extends React.Component {
     } else {
       localStorage.setItem('cart', JSON.stringify([{ ...product, quantidade: 1 }]));
     }
+    countProductsCart();
   }
 
   render() {
@@ -61,6 +62,7 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }),
   }).isRequired,
+  countProductsCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
