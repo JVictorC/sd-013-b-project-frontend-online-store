@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export default class Search extends React.Component {
   render() {
     const { product, addToCart } = this.props;
+    const quantity = 1;
     return (
       product.map(({ id, title, thumbnail, price }) => (
         <div data-testid="product" key={ id }>
@@ -22,7 +23,7 @@ export default class Search extends React.Component {
             type="button"
             data-testid="product-add-to-cart"
             id={ id }
-            onClick={ addToCart }
+            onClick={ () => (addToCart({ id, title, thumbnail, price, quantity })) }
           >
             Adicionar ao carrinho
           </button>
