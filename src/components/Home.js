@@ -53,7 +53,7 @@ class Home extends React.Component {
 
   addToCart(product) {
     const { id, title, thumbnail, price } = product;
-    const newItem = { id, title, thumbnail, price };
+    const newItem = { id, title, thumbnail, price, quantity: 1 };
     this.setState((previousState) => ({
       cartItems: [...previousState.cartItems, newItem],
     }));
