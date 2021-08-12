@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import FormComment from './FormComment';
+import Comment from './Comment';
 
 export default class CardDetails extends Component {
   render() {
@@ -21,6 +23,8 @@ export default class CardDetails extends Component {
             { price }
           </p>
         </div>
+        <FormComment location={ location.item } />
+        <Comment location={ location.item } />
         <Link
           to="/cart"
           data-testid="shopping-cart-button"
