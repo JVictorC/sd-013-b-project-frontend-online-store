@@ -30,19 +30,22 @@ class ShoppingCart extends Component {
         )
       );
     }
-    const productList = productsCart.reduce((countProduts, prod) => {
-      const list = countProduts;
-      if (prod.id in countProduts) {
+    // logica para agrupar itens pela quantidade.
+    const productsList = [];
+    const control = {};
+    productsCart.forEach((prod) => {
+      if (control[prod.id]) {
         prod.quantity += 1;
       } else {
         prod.quantity = 1;
+        control[prod.id] = prod;
+        productsList.push(prod);
       }
-      list.push(prod);
-      return list;
-    }, []);
+    });
+    // exibe a lista modificada com quantidade.
     return (
       <div>
-        {productList.map((prod) => (
+        {productsList.map((prod) => (
           <div key={ prod.id }>
             <span data-testid="shopping-cart-product-name">{ prod.title }</span>
             <span data-testid="shopping-cart-product-quantity">{ prod.quantity }</span>
