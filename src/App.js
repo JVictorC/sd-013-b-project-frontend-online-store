@@ -104,7 +104,6 @@ class App extends React.Component {
               <ProductDetails
                 productDetailsSelect={ productDetailsSelect }
                 getCardItem={ this.getCardItem }
-
                 QuantityItemCard={ card.length }
               />
             ) }

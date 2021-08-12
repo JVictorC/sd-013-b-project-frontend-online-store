@@ -27,7 +27,13 @@ export default class ProductList extends Component {
               <p className="lead">{product.title}</p>
               <img src={ product.thumbnail } alt={ product.title } />
               {product.shipping.free_shipping
-                ? <div data-testid="free-shipping" className="lead">📦 Frete Grátis</div>
+                ? (
+                  <div data-testid="free-shipping">
+                    <span role="img" aria-label="shipping">
+                      📦 Frete Grátis
+                    </span>
+                  </div>
+                )
                 : false}
               <Link
                 data-testid="product-detail-link"

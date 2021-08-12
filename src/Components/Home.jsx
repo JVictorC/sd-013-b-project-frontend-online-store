@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -83,5 +82,5 @@ Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
   getDetailsProduct: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
-  card: PropTypes.arrayOf(PropTypes.string).isRequired,
+  card: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

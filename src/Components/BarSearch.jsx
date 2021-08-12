@@ -53,7 +53,6 @@ class BarSearch extends Component {
             className="btn btn-success m-2 btn-lg"
           >
             <BsSearch />
-
           </button>
         </form>
         <Link
