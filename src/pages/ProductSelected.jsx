@@ -10,12 +10,13 @@ class ProductSelected extends React.Component {
       <div>
         <ShoppingCartButton />
         <h3 data-testid="product-detail-name">{ title }</h3>
-        <p>{`R$ ${price}`}</p>
         <img alt="imagem do produto" src={ thumbnail } />
+        <p>{`R$ ${price}`}</p>
       </div>
     );
   }
 }
+
 ProductSelected.propTypes = {
   location: PropTypes.objectOf(
     PropTypes.shape({
@@ -25,4 +26,5 @@ ProductSelected.propTypes = {
     }),
   ).isRequired,
 };
+
 export default ProductSelected;
