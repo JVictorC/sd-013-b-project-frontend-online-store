@@ -9,21 +9,35 @@
   margin: 15px;
   padding: 25px;
   text-align: center;
+
+}
+
+
+.category-container {
+  width: 20%;
 }
 
 .categorys {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-flow: column;
-  justify-content: space-evenly;
+}
+
+.categorys input {
   margin: 15px;
-  padding: 15px;
 }
 
 .Product-Show {
   display: flex;
+  justify-content: space-around;
 }
 
 /* CSS inspirado em Grids https://www.w3schools.com/css/css_grid.asp */
+.product-container {
+  width: 75%;
+}
+
+
 .product-list {
   display: grid;
   gap: 30px;

@@ -21,7 +21,7 @@ export default class ProductList extends Component {
   render() {
     const { products, getDetailsProduct } = this.props;
     return (
-      <div>
+      <div className="product-container">
         <ul className="product-list">
           {products.map((product) => (
             <li data-testid="product" key={ product.id } className="product">

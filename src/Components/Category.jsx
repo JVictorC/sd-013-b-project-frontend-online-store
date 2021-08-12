@@ -25,7 +25,7 @@ class Category extends Component {
     const { categories } = this.state;
     const { handleClick } = this.props;
     return (
-      <div>
+      <div className="category-container">
         <form className="categorys">
           {categories.map(({ id, name }) => (
             <ComponentRadio
