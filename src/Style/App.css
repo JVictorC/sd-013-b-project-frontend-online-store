@@ -70,6 +70,7 @@
 
 .product-list img {
   margin: 15px auto;
+  max-height: 50%;
   width: 50%;
 }
 
