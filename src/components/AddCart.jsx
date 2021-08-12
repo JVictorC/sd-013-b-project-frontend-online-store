@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+
 export default class AddCart extends React.Component {
   constructor(props) {
     super(props);
@@ -25,19 +28,36 @@ export default class AddCart extends React.Component {
 
   displayItem() {
     const { item } = this.state;
-
+    const { totalItem, onClickAdd, onClickRemove } = this.props;
     return (
       <div>
-        {item.map((element) => (
-          <div key={ element.id } data-testid="product">
-            <h3 data-testid="shopping-cart-product-name">{ element.title }</h3>
-            <img src={ element.thumbnail } alt="Produto" />
-            <p>{ `R$: ${element.price}` }</p>
+        {item.map(({ id, title, thumbnail, price, available_quantity: qtty }) => (
+          <div key={ id } data-testid="product">
+            <h3 data-testid="shopping-cart-product-name">{ title }</h3>
+            <img src={ thumbnail } alt="Produto" />
+            <p>{ `R$: ${price}` }</p>
             <p
               data-testid="shopping-cart-product-quantity"
             >
-              1
+              {totalItem[id]}
             </p>
+            <p>{`Quantidade em estoque: ${qtty}`}</p>
+            <button
+              data-testid="product-increase-quantity"
+              type="button"
+              onClick={ () => onClickAdd(id) }
+              name={ id }
+            >
+              <AddCircleOutlineIcon />
+            </button>
+            <button
+              data-testid="product-decrease-quantity"
+              type="button"
+              onClick={ () => onClickRemove(id) }
+              name={ id }
+            >
+              <RemoveCircleOutlineIcon />
+            </button>
           </div>
         ))}
       </div>
@@ -84,4 +104,7 @@ AddCart.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  onClickAdd: PropTypes.func.isRequired,
+  onClickRemove: PropTypes.func.isRequired,
+  totalItem: PropTypes.shape(PropTypes.object).isRequired,
 };
