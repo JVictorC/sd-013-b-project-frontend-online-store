@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
+  constructor() {
+    super();
+    this.changeQuantityHandler = this.changeQuantityHandler.bind(this);
+  }
+
+  changeQuantityHandler(e) {
+    const { onChangeQuantity } = this.props;
+    onChangeQuantity(e);
+  }
+
   render() {
     const { cart } = this.props;
     const finalCart = [];
-    console.log(cart);
     cart.forEach((product, index) => {
-      let count = 1;
+      let count = product.none ? 0 : 1;
       cart.forEach((product2, index2) => {
         if (product.id === product2.id && index !== index2) {
           count += 1;
@@ -22,7 +31,7 @@ class ShoppingCart extends React.Component {
         });
       }
     });
-    console.log(finalCart);
+
     return (
       <div className="shopping-cart-container">
         <header>
@@ -60,6 +69,7 @@ ShoppingCart.propTypes = {
       title: PropTypes.string,
     }),
   ).isRequired,
+  onChangeQuantity: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;
