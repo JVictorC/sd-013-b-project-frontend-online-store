@@ -7,44 +7,61 @@ export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartList: props.items,
+      loading: false,
+      cartList: props.query,
       amountPrice: 0,
-      totalItems: 0,
+      totalItems: 1,
+      quantity: '',
+      available: 0,
     };
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.productsAvailable = this.productsAvailable.bind(this);
   }
 
-  handleAddClick() {
-    const { totalItems, props: { items: { quantity } } } = this.state;
-    this.setState(() => ({ totalItems: totalItems + 1 }));
-    if (totalItems === quantity) {
-      this.setState({
-        totalItems: quantity,
-      });
-    }
+  componentDidMount() {
+    this.sumcartPrices();
+    this.productsAvailable();
+    this.getTotalItem();
   }
 
-  handleRemoveClick() {
-    const { totalItems } = this.state;
-    this.setState(() => ({ totalItems: totalItems - 1 }));
-    if (totalItems === 0) {
-      this.setState({
-        totalItems: 0,
-      });
-    }
+  getTotalItem() {
+    const { query } = this.props;
+    query.map(({ id }) => (
+      this.setState(({ quantity }) => ({
+        quantity: { ...quantity, [id]: 1 },
+      }))
+    ));
+  }
+
+  productsAvailable() {
+    const { cartList } = this.state;
+    const quantity = cartList.map((item) => item.available_quantity);
+    this.setState({
+      available: quantity,
+    });
+  }
+
+  async sumcartPrices() {
+    const { cartList } = this.state;
+    const cartPrice = cartList.reduce((acc, { price }) => acc + price, 0);
+    this.setState(({ amountPrice }) => (
+      { amountPrice: amountPrice + parseFloat(cartPrice) }
+    ));
   }
 
   render() {
     const { query } = this.props;
+    const { quantity, loading, available, amountPrice } = this.state;
     const cEpt = <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     return (
       <div>
-        {query.length <= 0 ? cEpt : <AddCart
+        {loading ? cEpt : <AddCart
           query={ query }
           onClickAdd={ this.handleAddClick }
           onClickRemove={ this.handleRemoveClick }
+          totalItem={ quantity }
+          available={ available }
         />}
+        <span>{`Preço a pagar: ${amountPrice}`}</span>
         <button type="submit">Finalizar compra</button>
         <Link to="/">Voltar a tela inicial</Link>
       </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import SetTotalItems from './SetTotalItems';
 
 export default class AddCart extends React.Component {
   constructor(props) {
@@ -10,14 +11,37 @@ export default class AddCart extends React.Component {
 
     this.state = {
       item: [],
+      count: 0,
     };
 
     this.displayItem = this.displayItem.bind(this);
     this.setItem = this.setItem.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
     this.setItem();
+  }
+
+  handleAddClick(id) {
+    const { totalItem } = this.props;
+    this.setState(({ count }) => ({
+      count: count + totalItem[id],
+    }));
+  }
+
+  handleRemoveClick(id) {
+    const { count } = this.state;
+    const { totalItem } = this.props;
+    this.setState(() => ({
+      count: count - totalItem[id],
+    }));
+    if (count === 0) {
+      this.setState({
+        count: 0,
+      });
+    }
   }
 
   setItem() {
@@ -27,24 +51,32 @@ export default class AddCart extends React.Component {
 
   displayItem() {
     const { item } = this.state;
-    const { onClickAdd, onClickRemove } = this.props;
-
+    const { totalItem } = this.props;
     return (
       <div>
-        {item.map((element) => (
-          <div key={ element.id } data-testid="product">
-            <h3 data-testid="shopping-cart-product-name">{ element.title }</h3>
-            <img src={ element.thumbnail } alt="Produto" />
-            <p>{ `R$: ${element.price}` }</p>
+        {item.map(({ id, title, thumbnail, price, available_quantity: qtty }, index) => (
+          <div key={ id } data-testid="product">
+            <h3 data-testid="shopping-cart-product-name">{ title }</h3>
+            <img src={ thumbnail } alt="Produto" />
+            <p>{ `R$: ${price}` }</p>
             <p
               data-testid="shopping-cart-product-quantity"
             >
-              1
+              {totalItem[id]}
             </p>
-            <button type="button" onClick={ onClickAdd }>
+            <p>{`Quantidade em estoque: ${qtty}`}</p>
+            <button
+              data-testid="product-increase-quantity"
+              type="button"
+              onClick={ this.handleAddClick(id) }
+            >
               <AddCircleOutlineIcon />
             </button>
-            <button type="button" onClick={ onClickRemove }>
+            <button
+              data-testid="product-decrease-quantity"
+              type="button"
+              onClick={ this.handleRemoveClick(id) }
+            >
               <RemoveCircleOutlineIcon />
             </button>
           </div>
@@ -76,6 +108,4 @@ AddCart.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
   }),
-  onClickAdd: PropTypes.func.isRequired,
-  onClickRemove: PropTypes.func.isRequired,
 };
