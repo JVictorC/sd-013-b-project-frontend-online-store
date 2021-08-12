@@ -23,9 +23,21 @@ class App extends React.Component {
     }));
   }
 
-  // updateQuantity = () => {
+  updateQuantity = (product) => {
+    const productPlusQuantity = product;
+    productPlusQuantity.quantity += 1;
+    this.setState((previousState) => ({
+      products: [...previousState.products],
+    }));
+  }
 
-  // }
+  downDateQuantity = (product) => {
+    const productPlusQuantity = product;
+    productPlusQuantity.quantity -= 1;
+    this.setState((previousState) => ({
+      products: [...previousState.products],
+    }));
+  }
 
   setSearch = (search) => {
     this.setState({
@@ -69,6 +81,8 @@ class App extends React.Component {
                 <Cart
                   { ...props }
                   products={ products }
+                  updateQuantity={ this.updateQuantity }
+                  downDateQuantity={ this.downDateQuantity }
                 />) }
             />
             <Route
