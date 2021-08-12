@@ -9,7 +9,6 @@ export default class EvaluationsForm extends React.Component {
       email: '',
       message: '',
       rating: 0,
-      submitted: false,
     }
 
     this.handleEmail = this.handleEmail.bind(this);
@@ -38,22 +37,13 @@ export default class EvaluationsForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { email, message, rating } = this.state;
-
-    localStorage.setItem('email', email);
-    localStorage.setItem('message', message);
-    localStorage.setItem('rating', rating);
 
     const currentState = JSON.stringify(this.state);
     localStorage.setItem('currentState', currentState);
-
-    this.setState({
-      submitted: true,
-    });
   }
 
   render() {
-    const { email, message, rating, submitted } = this.state;
+    const { email, message, rating } = this.state;
 
     return(
       <form onSubmit={ this.handleSubmit }>
@@ -98,10 +88,44 @@ export default class EvaluationsForm extends React.Component {
               2
           </label>
 
+          <label>
+            <input
+              type="radio"
+              name="rating"
+              value="3"
+              checked={ rating === 3 }
+              onChange={ this.handleRating }
+            />
+              3
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="rating"
+              value="4"
+              checked={ rating === 4 }
+              onChange={ this.handleRating }
+            />
+              4
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="rating"
+              value="5"
+              checked={ rating === 5 }
+              onChange={ this.handleRating }
+            />
+              5
+          </label>
         </div>
 
         <button type="submit">Avaliar</button>
-        { submitted && <Evaluations currentState={ this.state } /> }
+
+        <hr />
+        <Evaluations currentState={ this.state } />
       </form>
     )
   }
