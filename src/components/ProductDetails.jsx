@@ -46,7 +46,6 @@ export default class ProductDetails extends Component {
   render() {
     const { product } = this.state;
     const { title, thumbnail, price } = product;
-    console.log(product);
     return (
       <div>
         <p data-testid="product-detail-name">{title}</p>
@@ -68,7 +67,6 @@ ProductDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

@@ -34,7 +34,6 @@ export default class Categories extends React.Component {
               onClick={ onClick }
             />
             {name}
-            {' '}
             <br />
           </label>
         ))}
