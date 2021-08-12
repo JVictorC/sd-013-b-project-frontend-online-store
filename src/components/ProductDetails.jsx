@@ -18,7 +18,10 @@ class ProductDetails extends React.Component {
           <Link to="/">Voltar</Link>
           <Link
             className="shopping-cart-button"
-            to="/cart"
+            to={ {
+              pathname: '/cart',
+              state: location.state,
+            } }
             data-testid="shopping-cart-button"
           >
             <img className="cart-icon" src={ shoppingCart } alt="cart icon" />

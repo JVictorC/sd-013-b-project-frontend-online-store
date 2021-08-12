@@ -15,6 +15,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { location } = this.props;
     const { state } = location;
 
