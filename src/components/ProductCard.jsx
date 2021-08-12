@@ -51,7 +51,9 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
-    shipping: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
   onAdd: PropTypes.func.isRequired,
 };
