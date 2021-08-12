@@ -19,11 +19,11 @@ class ProductDetails extends Component {
   }
 
   async fetchProduct() {
-    const { match: { params: { id } } } = this.props;
-    const decodeId = decodeURI(id); // Implementação do decodeURI segundo documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+    const { match: { params: { categoryId, id } } } = this.props;
 
-    const products = await getProductsFromCategoryAndQuery('', decodeId);
-    const productDetail = products.results.find((product) => product.title === id);
+    console.log(categoryId);
+    const products = await getProductsFromCategoryAndQuery(categoryId, '');
+    const productDetail = products.results.find((product) => product.id === id);
 
     this.setState(() => ({
       product: productDetail,
@@ -67,6 +67,7 @@ class ProductDetails extends Component {
 ProductDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
+      categoryId: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
     }),
   }).isRequired,

@@ -9,13 +9,13 @@ class RenderProducts extends Component {
     return (
       products === [] ? noReturn : (
         <div>
-          {products.map(({ id, title, thumbnail, price }) => (
+          {products.map(({ id, category_id: categoryId, title, thumbnail, price }) => (
             <div key={ id } data-testid="product">
               <p>{ title }</p>
               <img src={ thumbnail } alt={ title } />
               <p>{ price }</p>
               <Link
-                to={ `product/${encodeURI(title)}` } // Implementação do decodeURI segundo documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+                to={ `${categoryId}/${id}` }
                 data-testid="product-detail-link"
               >
                 Ver Detalhes
