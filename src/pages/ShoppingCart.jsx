@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 
 export default class ShoppingCart extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cart: [],
-    };
-  }
-
   render() {
-    const { cart } = this.state;
-    if (cart.length === 0) {
+    const item = JSON.parse(localStorage.getItem('item'));
+    if (localStorage.length === 0) {
       return (
         <h2 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
@@ -19,7 +12,10 @@ export default class ShoppingCart extends Component {
     }
     return (
       <div>
-        <h1>aaaa</h1>
+        <h5 data-testid="shopping-cart-product-name">{ item.title }</h5>
+        <img src={ item.thumbnail } alt={ item.title } width="150px" />
+        <p>{`R$${item.price}`}</p>
+        <p data-testid="shopping-cart-product-quantity">{localStorage.length}</p>
       </div>
     );
   }
