@@ -31,14 +31,14 @@ class ProductCard extends React.Component {
             {`Preço R$ ${price}`}
           </p>
           {shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
-          <button
-            type="button"
-            onClick={ this.addHandler }
-            data-testid="product-add-to-cart"
-          >
-            Adicionar ao Carrinho
-          </button>
         </Link>
+        <button
+          type="button"
+          onClick={ this.addHandler }
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
@@ -50,7 +50,9 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
-    shipping: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
   onAdd: PropTypes.func.isRequired,
 };
