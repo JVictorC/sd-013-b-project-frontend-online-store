@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 
 class ProductDetails extends React.Component {
+  onClick = () => {
+    const { selectedProductToCart, product } = this.props;
+    selectedProductToCart(product);
+  }
+
   render() {
     const { location } = this.props;
     const { state: productDetail } = location;
@@ -37,6 +42,13 @@ class ProductDetails extends React.Component {
             </div>
           </div>
         </div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.onClick }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
@@ -55,6 +67,13 @@ ProductDetails.propTypes = {
       name: PropTypes.string,
     }),
   }).isRequired,
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.string,
+    thumbnail: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
