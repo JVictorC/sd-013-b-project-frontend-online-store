@@ -30,7 +30,7 @@ export default class Category extends Component {
               value={ id }
               name="categories"
             />
-            {name}
+            { name }
           </label>
         ))}
       </div>
@@ -38,6 +38,6 @@ export default class Category extends Component {
   }
 }
 
-Category.propTypes = ({
+Category.propTypes = {
   handleRadioButton: PropTypes.func,
-}).isRequired;
+}.isRequired;
