@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../Style/BarSearch.css';
 import { Link } from 'react-router-dom';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
 
 class BarSearch extends Component {
   constructor(props) {
@@ -51,13 +52,23 @@ class BarSearch extends Component {
             type="submit"
             className="btn btn-success m-2 btn-lg"
           >
-            🔎
+            <BsSearch />
 
           </button>
         </form>
-        <Link data-testid="shopping-cart-button" to="cart/">
-          <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
-          🛒
+        <Link
+          data-testid="shopping-cart-button"
+          to="cart/"
+          className="Link-Cart "
+        >
+          <p
+            data-testid="shopping-cart-size"
+            className="text-success fs-1 teste"
+          >
+            {QuantityItemCard}
+
+          </p>
+          <AiOutlineShoppingCart className="text-success fs-1" />
         </Link>
       </header>
     );

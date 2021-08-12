@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import '../Style/ProductList.css';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -25,24 +24,25 @@ export default class ProductList extends Component {
         <ul className="product-list">
           {products.map((product) => (
             <li data-testid="product" key={ product.id } className="product">
-              <span>{product.title}</span>
+              <p className="lead">{product.title}</p>
               <img src={ product.thumbnail } alt={ product.title } />
               {product.shipping.free_shipping
-                ? <div data-testid="free-shipping">📦 Frete Grátis</div>
+                ? <div data-testid="free-shipping" className="lead">📦 Frete Grátis</div>
                 : false}
               <Link
                 data-testid="product-detail-link"
                 to={ `/ProductDetails/${product.id}` }
                 onClick={ () => getDetailsProduct(product) }
+                className="btn btn-outline-primary"
               >
-                <p>Ver detalhes</p>
+                Ver detalhes
               </Link>
-              R$
-              <p>{product.price}</p>
+              <p className="lead">{`R$: ${product.price}`}</p>
               <button
                 type="button"
                 onClick={ () => this.hadlerClick(product) }
                 data-testid="product-add-to-cart"
+                className="btn btn-outline-success"
               >
                 Adicionar no Carrinho
               </button>
