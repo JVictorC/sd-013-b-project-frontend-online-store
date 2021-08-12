@@ -21,8 +21,8 @@ body {
   display: flex;
   flex-flow: column nowrap;
   margin: 3px;
-  min-width: max-content;
   max-height: max-content;
+  min-width: max-content;
   padding: 5px;
 }
 
@@ -83,15 +83,15 @@ button {
 }
 
 .search-bar {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   width: 100%;
 }
 
 .search-input {
-  width: 50%;
   height: 30px;
+  width: 50%;
 }
 
 .product-card-image {
