@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ButtonCart from '../Components/ButtonCart';
 import ButtonHome from '../Components/ButtonHome';
 
@@ -17,7 +18,21 @@ export default class CardDetails extends Component {
           Preço: R$
           { price }
         </p>
-        <ButtonCart data-testid="product-detail-add-to-cart" product={ product } handleCartItems={ handleCartItems } />
+        <ButtonCart
+          data-testid="product-detail-add-to-cart"
+          product={ product }
+          productDetail="productDetail"
+          handleCartItems={ handleCartItems }
+        />
+        {/* <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          cartProducts={ product }
+          onClick={ () => handleCartItems(product) }
+        >
+          Adicionar ao carrinho
+        </button> */}
+        <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
       </div>
     );
   }
