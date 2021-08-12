@@ -51,7 +51,7 @@ class SearchBar extends React.Component {
           </h3>
         </div>
         <div>
-          <Link to="ShoppingCart" data-testid="shopping-cart-button">
+          <Link to="shoppingcart" data-testid="shopping-cart-button">
             Carrinho
           </Link>
           <p>{localStorage.length}</p>
