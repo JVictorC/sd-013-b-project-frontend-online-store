@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 export default class Cart extends React.Component {
@@ -17,6 +19,7 @@ export default class Cart extends React.Component {
           }
           <h4 data-testid="shopping-cart-product-quantity">{cartList.length}</h4>
         </div>
+        <Link data-testid="checkout-products" to="/checkout" />
       </div>
     );
   }
