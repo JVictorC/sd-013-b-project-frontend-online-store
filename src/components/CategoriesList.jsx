@@ -44,7 +44,7 @@ class CategoriesList extends React.Component {
                 type="button"
                 name="category-filter"
                 id={ category.id }
-                className={ category.id === selected && 'selected' }
+                className={ category.id === selected ? 'selected' : '' }
                 data-testid="category"
                 onKeyDown={ this.getCategoryHandler }
                 onClick={ this.getCategoryHandler }

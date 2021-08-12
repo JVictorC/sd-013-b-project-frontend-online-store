@@ -45,11 +45,31 @@ class ShoppingCart extends React.Component {
           {
             cart.length > 0 ? (
               finalCart.map((product) => (
-                <div className="cart-basket" key={ product.data.id }>
+                <div
+                  className="cart-basket"
+                  id={ product.data.id }
+                  key={ product.data.id }
+                >
                   <span data-testid="shopping-cart-product-name">
                     { product.data.title }
                   </span>
+                  <button
+                    onClick={ this.changeQuantityHandler }
+                    data-testid="product-decrease-quantity"
+                    type="button"
+                    style={ { fontSize: '24px' } }
+                  >
+                    -
+                  </button>
                   <b data-testid="shopping-cart-product-quantity">{ product.quantity }</b>
+                  <button
+                    onClick={ this.changeQuantityHandler }
+                    data-testid="product-increase-quantity"
+                    type="button"
+                    style={ { fontSize: '24px' } }
+                  >
+                    +
+                  </button>
                 </div>
               ))
             ) : (
