@@ -31,11 +31,12 @@ export default class Cart extends React.Component {
 
   setItems() {
     const data = localStorage.getItem('cart');
-    const parsedData = JSON.parse(data);
-
-    this.setState({
-      items: parsedData,
-    });
+    if (data) {
+      const parsedData = JSON.parse(data);
+      this.setState({
+        items: parsedData,
+      });
+    }
   }
 
   increment() {
@@ -54,6 +55,14 @@ export default class Cart extends React.Component {
 
   render() {
     const { items } = this.state;
+
+    if (items.length === 0) {
+      return (
+        <div>
+          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        </div>
+      );
+    }
 
     return (
       <div>

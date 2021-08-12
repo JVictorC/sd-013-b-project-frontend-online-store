@@ -9,7 +9,7 @@ export default class CartItem extends React.Component {
       <div className="cart-items">
         <button type="submit">Retirar</button>
         <img src={ thumbnail } alt={ title } />
-        <p>{title}</p>
+        <p data-testid="shopping-cart-product-name">{title}</p>
         <button
           type="submit"
           data-testid="product-decrease-quantity"
@@ -18,7 +18,7 @@ export default class CartItem extends React.Component {
         >
           -
         </button>
-        <span>{quantity}</span>
+        <span data-testid="shopping-cart-product-quantity">{quantity}</span>
         <button
           type="submit"
           data-testid="product-increase-quantity"
