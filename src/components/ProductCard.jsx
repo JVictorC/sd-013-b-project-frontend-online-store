@@ -2,17 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css';
 import PropTypes from 'prop-types';
-import Cart from './Cart';
 
 class ProductCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { };
-
-    // this.onClick = this.onClick.bind(this);
-  }
-
-  onClick = (event) => {
+  onClick = () => {
     const { selectedProductToCart, product } = this.props;
     selectedProductToCart(product);
   }
@@ -57,6 +49,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
+  selectedProductToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

@@ -18,6 +18,7 @@ class Home extends React.Component {
       inputText: '',
       productsList: [],
       haveProduct: false,
+      productToCart: [],
     };
     this.searchText = this.searchText.bind(this);
     this.categorieSelected = this.categorieSelected.bind(this);
@@ -36,7 +37,6 @@ class Home extends React.Component {
       this.setState({
         productsList: getListodProducts.results,
         haveProduct: true,
-        productToCart: [],
       });
     } else {
       return <NotFound />;
@@ -59,14 +59,13 @@ class Home extends React.Component {
     });
   }
 
-  selectedProductToCart(product) {
+  selectedProductToCart(newProduct) {
+    const { productToCart } = this.state;
+    const updatedProducts = [...productToCart, { ...newProduct, quantidade: 1 }];
 
-    const x = [ product ]
     this.setState({
-      productToCart: product,
+      productToCart: updatedProducts,
     });
-    console.log(product);
-    return product;
   }
 
   render() {
@@ -78,8 +77,8 @@ class Home extends React.Component {
         <div className="top-section">
           <Search
             clasName="search-bar"
-            searchText={this.searchText}
-            onClick={this.onClick}
+            searchText={ this.searchText }
+            onClick={ this.onClick }
           />
           <div>
             {productToCart ? (
@@ -107,7 +106,7 @@ class Home extends React.Component {
 
         <div className="main-content-list-cards">
           <div className="category-list">
-            <CategoryList categorieSelected={this.categorieSelected} />
+            <CategoryList categorieSelected={ this.categorieSelected } />
           </div>
 
           {haveProduct ? (
@@ -115,9 +114,9 @@ class Home extends React.Component {
               {productsList.map((product) => (
                 <ProductCard
                   className="card"
-                  key={product.id}
-                  product={product}
-                  selectedProductToCart={selectedProductToCart}
+                  key={ product.id }
+                  product={ product }
+                  selectedProductToCart={ selectedProductToCart }
                   data-testid="product-detail-link"
                 />
               ))}
