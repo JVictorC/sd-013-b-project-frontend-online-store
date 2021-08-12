@@ -1,42 +1,45 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import CartItems from './CartItems';
 
 export default class Cart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.renderList = this.renderList.bind(this);
+    this.clearList = this.clearList.bind(this);
 
     this.state = {
       empty: true,
-      list: [],
+      list: props.list,
       finalPrice: 0,
     };
   }
 
   componentDidMount() {
-    this.updateList();
+    this.checkEmpty();
   }
 
-  handlePrice() {
-
+  checkEmpty() {
+    const { list } = this.state;
+    if (list.length > 0) {
+      this.setState({
+        empty: false,
+      });
+    }
   }
 
   clearList() {
-    this.setState({ list: [] });
-  }
-
-  async updateList() {
-    const { cartList } = this.props;
-    this.setState({ list: cartList });
+    this.setState({
+      empty: true,
+      list: [],
+    });
   }
 
   renderList() {
     const { list, finalPrice } = this.state;
-    this.setState({ empty: false });
     return (
       <div>
         <h3>Lista de compras:</h3>
@@ -46,8 +49,6 @@ export default class Cart extends Component {
         <p>
           { `R$${finalPrice}` }
         </p>
-        <button type="button" onClick={ this.clearList }>X</button>
-        <Link to="/">Voltar</Link>
       </div>
     );
   }
@@ -56,27 +57,27 @@ export default class Cart extends Component {
     return (
       <p data-testid="shopping-cart-empty-message">
         Seu carrinho está vazio
-        <Link to="/">Voltar</Link>
       </p>
     );
   }
 
   render() {
-    const { empty, list } = this.state;
+    const { empty } = this.state;
     return (
       <section>
         <h1>Shopping Cart</h1>
-        { (empty && this.renderEmpty) }
-        { (list.length > 0 && this.renderList) }
+        { (empty ? this.renderEmpty() : this.renderList()) }
+        <button type="button" onClick={ this.clearList }>X</button>
+        <Link to="/">Voltar</Link>
       </section>
     );
   }
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object),
+  list: PropTypes.arrayOf(PropTypes.object),
 };
 
 Cart.defaultProps = {
-  cartList: [],
+  list: [],
 };

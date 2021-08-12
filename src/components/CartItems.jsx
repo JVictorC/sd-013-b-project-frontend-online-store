@@ -20,10 +20,15 @@ export default class CartItems extends Component {
     } else { this.setState({ quantity: value }); }
   }
 
-  handleQuantity(number) {
+  handleQuantity({ target }) {
     const { quantity } = this.state;
-    let newNumber = quantity + parseInt(number, 1);
-    if (newNumber < 0) { newNumber = 0; }
+    let newNumber = quantity;
+    if (target.name === 'add') {
+      newNumber += 1;
+    } else {
+      newNumber -= 1;
+      if (newNumber < 0) { newNumber = 0; }
+    }
     this.setState({ quantity: newNumber });
   }
 
@@ -39,19 +44,21 @@ export default class CartItems extends Component {
         <button
           type="button"
           data-testid="product-increase-quantity"
-          onClick={ this.handleQuantity('1') }
+          name="add"
+          onClick={ this.handleQuantity }
         >
           +
         </button>
-        <input
+        <p
           data-testid="shopping-cart-product-quantity"
-          onChange={ this.handleChange }
-          value={ quantity }
-        />
+        >
+          { quantity }
+        </p>
         <button
           type="button"
           data-testid="product-decrease-quantity"
-          onClick={ this.handleQuantity('-1') }
+          name="sub"
+          onClick={ this.handleQuantity }
         >
           -
         </button>
@@ -65,7 +72,6 @@ export default class CartItems extends Component {
 
 CartItems.propTypes = {
   item: PropTypes.objectOf({
-    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
   }).isRequired,
