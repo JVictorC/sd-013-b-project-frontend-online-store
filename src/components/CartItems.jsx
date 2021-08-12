@@ -63,7 +63,7 @@ export default class CartItems extends Component {
           -
         </button>
         <p>
-          { `Final Price: R$${price * quantity}` }
+          { `Total: R$${price * quantity}` }
         </p>
       </li>
     );
