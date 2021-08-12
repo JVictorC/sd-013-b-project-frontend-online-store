@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Payment from '../components/Payment';
 import ReviewProduct from '../components/ReviewProduct';
 
-export default class BuyerData extends Component {
+export default class Checkout extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,7 +22,7 @@ export default class BuyerData extends Component {
     });
   };
 
-  submitButton = () =>{
+  submitButton = () => {
     this.setState({
       fullname: '',
       email: '',
@@ -34,9 +35,10 @@ export default class BuyerData extends Component {
 
   render() {
     const { fullname, email, cpf, phone, cep, address } = this.state;
+    const { cartItems } = this.props;
     return (
       <div>
-        {/* <ReviewProduct /> */}
+        <ReviewProduct cartItems={ cartItems } />
         <form>
           <label htmlFor="checkout-fullname">
             Nome Completo
@@ -63,7 +65,7 @@ export default class BuyerData extends Component {
           <label htmlFor="checkout-cpf">
             CPF
             <input
-              type="number"
+              type="text"
               data-testid="checkout-cpf"
               name="cpf"
               value={ cpf }
@@ -74,7 +76,7 @@ export default class BuyerData extends Component {
           <label htmlFor="checkout-phone">
             Telefone
             <input
-              type="number"
+              type="text"
               data-testid="checkout-phone"
               name="phone"
               value={ phone }
@@ -85,7 +87,7 @@ export default class BuyerData extends Component {
           <label htmlFor="checkout-cep">
             CEP
             <input
-              type="number"
+              type="text"
               data-testid="checkout-cep"
               name="cep"
               value={ cep }
@@ -97,7 +99,7 @@ export default class BuyerData extends Component {
             Endereço
             <input
               type="text"
-              data-testis="checkout-address"
+              data-testid="checkout-address"
               name="address"
               value={ address }
               onChange={ this.handleChange }
@@ -110,10 +112,14 @@ export default class BuyerData extends Component {
           type="submit"
           data-testid="shopping-cart-button"
           onClick={ this.submitButton }
-          >
+        >
           COMPRAR
         </button>
       </div>
     );
   }
 }
+
+Checkout.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.object),
+}.isRequired;

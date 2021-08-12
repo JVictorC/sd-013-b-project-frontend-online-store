@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class ShoppingKart extends Component {
   renderCartProducts = (cartItems) => (
@@ -17,6 +18,7 @@ export default class ShoppingKart extends Component {
         >
           { `Quantidade ${actualAmount} unidade(s)` }
         </p>
+        <Link data-testid="checkout-products" to="/checkout">Checkout</Link>
       </div>
     ))
   );

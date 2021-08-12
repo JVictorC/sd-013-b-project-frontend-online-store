@@ -10,9 +10,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: "",
-      selectedCategory: "",
-      products: "noSearchAlready",
+      searchText: '',
+      selectedCategory: '',
+      products: 'noSearchAlready',
     };
   }
 
@@ -27,7 +27,7 @@ class Home extends Component {
   };
 
   handleSearchButton = () => {
-    this.setState({ products: "Carregando..." }, async () => {
+    this.setState({ products: 'Carregando...' }, async () => {
       const { selectedCategory, searchText } = this.state;
       const data = await getProductsFromCategoryAndQuery(
         selectedCategory,
@@ -43,9 +43,9 @@ class Home extends Component {
     return (
       <div>
         <SearchBar
-          handleChange={this.handleChange}
-          searchText={searchText}
-          handleSearchButton={this.handleSearchButton}
+          handleChange={ this.handleChange }
+          searchText={ searchText }
+          handleSearchButton={ this.handleSearchButton }
         />
         <Link to="/shoppingKart" data-testid="shopping-cart-button">Carrinho</Link>
         <Category handleRadioButton={ this.handleRadioButton } />

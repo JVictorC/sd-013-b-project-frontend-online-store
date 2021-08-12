@@ -4,7 +4,7 @@ import ShoppingKart from './pages/ShoppingKart';
 import ProductDetails from './pages/ProductDetails';
 import './App.css';
 import Home from './pages/Home';
-import Checkout from './pages/Checkout'
+import Checkout from './pages/Checkout';
 
 export default class App extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class App extends Component {
 
   getProductData = (product) => {
     this.setState({ productData: product });
-  }
+  };
 
   addItemsToCart = (product) => {
     const { cartItems } = this.state;
@@ -36,7 +36,7 @@ export default class App extends Component {
         this.setState({ cartItems: deepCopy });
       }
     });
-  }
+  };
 
   render() {
     const { productData, cartItems } = this.state;
@@ -46,10 +46,12 @@ export default class App extends Component {
           <Route
             exact
             path="/"
-            render={ () => (<Home
-              getProductData={ this.getProductData }
-              addItemsToCart={ this.addItemsToCart }
-            />) }
+            render={ () => (
+              <Home
+                getProductData={ this.getProductData }
+                addItemsToCart={ this.addItemsToCart }
+              />
+            ) }
           />
           <Route
             exact
@@ -59,12 +61,18 @@ export default class App extends Component {
           <Route
             exact
             path="/product/:id"
-            render={ () => (<ProductDetails
-              productData={ productData }
-              getProductData={ this.getProductData }
-            />) }
+            render={ () => (
+              <ProductDetails
+                productData={ productData }
+                getProductData={ this.getProductData }
+              />
+            ) }
           />
-          < Route exact path="/checkout" component={Checkout}/>
+          <Route
+            exact
+            path="/checkout"
+            render={ () => <Checkout cartItems={ cartItems } /> }
+          />
           {/* <Route component={ NotFound } /> */}
         </Switch>
       </Router>
