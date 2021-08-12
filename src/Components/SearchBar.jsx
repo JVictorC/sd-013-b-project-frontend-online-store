@@ -1,43 +1,11 @@
 import React, { Component } from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductCard from './ProductCard';
+import PropTypes from 'prop-types';
+import ProductList from './ProductList';
 import ProductInvalid from './ProductInvalid';
 
 export default class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchbar: '',
-      products: [],
-      state: false,
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  async handleClick() {
-    const { searchbar } = this.state;
-    const productList = await getProductsFromCategoryAndQuery('', searchbar);
-    this.setState({
-      products: productList.results,
-      state: true,
-    });
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   render() {
-    const { searchbar, products, state } = this.state;
-
-    const searchListComponent = products.map((product) => (
-      <ProductCard key={ product.id } product={ product } query={ searchbar } />
-    ));
+    const { searchbar, products, state, handleClick, handleChange } = this.props;
     return (
       <div>
         <label
@@ -50,20 +18,28 @@ export default class SearchBar extends Component {
             id="home-initial-message"
             name="searchbar"
             value={ searchbar }
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           Digite algum termo de pesquisa ou escolha uma categoria.
           <br />
         </label>
-        <button type="button" data-testid="query-button" onClick={ this.handleClick }>
+        <button type="button" data-testid="query-button" onClick={ handleClick }>
           Pesquisar
         </button>
         {products.length === 0 && state === true ? (
           <ProductInvalid />
         ) : (
-          searchListComponent
+          <ProductList products={ products } searchbar={ searchbar } />
         )}
       </div>
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchbar: PropTypes.string.isRequired,
+  products: PropTypes.objectOf.isRequired,
+  state: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};

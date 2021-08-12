@@ -1,38 +1,31 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import PropTypes from 'prop-types';
+import ProductInvalid from './ProductInvalid';
 
 export default class CategoriesList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      category: [],
-    };
-    this.handleState = this.handleState.bind(this);
-  }
-
-  componentDidMount() {
-    this.handleState();
-  }
-
-  async handleState() {
-    const categories = await getCategories();
-    this.setState({
-      category: categories,
-    });
-  }
-
   render() {
-    const { category } = this.state;
+    const { category, handleClick } = this.props;
     const categories = category.map(({ name, id }) => (
       <label htmlFor={ id } key={ id }>
-        <input data-testid="category" type="radio" id={ id } name="categories" />
-        { name }
+        <input
+          data-testid="category"
+          type="radio"
+          id={ id }
+          name="categories"
+          onClick={ handleClick }
+        />
+        {name}
       </label>
     ));
     return (
       <div>
-        { category !== [] ? categories : 'Loading...' }
+        { category !== [] ? categories : <ProductInvalid /> }
       </div>
     );
   }
 }
+
+CategoriesList.propTypes = {
+  category: PropTypes.objectOf.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};

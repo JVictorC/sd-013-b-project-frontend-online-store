@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 // Iniciando req 7
 export default class ProductCard extends Component {
   render() {
-    const { product, query } = this.props;
-    const { category_id, title, price, thumbnail } = product;
-    console.log(product);
+    const { product } = this.props;
+    const { category_id, title, price, thumbnail, id } = product;
+    // console.log(product);
     return (
-      <Link to={ `/${category_id}/${query}/${title}` } data-testid="product-detail-link">
+      <Link to={ `/${category_id}/${id}` } data-testid="product-detail-link">
         <div data-testid="product">
           <h2>{ title }</h2>
           <h4>{ price }</h4>
