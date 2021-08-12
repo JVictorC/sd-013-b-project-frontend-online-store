@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shoppingCart from '../assets/shoppingCart.png';
+import addCart from '../assets/addCart.png';
 import '../App.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -11,13 +12,24 @@ class ProductDetails extends Component {
 
     this.state = {
       product: [],
+      cartItems: [],
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
+    this.handleClickAddCart = this.handleClickAddCart.bind(this);
   }
 
   componentDidMount() {
     this.fetchProduct();
+  }
+
+  handleClickAddCart() {
+    const { product } = this.state;
+    const { id, title, thumbnail, price } = product;
+
+    this.setState({
+      cartItems: [{ id, title, thumbnail, price }],
+    });
   }
 
   async fetchProduct() {
@@ -32,7 +44,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, cartItems } = this.state;
     const { title, thumbnail, price, attributes } = product;
 
     return (
@@ -52,7 +64,20 @@ class ProductDetails extends Component {
             </div>
           </div>
         )}
-        <Link to="/shopping-cart">
+
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => this.handleClickAddCart() }
+        >
+          <img
+            src={ addCart }
+            alt="Add cart icon"
+            className="icons"
+          />
+        </button>
+
+        <Link to={ { pathname: '/shopping-cart', state: { cartItems } } }>
           <img
             data-testid="shopping-cart-button"
             className="icons"
