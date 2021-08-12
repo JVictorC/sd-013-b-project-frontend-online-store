@@ -5,8 +5,15 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   onClick = () => {
-    const { selectedProductToCart, product } = this.props;
-    selectedProductToCart(product);
+    const { product } = this.props;
+
+    if (localStorage.key('cart')) {
+      const parse = JSON.parse(localStorage.getItem('cart'));
+      parse.push({ ...product, quantidade: 1 });
+      localStorage.setItem('cart', JSON.stringify(parse));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([{ ...product, quantidade: 1 }]));
+    }
   }
 
   render() {
