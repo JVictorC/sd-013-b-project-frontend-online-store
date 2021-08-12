@@ -7,7 +7,14 @@ export default class Search extends React.Component {
     const { product, addToCart } = this.props;
     const quantity = 1;
     return (
-      product.map(({ id, title, thumbnail, price, shipping }) => (
+      product.map(({
+        id,
+        title,
+        thumbnail,
+        price,
+        shipping,
+        available_quantity: available,
+      }) => (
         <div data-testid="product" key={ id }>
           <div>
             <h2>{ title }</h2>
@@ -23,7 +30,13 @@ export default class Search extends React.Component {
             type="button"
             data-testid="product-add-to-cart"
             id={ id }
-            onClick={ () => (addToCart({ id, title, thumbnail, price, quantity })) }
+            onClick={ () => (addToCart({
+              id,
+              title,
+              thumbnail,
+              price,
+              quantity,
+              available })) }
           >
             Adicionar ao carrinho
           </button>

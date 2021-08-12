@@ -31,8 +31,10 @@ class App extends React.Component {
 
   increseProduct(id) {
     const { cartList } = this.state;
-    cartList[id].quantity += 1;
-    this.setState({ cartList });
+    if (cartList[id].quantity < cartList[id].available) {
+      cartList[id].quantity += 1;
+      this.setState({ cartList });
+    }
   }
 
   decreseProduct(id) {
