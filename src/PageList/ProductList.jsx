@@ -45,11 +45,9 @@ export default class ProductList extends React.Component {
     });
   }
 
-  addToCart({ target: { id } }) {
-    const { products } = this.state;
+  addToCart(product) {
     const { cartStateUpadte } = this.props;
-    const foundProduct = products.find(({ id: producId }) => producId === id);
-    cartStateUpadte(foundProduct);
+    cartStateUpadte(product);
   }
 
   async categorieUpdater(categorie) {
