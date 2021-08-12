@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ProductList from './PageList/ProductList';
 import Product from './PageList/Product';
-import Cart from './PageList/Cart';
 import Checkout from './Components/Checkout';
 
 class App extends React.Component {
@@ -13,7 +12,6 @@ class App extends React.Component {
 
     this.state = {
       products: {},
-      cartList: [],
     };
   }
 
@@ -21,14 +19,8 @@ class App extends React.Component {
     this.setState({ products });
   }
 
-  cartStateUpadte(product) {
-    this.setState(({ cartList }) => ({
-      cartList: [...cartList, product],
-    }));
-  }
-
   render() {
-    const { products, cartList } = this.state;
+    const { products } = this.state;
     return (
       <div>
         <BrowserRouter>
@@ -59,10 +51,9 @@ class App extends React.Component {
                   />)
               }
             />
-            <Route exact path="/cart" render={ () => <Cart cartList={ cartList } /> } />
             <Route
               path="/checkout"
-              render={ () => <Checkout /> }
+              component={ Checkout }
             />
           </Switch>
         </BrowserRouter>
