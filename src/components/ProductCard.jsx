@@ -9,16 +9,24 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { product: { title, thumbnail, price, id } } = this.props;
+    const { addToCart, product: { title, thumbnail, price, id } } = this.props;
     return (
       <div data-testid="product" className="card">
         <h1>{ title }</h1>
         <img className="image" src={ thumbnail } alt="Product Banner" />
         <p>{ price }</p>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(title, thumbnail, price, id) }
+        >
+          Adicionar ao carrinho
+        </button>
         <Link
           data-testid="product-detail-link"
           to={ `/products/${id}` }
           onClick={ this.handleDetails }
+          // addToCart={ addToCart }
         >
           Detalhes
         </Link>
