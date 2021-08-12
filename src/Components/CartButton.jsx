@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class CartButton extends Component {
   render() {
     return (
-      <div className="sidebar">
+      <div className="shop-cart">
         <Link
           to="/shoppingcart"
           data-testid="shopping-cart-button"

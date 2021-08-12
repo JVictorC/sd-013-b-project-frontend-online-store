@@ -10,7 +10,7 @@ export default class ProductList extends Component {
       <ProductCard key={ product.id } product={ product } />
     ));
     return (
-      <div>
+      <div className="product-list">
         { searchListComponent }
       </div>
     );

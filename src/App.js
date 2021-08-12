@@ -8,15 +8,17 @@ import './App.css';
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main-container">
         <h1 className="shop-title">FrontEnd Online Store</h1>
-        <BrowserRouter>
-          <header className="header">
-            <ProductsLibrary />
+        <div className="test">
+          <BrowserRouter>
             <CartButton />
-          </header>
-          <Route exact path="/shoppingcart" component={ ShoppingCart } />
-        </BrowserRouter>
+            <header className="header">
+              <ProductsLibrary />
+            </header>
+            <Route exact path="/shoppingcart" component={ ShoppingCart } />
+          </BrowserRouter>
+        </div>
       </div>
     );
   }

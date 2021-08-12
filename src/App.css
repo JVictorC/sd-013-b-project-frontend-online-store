@@ -11,16 +11,6 @@ body {
   font-size: 40px;
 }
 
-.sidebar {
-  /* border: 1px solid red; */
-  margin: 0;
-  padding: 0;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 4px;
-}
-
 .search-bar {
   display: block;
   margin: auto;
@@ -53,4 +43,42 @@ body {
 
 .search-label {
   padding-bottom: 40px;
+}
+
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+  background-color: white;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background:grey;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background:white;
+  border-radius: 50px;
+  border: 3px solid black;
+}
+
+.sidebar label {
+  padding-top: 10px;
+}
+
+.shop-cart {
+  position: absolute;
+  border: 3px solid green;
+}
+
+img {
+  width: 150px;
 }

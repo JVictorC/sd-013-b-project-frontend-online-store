@@ -8,8 +8,8 @@ export default class ProductCard extends Component {
     return (
       <div data-testid="product" className="produto">
         <h2>{ title }</h2>
-        <h4>{ price }</h4>
         <img alt="Product disc" src={ thumbnail } />
+        <h2>{ price }</h2>
       </div>
     );
   }
