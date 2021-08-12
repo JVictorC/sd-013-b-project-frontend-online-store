@@ -23,10 +23,6 @@ export default class ButtonCart extends Component {
         </button>
       );
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> f22a2026239a4592f8be1afd1c2b38920377dcdf
     const { product, handleCartItems } = this.props;
     return (
       <button
