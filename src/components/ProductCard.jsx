@@ -21,8 +21,8 @@ class ProductCard extends React.Component {
         <Link
           data-testid="product-detail-link"
           to={ {
-             pathname: `/product/${id}`,
-             state: product,
+            pathname: `/product/${id}`,
+            state: product,
           } }
         >
           <h2>{ title }</h2>
@@ -45,6 +45,7 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbmail: PropTypes.string,
     price: PropTypes.number,
