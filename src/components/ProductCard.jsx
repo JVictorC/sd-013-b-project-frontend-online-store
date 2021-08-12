@@ -26,8 +26,12 @@ class ProductCard extends React.Component {
             state: product,
           } }
         >
-          <h2>{ title }</h2>
-          <img src={ thumbnail } alt="Product Thumbnail" />
+          <h3>{ title }</h3>
+          <img
+            src={ thumbnail }
+            alt="Product Thumbnail"
+            style={ { width: '90%', maxHeight: '7rem' } }
+          />
           <p>
             {`Preço R$ ${price}`}
           </p>

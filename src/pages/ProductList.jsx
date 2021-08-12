@@ -104,6 +104,7 @@ class ProductList extends React.Component {
                   <li
                     data-testid="product"
                     key={ result.id }
+                    style={ { height: '25rem' } }
                   >
                     <ProductCard product={ result } onAdd={ this.addHandler } />
                   </li>
