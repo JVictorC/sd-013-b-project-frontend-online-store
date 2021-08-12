@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class CommentBox extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
   render() {
     const { getComment } = this.props;
 
@@ -19,6 +12,7 @@ export default class CommentBox extends React.Component {
           data-testid="product-detail-evaluation"
           cols="10"
           rows="4"
+          placeholder="Mensagem (opcional)"
           onChange={ getComment }
         />
       </label>

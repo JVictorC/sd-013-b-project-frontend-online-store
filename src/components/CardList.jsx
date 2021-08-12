@@ -23,5 +23,5 @@ export default class CardList extends React.Component {
 }
 
 CardList.propTypes = {
-  results: PropTypes.objectOf(PropTypes.string).isRequired,
+  results: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

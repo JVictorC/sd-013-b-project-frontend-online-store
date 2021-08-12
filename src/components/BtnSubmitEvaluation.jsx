@@ -2,15 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class BtnSubmitEvaluation extends React.Component {
-  render() {
-    const { comment, rating, id } = this.props;
+  constructor(props) {
+    super(props);
 
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { comment, rating, id, email } = this.props;
+    const prevsEvaluations = localStorage.getItem('evaluations');
+    let evaluations = [];
+    if (prevsEvaluations) {
+      evaluations = JSON.parse(prevsEvaluations);
+    }
+    const newEvaluations = [...evaluations, { id, comment, rating, email }];
+    localStorage.setItem('evaluations', JSON.stringify(newEvaluations));
+  }
+
+  render() {
     return (
       <button
         id="submit"
         type="submit"
+        onClick={ this.handleClick }
       >
-        ENVIAR
+        Avaliar
       </button>
     );
   }
@@ -19,5 +35,6 @@ export default class BtnSubmitEvaluation extends React.Component {
 BtnSubmitEvaluation.propTypes = {
   comment: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };

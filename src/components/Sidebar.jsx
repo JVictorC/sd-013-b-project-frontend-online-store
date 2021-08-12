@@ -30,7 +30,6 @@ export default class Sidebar extends React.Component {
     return (
       <form
         onChange={ captureValueSelect }
-        value={ captureValueSelect }
         className="category"
       >
         {

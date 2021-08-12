@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BtnSubmitEvaluation from './BtnSubmitEvaluation';
 import CommentBox from './CommentBox';
 import Rating from './Rating';
+import EmailBox from './EmailBox';
 
 export default class EvaluationForm extends React.Component {
   constructor(props) {
@@ -11,14 +12,20 @@ export default class EvaluationForm extends React.Component {
     this.state = {
       comment: '',
       rating: 0,
+      email: '',
     };
 
     this.getComment = this.getComment.bind(this);
+    this.getEmail = this.getEmail.bind(this);
     this.getRating = this.getRating.bind(this);
   }
 
   getComment({ target }) {
     this.setState({ comment: target.value });
+  }
+
+  getEmail({ target }) {
+    this.setState({ email: target.value });
   }
 
   getRating({ target }) {
@@ -27,14 +34,19 @@ export default class EvaluationForm extends React.Component {
 
   render() {
     const { id } = this.props;
-
-    const { comment, rating } = this.state;
+    const { comment, rating, email } = this.state;
     return (
       <section>
         <form>
+          <EmailBox getEmail={ this.getEmail } />
           <Rating getRating={ this.getRating } />
           <CommentBox getComment={ this.getComment } />
-          <BtnSubmitEvaluation comment={ comment } rating={ rating } id={ id } />
+          <BtnSubmitEvaluation
+            comment={ comment }
+            email={ email }
+            rating={ rating }
+            id={ id }
+          />
         </form>
       </section>
     );
