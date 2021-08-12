@@ -47,12 +47,16 @@ class App extends React.Component {
 
     if (e.target.innerHTML === '+') {
       const productIndex = cart.findIndex((el) => el.id === id);
-
-      // console.log(newCart[productIndex].none, productIndex, Math.abs(productIndex) !== 1);
+      let count = 0;
+      newCart.forEach((el) => {
+        if (el.id === newCart[productIndex].id) {
+          count += 1;
+        }
+      });
 
       if (newCart[productIndex].none) {
         newCart[productIndex].none = false;
-      } else if (productIndex >= 0) {
+      } else if (productIndex >= 0 && count < cart[productIndex].available_quantity) {
         newCart = [...cart, cart[productIndex]];
       }
     }
