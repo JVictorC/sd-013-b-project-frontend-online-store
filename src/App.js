@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { products } = this.state;
+    const { products, cartList } = this.state;
     return (
       <div>
         <BrowserRouter>
