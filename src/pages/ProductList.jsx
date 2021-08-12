@@ -61,6 +61,8 @@ class ProductList extends React.Component {
 
   render() {
     const { categoryState, productResults } = this.state;
+    const { onClick } = this.props;
+
     return (
       <div className="product-list-page">
         <aside className="category-list">
@@ -75,7 +77,7 @@ class ProductList extends React.Component {
           </div>
 
           <section>
-            <Products list={ productResults } />
+            <Products list={ productResults } onClick={ onClick } />
           </section>
         </main>
 

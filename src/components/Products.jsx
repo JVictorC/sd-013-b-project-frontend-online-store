@@ -8,13 +8,10 @@ class Products extends React.Component {
 
     return (
       <div className="products">
-
         { list.map((element) => (
           <ProductCard
-            title={ element.title }
-            image={ element.thumbnail }
-            price={ element.price }
             key={ element.id }
+            product={ element }
           />
         ))}
       </div>
