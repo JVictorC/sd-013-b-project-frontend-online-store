@@ -12,6 +12,7 @@ export default class App extends Component {
     super(props);
 
     this.productDetails = this.productDetails.bind(this);
+    this.addToCart = this.addToCart.bind(this);
 
     this.state = {
       cartList: [],
@@ -23,13 +24,26 @@ export default class App extends Component {
     this.setState({ productObj: object });
   }
 
+  addToCart(item) {
+    const { cartList } = this.state;
+    this.setState({
+      cartList: [...cartList, item] },
+    () => {});
+  }
+
   render() {
     const { cartList, productObj } = this.state;
     return (
       <div className="">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ HomePage } />
+            <Route
+              exact
+              path="/"
+              render={
+                ((props) => <HomePage { ...props } handleAddToCart={ this.addToCart } />)
+              }
+            />
             <Route
               exact
               path="/product/:id"

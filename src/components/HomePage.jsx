@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import ListaCat from './ListaCat';
@@ -31,11 +32,13 @@ class HomePage extends React.Component {
 
   render() {
     const { productsList } = this.state;
+    const { handleAddToCart } = this.props;
     return (
       <div className="search">
         <ListItems
           productsList={ productsList }
           searchItems={ this.searchItems }
+          handleAddToCart={ handleAddToCart }
         />
 
         <p data-testid="home-initial-message">
@@ -49,5 +52,9 @@ class HomePage extends React.Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  handleAddToCart: PropTypes.func.isRequired,
+};
 
 export default HomePage;
