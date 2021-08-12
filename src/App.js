@@ -1,34 +1,11 @@
-<<<<<<< HEAD
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-=======
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
->>>>>>> d7a7dcc5d78245839f96d68d052021f2c8303038
 import ShoppingKart from './pages/ShoppingKart';
 import ProductDetails from './pages/ProductDetails';
 import './App.css';
 import Home from './pages/Home';
-import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout'
 
-<<<<<<< HEAD
-function App() {
-  
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route exact path="/shoppingKart" component={ ShoppingKart } />
-        <Route exact path="/product/:idProduct" component={ProductDetails}  />
-        {/* <Route component={ NotFound } /> */}
-      </Switch>
-    </BrowserRouter>
-    
-
-  
-  );
-}
-=======
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +13,6 @@ export default class App extends Component {
       productData: '',
     };
   }
->>>>>>> d7a7dcc5d78245839f96d68d052021f2c8303038
 
   getProductData = (product) => {
     this.setState({ productData: product });
@@ -58,6 +34,7 @@ export default class App extends Component {
             path="/product/:id"
             render={ () => <ProductDetails productData={ productData } /> }
           />
+          < Route exact path="/checkout" component={Checkout}/>
           {/* <Route component={ NotFound } /> */}
         </Switch>
       </Router>

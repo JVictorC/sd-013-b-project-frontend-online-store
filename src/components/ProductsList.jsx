@@ -21,15 +21,6 @@ export default class ProductsList extends Component {
     const { getProductData } = this.props;
 
     return (
-<<<<<<< HEAD
-      products.map(({ id, title, thumbnail, price }) => (
-        <div data-testid="product" key={ id } className="product-card" >
-          <h4>{title}</h4>
-          <img src={ thumbnail } alt={ title } />
-          <Link to={`/product/${id}`}>Detalhes</Link>
-          <span>{`R$${price}`}</span>
-        </div>
-=======
       products.map((product) => (
         <Link
           to={ `/product/${product.id}` }
@@ -43,7 +34,6 @@ export default class ProductsList extends Component {
             <span>{`R$${product.price}`}</span>
           </div>
         </Link>
->>>>>>> d7a7dcc5d78245839f96d68d052021f2c8303038
       ))
     );
   };
