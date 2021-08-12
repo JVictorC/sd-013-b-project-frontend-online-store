@@ -6,20 +6,19 @@ export default class Evaluations extends React.Component {
 
     const object = JSON.parse(localStorage.getItem('currentState'));
 
-    return(
+    return (
       <div>
-        <div>
-          <h4>Recuperando do Localstorage</h4>
-          {
-            localStorage.length === 0 ? '' :
-            <div>
-              <p>E-mail: { object.email }</p>
-              <p>Nota: { object.rating } </p>
-              <p>Mensagem: { object.message }</p>
-            </div>
-          }
-        </div>
-        <hr />
+        {
+          localStorage.length === 0 ? ''
+            : object.map(obj => (
+              <div>
+                <p>E-mail: {obj.email}</p>
+                <p>Nota: {obj.rating} </p>
+                <p>Mensagem: {obj.message}</p>
+                <hr />
+              </div>
+            ))
+        }
       </div>
     );
   }

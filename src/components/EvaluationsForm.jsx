@@ -36,10 +36,14 @@ export default class EvaluationsForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
-    const currentState = JSON.stringify(this.state);
-    localStorage.setItem('currentState', currentState);
+    // source: https://www.youtube.com/watch?v=De5np8phQxo&t=1198s
+    const evaluations = JSON.parse(localStorage.getItem('currentState')) || [];
+    evaluations.push(this.state);
+    localStorage.setItem('currentState', JSON.stringify(evaluations));
+    // const currentState = JSON.stringify(this.state);
+    // localStorage.setItem('currentState', currentState);
   }
 
   render() {
