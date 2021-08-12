@@ -19,14 +19,16 @@ class InputDigital extends Component {
         >
           Buscar
         </button>
-        <button type="submit">
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            Seu Carrinho de compras
-          </Link>
-        </button>
+        <div className="cart-btn">
+          <button type="submit">
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              Seu Carrinho de compras
+            </Link>
+          </button>
+        </div>
       </form>
     );
   }
