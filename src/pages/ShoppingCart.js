@@ -10,6 +10,7 @@ class ShoppingCart extends Component {
 
     this.addCount = this.addCount.bind(this);
     this.subCount = this.subCount.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
   addCount() {
@@ -26,6 +27,10 @@ class ShoppingCart extends Component {
         { quantity: quantity - 1 }
       ));
     }
+  }
+
+  removeProduct() {
+    console.log('removeu');
   }
 
   render() {
@@ -58,6 +63,7 @@ class ShoppingCart extends Component {
                 </label>
                 <button type="button" onClick={ () => this.addCount() }>+</button>
                 <button type="button" onClick={ () => this.subCount() }>-</button>
+                <button type="button" onClick={ () => this.removeProduct() }>x</button>
               </div>
             </div>
           ))
