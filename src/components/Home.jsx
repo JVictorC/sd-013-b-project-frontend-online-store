@@ -118,6 +118,7 @@ class Home extends React.Component {
                   key={product.id}
                   product={product}
                   selectedProductToCart={selectedProductToCart}
+                  data-testid="product-detail-link"
                 />
               ))}
             </div>
