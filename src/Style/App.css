@@ -1,0 +1,88 @@
+.grid-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.barsearch {
+  align-content: center;
+  align-items: center;
+  background-color: white;
+  border-bottom: 5px solid green;
+  display: flex;
+  height: 150px;
+  justify-content: space-around;
+  padding: 25px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.form-search {
+  display: flex;
+  width: 50%;
+}
+
+.form-control {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-container {
+  width: 20%;
+}
+
+.Link-Cart {
+  text-decoration: none;
+}
+
+.categorys {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-flow: column;
+}
+
+.categorys input {
+  margin: 15px;
+}
+
+.categorys label:hover {
+  font-size: 20px;
+  transform: scale(1.05);
+}
+
+.Product-Show {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 250px;
+}
+
+/* CSS inspirado em Grids https://www.w3schools.com/css/css_grid.asp */
+.product-container {
+  width: 75%;
+}
+
+.product-list {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  text-align: center;
+}
+
+.product-list img {
+  margin: 15px auto;
+  width: 50%;
+}
+
+.product {
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-flow: column;
+  height: 500px;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}

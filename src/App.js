@@ -6,7 +6,7 @@ import Cart from './Components/Cart';
 import ProductDetails from './Components/ProductDetails';
 import Checkout from './Components/Checkout';
 
-import './App.css';
+import './Style/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -75,7 +75,7 @@ class App extends React.Component {
     const { card, productDetailsSelect } = this.state;
     return (
       <BrowserRouter>
-        <div className="App">
+        <>
           <Switch>
             <Route
               exact
@@ -105,17 +105,17 @@ class App extends React.Component {
               component={ Checkout }
             />
           </Switch>
-        </div>
-        <Route
-          path="/productDetails/:id"
-          render={ () => (
-            <ProductDetails
-              productDetailsSelect={ productDetailsSelect }
-              getCardItem={ this.getCardItem }
-              QuantityItemCard={ card.length }
-            />
-          ) }
-        />
+          <Route
+            path="/productDetails/:id"
+            render={ () => (
+              <ProductDetails
+                productDetailsSelect={ productDetailsSelect }
+                getCardItem={ this.getCardItem }
+                QuantityItemCard={ card.length }
+              />
+            ) }
+          />
+        </>
       </BrowserRouter>
     );
   }

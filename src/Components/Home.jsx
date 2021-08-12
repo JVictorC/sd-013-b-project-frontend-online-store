@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -59,15 +58,12 @@ class Home extends Component {
     const { products } = this.state;
     const { getDetailsProduct, QuantityItemCard } = this.props;
     return (
-      <>
-        <header>
-          <BarSearch getProducts={ this.getProducts } />
-          <Link data-testid="shopping-cart-button" to="cart/">
-            <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
-            🛒
-          </Link>
-        </header>
-        <main>
+      <div className="grid-container">
+        <BarSearch
+          getProducts={ this.getProducts }
+          QuantityItemCard={ QuantityItemCard }
+        />
+        <main className="Product-Show">
           <Category handleClick={ this.handleClick } />
           <ProductList
             products={ products }
@@ -75,7 +71,7 @@ class Home extends Component {
             getDetailsProduct={ getDetailsProduct }
           />
         </main>
-      </>
+      </div>
     );
   }
 }
@@ -86,5 +82,5 @@ Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
   getDetailsProduct: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
-  card: PropTypes.arrayOf(PropTypes.string).isRequired,
+  card: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
