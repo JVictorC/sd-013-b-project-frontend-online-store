@@ -17,7 +17,7 @@ export default class ShoppingCart extends React.Component {
 
     return (
       <div>
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
         <AddCart query={ query } />
         <Link to="/">Voltar</Link>
       </div>
@@ -26,5 +26,9 @@ export default class ShoppingCart extends React.Component {
 }
 
 ShoppingCart.propTypes = {
-  query: PropTypes.string.isRequired,
+  // query: PropTypes.arrayOf(PropTypes.object).isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.string,
+  ]).isRequired,
 };
