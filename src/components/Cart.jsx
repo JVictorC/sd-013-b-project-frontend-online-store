@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Cart extends React.Component {
-  constructor() {
-    super();
+export default class Cart extends Component {
+  constructor(props) {
+    super(props);
 
     this.renderList = this.renderList.bind(this);
-
     this.state = {
       empty: true,
-      list: [],
+      list: props.list,
     };
+  }
+
+  componentDidMount() {
+    this.checkEmpty();
+  }
+
+  checkEmpty() {
+    const { list } = this.state;
+    if (list.length > 0) {
+      this.setState({
+        empty: false,
+      });
+    }
   }
 
   renderEmpty() {
@@ -23,12 +35,19 @@ export default class Cart extends React.Component {
 
   renderList() {
     const { list } = this.state;
+
     return (
       <div>
         <Link to="/">Voltar</Link>
         { list.map((item) => (
-          <li key={ item.id }>
+          <li
+            data-testid="shopping-cart-product-name"
+            key={ item.id }
+          >
             { item.title }
+            <p data-testid="shopping-cart-product-quantity">
+              1
+            </p>
           </li>
         )) }
       </div>
