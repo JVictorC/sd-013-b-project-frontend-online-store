@@ -11,14 +11,23 @@ export default class RenderCard extends Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { products, handleCartButtonClick, productsInCartNumber } = this.props;
     if (!localStorage.getItem('productList')) localStorage.setItem('productList', '[]');
     return (
       <div>
         {products.map(((product) => (
           <div key={ product.id } data-testid="product">
             <Link
-              to={ `/details/${product.id}` }
+              to={
+                {
+                  pathname: `/details/${product.id}`,
+                  state: { productsInCartNumber } }
+              }
+              // to={
+              //   { pathname: `/details/${product.id}`,state: {handleCartButtonClick,
+              //     productsInCartNumber,
+              //   },
+              // } }
               data-testid="product-detail-link"
             >
               <h3>{product.title}</h3>
@@ -30,7 +39,10 @@ export default class RenderCard extends Component {
             <button
               type="button"
               data-testid="product-add-to-cart"
-              onClick={ this.handleCartClick }
+              onClick={ (event) => {
+                handleCartButtonClick();
+                this.handleCartClick(event);
+              } }
               name={ JSON.stringify(product) }
             >
               Adcionar ao Carrinho
@@ -44,4 +56,6 @@ export default class RenderCard extends Component {
 
 RenderCard.propTypes = {
   products: PropTypes.arrayOf().isRequired,
+  handleCartButtonClick: PropTypes.func.isRequired,
+  productsInCartNumber: PropTypes.number.isRequired,
 };

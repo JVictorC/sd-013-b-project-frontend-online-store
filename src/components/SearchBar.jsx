@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import RenderCard from './RenderCard';
 import Category from './Category';
 
@@ -8,12 +9,26 @@ const api = require('../services/api');
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);
+    let newProductNumber = 0;
+    if (this.props.location) {
+      console.log('entrei aqui');
+      const { location: { state: { productsInCartNumber } } } = this.props;
+      newProductNumber = productsInCartNumber;
+    }
     this.state = {
       searchText: '',
       products: [],
+      productsInCartNumber: newProductNumber,
     };
-
+    this.handleCartButtonClick = this.handleCartButtonClick.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
+  }
+
+  handleCartButtonClick() {
+    const { productsInCartNumber } = this.state;
+    this.setState({
+      productsInCartNumber: productsInCartNumber + 1,
+    });
   }
 
   // async componentDidMount() {
@@ -43,7 +58,7 @@ export default class SearchBar extends Component {
   }
 
   render() {
-    const { searchText, products } = this.state;
+    const { searchText, products, productsInCartNumber } = this.state;
     return (
       <main>
         <label htmlFor="input-search-bar">
@@ -69,9 +84,18 @@ export default class SearchBar extends Component {
         <Link to="shoppingcart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
+        <span data-testid="shopping-cart-size">{productsInCartNumber}</span>
         <Category onChange={ this.handleChangeCategory } />
-        <RenderCard products={ products } />
+        <RenderCard
+          products={ products }
+          handleCartButtonClick={ this.handleCartButtonClick }
+          productsInCartNumber={ productsInCartNumber }
+        />
       </main>
     );
   }
 }
+
+SearchBar.propTypes = {
+  location: PropTypes.objectOf().isRequired,
+};
