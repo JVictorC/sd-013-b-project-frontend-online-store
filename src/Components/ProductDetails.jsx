@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import FormProduct from './FormProduct';
+import AvaliationsArea from './AvaliationsArea';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -32,12 +32,12 @@ export default class ProductDetails extends Component {
         <Link
           to="/"
         >
-          🏠
+          <span role="img" aria-label="home">🏠</span>
         </Link>
         <Link data-testid="shopping-cart-button" to="/cart">
-          <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
-          🛒
+          <span role="img" aria-label="shop">🛒</span>
         </Link>
+        <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>
           Preço: R$
@@ -45,8 +45,15 @@ export default class ProductDetails extends Component {
         </p>
         <img src={ thumbnail } alt={ title } />
         {productDetailsSelect.shipping.free_shipping
-          ? <div data-testid="free-shipping">📦 Frete Grátis</div>
+          ? (
+            <div data-testid="free-shipping">
+              <span role="img" aria-label="shipping">
+                📦 Frete Grátis
+              </span>
+            </div>
+          )
           : false}
+
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
@@ -57,7 +64,7 @@ export default class ProductDetails extends Component {
           Adicionar ao Carrinho
         </button>
         <div>
-          <FormProduct />
+          <AvaliationsArea />
         </div>
       </div>
     );
@@ -65,7 +72,7 @@ export default class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  productDetailsSelect: PropTypes.objectOf(PropTypes.string).isRequired,
+  productDetailsSelect: PropTypes.objectOf(PropTypes.object).isRequired,
   getCardItem: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
 };
