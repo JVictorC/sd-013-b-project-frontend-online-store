@@ -41,7 +41,7 @@ export default class Cart extends Component {
       <div>
         <h3>Lista de compras:</h3>
         <ul>
-          { list.map((item) => <CartItems { ...item } key={ item.id } />) }
+          { list.map((product) => <CartItems item={ product } key={ product.id } />) }
         </ul>
         <p>
           { `R$${finalPrice}` }
@@ -66,8 +66,8 @@ export default class Cart extends Component {
     return (
       <section>
         <h1>Shopping Cart</h1>
-        { (empty && this.renderEmpty()) }
-        { (list.length > 0 && this.renderList()) }
+        { (empty && this.renderEmpty) }
+        { (list.length > 0 && this.renderList) }
       </section>
     );
   }
