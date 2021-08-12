@@ -21,17 +21,16 @@ export default class EvaluationsForm extends React.Component {
   handleEmail({ target : { value } }) {
     this.setState({
       email: value,
-    });
+    }); 
   }
 
   handleMessage({ target: { value } }) {
     this.setState({
       message: value,
     });
-
   }
 
-  handleRating({ target: { value }}) {
+  handleRating({ target: { value }}) { 
     this.setState({
       rating: value,
     });
@@ -39,6 +38,14 @@ export default class EvaluationsForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { email, message, rating } = this.state;
+
+    localStorage.setItem('email', email);
+    localStorage.setItem('message', message);
+    localStorage.setItem('rating', rating);
+
+    const currentState = JSON.stringify(this.state);
+    localStorage.setItem('currentState', currentState);
 
     this.setState({
       submitted: true,
