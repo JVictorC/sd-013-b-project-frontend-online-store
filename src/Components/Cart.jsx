@@ -21,8 +21,16 @@ class Cart extends React.Component {
     return total.toFixed(2);
   }
 
+  hadlerClick(event, id) {
+    const { del } = this.props;
+    del(event);
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    localStorage.setItem('card',
+      JSON.stringify(cardLocal.filter(({ id: idLocal }) => idLocal !== id)));
+  }
+
   render() {
-    const { card, increase, decrease, del } = this.props;
+    const { card, increase, decrease } = this.props;
     return (
       <div className="cart">
         <Link
@@ -68,7 +76,7 @@ class Cart extends React.Component {
                   ➕
                 </button>
               </p>
-              <button onClick={ del } type="button" id={ id }>
+              <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
                 ❌
               </button>
             </div>
