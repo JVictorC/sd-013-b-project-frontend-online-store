@@ -5,30 +5,50 @@ import ShoppingCartIcon from './ShoppingCartIcon';
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
+    const { location: { state } } = this.props;
+    this.state = {
+      cartItems: state,
+    };
 
     this.increaseQuantity = this.increaseQuantity.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
   }
 
-  increaseQuantity() {
-    const { location: { state } } = this.props;
-    const { quantity } = state[0];
-    console.log(quantity);
+  increaseQuantity(id) {
+    const { cartItems } = this.state;
+    const increaseQuantity = cartItems.map((item) => (id === item.id
+      ? { ...item, quantity: item.quantity + 1 }
+      : item));
+    this.setState({
+      cartItems: increaseQuantity,
+    });
+  }
+
+  decreaseQuantity(id) {
+    const { cartItems } = this.state;
+    const decreaseQuantity = cartItems.map((item) => (id === item.id
+      ? { ...item, quantity: item.quantity - 1 }
+      : item));
+    this.setState({
+      cartItems: decreaseQuantity,
+    });
   }
 
   render() {
-    const { location: { state } } = this.props;
+    const { cartItems } = this.state;
     return (
       <div>
         <ShoppingCartIcon />
-        { state.length === 0
+        { cartItems.length === 0
           ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          : state.map(({ id, title, thumbnail, quantity }) => (
+          : cartItems.map(({ id, title, thumbnail, quantity }) => (
             <div key={ id }>
               <img src={ thumbnail } alt={ title } />
               <p data-testid="shopping-cart-product-name">{ title }</p>
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
+                onClick={ () => this.decreaseQuantity(id) }
               >
                 -
               </button>
@@ -36,7 +56,7 @@ class ShoppingCart extends React.Component {
               <button
                 type="button"
                 data-testid="product-increase-quantity"
-                onClick={ this.increaseQuantity }
+                onClick={ () => this.increaseQuantity(id) }
               >
                 +
               </button>
