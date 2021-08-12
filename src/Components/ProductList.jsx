@@ -19,4 +19,5 @@ export default class ProductList extends Component {
 
 ProductList.propTypes = {
   products: PropTypes.objectOf.isRequired,
+  searchbar: PropTypes.string.isRequired,
 };

@@ -26,7 +26,6 @@ export default class App extends Component {
               render={ (props) => <ProductDetails { ...props } /> }
             />
           </Switch>
-          <Route exact path="/shoppingcart" component={ ShoppingCart } />
         </BrowserRouter>
       </div>
     );
