@@ -5,23 +5,6 @@ import './card.css';
 
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 export default class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartProducts: [],
-    };
-    this.addItemToCart = this.addItemToCart.bind(this);
-  }
-
-  addItemToCart() {
-    const { location: { state: { object } } } = this.props;
-    const { cartProducts } = this.state;
-    // const { title, thumbnail, price } = object;
-    this.setState({
-      cartProducts: [...cartProducts, object],
-    });
-  }
-
   render() {
     const { thumbnail, title, price, id, object } = this.props;
     const { cartProducts } = this.state;
@@ -40,7 +23,6 @@ export default class Card extends Component {
           <p>Ver detalhes</p>
         </Link>
         <Link
-          onClick={ this.addItemToCart }
           to={ { pathname: '/cart', state: { cartProducts } } }
           data-testid="product-add-to-cart"
         >
