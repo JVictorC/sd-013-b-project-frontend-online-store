@@ -19,7 +19,8 @@ class ProductList extends React.Component {
     this.addHandler = this.addHandler.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     const { text } = this.state;
     const value = text;
     getProductsFromCategoryAndQuery('', value).then((response) => {
@@ -62,49 +63,55 @@ class ProductList extends React.Component {
     const { text, results, didSearch } = this.state;
     return (
       <div className="main-container">
+        <section className="search-container">
+          <form>
+            <input
+              type="text"
+              data-testid="query-input"
+              onChange={ this.handleChange }
+              name="text"
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.handleClick }
+            >
+              Search
+            </button>
+            <ShoppingCartButton />
+          </form>
+        </section>
         <CategoriesList onFilter={ this.handleFilter } />
-        <section>
-          <input
-            type="text"
-            data-testid="query-input"
-            onChange={ this.handleChange }
-            name="text"
-          />
-          <button
-            data-testid="query-button"
-            type="button"
-            onClick={ this.handleClick }
-          >
-            Search
-          </button>
-          <ShoppingCartButton />
-          { text === '' && results.length === 0 && (
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>
-          )}
-          {
-            text !== '' && results.length === 0 && didSearch && (
-              <p>
-                Nenhum produto foi encontrado.
-              </p>
-            )
-          }
-        </section>
-        <section>
-          <ul>
-            { results.length !== 0 && (
-              results.map((result) => (
-                <li
-                  data-testid="product"
-                  key={ result.id }
-                >
-                  <ProductCard product={ result } onAdd={ this.addHandler } />
-                </li>
-              ))
-            ) }
-          </ul>
-        </section>
+        <main>
+          <section className="products-list-container">
+            <div className="message">
+              { text === '' && results.length === 0 && (
+                <p data-testid="home-initial-message">
+                  Digite algum termo de pesquisa ou escolha uma categoria.
+                </p>
+              )}
+              {
+                text !== '' && results.length === 0 && didSearch && (
+                  <p>
+                    Nenhum produto foi encontrado.
+                  </p>
+                )
+              }
+            </div>
+            <ul>
+              { results.length !== 0 && (
+                results.map((result) => (
+                  <li
+                    data-testid="product"
+                    key={ result.id }
+                  >
+                    <ProductCard product={ result } onAdd={ this.addHandler } />
+                  </li>
+                ))
+              ) }
+            </ul>
+          </section>
+        </main>
       </div>
     );
   }

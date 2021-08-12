@@ -19,6 +19,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <Link
+          style={ { textDecoration: 'none', color: 'black' } }
           data-testid="product-detail-link"
           to={ {
             pathname: `/product/${id}`,
@@ -31,14 +32,14 @@ class ProductCard extends React.Component {
             {`Preço R$ ${price}`}
           </p>
           {shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
-          <button
-            type="button"
-            onClick={ this.addHandler }
-            data-testid="product-add-to-cart"
-          >
-            Adicionar ao Carrinho
-          </button>
         </Link>
+        <button
+          type="button"
+          onClick={ this.addHandler }
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }

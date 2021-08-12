@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -34,40 +33,30 @@ class ShoppingCart extends React.Component {
     });
 
     return (
-      <div>
-        <Link to="/">
-          <button type="button">return</button>
-        </Link>
-        {cart.length > 0 ? (
-          finalCart.map((product) => (
-            <div id={ product.data.id } key={ product.data.id }>
-              <span data-testid="shopping-cart-product-name">
-                {product.data.title}
-              </span>
-              <button
-                data-testid="product-decrease-quantity"
-                type="button"
-                onClick={ this.changeQuantityHandler }
-              >
-                -
-              </button>
-              <b data-testid="shopping-cart-product-quantity">
-                {product.quantity}
-              </b>
-              <button
-                data-testid="product-increase-quantity"
-                type="button"
-                onClick={ this.changeQuantityHandler }
-              >
-                +
-              </button>
+      <div className="shopping-cart-container">
+        <header>
+          <Link to="/">
+            <div className="btn-return">
+              <i className="fas fa-arrow-left" />
             </div>
-          ))
-        ) : (
-          <p data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
-          </p>
-        )}
+          </Link>
+        </header>
+        <div className="cart-body">
+          {
+            cart.length > 0 ? (
+              finalCart.map((product) => (
+                <div className="cart-basket" key={ product.data.id }>
+                  <span data-testid="shopping-cart-product-name">
+                    { product.data.title }
+                  </span>
+                  <b data-testid="shopping-cart-product-quantity">{ product.quantity }</b>
+                </div>
+              ))
+            ) : (
+              <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+            )
+          }
+        </div>
       </div>
     );
   }

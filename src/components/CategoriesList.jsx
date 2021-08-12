@@ -7,6 +7,7 @@ class CategoriesList extends React.Component {
     super();
     this.state = {
       categories: [],
+      selected: '',
     };
     this.getCategoryHandler = this.getCategoryHandler.bind(this);
   }
@@ -20,13 +21,16 @@ class CategoriesList extends React.Component {
   }
 
   getCategoryHandler(event) {
+    this.setState({
+      selected: event.target.id,
+    });
     const name = event.target.parentNode.id;
     const { onFilter } = this.props;
     onFilter(event.target.id, name);
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, selected } = this.state;
     return (
       <aside className="container-ul">
         <ol>
@@ -36,15 +40,17 @@ class CategoriesList extends React.Component {
               id={ category.name }
               key={ category.id }
             >
-              <label htmlFor={ category.id }>{ category.name }</label>
-              <input
+              <button
+                type="button"
                 name="category-filter"
                 id={ category.id }
-                type="radio"
+                className={ category.id === selected && 'selected' }
                 data-testid="category"
                 onKeyDown={ this.getCategoryHandler }
                 onClick={ this.getCategoryHandler }
-              />
+              >
+                { category.name }
+              </button>
             </li>))}
         </ol>
       </aside>
