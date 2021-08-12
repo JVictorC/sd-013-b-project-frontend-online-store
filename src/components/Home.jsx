@@ -18,14 +18,16 @@ class Home extends React.Component {
       inputText: '',
       productsList: [],
       haveProduct: false,
-      productToCart: [],
+      count: null,
     };
     this.searchText = this.searchText.bind(this);
     this.categorieSelected = this.categorieSelected.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.countProductsCart = this.countProductsCart.bind(this);
   }
 
   componentDidMount() {
+    this.countProductsCart();
   }
 
   async onClick() {
@@ -58,8 +60,17 @@ class Home extends React.Component {
     });
   }
 
+  countProductsCart() {
+    const storage = JSON.parse(localStorage.getItem('cart'));
+    if (storage) {
+      this.setState({
+        count: (storage.length),
+      });
+    }
+  }
+
   render() {
-    const { productsList, haveProduct, productToCart } = this.state;
+    const { productsList, haveProduct, count } = this.state;
 
     return (
       <div className="main-div">
@@ -70,26 +81,14 @@ class Home extends React.Component {
             onClick={ this.onClick }
           />
           <div>
-            {productToCart ? (
-              <Link
-                className="shopping-cart-button"
-                to={ {
-                  pathname: '/cart',
-                  state: productToCart,
-                } }
-                data-testid="shopping-cart-button"
-              >
-                <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
-              </Link>
-            ) : (
-              <Link
-                className="shopping-cart-button"
-                to="/cart"
-                data-testid="shopping-cart-button"
-              >
-                <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
-              </Link>
-            )}
+            <Link
+              className="shopping-cart-button"
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              <div data-testid="shopping-cart-size">{count}</div>
+              <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
+            </Link>
           </div>
         </div>
 
@@ -105,6 +104,7 @@ class Home extends React.Component {
                   className="card"
                   key={ product.id }
                   product={ product }
+                  countProductsCart={ this.countProductsCart }
                   data-testid="product-detail-link"
                 />
               ))}

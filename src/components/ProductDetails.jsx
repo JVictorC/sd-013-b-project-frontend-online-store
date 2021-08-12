@@ -4,6 +4,19 @@ import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
 
 class ProductDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: null,
+    };
+    this.countProductsCart = this.countProductsCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.countProductsCart();
+  }
+
   onClick = () => {
     const { location } = this.props;
     const { state: product } = location;
@@ -17,9 +30,20 @@ class ProductDetails extends React.Component {
     }
   }
 
+  countProductsCart() {
+    const storage = JSON.parse(localStorage.getItem('cart'));
+    if (storage) {
+      this.setState({
+        count: (storage.length),
+      });
+    }
+  }
+
   render() {
     const { location } = this.props;
     const { state: productDetail } = location;
+    const { count } = this.state;
+
     return (
       <div>
         <div className="product-header">
@@ -32,6 +56,7 @@ class ProductDetails extends React.Component {
             } }
             data-testid="shopping-cart-button"
           >
+            <div data-testid="shopping-cart-size">{count}</div>
             <img className="cart-icon" src={ shoppingCart } alt="cart icon" />
           </Link>
         </div>
