@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShoppingCartButton from '../components/ShoppingCartButton';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   render() {
@@ -24,22 +24,30 @@ class ShoppingCart extends React.Component {
     });
     console.log(finalCart);
     return (
-      <div>
-        <ShoppingCartButton />
-        {
-          cart.length > 0 ? (
-            finalCart.map((product) => (
-              <div key={ product.data.id }>
-                <span data-testid="shopping-cart-product-name">
-                  { product.data.title }
-                </span>
-                <b data-testid="shopping-cart-product-quantity">{ product.quantity }</b>
-              </div>
-            ))
-          ) : (
-            <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          )
-        }
+      <div className="shopping-cart-container">
+        <header>
+          <Link to="/">
+            <div className="btn-return">
+              <i className="fas fa-arrow-left" />
+            </div>
+          </Link>
+        </header>
+        <div className="cart-body">
+          {
+            cart.length > 0 ? (
+              finalCart.map((product) => (
+                <div className="cart-basket" key={ product.data.id }>
+                  <span data-testid="shopping-cart-product-name">
+                    { product.data.title }
+                  </span>
+                  <b data-testid="shopping-cart-product-quantity">{ product.quantity }</b>
+                </div>
+              ))
+            ) : (
+              <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+            )
+          }
+        </div>
       </div>
     );
   }
