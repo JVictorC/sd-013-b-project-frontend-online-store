@@ -94,6 +94,7 @@ class ShoppingCart extends Component {
                     name="quantity"
                     type="text"
                     value={ quantity }
+                    readOnly
                   />
                 </label>
 
