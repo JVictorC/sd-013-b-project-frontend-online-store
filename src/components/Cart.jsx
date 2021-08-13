@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import CartItems from './CartItems';
+
 export default class Cart extends Component {
   constructor(props) {
     super(props);
 
     this.renderList = this.renderList.bind(this);
+    this.clearList = this.clearList.bind(this);
+
     this.state = {
       empty: true,
       list: props.list,
+      finalPrice: 0,
     };
   }
 
@@ -26,6 +31,28 @@ export default class Cart extends Component {
     }
   }
 
+  clearList() {
+    this.setState({
+      empty: true,
+      list: [],
+    });
+  }
+
+  renderList() {
+    const { list, finalPrice } = this.state;
+    return (
+      <div>
+        <h3>Lista de compras:</h3>
+        <ul>
+          { list.map((product) => <CartItems item={ product } key={ product.id } />) }
+        </ul>
+        <p>
+          { `R$${finalPrice}` }
+        </p>
+      </div>
+    );
+  }
+
   renderEmpty() {
     return (
       <p data-testid="shopping-cart-empty-message">
@@ -34,38 +61,23 @@ export default class Cart extends Component {
     );
   }
 
-  renderList() {
-    const { list } = this.state;
-
-    return (
-      <div>
-        <Link to="/">Voltar</Link>
-        { list.map((item) => (
-          <li
-            data-testid="shopping-cart-product-name"
-            key={ item.id }
-          >
-            { item.title }
-            <p data-testid="shopping-cart-product-quantity">
-              1
-            </p>
-          </li>
-        )) }
-      </div>
-    );
-  }
-
   render() {
     const { empty } = this.state;
     return (
       <section>
-        { (empty && this.renderEmpty()) }
-        { this.renderList() }
+        <h1>Shopping Cart</h1>
+        { (empty ? this.renderEmpty() : this.renderList()) }
+        <button type="button" onClick={ this.clearList }>X</button>
+        <Link to="/">Voltar</Link>
       </section>
     );
   }
 }
 
 Cart.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  list: PropTypes.arrayOf(PropTypes.object),
+};
+
+Cart.defaultProps = {
+  list: [],
 };
