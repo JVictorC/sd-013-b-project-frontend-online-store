@@ -11,7 +11,8 @@ import CounterCart from './CounterCart';
 
 export default class SearchBar extends React.Component {
   render() {
-    const { onChange, value, handleClick, categoryClick, query } = this.props;
+    const {
+      onChange, value, handleClick, categoryClick, query, itemQuantity } = this.props;
     return (
       <div>
         <div className="input-container">
@@ -33,7 +34,7 @@ export default class SearchBar extends React.Component {
             <ShoppingCartIcon style={ { color: '#22ba24' } } fontSize="large" />
           </Link>
           {/* <p data-testid="shopping-cart-size">{query.length}</p> */}
-          <CounterCart query={ query } />
+          <CounterCart query={ query } itemQuantity={ itemQuantity } />
         </div>
         <p data-testid="home-initial-message" className="title">
           Digite algum termo de pesquisa ou escolha uma categoria.
@@ -44,6 +45,10 @@ export default class SearchBar extends React.Component {
   }
 }
 
+SearchBar.defaultProps = {
+  itemQuantity: {},
+};
+
 SearchBar.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
@@ -53,4 +58,5 @@ SearchBar.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };

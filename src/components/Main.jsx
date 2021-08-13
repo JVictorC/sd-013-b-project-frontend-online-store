@@ -39,7 +39,7 @@ class Main extends React.Component {
 
   render() {
     const { value, searchItemList } = this.state;
-    const { getQuery, query } = this.props;
+    const { getQuery, query, itemQuantity } = this.props;
     return (
       <>
         <SearchBar
@@ -48,6 +48,7 @@ class Main extends React.Component {
           handleClick={ this.handleClick }
           categoryClick={ this.categoryClick }
           query={ query }
+          itemQuantity={ itemQuantity }
         />
         <ListItems items={ searchItemList } getQuery={ getQuery } />
       </>
@@ -55,12 +56,17 @@ class Main extends React.Component {
   }
 }
 
+Main.defaultProps = {
+  itemQuantity: {},
+};
+
 Main.propTypes = {
   getQuery: PropTypes.func.isRequired,
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };
 
 export default Main;
