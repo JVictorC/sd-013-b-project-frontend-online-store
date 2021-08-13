@@ -49,6 +49,10 @@ export default class EvaluationRender extends React.Component {
   }
 }
 
+EvaluationRender.defaultProps = {
+  id: undefined,
+};
+
 EvaluationRender.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };

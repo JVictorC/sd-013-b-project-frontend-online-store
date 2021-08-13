@@ -32,9 +32,13 @@ export default class BtnSubmitEvaluation extends React.Component {
   }
 }
 
+BtnSubmitEvaluation.defaultProps = {
+  id: undefined,
+};
+
 BtnSubmitEvaluation.propTypes = {
   comment: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   email: PropTypes.string.isRequired,
 };

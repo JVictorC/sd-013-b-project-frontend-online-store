@@ -7,7 +7,13 @@ export default class CartItem extends React.Component {
 
     return (
       <div className="cart-items">
-        <button type="submit">Retirar</button>
+        <button
+          type="submit"
+          id={ `${id}-remove` }
+          onClick={ onClick }
+        >
+          Retirar
+        </button>
         <img src={ thumbnail } alt={ title } />
         <p data-testid="shopping-cart-product-name">
           {title}

@@ -53,6 +53,10 @@ export default class EvaluationForm extends React.Component {
   }
 }
 
+EvaluationForm.defaultProps = {
+  id: undefined,
+};
+
 EvaluationForm.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string,
 };

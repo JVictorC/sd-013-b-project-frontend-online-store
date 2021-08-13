@@ -44,10 +44,18 @@ export default class BtnAddToCart extends React.Component {
   }
 }
 
+BtnAddToCart.defaultProps = {
+  id: undefined,
+  title: undefined,
+  thumbnail: undefined,
+  price: undefined,
+  buttonId: undefined,
+};
+
 BtnAddToCart.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  buttonId: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  thumbnail: PropTypes.string,
+  price: PropTypes.number,
+  buttonId: PropTypes.string,
 };
