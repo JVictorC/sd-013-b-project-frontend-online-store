@@ -61,7 +61,8 @@ class Home extends React.Component {
           >
             pesquisar
           </button>
-          <br />
+        </label>
+        <div>
           <Link
             data-testid="shopping-cart-button"
             to="/shoppingcart"
@@ -69,7 +70,7 @@ class Home extends React.Component {
             Carrinho
           </Link>
           <Categories handleClick={ this.handleClick } />
-        </label>
+        </div>
         <div className="product-list">
           {products.map((product) => (
             <ProductCard

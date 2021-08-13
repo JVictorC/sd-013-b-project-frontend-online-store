@@ -8,6 +8,18 @@ class ProductCard extends React.Component {
     localStorage.setItem('product', JSON.stringify(product));
   }
 
+  handleProduct = () => {
+    const { product } = this.props;
+    console.log(product);
+    if (localStorage.getItem('cart') === null) {
+      localStorage.setItem('cart', `[${JSON.stringify(product)}]`);
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }
+
   render() {
     const { product: { title, thumbnail, price, id } } = this.props;
     return (
@@ -18,13 +30,22 @@ class ProductCard extends React.Component {
         </div>
         <p>{ price }</p>
         <div>
-          <Link
-            data-testid="product-detail-link"
-            to={ `/products/${id}` }
-            onClick={ this.handleDetails }
+          <button type="button">
+            <Link
+              data-testid="product-detail-link"
+              to={ `/products/${id}` }
+              onClick={ this.handleDetails }
+            >
+              Detalhes
+            </Link>
+          </button>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ this.handleProduct }
           >
-            Detalhes
-          </Link>
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     );
