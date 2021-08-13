@@ -9,7 +9,7 @@ export default class EvaluationsForm extends React.Component {
       email: '',
       message: '',
       rating: 0,
-    }
+    };
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
@@ -17,10 +17,10 @@ export default class EvaluationsForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEmail({ target : { value } }) {
+  handleEmail({ target: { value } }) {
     this.setState({
       email: value,
-    }); 
+    });
   }
 
   handleMessage({ target: { value } }) {
@@ -29,15 +29,13 @@ export default class EvaluationsForm extends React.Component {
     });
   }
 
-  handleRating({ target: { value }}) { 
+  handleRating({ target: { value } }) {
     this.setState({
       rating: value,
     });
   }
 
-  handleSubmit(event) {
-    // event.preventDefault();
-
+  handleSubmit() {
     // source: https://www.youtube.com/watch?v=De5np8phQxo&t=1198s
     const evaluations = JSON.parse(localStorage.getItem('currentState')) || [];
     evaluations.push(this.state);
@@ -49,7 +47,7 @@ export default class EvaluationsForm extends React.Component {
   render() {
     const { email, message, rating } = this.state;
 
-    return(
+    return (
       <form onSubmit={ this.handleSubmit }>
         <h3>Avaliações</h3>
         <div>
@@ -132,5 +130,5 @@ export default class EvaluationsForm extends React.Component {
         <Evaluations currentState={ this.state } />
       </form>
     )
-  }
+  };
 }
