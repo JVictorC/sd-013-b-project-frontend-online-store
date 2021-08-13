@@ -8,8 +8,11 @@ class CarrinhoDeCompra extends React.Component {
     this.state = {
       products: this.props.products,
       mensagem: true,
-      value: {},
+      purchaseAmount: 0,
     };
+
+    this.incrementVelueu = this.incrementVelueu.bind(this);
+    this.decrementVelueu = this.decrementVelueu.bind(this);
   }
 
   componentDidMount() {
@@ -18,18 +21,59 @@ class CarrinhoDeCompra extends React.Component {
 
   valeuList() {
     const { products } = this.state;
+    const box = products
+    const total = { total: 0 }
+    box.forEach((element) => {
+      total.total += element.valueTotal
+    })
     if (products.length > 0) {
       this.setState({
         products,
         mensagem: false,
+        purchaseAmount: total.total
       })
     }
   }
 
+  incrementVelueu(obj) {
+    const { products, purchaseAmount } = this.state;
+    const value = { value:purchaseAmount };
+    const box = products;
+    const resultado = box.find(({ id }) => id === obj.id);
+    box.forEach((elemento) => {
+      if (resultado === elemento) {
+        elemento.quantidade += 1;
+        elemento.valueTotal = elemento.price * elemento.quantidade;
+        value.value += elemento.valueTotal;
+        this.setState({
+          products: box,
+          purchaseAmount: value.value
+        });
+      } 
+    });
+  }
+
+  decrementVelueu(obj) {
+    const { products, purchaseAmount } = this.state;
+    const value = { value:purchaseAmount }
+    const box = products;
+    const resultado = box.find(({ id }) => id === obj.id);
+    box.forEach((elemento) => {
+      if (resultado === elemento && elemento.quantidade > 0) {
+        elemento.quantidade -= 1;
+        elemento.valueTotal = elemento.price * elemento.quantidade;
+        value.value -= elemento.valueTotal;
+        this.setState({
+          product: box,
+          purchaseAmount: value.value
+        });
+      }
+    });
+  }
   
 
   render() {
-    const { mensagem, products } = this.state;
+    const { mensagem, products, purchaseAmount } = this.state;
     if (mensagem) {
       return (
         <div>
@@ -45,8 +89,11 @@ class CarrinhoDeCompra extends React.Component {
           <h1>Carrinho De Compra</h1>
         </div>
       {products.map((obj) => (
-        <CartList key={ obj.id } obj={ obj } />
+        <CartList increment={ this.incrementVelueu } decrement={ this.decrementVelueu } key={ obj.id } obj={ obj } />
       ))}
+      <di>
+        <p>Valor Total do carrinho:{ purchaseAmount }</p>
+      </di>
       </section>
     );
   }

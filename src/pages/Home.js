@@ -39,7 +39,7 @@ class Home extends React.Component {
   addToCart(obj) {
     const { product } = this.state;
     const box = [...product]
-    const objNovo = { ...obj, quantidade: 1 }
+    const objNovo = { ...obj, quantidade: 1, valueTotal: obj.price }
     if (product.length === 0) {
       box.push(objNovo)
       this.setState({ product: box })
@@ -48,6 +48,7 @@ class Home extends React.Component {
       box.forEach((elemento) => {
         if(resultado === elemento) {
           elemento.quantidade += 1;
+          elemento.valueTotal = elemento.price * elemento.quantidade;
           this.setState({
             product: box
           })
