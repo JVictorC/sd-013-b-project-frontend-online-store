@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EvaluationsForm from '../components/EvaluationsForm';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -33,13 +34,19 @@ class ProductDetails extends React.Component {
       );
     }
     return (
-      <section className="product-details">
-        <h2 data-testid="product-detail-name">{ title }</h2>
-        <div className="product-details-unit">
-          <img className="details-img" src={ thumbnail } alt={ `Imagem de ${title}` } />
-          <span>{`R$${parseFloat(price).toFixed(2)}`}</span>
-        </div>
-      </section>
+      <div>
+
+        <section className="product-details">
+          <h2 data-testid="product-detail-name">{ title }</h2>
+          <div className="product-details-unit">
+            <img className="details-img" src={ thumbnail } alt={ `Imagem de ${title}` } />
+            <span>{`R$${parseFloat(price).toFixed(2)}`}</span>
+          </div>
+        </section>
+
+        <hr />
+        <EvaluationsForm />
+      </div>
     );
   }
 }
