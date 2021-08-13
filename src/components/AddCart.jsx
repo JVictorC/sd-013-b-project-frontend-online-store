@@ -104,5 +104,8 @@ AddCart.propTypes = {
   onClickAdd: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
   totalItem: PropTypes.objectOf(PropTypes.number),
-  available: PropTypes.number.isRequired,
+  available: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.arrayOf(PropTypes.number),
+  ]).isRequired,
 };

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingCart from './components/ShoppingCart';
 import Main from './components/Main';
 import ProductDetails from './components/ProductDetails';
+import CheckoutPage from './components/CheckoutPage';
 
 class App extends React.Component {
   constructor() {
@@ -61,6 +62,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route
+            exact
             path="/shopping-cart"
             render={ () => (<ShoppingCart
               itemQuantity={ itemQuantity }
@@ -81,6 +83,10 @@ class App extends React.Component {
                 query={ query }
               />)
             }
+          />
+          <Route
+            path="/shopping-cart/checkout-page"
+            render={ () => <CheckoutPage query={ query } /> }
           />
         </Switch>
       </BrowserRouter>
