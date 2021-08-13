@@ -89,13 +89,19 @@ class ShoppingCart extends Component {
               <div>
                 <label htmlFor="quantity">
                   Quantidade
-                  <input
+                  {/* <input
                     data-testid="shopping-cart-product-quantity"
                     name="quantity"
                     type="text"
                     value={ quantity }
                     readOnly
-                  />
+                  /> */}
+                  <p
+                    data-testid="shopping-cart-product-quantity"
+                    name="quantity"
+                  >
+                    { quantity }
+                  </p>
                 </label>
 
                 <button
