@@ -12,12 +12,23 @@ class App extends React.Component {
     this.cartStateUpadte = this.cartStateUpadte.bind(this);
     this.increseProduct = this.increseProduct.bind(this);
     this.decreseProduct = this.decreseProduct.bind(this);
+    this.localUpdate = this.localUpdate.bind(this);
 
     this.state = {
       products: {},
       cartList: {},
       count: 0,
     };
+  }
+
+  componentDidMount() {
+    if (!localStorage.getItem('count')) localStorage.count = 0;
+    const count = JSON.parse(localStorage.count);
+    this.localUpdate(count);
+  }
+
+  localUpdate(count) {
+    this.setState({ count });
   }
 
   updateState(products) {
@@ -28,7 +39,10 @@ class App extends React.Component {
     const { cartList } = this.state;
     if (cartList[product.id]) cartList[product.id].quantity += 1;
     else cartList[product.id] = product;
-    this.setState(({ count }) => ({ count: count + 1 }));
+    const countReceived = JSON.parse(localStorage.count);
+    const count = countReceived + 1;
+    localStorage.count = JSON.stringify(count);
+    this.setState({ count });
   }
 
   increseProduct(id) {
@@ -36,7 +50,10 @@ class App extends React.Component {
     if (cartList[id].quantity < cartList[id].available) {
       cartList[id].quantity += 1;
       this.setState({ cartList });
-      this.setState(({ count }) => ({ count: count + 1 }));
+      const countReceived = JSON.parse(localStorage.count);
+      const count = countReceived + 1;
+      localStorage.count = JSON.stringify(count);
+      this.setState({ count });
     }
   }
 
@@ -45,7 +62,10 @@ class App extends React.Component {
     if (cartList[id].quantity > 0) {
       cartList[id].quantity -= 1;
       this.setState({ cartList });
-      this.setState(({ count }) => ({ count: count - 1 }));
+      const countReceived = JSON.parse(localStorage.count);
+      const count = countReceived - 1;
+      localStorage.count = JSON.stringify(count);
+      this.setState({ count });
     }
   }
 
