@@ -1,14 +1,17 @@
 import React from 'react';
-import Cart from './Cart';
+import PropTypes from 'prop-types';
+
+import CartItems from './CartItems';
 import CheckoutForm from './CheckoutForm';
 import CheckoutPayment from './CheckoutPayment';
 import CheckoutButton from './CheckoutButton';
 
 class CheckoutPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
+      list: props.list,
       name: '',
       email: '',
       cpf: '',
@@ -47,10 +50,19 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
+    const { list, finalPrice } = this.state;
     return (
       <div className="checkout-page">
         <section>
-          <Cart />
+          <div>
+            <h3>Lista de compras:</h3>
+            <ul>
+              { list.map((product) => <CartItems item={ product } key={ product.id } />) }
+            </ul>
+            <p>
+              { `R$${finalPrice}` }
+            </p>
+          </div>
         </section>
         <section>
           <CheckoutForm handleOnChange={ this.handleOnChange } />
@@ -63,5 +75,9 @@ class CheckoutPage extends React.Component {
     );
   }
 }
+
+CheckoutPage.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default CheckoutPage;

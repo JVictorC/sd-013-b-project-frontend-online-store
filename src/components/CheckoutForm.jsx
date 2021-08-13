@@ -25,21 +25,21 @@ class CheckoutForm extends React.Component {
             onChange={ handleOnChange }
           />
           <input
-            type="number"
+            type="text"
             name="cpf"
             placeholder="CPF"
             data-testid="checkout-cpf"
             onChange={ handleOnChange }
           />
           <input
-            type="number"
+            type="text"
             name="phone"
             placeholder="Telefone"
             data-testid="checkout-phone"
             onChange={ handleOnChange }
           />
           <input
-            type="number"
+            type="text"
             name="cep"
             placeholder="CEP"
             data-testid="checkout-cep"
@@ -49,7 +49,7 @@ class CheckoutForm extends React.Component {
             type="text"
             name="adress"
             placeholder="Endereço Completo"
-            data-testid="checkout-adress"
+            data-testid="checkout-address"
             onChange={ handleOnChange }
           />
         </form>

@@ -59,7 +59,10 @@ export default class App extends Component {
               path="/cart"
               render={ ((props) => <Cart { ...props } list={ cartList } />) }
             />
-            <Route path="/checkout" component={ CheckoutPage } />
+            <Route
+              path="/checkout"
+              render={ ((props) => <CheckoutPage { ...props } list={ cartList } />) }
+            />
             <Route component={ NotFound } />
           </Switch>
         </BrowserRouter>
