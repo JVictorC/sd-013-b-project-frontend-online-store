@@ -14,7 +14,7 @@ export default class ProductList extends Component {
     const cardLocal = JSON.parse(localStorage.getItem('card'));
     addToCard(product);
     localStorage.setItem('card',
-      JSON.stringify([...cardLocal, { title, price, thumbnail, id, quantity: 1 }]));
+      JSON.stringify([...cardLocal, { title, price, thumbnail, id }]));
   }
 
   render() {
