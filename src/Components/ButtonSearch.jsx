@@ -26,7 +26,7 @@ export default class ButtonSearch extends Component {
     return (
       <div className="search-button">
         <button type="button" data-testid="query-button" onClick={ this.handleClick }>
-          search
+          busca
         </button>
       </div>
     );
