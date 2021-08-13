@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CartButton from '../components/CartButton';
 import CostumerEvaluation from '../components/CostumerEvaluation';
+import ShippingStatus from '../components/ShippingStatus';
 
 class ProductDetails extends React.Component {
   render() {
     const { props } = this;
     const { state } = props.location;
     const { product } = state;
-    const { id, title, price, thumbnail } = product;
+    const { id, title, price, thumbnail, shipping } = product;
     const { addCartChange } = this.props;
     return (
       <div className="div-productdetail">
@@ -38,6 +39,7 @@ class ProductDetails extends React.Component {
               </li>
             </ul>
           </div>
+          <ShippingStatus status={ shipping.free_shipping } />
         </div>
         <div>
           <button
@@ -66,6 +68,9 @@ ProductDetails.propTypes = {
         title: PropTypes.string,
         price: PropTypes.number,
         thumbnail: PropTypes.string,
+        shipping: PropTypes.shape({
+          free_shipping: PropTypes.bool,
+        }).isRequired,
       }),
     }),
   }).isRequired,
