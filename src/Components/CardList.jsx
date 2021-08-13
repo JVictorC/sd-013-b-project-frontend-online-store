@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ButtonCart from './ButtonCart';
 
-// import Card from './Card';
-
 export default class CardList extends Component {
-  // handleClick = (item) =>{
-  // const { handleCart } = this.props;
-  // handleCart(item);
-  // }
-
   render() {
     const { productsList, handleCart } = this.props;
     const mapCart = productsList.map((product) => (
