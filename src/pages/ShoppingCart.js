@@ -33,30 +33,29 @@ class ShoppingCart extends Component {
     const { id } = target;
     const { products } = this.state;
 
-    products.find((product) => {
-      if (product.id === id) {
-        product.quantity += 1;
-      }
-    });
+    const keptProducts = products.filter((product) => product.id !== id);
+    const productToChange = products.find((product) => product.id === id);
+    productToChange.quantity += 1;
 
-    this.setState(({ quantity }) => (
-      { quantity: quantity + 1 }
-    ));
+    this.setState({
+      products: [productToChange, ...keptProducts],
+    });
   }
 
   subCount({ target }) {
     const { id } = target;
     const { products } = this.state;
 
-    products.find((product) => {
-      if (product.id === id && product.quantity > 0) {
-        product.quantity -= 1;
-      }
-    });
+    const keptProducts = products.filter((product) => product.id !== id);
+    const productToChange = products.find((product) => product.id === id);
 
-    this.setState(({ quantity }) => (
-      { quantity: quantity - 1 }
-    ));
+    if (productToChange.quantity > 0) {
+      productToChange.quantity -= 1;
+    }
+
+    this.setState({
+      products: [productToChange, ...keptProducts],
+    });
   }
 
   removeProduct({ target }) {
