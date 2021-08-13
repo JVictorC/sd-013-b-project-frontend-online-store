@@ -26,10 +26,13 @@ export default class Cart extends React.Component {
   onClick({ target }) {
     const targetId = target.id;
     const increase = target.id.includes('increase');
-    if (increase === false) {
+    const decrease = target.id.includes('decrease');
+    if (decrease === true) {
       this.decrement(targetId);
     } else if (increase === true) {
       this.increment(targetId);
+    } else {
+      this.remove(targetId);
     }
   }
 
@@ -38,12 +41,21 @@ export default class Cart extends React.Component {
     if (data) {
       const parsedData = JSON.parse(data);
       const sum = this.sum();
-      console.log(sum);
       this.setState({
         items: parsedData,
         sum,
       });
     }
+  }
+
+  remove(targetId) {
+    const data = localStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
+    const foundItem = parsedData
+      .filter((item) => `${item.id}-remove` !== targetId);
+    localStorage.setItem('cart', JSON.stringify([...foundItem]));
+    this.setItems();
+    this.sum();
   }
 
   increment(targetId) {
@@ -74,8 +86,11 @@ export default class Cart extends React.Component {
     const data = localStorage.getItem('cart');
     const parsedData = JSON.parse(data);
     const foundItem = parsedData.map((item) => item.price * item.quantity);
-    const sum = foundItem.reduce((a, b) => a + b);
-    return sum;
+    if (foundItem.length !== 0) {
+      const sum = foundItem.reduce((a, b) => a + b);
+      return sum;
+    }
+    this.setState({ items: [], sum: 0 });
   }
 
   render() {
@@ -85,6 +100,7 @@ export default class Cart extends React.Component {
       return (
         <div>
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+          <Link to="/">Voltar</Link>
         </div>
       );
     }
