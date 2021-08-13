@@ -9,15 +9,18 @@ export default class Evaluations extends React.Component {
         {
           localStorage.length === 0 ? ''
             : object.map((obj) => (
-              <div>
+              <div key={ obj.key }>
                 <p>
-                  E-mail: {obj.email}
+                  E-mail:
+                  {obj.email}
                 </p>
                 <p>
-                  Nota: {obj.rating}
+                  Nota:
+                  {obj.rating}
                 </p>
                 <p>
-                  Mensagem: {obj.message}
+                  Mensagem:
+                  {obj.message}
                 </p>
                 <hr />
               </div>

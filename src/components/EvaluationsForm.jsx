@@ -9,6 +9,7 @@ export default class EvaluationsForm extends React.Component {
       email: '',
       message: '',
       rating: '',
+      key: 0,
     };
 
     this.handleEmail = this.handleEmail.bind(this);
@@ -35,7 +36,11 @@ export default class EvaluationsForm extends React.Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      key: prevState.key + 1,
+    }));
     // source: https://www.youtube.com/watch?v=De5np8phQxo&t=1198s
     const evaluations = JSON.parse(localStorage.getItem('currentState')) || [];
     evaluations.push(this.state);
