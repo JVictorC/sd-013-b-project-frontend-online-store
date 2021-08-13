@@ -57,6 +57,7 @@ export default class Home extends Component {
 
   render() {
     const { searchValueHome, productsArray, categoryId } = this.state;
+    const { cartQuantity } = this.props;
     return (
       <div>
         <SearchBar onInputChange={ this.handleChange } />
@@ -69,8 +70,11 @@ export default class Home extends Component {
           data-testid="shopping-cart-button"
           to="/shopCart"
         >
-          Cart
+          Cart-Items-
         </Link>
+        <p data-testid="shopping-cart-size">
+          { cartQuantity }
+        </p>
         <SideBar handleCategoriesId={ this.handleCategoriesId } />
         <CardList productsList={ productsArray } handleCart={ this.handleCart } />
       </div>
@@ -79,5 +83,6 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  cartQuantity: PropTypes.number.isRequired,
   handleCartItems: PropTypes.func.isRequired,
 };
