@@ -12,6 +12,7 @@ class CheckoutPage extends React.Component {
 
     this.state = {
       list: props.list,
+      finalPrice: 0,
       name: '',
       email: '',
       cpf: '',
