@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class Product extends Component {
   render() {
     const { title, thumbnail, price, id,
-      shipping: { free_shipping: freeShip, }
+      shipping: { free_shipping: freeShip },
     } = this.props;
     const details = { pathname: `/details/${id}`,
       state: { title, thumbnail, price },
