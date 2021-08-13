@@ -8,10 +8,16 @@ export default class ProductList extends Component {
     this.hadlerClick = this.hadlerClick.bind(this);
   }
 
+  getDetailsProduct(product) {
+    const { thumbnail, price, title, shipping } = product;
+    const { free_shipping: freeshipping } = shipping;
+    localStorage.setItem('productDetail',
+      JSON.stringify({ thumbnail, price, title, freeshipping }));
+  }
+
   hadlerClick(product) {
-    console.log('click');
     const { addToCard } = this.props;
-    const { title, price, thumbnail, id } = product;
+    const { title, price, thumbnail, id, available_quantity: availableQtd } = product;
     const cardLocal = JSON.parse(localStorage.getItem('card'));
     if (cardLocal.some((objc) => objc.id === product.id)) {
       const newLocalCard = cardLocal.map((obj) => {
@@ -26,12 +32,16 @@ export default class ProductList extends Component {
     } else {
       addToCard({ ...product, quantity: 1 });
       localStorage.setItem('card',
-        JSON.stringify([...cardLocal, { title, price, thumbnail, id, quantity: 1 }]));
+        JSON.stringify(
+          [...cardLocal,
+            { title, price, thumbnail, id, quantity: 1, availableQtd },
+          ],
+        ));
     }
   }
 
   render() {
-    const { products, getDetailsProduct } = this.props;
+    const { products } = this.props;
     return (
       <div className="product-container">
         <ul className="product-list">
@@ -51,7 +61,7 @@ export default class ProductList extends Component {
               <Link
                 data-testid="product-detail-link"
                 to={ `/ProductDetails/${product.id}` }
-                onClick={ () => getDetailsProduct(product) }
+                onClick={ () => this.getDetailsProduct(product) }
                 className="btn btn-outline-primary"
               >
                 Ver detalhes
@@ -83,5 +93,4 @@ ProductList.propTypes = {
     }),
   ).isRequired,
   addToCard: PropTypes.func.isRequired,
-  getDetailsProduct: PropTypes.func.isRequired,
 };

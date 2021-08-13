@@ -58,7 +58,7 @@ class Cart extends React.Component {
               <p>
                 { price }
               </p>
-              <p data-testid="shopping-cart-product-quantity">
+              <div className="d-flex">
                 <button
                   onClick={ decrease }
                   type="button"
@@ -67,7 +67,7 @@ class Cart extends React.Component {
                 >
                   <AiOutlineMinus id={ id } />
                 </button>
-                {quantity}
+                <p data-testid="shopping-cart-product-quantity">{quantity}</p>
                 <button
                   onClick={ increase }
                   type="button"
@@ -76,7 +76,7 @@ class Cart extends React.Component {
                 >
                   <AiOutlinePlus id={ id } />
                 </button>
-              </p>
+              </div>
               <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
                 <GrClose id={ id } />
               </button>

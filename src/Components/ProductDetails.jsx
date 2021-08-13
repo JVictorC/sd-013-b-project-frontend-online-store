@@ -6,26 +6,69 @@ import AvaliationsArea from './AvaliationsArea';
 export default class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    const { productDetailsSelect } = this.props;
     this.state = {
-      productDetailsSelect,
+      productDetailsSelect: {},
+      quantidadeCard: 0,
     };
     this.hadlerClick = this.hadlerClick.bind(this);
+    this.getQuantityCard = this.getQuantityCard.bind(this);
+    this.getDetailProduct = this.getDetailProduct.bind(this);
+  }
+
+  componentDidMount() {
+    this.getQuantityCard();
+    this.getDetailProduct();
+  }
+
+  componentDidUpdate() {
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    const quantidadeCardLocal = cardLocal.reduce((acc, obj) => {
+      acc += obj.quantity;
+      return acc;
+    }, 0);
+    const { quantidadeCard } = this.state;
+    if (quantidadeCard !== quantidadeCardLocal) { this.getQuantityCard(); }
+  }
+
+  getDetailProduct() {
+    const productDetail = JSON.parse(localStorage.getItem('productDetail'));
+    this.setState({ productDetailsSelect: productDetail });
+  }
+
+  getQuantityCard() {
+    const cardLocal = JSON.parse(localStorage.getItem('card'));
+    const quantidadeCard = cardLocal.reduce((acc, obj) => {
+      acc += obj.quantity;
+      return acc;
+    }, 0);
+    this.setState({ quantidadeCard });
   }
 
   hadlerClick(product) {
     const { getCardItem } = this.props;
-    const { title, price, thumbnail, id } = product;
-    getCardItem({ title, price, thumbnail, quantity: 1 }, true);
+    const { title, price, thumbnail, id, available_quantity: availableQtd } = product;
+    const newCard = (
+      { title, price, thumbnail, id, available_quantity: availableQtd, quantity: 1 }
+    );
     const cardLocal = JSON.parse(localStorage.getItem('card'));
-    localStorage.setItem('card',
-      JSON.stringify([...cardLocal, { title, price, thumbnail, id }]));
+    if (cardLocal.some((objc) => objc.id === newCard.id)) {
+      const newCardLocal = cardLocal.map((obj) => {
+        if (obj.id === newCard.id) {
+          obj.quantity += 1;
+        }
+        return obj;
+      });
+      localStorage.setItem('card', JSON.stringify(newCardLocal));
+      getCardItem();
+    } else {
+      localStorage.setItem('card', JSON.stringify([...cardLocal, newCard]));
+      getCardItem();
+    }
   }
 
   render() {
-    const { productDetailsSelect } = this.state;
-    const { thumbnail, price, title } = productDetailsSelect;
-    const { QuantityItemCard } = this.props;
+    const { productDetailsSelect, quantidadeCard } = this.state;
+    const { thumbnail, price, title, freeshipping } = productDetailsSelect;
     return (
       <div>
         <Link
@@ -36,14 +79,14 @@ export default class ProductDetails extends Component {
         <Link data-testid="shopping-cart-button" to="/cart">
           <span role="img" aria-label="shop">🛒</span>
         </Link>
-        <p data-testid="shopping-cart-size">{QuantityItemCard}</p>
+        <p data-testid="shopping-cart-size">{quantidadeCard}</p>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>
           Preço: R$
           {price}
         </p>
         <img src={ thumbnail } alt={ title } />
-        {productDetailsSelect.shipping.free_shipping
+        { freeshipping
           ? (
             <div data-testid="free-shipping">
               <span role="img" aria-label="shipping">
@@ -71,7 +114,5 @@ export default class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  productDetailsSelect: PropTypes.objectOf(PropTypes.object).isRequired,
   getCardItem: PropTypes.func.isRequired,
-  QuantityItemCard: PropTypes.number.isRequired,
 };
