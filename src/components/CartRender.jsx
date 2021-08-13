@@ -4,7 +4,7 @@ import CartItem from './CartItem';
 
 export default class CartRender extends React.Component {
   render() {
-    const { items, onClick } = this.props;
+    const { items, onClick, sum } = this.props;
 
     return (
       <section>
@@ -20,8 +20,7 @@ export default class CartRender extends React.Component {
         />))}
         <div className="total-price">
           <h2>
-            Valor total da compra:
-            <span>R$1000,00</span>
+            <span>{ `Preço total da compra: R$${Math.round(sum)}` }</span>
           </h2>
           <button type="submit">Finalizar compra</button>
         </div>
@@ -33,4 +32,5 @@ export default class CartRender extends React.Component {
 CartRender.propTypes = {
   onClick: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sum: PropTypes.func.isRequired,
 };

@@ -9,7 +9,9 @@ export default class CartItem extends React.Component {
       <div className="cart-items">
         <button type="submit">Retirar</button>
         <img src={ thumbnail } alt={ title } />
-        <p data-testid="shopping-cart-product-name">{title}</p>
+        <p data-testid="shopping-cart-product-name">
+          {title}
+        </p>
         <button
           type="submit"
           data-testid="product-decrease-quantity"
@@ -27,7 +29,7 @@ export default class CartItem extends React.Component {
         >
           +
         </button>
-        <p>{price}</p>
+        <p>{Math.round(price * quantity)}</p>
       </div>
     );
   }
