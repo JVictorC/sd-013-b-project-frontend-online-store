@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 class Product extends Component {
   render() {
-    const { title, thumbnail, price, id, shipping: { free_shipping: freeShip } } = this.props;
+    const { title, thumbnail, price, id, 
+      shipping: { free_shipping: freeShip } 
+    } = this.props;
     const details = { pathname: `/details/${id}`,
       state: { title, thumbnail, price },
     };
@@ -19,7 +21,7 @@ class Product extends Component {
           <span>{ price }</span>
         </div>
         <div>
-          <span data-testid={ freeShip ? "free-shipping" : '' }>
+          <span data-testid={ freeShip ? 'free-shipping' : '' }>
             { freeShip ? 'FRETE GRÁTIS!' : '' }
           </span>
         </div>
@@ -32,7 +34,8 @@ Product.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
-  shipping: PropTypes.object.isRequired,
-  free_shipping: PropTypes.bool.isRequired,
+  shipping: PropTypes.shape({
+    free_shipping: PropTypes.bool,
+  }).isRequired,
 };
 export default Product;
