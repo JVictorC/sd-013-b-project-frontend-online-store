@@ -46,9 +46,7 @@ class Home extends Component {
   }
 
   async addToCard(item) {
-    const { title, price, thumbnail, id } = item;
-    // Se desestruturar como { available_quantity } Lint retorna o erro: "Identifier 'available_quantity' is not in camel case." //
-    const availableQtd = item.available_quantity;
+    const { title, price, thumbnail, id, available_quantity: availableQtd } = item;
     const { getCardItem } = this.props;
     const { card } = this.state;
     const checkExist = card.find((product) => product.id === id);
