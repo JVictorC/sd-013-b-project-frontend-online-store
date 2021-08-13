@@ -1,15 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CarrinhoDeCompra from './pages/CarrinhoDeCompra';
-import Home from './pages/Home';
+import PagComponents from './components/PagComponents';
 
 function App() {
   return (
     <div>
-      <Router>
-        <Route exact path="/" component={ Home } />
-        <Route path="/cart" component={ CarrinhoDeCompra } />
-      </Router>
+      <PagComponents />
     </div>
   );
 }
