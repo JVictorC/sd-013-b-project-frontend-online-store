@@ -45,17 +45,26 @@ class Home extends Component {
     this.setState({ products: items });
   }
 
-  async addToCard({ title, price, thumbnail, id }) {
+  async addToCard(item) {
+    const { title, price, thumbnail, id } = item;
+    // Se desestruturar como { available_quantity } Lint retorna o erro: "Identifier 'available_quantity' is not in camel case." //
+    const availableQtd = item.available_quantity;
     const { getCardItem } = this.props;
-    const newItem = { title, price, thumbnail, id };
-    newItem.quantity = 1;
-    this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-      getCardItem(newItem);
-    });
+    const { card } = this.state;
+    const checkExist = card.find((product) => product.id === id);
+    if (!checkExist) {
+      const newItem = { title, price, thumbnail, id, availableQtd };
+      newItem.quantity = 1;
+      this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
+        getCardItem(newItem);
+      });
+    } else if (availableQtd > checkExist.quantity) {
+      checkExist.quantity += 1;
+    }
   }
 
   render() {
-    const { products } = this.state;
+    const { products, card } = this.state;
     const { getDetailsProduct, QuantityItemCard } = this.props;
     return (
       <div className="grid-container">
@@ -69,6 +78,7 @@ class Home extends Component {
             products={ products }
             addToCard={ this.addToCard }
             getDetailsProduct={ getDetailsProduct }
+            card={ card }
           />
         </main>
       </div>

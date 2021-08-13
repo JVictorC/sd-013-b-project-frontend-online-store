@@ -27,7 +27,6 @@ export default class ProductDetails extends Component {
     const { thumbnail, price, title } = productDetailsSelect;
     const { QuantityItemCard } = this.props;
     return (
-      // thumbnail= imagem, price = preço, title = nome, installments = especificações
       <div>
         <Link
           to="/"

@@ -20,6 +20,7 @@ class App extends React.Component {
     this.decreaseQt = this.decreaseQt.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.getCardInLocal = this.getCardInLocal.bind(this);
+    this.totalCart = this.totalCart.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +53,12 @@ class App extends React.Component {
   increaseQt({ target }) {
     const { card } = this.state;
     const item = card.find((res) => res.id === target.id);
-    item.quantity += 1;
-    this.setState([...card]);
+    if (item.availableQtd > item.quantity) {
+      item.quantity += 1;
+      this.setState([...card]);
+    }
+    localStorage.setItem('card',
+      JSON.stringify(card));
   }
 
   decreaseQt({ target }) {
@@ -61,14 +66,26 @@ class App extends React.Component {
     const item = card.find((res) => res.id === target.id);
     if (item.quantity > 1) {
       item.quantity -= 1;
+      this.setState([...card]);
     }
-    this.setState([...card]);
+    localStorage.setItem('card',
+      JSON.stringify(card));
   }
 
   deleteItem({ target }) {
     const { card } = this.state;
     const filtered = card.filter((res) => res.id !== target.id);
     this.setState({ card: filtered });
+  }
+
+  totalCart(card) {
+    if (card) {
+      let total = 0;
+      card.forEach((item) => {
+        total += item.quantity;
+      });
+      return total;
+    }
   }
 
   render() {
@@ -84,7 +101,7 @@ class App extends React.Component {
                 <Home
                   getCardItem={ this.getCardItem }
                   getDetailsProduct={ this.getDetailsProduct }
-                  QuantityItemCard={ card.length }
+                  QuantityItemCard={ this.totalCart(card) }
                   card={ card }
                 />
               ) }
