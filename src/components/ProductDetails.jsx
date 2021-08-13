@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
+import FormsDetails from './FormsDetails';
+import Reviews from './Reviews';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -85,6 +87,8 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <FormsDetails productId={ productDetail.id } />
+        <Reviews productId={ productDetail.id } />
       </div>
     );
   }
