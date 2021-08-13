@@ -16,7 +16,7 @@ class PagComponents extends Component {
   addToStateClick(product) {
     this.setState({
       product,
-    })
+    });
   }
 
   render() {
@@ -24,8 +24,15 @@ class PagComponents extends Component {
     return (
       <div className="all-content">
         <Router>
-          <Route exact path="/" component={ () => <Home func={ this.addToStateClick } /> } />
-          <Route path="/cart" component={ () => <CarrinhoDeCompra products={ product } /> } />
+          <Route
+            exact
+            path="/"
+            component={ () => <Home func={ this.addToStateClick } /> }
+          />
+          <Route
+            path="/cart"
+            component={ () => <CarrinhoDeCompra products={ product } /> }
+          />
           <Route path="/details/:id" component={ ProductDetails } />
         </Router>
       </div>

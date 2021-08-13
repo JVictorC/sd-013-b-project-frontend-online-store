@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Product extends Component {
   render() {
-    const { obj, onClick } = this.props
+    const { obj, onClick } = this.props;
     const { title, thumbnail, price, id } = obj;
     const details = { pathname: `/details/${id}`,
       state: { title, thumbnail, price },
@@ -20,7 +20,13 @@ class Product extends Component {
           <span>{ price }</span>
         </div>
         <div>
-          <button data-testid="product-add-to-cart" onClick={ () => { onClick(obj) } }>Adicionar ao Carrinho</button>
+          <button
+            type="submit"
+            data-testid="product-add-to-cart"
+            onClick={ () => { onClick(obj); } }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </section>
     );

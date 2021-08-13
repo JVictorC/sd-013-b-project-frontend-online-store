@@ -4,7 +4,6 @@ import ProductList from '../components/ProductList';
 import Categories from '../components/Categories';
 import InputDigital from '../components/InputDigital';
 import * as api from '../services/api';
-
 import '../App.css';
 
 class Home extends React.Component {
@@ -40,35 +39,34 @@ class Home extends React.Component {
 
   addToCart(obj) {
     const { product } = this.state;
-    const box = [...product]
-    const objNovo = { ...obj, quantidade: 1, valueTotal: obj.price }
+    const box = [...product];
+    const objNovo = { ...obj, quantidade: 1, valueTotal: obj.price };
     if (product.length === 0) {
-      box.push(objNovo)
-      this.setState({ product: box })
+      box.push(objNovo);
+      this.setState({ product: box });
     } else {
       const resultado = box.find(({ id }) => id === obj.id);
       box.forEach((elemento) => {
-        if(resultado === elemento) {
+        if (resultado === elemento) {
           elemento.quantidade += 1;
           elemento.valueTotal = elemento.price * elemento.quantidade;
           this.setState({
-            product: box
-          })
+            product: box,
+          });
         } else {
-          const box2 = [...product]
-          box2.push(objNovo)
+          const box2 = [...product];
+          box2.push(objNovo);
           this.setState({
-            product: box2
-          })
+            product: box2,
+          });
         }
-      })
+      });
     }
   }
-  
 
   render() {
-    const { queryValue, data: { results }, product} = this.state;
-    const { func } = this.props
+    const { queryValue, data: { results }, product } = this.state;
+    const { func } = this.props;
     return (
       <section>
         <div>

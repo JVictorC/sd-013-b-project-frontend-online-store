@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class InputDigital extends Component {
   render() {
     const { onChange, queryValue, onSubmit, func, cart } = this.props;
-    
     return (
       <form onSubmit={ onSubmit }>
         <input
@@ -21,9 +20,9 @@ class InputDigital extends Component {
           Pesquisar
         </button>
         <div className="cart-btn">
-          <button 
+          <button
             type="submit"
-            onClick={ () => { func(cart) }  }
+            onClick={ () => { func(cart); } }
           >
             <Link
               to="/cart"
