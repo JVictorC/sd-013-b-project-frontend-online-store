@@ -1,4 +1,5 @@
 import React from 'react';
+import Cart from './Cart';
 import CheckoutForm from './CheckoutForm';
 import CheckoutPayment from './CheckoutPayment';
 import CheckoutButton from './CheckoutButton';
@@ -49,7 +50,7 @@ class CheckoutPage extends React.Component {
     return (
       <div className="checkout-page">
         <section>
-          <h1>CHECKOUT ITEMS</h1>
+          <Cart />
         </section>
         <section>
           <CheckoutForm handleOnChange={ this.handleOnChange } />
