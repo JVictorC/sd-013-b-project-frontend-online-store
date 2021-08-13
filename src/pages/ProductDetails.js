@@ -1,14 +1,62 @@
 import React from 'react';
 import EvaluationsForm from '../components/EvaluationsForm';
+import PropTypes from 'prop-types';
 
-export default class ProductDetails extends React.Component {
+class ProductDetails extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+      product: {},
+    };
+  }
+
+  componentDidMount() {
+    this.detailsAPI();
+  }
+
+  detailsAPI = async () => {
+    const { match: { params: { id } } } = this.props;
+    const fetchAPI = `https://api.mercadolibre.com/items/${id}`;
+    const response = await fetch(fetchAPI);
+    const productData = await response.json();
+    this.setState({
+      product: productData,
+      isLoading: false,
+    });
+  }
+
   render() {
-    return(
+    const { isLoading, product: { title, price, thumbnail } } = this.state;
+    if (isLoading) {
+      return (
+        <h1>Carregando...</h1>
+      );
+    }
+    return (
       <div>
-        <h1>Página de detalhes do produto</h1>
+
+        <section className="product-details">
+          <h2 data-testid="product-detail-name">{ title }</h2>
+          <div className="product-details-unit">
+            <img className="details-img" src={ thumbnail } alt={ `Imagem de ${title}` } />
+            <span>{`R$${parseFloat(price).toFixed(2)}`}</span>
+          </div>
+        </section>
+
         <hr />
         <EvaluationsForm />
       </div>
     );
   }
 }
+
+ProductDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
+
+export default ProductDetails;
