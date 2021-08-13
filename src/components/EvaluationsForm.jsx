@@ -38,6 +38,7 @@ export default class EvaluationsForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // 'key' criada para fornecer uma ID única para cada avaliação
     this.setState((prevState) => ({
       key: prevState.key + 1,
     }));
@@ -134,6 +135,6 @@ export default class EvaluationsForm extends React.Component {
         <hr />
         <Evaluations currentState={ this.state } />
       </form>
-    )
-  };
+    );
+  }
 }
