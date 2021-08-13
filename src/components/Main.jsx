@@ -56,12 +56,17 @@ class Main extends React.Component {
   }
 }
 
+Main.defaultProps = {
+  itemQuantity: {},
+};
+
 Main.propTypes = {
   getQuery: PropTypes.func.isRequired,
   query: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };
 
 export default Main;
