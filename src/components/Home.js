@@ -44,6 +44,7 @@ class Home extends Component {
       title,
       thumbnail,
       price,
+      quantity: 1,
     };
 
     this.setState((prevState) => ({
