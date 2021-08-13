@@ -31,18 +31,23 @@ export default class ProductDetails extends React.Component {
 
   render() {
     const { searchResult } = this.state;
-    const { getQuery, query } = this.props;
+    const { getQuery, query, itemQuantity } = this.props;
     return (
       <div data-testid="product-detail-name">
         <DetailedProduct
           item={ searchResult }
           getQuery={ getQuery }
           query={ query }
+          itemQuantity={ itemQuantity }
         />
       </div>
     );
   }
 }
+
+ProductDetails.defaultProps = {
+  itemQuantity: {},
+};
 
 ProductDetails.propTypes = {
   location: PropTypes.shape({
@@ -55,4 +60,5 @@ ProductDetails.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };

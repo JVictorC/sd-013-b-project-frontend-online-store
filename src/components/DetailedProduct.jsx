@@ -8,7 +8,7 @@ import CounterCart from './CounterCart';
 
 export default class DetailedProduct extends React.Component {
   render() {
-    const { item, getQuery, query } = this.props;
+    const { item, getQuery, query, itemQuantity } = this.props;
     const { title, price, thumbnail } = item;
     return (
       <div>
@@ -30,12 +30,16 @@ export default class DetailedProduct extends React.Component {
           <Link data-testid="shopping-cart-button" to="/shopping-cart">
             <ShoppingCartIcon style={ { color: '#22ba24' } } fontSize="large" />
           </Link>
-          <CounterCart query={ query } />
+          <CounterCart query={ query } itemQuantity={ itemQuantity } />
         </div>
       </div>
     );
   }
 }
+
+DetailedProduct.defaultProps = {
+  itemQuantity: {},
+};
 
 DetailedProduct.propTypes = {
   // item: PropTypes.shape({
@@ -56,4 +60,5 @@ DetailedProduct.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.string,
   ]).isRequired,
+  itemQuantity: PropTypes.objectOf(PropTypes.number),
 };

@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// import { useBeforeunload } from 'react-beforeunload';
-
 import ShoppingCart from './components/ShoppingCart';
 import Main from './components/Main';
 import ProductDetails from './components/ProductDetails';
@@ -42,14 +40,12 @@ class App extends React.Component {
     }
   }
 
-  useBeforeunload() {
-    return 'sim';
-  }
-
   updateFromStorage() {
-    if (localStorage.getItem('count')) {
-      const newQuery = localStorage.getItem('count');
+    if (localStorage.getItem('itemQuantity')) {
+      const newItemQuantity = localStorage.getItem('itemQuantity');
+      const newQuery = localStorage.getItem('query');
       this.setState({
+        itemQuantity: JSON.parse(newItemQuantity),
         query: JSON.parse(newQuery),
       });
     }
@@ -72,7 +68,11 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <Main getQuery={ this.getQuery } query={ query } /> }
+            render={ () => (<Main
+              getQuery={ this.getQuery }
+              query={ query }
+              itemQuantity={ itemQuantity }
+            />) }
           />
           <Route
             path="/product-details/:id"
@@ -81,6 +81,7 @@ class App extends React.Component {
                 { ...props }
                 getQuery={ this.getQuery }
                 query={ query }
+                itemQuantity={ itemQuantity }
               />)
             }
           />
