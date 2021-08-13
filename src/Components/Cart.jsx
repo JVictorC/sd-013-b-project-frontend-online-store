@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { GrClose } from 'react-icons/gr';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class Cart extends React.Component {
                 </button>
               </p>
               <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
-                <span role="img" aria-label="delete">❌</span>
+                <GrClose id={ id } />
               </button>
             </div>
           ))
