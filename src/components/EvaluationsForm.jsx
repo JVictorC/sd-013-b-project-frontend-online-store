@@ -74,54 +74,64 @@ export default class EvaluationsForm extends React.Component {
         </div>
         <div>
           {/** source: https://felipegalvao.com.br/pt/blog/learn-react-events-and-forms/ */}
-          <label>
+          <label htmlFor="rating1">
             <input
+              id="rating1"
               type="radio"
               name="rating"
               value="1"
               checked={ rating === '1' }
               onChange={ this.handleRating }
-            />1
+            />
+            1
           </label>
 
-          <label>
+          <label htmlFor="rating2">
             <input
+              id="rating2"
               type="radio"
               name="rating"
               value="2"
               checked={ rating === '2' }
               onChange={ this.handleRating }
-            />2
+            />
+            2
           </label>
 
-          <label>
+          <label htmlFor="rating3">
             <input
+              id="rating3"
               type="radio"
               name="rating"
               value="3"
               checked={ rating === '3' }
               onChange={ this.handleRating }
-            />3
+            />
+            3
           </label>
 
-          <label>
+          <label htmlFor="rating4">
             <input
+              id="rating4"
               type="radio"
               name="rating"
               value="4"
               checked={ rating === '4' }
               onChange={ this.handleRating }
-            />4
+            />
+            4
           </label>
 
-          <label>
+          <label htmlFor="rating5">
             <input
+              id="rating5"
               type="radio"
               name="rating"
               value="5"
               checked={ rating === '5' }
               onChange={ this.handleRating }
-            />5
+            />
+            5
           </label>
         </div>
 
