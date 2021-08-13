@@ -4,23 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default class ShoppingKart extends Component {
 
-
-  // handleAmount = (operation, index) => {
-  //   const { cartItems } = this.state;
-  //   const deepCopy = [...cartItems];
-
-  //   if (operation === 'plus') {
-  //     deepCopy[index].actualAmount += 1;
-  //     this.setState({ cartItems: deepCopy });
-  //     return;
-  //   }
-
-  //   if (deepCopy[index].actualAmount > 0) {
-  //     deepCopy[index].actualAmount -= 1;
-  //     this.setState({ cartItems: deepCopy });
-  //   }
-  // }
-
   renderCartProducts = () => {
     const { cartItems, removeProduct, handleAmount } = this.props;
 

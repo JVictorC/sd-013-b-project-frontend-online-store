@@ -108,6 +108,7 @@ export default class App extends Component {
               <ProductDetails
                 productData={ productData }
                 getProductData={ this.getProductData }
+                addItemsToCart={ this.addItemsToCart }
               />
             ) }
           />
