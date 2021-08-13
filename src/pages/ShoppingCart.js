@@ -8,7 +8,6 @@ class ShoppingCart extends Component {
 
     this.state = {
       products: [],
-      totalOfCart: 0,
     };
 
     this.addCount = this.addCount.bind(this);
@@ -33,12 +32,13 @@ class ShoppingCart extends Component {
     const { id } = target;
     const { products } = this.state;
 
-    const keptProducts = products.filter((product) => product.id !== id);
     const productToChange = products.find((product) => product.id === id);
-    productToChange.quantity += 1;
+    const productPosition = products.indexOf(productToChange);
+    const newProducts = products;
+    newProducts[productPosition].quantity += 1;
 
     this.setState({
-      products: [productToChange, ...keptProducts],
+      products: newProducts,
     });
   }
 
@@ -46,15 +46,16 @@ class ShoppingCart extends Component {
     const { id } = target;
     const { products } = this.state;
 
-    const keptProducts = products.filter((product) => product.id !== id);
     const productToChange = products.find((product) => product.id === id);
+    const productPosition = products.indexOf(productToChange);
+    const newProducts = products;
 
-    if (productToChange.quantity > 0) {
-      productToChange.quantity -= 1;
+    if (newProducts[productPosition].quantity > 0) {
+      newProducts[productPosition].quantity -= 1;
     }
 
     this.setState({
-      products: [productToChange, ...keptProducts],
+      products: newProducts,
     });
   }
 
@@ -69,7 +70,7 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const { products, totalOfCart } = this.state;
+    const { products } = this.state;
     const emptyCart = (
       <p
         data-testid="shopping-cart-empty-message"
@@ -132,7 +133,6 @@ class ShoppingCart extends Component {
           <input
             type="text"
             name="total"
-            value={ totalOfCart }
           />
         </label>
 
