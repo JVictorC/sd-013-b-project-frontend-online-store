@@ -9,12 +9,25 @@ export default class ProductList extends Component {
   }
 
   hadlerClick(product) {
+    console.log('click');
     const { addToCard } = this.props;
     const { title, price, thumbnail, id } = product;
     const cardLocal = JSON.parse(localStorage.getItem('card'));
-    addToCard(product);
-    localStorage.setItem('card',
-      JSON.stringify([...cardLocal, { title, price, thumbnail, id }]));
+    if (cardLocal.some((objc) => objc.id === product.id)) {
+      const newLocalCard = cardLocal.map((obj) => {
+        if (obj.id === product.id) {
+          obj.quantity += 1;
+        }
+        return obj;
+      });
+      addToCard(newLocalCard);
+      localStorage.setItem('card',
+        JSON.stringify(newLocalCard));
+    } else {
+      addToCard({ ...product, quantity: 1 });
+      localStorage.setItem('card',
+        JSON.stringify([...cardLocal, { title, price, thumbnail, id, quantity: 1 }]));
+    }
   }
 
   render() {

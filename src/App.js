@@ -43,11 +43,25 @@ class App extends React.Component {
   getCardItem(newCard, productDetails = false) {
     if (productDetails) {
       this.setState((prevState) => ({ card: [...prevState.card, newCard] }));
-      return null;
+    } else {
+      const cardLocal = JSON.parse(localStorage.getItem('card'));
+      this.setState({ card: cardLocal });
     }
-    this.setState((prevState) => ({
-      card: [...prevState.card, newCard],
-    }));
+    // if (card.some(({ id }) => id === newCard.id)) {
+    //   const teste = card.map((obj) => {
+    //     if (obj.id === newCard.id) {
+    //       obj.quantity += 1;
+    //     }
+    //     return obj;
+    //   });
+    //   this.setState({
+    //     card: teste,
+    //   });
+    // } else {
+    //   this.setState((prevState) => ({
+    //     card: [...prevState.card, newCard],
+    //   }));
+    // }
   }
 
   increaseQt({ target }) {

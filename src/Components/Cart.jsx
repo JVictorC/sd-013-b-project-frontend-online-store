@@ -16,6 +16,7 @@ class Cart extends React.Component {
 
   totalCart() {
     const { card } = this.props;
+    console.log(card);
     let total = 0;
     card.forEach((item) => {
       total += (item.price * item.quantity);

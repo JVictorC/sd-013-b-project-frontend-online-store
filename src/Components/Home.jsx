@@ -54,10 +54,12 @@ class Home extends Component {
       const newItem = { title, price, thumbnail, id, availableQtd };
       newItem.quantity = 1;
       this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-        getCardItem(newItem);
+        getCardItem();
       });
     } else if (availableQtd > checkExist.quantity) {
-      checkExist.quantity += 1;
+      getCardItem();
+    } else {
+      getCardItem();
     }
   }
 
