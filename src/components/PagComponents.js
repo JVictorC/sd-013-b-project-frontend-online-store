@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import CarrinhoDeCompra from '../pages/CarrinhoDeCompra';
+import ProductDetails from '../pages/ProductDetails';
 
 class PagComponents extends Component {
   constructor() {
@@ -21,10 +22,11 @@ class PagComponents extends Component {
   render() {
     const { product } = this.state;
     return (
-      <div>
+      <div className="all-content">
         <Router>
           <Route exact path="/" component={ () => <Home func={ this.addToStateClick } /> } />
           <Route path="/cart" component={ () => <CarrinhoDeCompra products={ product } /> } />
+          <Route path="/details/:id" component={ ProductDetails } />
         </Router>
       </div>
     );

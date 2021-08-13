@@ -5,6 +5,8 @@ import Categories from '../components/Categories';
 import InputDigital from '../components/InputDigital';
 import * as api from '../services/api';
 
+import '../App.css';
+
 class Home extends React.Component {
   constructor() {
     super();

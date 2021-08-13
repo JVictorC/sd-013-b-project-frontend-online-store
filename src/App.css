@@ -7,6 +7,93 @@
   pointer-events: none;
 }
 
+img {
+  max-height: 8em;
+  max-width: 8em;
+}
+
+.details-img {
+  margin: 2em 0;
+  width: 100%;
+}
+
+html, body {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.all-content {
+  margin: 1em;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+.categories {
+  align-content: left;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 2em 0;
+  width: 20em;
+}
+
+.product-list {
+  align-content: space-evenly;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1em;
+  width: 100%;
+}
+
+.cart-btn {
+  margin-top: 1em;
+}
+
+.product {
+  align-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 1em;
+  max-width: 15em;
+  padding: 1em;
+  transition: 0.2s;
+}
+
+.product:hover {
+  transition: 0.2s;
+}
+
+.product-details {
+  align-content: center;
+  align-items: left;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 2em;
+}
+
+.product-details-unit {
+  align-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 1em;
+  width: 10em;
+}
+
 @media ( prefers-reduced-motion : no-preference ) {
 
   .App-logo {
@@ -39,4 +126,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+li {
+  list-style: none;
 }

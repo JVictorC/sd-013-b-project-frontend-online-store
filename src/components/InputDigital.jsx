@@ -18,16 +18,21 @@ class InputDigital extends Component {
           data-testid="query-button"
           type="submit"
         >
-          Buscar-group-15
+          Pesquisar
         </button>
-        <button 
-          type="submit"
-          onClick={ () => { func(cart) }  }
-        >
-          <Link data-testid="shopping-cart-button" to="/cart">
-            Seu Carrinho de compras
-          </Link>
-        </button>
+        <div className="cart-btn">
+          <button 
+            type="submit"
+            onClick={ () => { func(cart) }  }
+          >
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              Seu Carrinho de compras
+            </Link>
+          </button>
+        </div>
       </form>
     );
   }

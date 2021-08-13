@@ -20,7 +20,7 @@ class ProductList extends Component {
     }
 
     return (
-      <section>
+      <section className="product-list">
         {products.map((obj) => (
           <Product onClick={ onClick } key={ obj.id } obj={ obj } />
         ))}

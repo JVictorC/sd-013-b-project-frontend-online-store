@@ -21,20 +21,22 @@ class Categories extends Component {
     const { setCategory } = this.props;
     return (
       <div>
-        <h1>Categorias:</h1>
-        <ul>
-          {productCategory.map(({ id, name }) => (
-            <li key={ id }>
-              <input
-                data-testid="category"
-                type="radio"
-                name="category"
-                value={ id }
-                onClick={ ({ target: { value } }) => setCategory(value) }
-              />
-              { name }
-            </li>)) }
-        </ul>
+        <section className="categories">
+          <h1>Categorias:</h1>
+          <ul>
+            {productCategory.map(({ id, name }) => (
+              <li key={ id }>
+                <input
+                  data-testid="category"
+                  type="radio"
+                  name="category"
+                  value={ id }
+                  onClick={ ({ target: { value } }) => setCategory(value) }
+                />
+                { name }
+              </li>)) }
+          </ul>
+        </section>
       </div>
     );
   }

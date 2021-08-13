@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Product extends Component {
   render() {
     const { obj, onClick } = this.props
-    const {  title, thumbnail, price } = obj;
+    const { title, thumbnail, price, id } = obj;
+    const details = { pathname: `/details/${id}`,
+      state: { title, thumbnail, price },
+    };
     return (
-      <section data-testid="product">
+      <section className="product" data-testid="product">
+        <Link data-testid="product-detail-link" to={ details }>Detalhes</Link>
         <div>
           <p>{ title }</p>
           <img src={ thumbnail } alt={ title } />
@@ -22,6 +27,7 @@ class Product extends Component {
   }
 }
 Product.propTypes = {
+
   obj: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
@@ -30,4 +36,5 @@ Product.propTypes = {
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
 export default Product;
