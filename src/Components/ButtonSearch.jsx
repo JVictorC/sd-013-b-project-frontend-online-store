@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import './styles.css';
 
 export default class ButtonSearch extends Component {
   constructor() {
@@ -23,7 +24,7 @@ export default class ButtonSearch extends Component {
 
   render() {
     return (
-      <div>
+      <div className="search-button">
         <button type="button" data-testid="query-button" onClick={ this.handleClick }>
           search
         </button>
