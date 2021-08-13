@@ -12,6 +12,7 @@ class Home extends React.Component {
       filterText: '',
       categoryId: '',
       products: [],
+      cart: [],
     };
   }
 
@@ -40,8 +41,24 @@ class Home extends React.Component {
     this.getProducts();
   }
 
+  addToCart = (title, thumbnail, price, id) => {
+    const cartItem = {
+      title,
+      thumbnail,
+      price,
+      id,
+    };
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, cartItem],
+    }));
+    // const { cart } = this.state;
+    // localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
   render() {
-    const { filterText, products } = this.state;
+    const { filterText, products, cart } = this.state;
+    localStorage.setItem('cart', JSON.stringify(cart));
+
     return (
       <div className="App">
         <label htmlFor="input-search" data-testid="home-initial-message">
@@ -75,6 +92,7 @@ class Home extends React.Component {
             <ProductCard
               key={ product.id }
               product={ product }
+              addToCart={ this.addToCart }
             />
           ))}
         </div>

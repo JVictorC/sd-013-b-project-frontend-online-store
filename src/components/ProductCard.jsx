@@ -9,7 +9,7 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { product: { title, thumbnail, price, id } } = this.props;
+    const { addToCart, product: { title, thumbnail, price, id } } = this.props;
     return (
       <div data-testid="product" className="card">
         <h2>{ title }</h2>
@@ -17,21 +17,28 @@ class ProductCard extends React.Component {
           <img className="image" src={ thumbnail } alt="Product Banner" />
         </div>
         <p>{ price }</p>
-        <div>
-          <Link
-            data-testid="product-detail-link"
-            to={ `/products/${id}` }
-            onClick={ this.handleDetails }
-          >
-            Detalhes
-          </Link>
-        </div>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(title, thumbnail, price, id) }
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link
+          data-testid="product-detail-link"
+          to={ `/products/${id}` }
+          onClick={ this.handleDetails }
+          // addToCart={ addToCart }
+        >
+          Detalhes
+        </Link>
       </div>
     );
   }
 }
 
 ProductCard.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,
