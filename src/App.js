@@ -51,6 +51,7 @@ class App extends React.Component {
   }
 
   increaseQt({ target }) {
+    console.log(target);
     const { card } = this.state;
     const item = card.find((res) => res.id === target.id);
     if (item.availableQtd > item.quantity) {
