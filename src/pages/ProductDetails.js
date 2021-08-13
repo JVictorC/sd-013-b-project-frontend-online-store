@@ -1,6 +1,6 @@
 import React from 'react';
-import EvaluationsForm from '../components/EvaluationsForm';
 import PropTypes from 'prop-types';
+import EvaluationsForm from '../components/EvaluationsForm';
 
 class ProductDetails extends React.Component {
   constructor() {
