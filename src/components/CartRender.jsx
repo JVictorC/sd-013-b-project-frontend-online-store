@@ -24,7 +24,13 @@ export default class CartRender extends React.Component {
             <span>{ `Preço total da compra: R$${Math.round(sum)}` }</span>
           </h2>
           <Link to="/pusharse">
-            <button type="submit" onClick={ endPusharse } data-testid={ id }>{ label }</button>
+            <button
+              type="submit"
+              onClick={ endPusharse }
+              data-testid={ id }
+            >
+              { label }
+            </button>
           </Link>
         </div>
       </section>
@@ -36,4 +42,7 @@ CartRender.propTypes = {
   onClick: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   sum: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  endPusharse: PropTypes.string.isRequired,
 };

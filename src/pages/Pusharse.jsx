@@ -34,6 +34,7 @@ export default class Pusharse extends React.Component {
 
   endPusharse() {
     console.log('clicou');
+    console.log('clicou');
   }
 
   sum() {

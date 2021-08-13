@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartRender from '../components/CartRender';
-import EmptyCart from '../components/EmptyCart';
 
 export default class Cart extends React.Component {
   constructor() {
@@ -109,15 +108,12 @@ export default class Cart extends React.Component {
       <div>
         <Link to="/">Voltar</Link>
         <h1>Carrinho de compras</h1>
-        { items.length >= 1
-          ? <CartRender
-            onClick={ this.onClick }
-            items={ items }
-            sum={ sum }
-            label="Finalizar compra"
-            id="checkout-products"
-          />
-          : <EmptyCart />}
+        <CartRender
+          onClick={ this.onClick }
+          items={ items }
+          sum={ sum }
+          label="Finalizar compra"
+        />
       </div>
     );
   }
