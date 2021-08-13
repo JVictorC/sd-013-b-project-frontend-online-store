@@ -46,7 +46,7 @@ class Home extends Component {
   }
 
   async addToCard(item) {
-    const { title, price, thumbnail, id, available_quantity: availableQtd } = item;
+    const { title, price, thumbnail, id, availableQtd } = item;
     const { getCardItem } = this.props;
     const { card } = this.state;
     const checkExist = card.find((product) => product.id === id);
@@ -54,16 +54,18 @@ class Home extends Component {
       const newItem = { title, price, thumbnail, id, availableQtd };
       newItem.quantity = 1;
       this.setState((prevState) => ({ card: [...prevState.card, newItem] }), () => {
-        getCardItem(newItem);
+        getCardItem();
       });
     } else if (availableQtd > checkExist.quantity) {
-      checkExist.quantity += 1;
+      getCardItem();
+    } else {
+      getCardItem();
     }
   }
 
   render() {
     const { products, card } = this.state;
-    const { getDetailsProduct, QuantityItemCard } = this.props;
+    const { QuantityItemCard } = this.props;
     return (
       <div className="grid-container">
         <BarSearch
@@ -75,7 +77,6 @@ class Home extends Component {
           <ProductList
             products={ products }
             addToCard={ this.addToCard }
-            getDetailsProduct={ getDetailsProduct }
             card={ card }
           />
         </main>
@@ -88,7 +89,6 @@ export default Home;
 
 Home.propTypes = {
   getCardItem: PropTypes.func.isRequired,
-  getDetailsProduct: PropTypes.func.isRequired,
   QuantityItemCard: PropTypes.number.isRequired,
   card: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

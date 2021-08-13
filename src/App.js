@@ -11,10 +11,8 @@ import './Style/App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { card: [], productDetailsSelect: {} };
+    this.state = { card: [] };
     this.getCardItem = this.getCardItem.bind(this);
-
-    this.getDetailsProduct = this.getDetailsProduct.bind(this);
 
     this.increaseQt = this.increaseQt.bind(this);
     this.decreaseQt = this.decreaseQt.bind(this);
@@ -36,18 +34,28 @@ class App extends React.Component {
     this.setState({ card: cardLocal });
   }
 
-  getDetailsProduct(newProduct) {
-    this.setState({ productDetailsSelect: newProduct });
-  }
-
   getCardItem(newCard, productDetails = false) {
     if (productDetails) {
       this.setState((prevState) => ({ card: [...prevState.card, newCard] }));
-      return null;
+    } else {
+      const cardLocal = JSON.parse(localStorage.getItem('card'));
+      this.setState({ card: cardLocal });
     }
-    this.setState((prevState) => ({
-      card: [...prevState.card, newCard],
-    }));
+    // if (card.some(({ id }) => id === newCard.id)) {
+    //   const teste = card.map((obj) => {
+    //     if (obj.id === newCard.id) {
+    //       obj.quantity += 1;
+    //     }
+    //     return obj;
+    //   });
+    //   this.setState({
+    //     card: teste,
+    //   });
+    // } else {
+    //   this.setState((prevState) => ({
+    //     card: [...prevState.card, newCard],
+    //   }));
+    // }
   }
 
   increaseQt({ target }) {
@@ -100,7 +108,6 @@ class App extends React.Component {
               render={ () => (
                 <Home
                   getCardItem={ this.getCardItem }
-                  getDetailsProduct={ this.getDetailsProduct }
                   QuantityItemCard={ this.totalCart(card) }
                   card={ card }
                 />
@@ -128,7 +135,6 @@ class App extends React.Component {
               <ProductDetails
                 productDetailsSelect={ productDetailsSelect }
                 getCardItem={ this.getCardItem }
-                QuantityItemCard={ card.length }
               />
             ) }
           />
