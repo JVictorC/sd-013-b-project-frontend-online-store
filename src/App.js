@@ -9,16 +9,40 @@ import CheckOut from './Pages/CheckOut';
 export default class App extends Component {
   constructor() {
     super();
+
     this.state = {
       cartProducts: [],
     };
   }
 
-  handleCartItems = (callback) => {
-    // const { cartProducts } = this.state;
-    this.setState((old) => ({
-      cartProducts: [...old.cartProducts, callback],
+  handleClick = (product, value) => {
+    const { cartProducts } = this.state;
+    const cartFindId = cartProducts.find((idProduct) => idProduct.id === product.id);
+    if (value === 'plus') {
+      cartFindId.quantityCount += 1;
+      return this.setState((old) => ({
+        cartProducts: [...old.cartProducts],
+      }));
+    } if (cartFindId.quantityCount === 0) return;
+    cartFindId.quantityCount -= 1;
+    return this.setState((old) => ({
+      cartProducts: [...old.cartProducts],
     }));
+  }
+
+  handleCartItems = (callback) => {
+    const { cartProducts } = this.state;
+    const cartFindId = cartProducts.find((idProduct) => idProduct.id === callback.id);
+    if (cartFindId) {
+      cartFindId.quantityCount += 1;
+      this.setState((old) => ({
+        cartProducts: [...old.cartProducts],
+      }));
+    } else {
+      this.setState((old) => ({
+        cartProducts: [...old.cartProducts, { ...callback, quantityCount: 1 }],
+      }));
+    }
   }
 
   render() {
@@ -35,7 +59,10 @@ export default class App extends Component {
           />
           <Route
             path="/shopCart"
-            render={ () => <ShopCart cartProducts={ cartProducts } /> }
+            render={ () => (<ShopCart
+              cartProducts={ cartProducts }
+              handleClick={ this.handleClick }
+            />) }
           />
           <Route
             path="/details/:id"

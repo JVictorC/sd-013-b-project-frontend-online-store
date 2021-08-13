@@ -5,43 +5,8 @@ import ButtonHome from '../Components/ButtonHome';
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 
 export default class ShopCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 1,
-    };
-  }
-
-  // handleRemove = ({ target }) => {
-  // const { cartProducts } = this.state;s
-  // }
-
-  handleClick = (parameter) => {
-    const { quantity } = this.state;
-    if (parameter === 'plus') {
-      return this.setState((old) => ({
-        quantity: old.quantity + 1,
-      }));
-    }
-    if (quantity === 0) return;
-    this.setState((old) => ({
-      quantity: old.quantity - 1,
-    }));
-  }
-
-  // <div>
-  //   {/* <p> */}
-  //     {/* Total: */}
-  //     {/* {product.price * quantity} */}
-  //   {/* </p> */}
-  //   {/* <button type="button" onClick={ () => this.handleClick() }>-</button> */}
-  //   {/* { quantity } */}
-  //   {/* <button type="button" onClick={ () => this.handleClick('plus') }>+</button> */}
-  // {/* </div> */}
-
   createCart = () => {
-    const { cartProducts } = this.props;
-    const { quantity } = this.state;
+    const { cartProducts, handleClick } = this.props;
     return (
       cartProducts.map((product) => (
         <div key={ product.id }>
@@ -55,8 +20,29 @@ export default class ShopCart extends Component {
           <span>
             Quantidade:
             <p data-testid="shopping-cart-product-quantity">
-              { quantity }
+              { product.quantityCount }
             </p>
+            <div>
+              <p>
+                Total:
+                {product.price * product.quantityCount}
+              </p>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ () => handleClick(product, '') }
+              >
+                -
+              </button>
+              1
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                onClick={ () => handleClick(product, 'plus') }
+              >
+                +
+              </button>
+            </div>
           </span>
         </div>
       ))
@@ -87,4 +73,5 @@ export default class ShopCart extends Component {
 
 ShopCart.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

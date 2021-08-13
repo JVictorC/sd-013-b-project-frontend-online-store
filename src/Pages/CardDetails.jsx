@@ -25,6 +25,34 @@ export default class CardDetails extends Component {
           handleCartItems={ handleCartItems }
         />
         <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
+        <form action="">
+          <label htmlFor="email">
+            email
+            <input type="text" name="" id="email" />
+          </label>
+          <label htmlFor="evaluation">
+            <input type="radio" name="evaluation" id="" />
+            1
+          </label>
+          <label htmlFor="evaluation">
+            <input type="radio" name="evaluation" id="" />
+            2
+          </label>
+          <label htmlFor="evaluation">
+            <input type="radio" name="evaluation" id="" checked />
+            3
+          </label>
+          <label htmlFor="evaluation">
+            <input type="radio" name="evaluation" id="" />
+            4
+          </label>
+          <label htmlFor="evaluation">
+            <input type="radio" name="evaluation" id="" />
+            5
+          </label>
+          <textarea data-testid="product-detail-evaluation" cols="30" rows="10" />
+          <button type="button">Avaliar</button>
+        </form>
       </div>
     );
   }

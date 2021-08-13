@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import SearchBar from '../Components/SearchBar';
-import ButtonCart from '../Components/ButtonCart';
 import SideBar from '../Components/SideBar';
 import ButtonSearch from '../Components/ButtonSearch';
 import CardList from '../Components/CardList';
@@ -65,7 +65,12 @@ export default class Home extends Component {
           onButtonClick={ this.handleClick }
           categoryId={ categoryId }
         />
-        <ButtonCart />
+        <Link
+          data-testid="shopping-cart-button"
+          to="/shopCart"
+        >
+          Cart
+        </Link>
         <SideBar handleCategoriesId={ this.handleCategoriesId } />
         <CardList productsList={ productsArray } handleCart={ this.handleCart } />
       </div>
