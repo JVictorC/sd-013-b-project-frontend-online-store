@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class Cart extends React.Component {
 
   render() {
     const { card, increase, decrease } = this.props;
-    console.log(card);
     return (
       <div className="cart">
         <Link
@@ -63,7 +63,7 @@ class Cart extends React.Component {
                   data-testid="product-decrease-quantity"
                   id={ id }
                 >
-                  <span role="img" aria-label="less">➖</span>
+                  <AiOutlineMinus id={ id } />
                 </button>
                 {quantity}
                 <button
@@ -72,7 +72,7 @@ class Cart extends React.Component {
                   data-testid="product-increase-quantity"
                   id={ id }
                 >
-                  <span role="img" aria-label="plus">➕</span>
+                  <AiOutlinePlus id={ id } />
                 </button>
               </p>
               <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
