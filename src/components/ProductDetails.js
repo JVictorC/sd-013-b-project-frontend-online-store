@@ -28,7 +28,7 @@ class ProductDetails extends Component {
     const { id, title, thumbnail, price } = product;
 
     this.setState({
-      cartItems: [{ id, title, thumbnail, price }],
+      cartItems: [{ id, title, thumbnail, price, quantity: 1 }],
     });
   }
 
