@@ -23,7 +23,7 @@ class ProductDetails extends React.Component {
     const { location } = this.props;
     const { state: product } = location;
 
-    if (localStorage.key('cart')) {
+    if (localStorage.getItem('cart')) {
       const parse = JSON.parse(localStorage.getItem('cart'));
       parse.push({ ...product, quantidade: 1 });
       localStorage.setItem('cart', JSON.stringify(parse));

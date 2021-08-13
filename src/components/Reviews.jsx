@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class FormsDetails extends React.Component {
+class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,29 +16,40 @@ class FormsDetails extends React.Component {
 
   requestLocalStorage() {
     const { productId } = this.props;
-    const submitedReview = 'submited-review';
-    if (localStorage.key(submitedReview)) {
-      const reviews = JSON.parse(localStorage.getItem(submitedReview));
-      console.log(reviews);
-      const x = reviews.filter((review) => review.productId === productId);
-      console.log(x);
+    if (localStorage.getItem('submited-review')) {
+      const reviews = JSON.parse(localStorage.getItem('submited-review'));
+      const productIdReviews = reviews.filter((review) => review.productId === productId);
       this.setState({
-        reviews: x,
+        reviews: productIdReviews,
       });
     }
   }
 
+  renderReviews() {
+    const { reviews } = this.state;
+
+    return reviews.map((review) => (
+      <section key={ review.email }>
+        <span>{`Email: ${review.email}`}</span>
+        <span>{`${review.star}`}</span>
+        <p>{`Comentário: ${review.comment}`}</p>
+      </section>
+    ));
+  }
+
   render() {
+    const { reviews } = this.state;
+
     return (
-      <div>
-        oi
-      </div>
+      <section>
+        { reviews ? this.renderReviews() : <p>Sem avaliações</p> }
+      </section>
     );
   }
 }
 
-FormsDetails.propTypes = {
+Reviews.propTypes = {
   productId: PropTypes.string.isRequired,
 };
 
-export default FormsDetails;
+export default Reviews;

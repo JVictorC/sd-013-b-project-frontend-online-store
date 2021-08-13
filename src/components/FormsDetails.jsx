@@ -32,7 +32,7 @@ class FormsDetails extends React.Component {
     event.preventDefault();
     const { productId } = this.props;
     const submitedReview = 'submited-review';
-    if (localStorage.key(submitedReview)) {
+    if (localStorage.getItem(submitedReview)) {
       const parse = JSON.parse(localStorage.getItem(submitedReview));
       parse.push({ ...this.state, productId });
       localStorage.setItem(submitedReview, JSON.stringify(parse));
