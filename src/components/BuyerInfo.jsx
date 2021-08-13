@@ -25,7 +25,7 @@ export default class BuyerInfo extends React.Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value });
-}
+  }
 
   render() {
     const { fullname,
@@ -57,7 +57,7 @@ export default class BuyerInfo extends React.Component {
             </div>
             <div>
               <input
-                type="number"
+                type="text"
                 name="cpf"
                 data-testid="checkout-cpf"
                 value={ cpf }
@@ -81,18 +81,18 @@ export default class BuyerInfo extends React.Component {
             </div>
             <div>
               <input
-                type="number"
+                type="text"
                 name="phone"
                 data-testid="checkout-phone"
                 value={ phone }
                 onChange={ this.handleChange }
-                placeholder="Email"
+                placeholder="Telefone"
                 required
               />
             </div>
             <div>
               <input
-                type="number"
+                type="text"
                 name="cep"
                 data-testid="checkout-cep"
                 value={ cep }

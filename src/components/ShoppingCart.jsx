@@ -63,7 +63,12 @@ export default class ShoppingCart extends React.Component {
           available={ available }
         />
         <span>{`Preço a pagar: ${amountPrice}`}</span>
-        <button type="submit">Finalizar compra</button>
+        <Link
+          to="/shopping-cart/checkout-page"
+          data-testid="checkout-products"
+        >
+          Finalizar compra
+        </Link>
         <Link to="/">Voltar a tela inicial</Link>
         {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
       </div>
