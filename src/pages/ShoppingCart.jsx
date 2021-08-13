@@ -50,6 +50,7 @@ class ShoppingCart extends React.Component {
         ))}
         <p data-testid="shopping-cart-empty-message"> Seu carrinho está vazio </p>
         <Link to="/">Voltar</Link>
+        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
       </div>
     );
   }
