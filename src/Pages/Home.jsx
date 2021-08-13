@@ -59,6 +59,7 @@ export default class Home extends Component {
 
   render() {
     const { searchValueHome, productsArray, categoryId } = this.state;
+    const { cartQuantity } = this.props;
     return (
       <div className="home">
         <SearchBar onInputChange={ this.handleChange } />
@@ -68,12 +69,17 @@ export default class Home extends Component {
           categoryId={ categoryId }
         />
         <div className="cart-link">
-          <Link
-            data-testid="shopping-cart-button"
-            to="/shopCart"
-          >
-            <img className="cart-icon" src={ shoppingCartIcon } alt="cart" />
-          </Link>
+          <div className="shopping-cart-element">
+            <Link
+              data-testid="shopping-cart-button"
+              to="/shopCart"
+            >
+              <img className="cart-icon" src={ shoppingCartIcon } alt="cart" />
+            </Link>
+            <p data-testid="shopping-cart-size">
+              { cartQuantity }
+            </p>
+          </div>
           <p>
             Ainda não sabe como presentear o love nesse Dia dos Namorados?
             A gente dá uma ajudinha e ela chama 20% de desconto em toda a loja!
@@ -89,5 +95,6 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  cartQuantity: PropTypes.number.isRequired,
   handleCartItems: PropTypes.func.isRequired,
 };

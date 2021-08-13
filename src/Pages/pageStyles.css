@@ -107,3 +107,10 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 }
+
+.shopping-cart-element {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  width: 6em;
+}

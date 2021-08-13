@@ -39,7 +39,7 @@ ButtonCart.propTypes = {
 };
 
 ButtonCart.defaultProps = {
-  product: '',
+  product: {},
   handleCartItems: '',
   productDetail: '',
 };

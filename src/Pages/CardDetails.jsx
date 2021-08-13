@@ -7,7 +7,8 @@ import ButtonHome from '../Components/ButtonHome';
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 export default class CardDetails extends Component {
   render() {
-    const { location: { state: { product } }, handleCartItems } = this.props;
+    const {
+      location: { state: { product } }, handleCartItems, cartQuantity } = this.props;
     const { title, thumbnail, price } = product;
     return (
       <div>
@@ -25,7 +26,12 @@ export default class CardDetails extends Component {
           productDetail="productDetail"
           handleCartItems={ handleCartItems }
         />
-        <Link data-testid="shopping-cart-button" to="/shopCart">Cart</Link>
+        <Link data-testid="shopping-cart-button" to="/shopCart">
+          Cart-Items-
+        </Link>
+        <p data-testid="shopping-cart-size">
+          { cartQuantity }
+        </p>
         <form action="">
           <label htmlFor="email">
             email
@@ -40,7 +46,7 @@ export default class CardDetails extends Component {
             2
           </label>
           <label htmlFor="evaluation">
-            <input type="radio" name="evaluation" id="" checked />
+            <input type="radio" name="evaluation" id="" />
             3
           </label>
           <label htmlFor="evaluation">
@@ -62,4 +68,5 @@ export default class CardDetails extends Component {
 CardDetails.propTypes = {
   location: PropTypes.objectOf(PropTypes.object).isRequired,
   handleCartItems: PropTypes.func.isRequired,
+  cartQuantity: PropTypes.number.isRequired,
 };
