@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Product extends Component {
   render() {
-    const { title, thumbnail, price, id } = this.props;
+    const { title, thumbnail, price, id, shipping: { free_shipping } } = this.props;
     const details = { pathname: `/details/${id}`,
       state: { title, thumbnail, price },
     };
@@ -17,6 +17,11 @@ class Product extends Component {
         </div>
         <div>
           <span>{ price }</span>
+        </div>
+        <div>
+          <span data-testid={ free_shipping ? "free-shipping" : "" }>
+            { free_shipping ? 'FRETE GRÁTIS!' : '' }
+          </span>
         </div>
       </section>
     );

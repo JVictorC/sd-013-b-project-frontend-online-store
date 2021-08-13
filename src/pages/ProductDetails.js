@@ -26,7 +26,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { isLoading, product: { title, price, thumbnail } } = this.state;
+    const { isLoading, product: { title, price, thumbnail, shipping } } = this.state;
     if (isLoading) {
       return (
         <h1>Carregando...</h1>
@@ -38,6 +38,9 @@ class ProductDetails extends React.Component {
         <div className="product-details-unit">
           <img className="details-img" src={ thumbnail } alt={ `Imagem de ${title}` } />
           <span>{`R$${parseFloat(price).toFixed(2)}`}</span>
+          <p data-testid={ shipping.free_shipping ? "free-shipping" : "" }>
+            { shipping.free_shipping ? 'FRETE GRÁTIS' : '' }
+          </p>
         </div>
       </section>
     );
