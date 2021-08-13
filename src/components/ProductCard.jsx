@@ -7,7 +7,7 @@ class ProductCard extends React.Component {
   onClick = () => {
     const { product, countProductsCart } = this.props;
 
-    if (localStorage.key('cart')) {
+    if (localStorage.getItem('cart')) {
       const parse = JSON.parse(localStorage.getItem('cart'));
       parse.push({ ...product, quantidade: 1 });
       localStorage.setItem('cart', JSON.stringify(parse));

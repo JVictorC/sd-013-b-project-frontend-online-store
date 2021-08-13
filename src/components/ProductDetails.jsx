@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shoppingCart from '../images/shopping-cart-svgrepo-com.svg';
+import FormsDetails from './FormsDetails';
+import Reviews from './Reviews';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class ProductDetails extends React.Component {
     const { location } = this.props;
     const { state: product } = location;
 
-    if (localStorage.key('cart')) {
+    if (localStorage.getItem('cart')) {
       const parse = JSON.parse(localStorage.getItem('cart'));
       parse.push({ ...product, quantidade: 1 });
       localStorage.setItem('cart', JSON.stringify(parse));
@@ -85,6 +87,8 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <FormsDetails productId={ productDetail.id } />
+        <Reviews productId={ productDetail.id } />
       </div>
     );
   }
