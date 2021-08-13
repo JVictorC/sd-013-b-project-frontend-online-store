@@ -8,7 +8,7 @@ export default class EvaluationsForm extends React.Component {
     this.state = {
       email: '',
       message: '',
-      rating: 0,
+      rating: '',
     };
 
     this.handleEmail = this.handleEmail.bind(this);
@@ -73,7 +73,7 @@ export default class EvaluationsForm extends React.Component {
               type="radio"
               name="rating"
               value="1"
-              checked={ rating === 1 }
+              checked={ rating === '1' }
               onChange={ this.handleRating }
             />
               1
@@ -84,7 +84,7 @@ export default class EvaluationsForm extends React.Component {
               type="radio"
               name="rating"
               value="2"
-              checked={ rating === 2 }
+              checked={ rating === '2' }
               onChange={ this.handleRating }
             />
               2
@@ -95,7 +95,7 @@ export default class EvaluationsForm extends React.Component {
               type="radio"
               name="rating"
               value="3"
-              checked={ rating === 3 }
+              checked={ rating === '3' }
               onChange={ this.handleRating }
             />
               3
@@ -106,7 +106,7 @@ export default class EvaluationsForm extends React.Component {
               type="radio"
               name="rating"
               value="4"
-              checked={ rating === 4 }
+              checked={ rating === '4' }
               onChange={ this.handleRating }
             />
               4
@@ -117,7 +117,7 @@ export default class EvaluationsForm extends React.Component {
               type="radio"
               name="rating"
               value="5"
-              checked={ rating === 5 }
+              checked={ rating === '5' }
               onChange={ this.handleRating }
             />
               5
