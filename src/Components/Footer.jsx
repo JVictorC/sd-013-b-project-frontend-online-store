@@ -40,7 +40,7 @@ class Footer extends Component {
             <a href={ devSelect.gitHub } target="_blank" rel="noreferrer">
               <AiFillGithub className="fs-1 text-success m-5 text-center" />
             </a>
-            <a href={ devSelect.gitHub } target="_blank" rel="noreferrer">
+            <a href={ devSelect.linkedin } target="_blank" rel="noreferrer">
               <AiFillLinkedin className="fs-1 text-success m-5 text-center" />
             </a>
           </nav>
