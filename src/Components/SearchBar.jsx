@@ -5,7 +5,13 @@ import ProductInvalid from './ProductInvalid';
 
 export default class SearchBar extends Component {
   render() {
-    const { searchbar, products, state, handleClick, handleChange } = this.props;
+    const { searchbar,
+      products,
+      state,
+      handleClick,
+      handleChange,
+      callback } = this.props;
+
     return (
       <div>
         <label
@@ -29,7 +35,11 @@ export default class SearchBar extends Component {
         {products.length === 0 && state === true ? (
           <ProductInvalid />
         ) : (
-          <ProductList products={ products } searchbar={ searchbar } />
+          <ProductList
+            callback={ callback }
+            products={ products }
+            searchbar={ searchbar }
+          />
         )}
       </div>
     );
@@ -42,4 +52,5 @@ SearchBar.propTypes = {
   state: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  callback: PropTypes.func.isRequired,
 };

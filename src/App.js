@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
-import ProductDetails from './Components/ProductDetails';
-import ProductsLibrary from './Components/ProductsLibrary';
+import ProductDetails from './Pages/ProductDetails';
+import ProductsLibrary from './Pages/ProductsLibrary';
 
 export default class App extends Component {
   render() {
