@@ -28,6 +28,7 @@
 }
 
 .category-container {
+  max-width: 350px;
   width: 20%;
 }
 
