@@ -59,6 +59,7 @@ export default class ProductsLibrary extends Component {
     const { searchbar, products, state, category, cart } = this.state;
     return (
       <div>
+        <CartButton cart={ cart } />
         <CategoriesList
           category={ category }
           products={ products }
@@ -72,7 +73,6 @@ export default class ProductsLibrary extends Component {
           products={ products }
           state={ state }
         />
-        <CartButton cart={ cart } />
       </div>
     );
   }

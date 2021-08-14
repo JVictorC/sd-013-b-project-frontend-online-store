@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 export default class ProductCard extends Component {
   constructor(props) {
     super(props);
-    const { product: { title, price } } = this.props;
+    const { product: { title, price, id } } = this.props;
     this.state = {
       basicInfo: {
         title,
         price,
+        id,
       },
     };
     this.handleClick = this.handleClick.bind(this);

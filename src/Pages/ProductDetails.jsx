@@ -23,7 +23,7 @@ export default class ProductDetails extends Component {
     const response = await api.getProductsFromCategoryAndQuery(categoryId, query);
     const products = response.results;
     const productSearched = products.find((product) => product.id === id);
-    console.log(productSearched);
+    // console.log(productSearched);
     this.setState({
       title: productSearched.title,
       price: productSearched.price,
