@@ -8,7 +8,7 @@ import { FaSadCry } from 'react-icons/fa';
 
 import { GrClose } from 'react-icons/gr';
 import Footer from './Footer';
-import '../Style/Cart.css';
+import '../Style/Cart Style/Cart.css';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Cart extends React.Component {
     const { card, increase, decrease } = this.props;
     return (
       <div className="cart">
-        <header>
+        <header className="header-cart">
           {
             card.length === 0
               ? (
