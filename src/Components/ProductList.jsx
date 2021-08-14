@@ -51,7 +51,7 @@ export default class ProductList extends Component {
               <img
                 src={ product.thumbnail }
                 alt={ product.title }
-                className="img-thumbnail"
+                className="img-thumbnail my-2"
               />
               {product.shipping.free_shipping
                 ? (
