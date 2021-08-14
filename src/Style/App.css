@@ -28,7 +28,7 @@
 }
 
 .category-container {
-  width: 20%;
+  min-width: 20%;
 }
 
 .Link-Cart {
@@ -52,20 +52,23 @@
 
 .Product-Show {
   display: flex;
-  justify-content: space-around;
-  margin-top: 250px;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  margin-top: 200px;
 }
 
 /* CSS inspirado em Grids https://www.w3schools.com/css/css_grid.asp */
-.product-container {
-  width: 75%;
-}
-
 .product-list {
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(300px, auto));
   text-align: center;
+}
+
+.product-container {
+  min-width: 80%;
 }
 
 .product-list img {
@@ -85,4 +88,50 @@
 
 .product:hover {
   transform: scale(1.05);
+}
+
+footer {
+  align-items: center;
+  border-top: 5px solid  green;
+  display: flex;
+  flex-flow: column wrap;
+  min-height: 250px;
+}
+
+footer nav {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+  width: 100%;
+}
+
+.links {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 0;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.links:hover {
+  border-bottom: 3px solid green;
+  color: green;
+  font-weight: 400;
+  padding: 0;
+  transform: scale(1.3);
+}
+
+.select {
+  border-bottom: 3px solid green;
+  color: green;
+  transform: scale(1.3);
+}
+
+.dados-dev {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+
 }

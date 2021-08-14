@@ -6,6 +6,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 import BarSearch from './BarSearch';
 import Category from './Category';
 import ProductList from './ProductList';
+import Footer from './Footer';
 
 class Home extends Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class Home extends Component {
             card={ card }
           />
         </main>
+        <Footer />
       </div>
     );
   }
