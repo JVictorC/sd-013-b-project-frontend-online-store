@@ -9,13 +9,19 @@ export default class ProductCard extends Component {
     const { categoryId, title, price, thumbnail, id } = product;
     // console.log(product);
     return (
-      <Link to={ `/${categoryId}/${id}` } data-testid="product-detail-link">
-        <div data-testid="product">
-          <h2>{ title }</h2>
-          <h4>{ price }</h4>
-          <img alt="Product disc" src={ thumbnail } />
-        </div>
-      </Link>
+      <div data-testid="product">
+        <h2>{ title }</h2>
+        <h4>{ price }</h4>
+        <img alt="Product disc" src={ thumbnail } />
+        <Link
+          to={
+            { pathname: `/${categoryId}/${id}` }
+          }
+          data-testid="product-detail-link"
+        >
+          Mais detalhes
+        </Link>
+      </div>
     );
   }
 }

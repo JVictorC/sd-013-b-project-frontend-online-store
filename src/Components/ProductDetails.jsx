@@ -19,17 +19,17 @@ export default class ProductDetails extends Component {
   }
 
   async productsRequisition() {
-    const { match: { params: { categoryId, id, query } } } = this.props;
+    const { match: { params: { categoryId, title, query } } } = this.props;
     const response = await api.getProductsFromCategoryAndQuery(categoryId, query);
     const products = response.results;
-    const productSearched = products.find((product) => product.id === id);
-    console.log(productSearched);
-    this.setState({
-      title: productSearched.title,
-      price: productSearched.price,
-      thumbnail: productSearched.thumbnail,
-      condition: productSearched.condition,
-    });
+    const productSearched = products.find((product) => (
+      product.title === title ? this.setState({
+        title: productSearched.title,
+        price: productSearched.price,
+        thumbnail: productSearched.thumbnail,
+        condition: productSearched.condition,
+      }) : 'loading'));
+      console.log(productSearched.title);
   }
 
   render() {
