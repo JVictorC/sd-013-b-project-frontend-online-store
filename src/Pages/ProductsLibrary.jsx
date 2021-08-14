@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
-import CartButton from './CartButton';
-import CategoriesList from './CategoriesList';
-import SearchBar from './SearchBar';
+import CategoriesList from '../Components/CategoriesList';
+import SearchBar from '../Components/SearchBar';
+import CartButton from '../Components/CartButton';
 
 export default class ProductsLibrary extends Component {
   constructor(props) {
@@ -13,15 +13,23 @@ export default class ProductsLibrary extends Component {
       category: [],
       products: [],
       state: false,
+      cart: [],
     };
 
     this.handleState = this.handleState.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCartState = this.handleCartState.bind(this);
   }
 
   componentDidMount() {
     this.handleState();
+  }
+
+  handleCartState(basicInfo) {
+    this.setState(({ cart }) => ({
+      cart: [...cart, basicInfo],
+    }));
   }
 
   async handleState() {
@@ -48,22 +56,23 @@ export default class ProductsLibrary extends Component {
   }
 
   render() {
-    const { searchbar, products, state, category } = this.state;
+    const { searchbar, products, state, category, cart } = this.state;
     return (
       <div>
+        <CartButton cart={ cart } />
         <CategoriesList
           category={ category }
           products={ products }
           handleClick={ this.handleClick }
         />
         <SearchBar
+          callback={ this.handleCartState }
           handleChange={ this.handleChange }
           handleClick={ this.handleClick }
           searchbar={ searchbar }
           products={ products }
           state={ state }
         />
-        <CartButton />
       </div>
     );
   }
