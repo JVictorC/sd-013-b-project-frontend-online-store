@@ -5,8 +5,10 @@ class CarrinhoDeCompra extends React.Component {
   constructor(props) {
     super(props);
 
+    const { products } = this.props;
+
     this.state = {
-      products: this.props,
+      products: products,
       mensagem: true,
       purchaseAmount: 0,
     };
