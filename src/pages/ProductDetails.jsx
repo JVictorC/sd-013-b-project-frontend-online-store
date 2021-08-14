@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BackButton from '../components/BackButton';
 import DetailsCard from '../components/DetailsCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import EvaluationForms from '../components/EvaluationForms';
 
 class ProductDetails extends React.Component {
   render() {
@@ -33,6 +34,7 @@ class ProductDetails extends React.Component {
 
             <DetailsCard product={ product } />
           </div>
+          <EvaluationForms title={ product.title } />
         </main>
       </div>
     );

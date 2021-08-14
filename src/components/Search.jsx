@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Search extends React.Component {
-  handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
-  }
-
   render() {
     const { onChange, onClick } = this.props;
 

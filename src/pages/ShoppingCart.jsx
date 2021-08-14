@@ -1,29 +1,24 @@
 import React from 'react';
+import List from '../components/List';
 
 class ShoppingCart extends React.Component {
   render() {
     const cartProducts = JSON.parse(localStorage.getItem('product'));
-
     if (cartProducts === null) {
       return (
         <div data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
+          <h1>Seu carrinho está vazio</h1>
         </div>
       );
     } return (
       <ul>
-        {cartProducts.map((e) => (
-          <li
-            key={ e.title }
-          >
-            <span data-testid="shopping-cart-product-quantity">
-              {`${e.qts}: `}
-            </span>
-
-            <span data-testid="shopping-cart-product-name">
-              {e.title}
-            </span>
-          </li>
+        {cartProducts.map((product) => (
+          <List
+            key={ product.title }
+            onClick1={ this.handleClick1 }
+            onClick2={ this.handleClick2 }
+            product={ product }
+          />
         ))}
       </ul>
     );
