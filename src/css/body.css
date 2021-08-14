@@ -4,6 +4,10 @@
   padding: 1%;
 }
 
+.a {
+  background-color: blue;
+}
+
 .body {
   background-color: rgb(20, 20, 41);
   display: flex;
@@ -18,4 +22,16 @@
   display: flex;
   justify-content: center;
   padding-bottom: 1em;
+}
+
+.product {
+  width: 30%;
+  background-color: rgb(255, 255, 255);
+  margin: 2em;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.img-product {
+  width: 15em;
 }

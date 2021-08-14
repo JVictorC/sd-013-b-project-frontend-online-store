@@ -8,10 +8,10 @@ export default class CardProduct extends Component {
     const { title, thumbnail, price, id } = products;
     return (
       <div>
-        <div data-testid="product">
+        <div data-testid="product" className="product">
           <h3>{ title }</h3>
           <p>{ price }</p>
-          <img src={ thumbnail } alt="foto" />
+          <img src={ thumbnail } alt="foto" className="img-product" />
         </div>
         <Link
           to={ { pathname: `/product-details/${id}`, state: products } }
