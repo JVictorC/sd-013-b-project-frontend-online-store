@@ -6,22 +6,15 @@ import { Link } from 'react-router-dom';
 export default class ProductCard extends Component {
   render() {
     const { product } = this.props;
-    const { categoryId, title, price, thumbnail, id } = product;
-    // console.log(product);
+    const { title, price, thumbnail, id } = product;
     return (
-      <div data-testid="product">
-        <h2>{ title }</h2>
-        <h4>{ price }</h4>
-        <img alt="Product disc" src={ thumbnail } />
-        <Link
-          to={
-            { pathname: `/${categoryId}/${id}` }
-          }
-          data-testid="product-detail-link"
-        >
-          Mais detalhes
-        </Link>
-      </div>
+      <Link to={ `/${id}` } data-testid="product-detail-link">
+        <div data-testid="product">
+          <h2>{ title }</h2>
+          <h4>{ price }</h4>
+          <img alt="Product disc" src={ thumbnail } />
+        </div>
+      </Link>
     );
   }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
 
 export default class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
+      subtitle: '',
       price: 0,
       thumbnail: '',
       condition: '',
@@ -19,6 +19,7 @@ export default class ProductDetails extends Component {
   }
 
   async productsRequisition() {
+<<<<<<< HEAD
     const { match: { params: { categoryId, title, query } } } = this.props;
     const response = await api.getProductsFromCategoryAndQuery(categoryId, query);
     const products = response.results;
@@ -30,13 +31,26 @@ export default class ProductDetails extends Component {
         condition: productSearched.condition,
       }) : 'loading'));
       console.log(productSearched.title);
+=======
+    const { match: { params: { id } } } = this.props;
+    const requisition = await fetch(`https://api.mercadolibre.com/items/${id}`);
+    const response = await requisition.json();
+    this.setState({
+      title: response.title,
+      subtitle: response.subtitle,
+      price: response.price,
+      thumbnail: response.thumbnail,
+      condition: response.condition,
+    });
+>>>>>>> 2aee7fa16d5dc033034b493a275228970bf856de
   }
 
   render() {
-    const { title, price, thumbnail, condition } = this.state;
+    const { title, subtitle, price, thumbnail, condition } = this.state;
     return (
-      <div data-testid="product-detail-name">
-        <h3>{title}</h3>
+      <div>
+        <h2 data-testid="product-detail-name">{title}</h2>
+        <h4>{subtitle}</h4>
         <span>{`Preço: R$${price.toFixed(2)}`}</span>
         <img src={ thumbnail } alt="product.png" />
         <p>{`Condição: ${condition}`}</p>
