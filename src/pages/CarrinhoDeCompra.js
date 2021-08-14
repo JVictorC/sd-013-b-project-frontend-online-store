@@ -1,15 +1,13 @@
 import React from 'react';
-import CartList from '../components/CartList';
 import PropTypes from 'prop-types';
+import CartList from '../components/CartList';
 
 class CarrinhoDeCompra extends React.Component {
   constructor(props) {
     super(props);
 
-    const { products } = this.props;
-
     this.state = {
-      products: products,
+      products: {},
       mensagem: true,
       purchaseAmount: 0,
     };
@@ -23,7 +21,7 @@ class CarrinhoDeCompra extends React.Component {
   }
 
   valeuList() {
-    const { products } = this.state;
+    const { products } = this.props;
     const box = products;
     const total = { total: 0 };
     box.forEach((element) => {
