@@ -47,7 +47,10 @@ export default class AddCart extends React.Component {
               Total de items no carrinho:
               {totalItem[id]}
             </p>
-            <p>{`Quantidade em estoque: ${available[index] <= 0 ? 0 : available[index] - totalItem[id]}`}</p>
+            <p>
+              {`Quantidade em estoque: ${available[index] <= 0
+                ? 0 : available[index] - totalItem[id]}`}
+            </p>
             <button
               data-testid="product-increase-quantity"
               type="button"

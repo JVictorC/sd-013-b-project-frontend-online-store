@@ -16,7 +16,6 @@ export default class ShoppingCart extends React.Component {
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
     this.updateFromStorage = this.updateFromStorage.bind(this);
-
   }
 
   componentDidMount() {
