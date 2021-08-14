@@ -39,7 +39,8 @@
 .categorys {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-flow: column;
+  flex-flow: column wrap;
+  height: 1500px;
   margin-left: 25px;
 
 }
