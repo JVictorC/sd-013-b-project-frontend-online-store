@@ -6,6 +6,7 @@ export default class Categories extends Component {
     const { categories, handleClick } = this.props;
     return (
       <div className="Categories">
+        <h3 className="title-categories">Categorias</h3>
         <form>
           { categories !== [] ? (
             categories.map(({ id, name }) => (

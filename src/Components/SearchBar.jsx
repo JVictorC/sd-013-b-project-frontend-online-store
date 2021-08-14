@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CardProduct from './CardProduct';
+// import CardProduct from './CardProduct';
 import LogoBlue from '../img/LogotipoBlue.png';
 import CartButton from './CartButton';
 
@@ -9,10 +9,10 @@ export default class SearchBar extends Component {
     const {
       products,
       searchText,
-      state,
+      // state,
       handleChange,
       handleClick,
-      addToCart,
+      // addToCart,
       cart,
     } = this.props;
     // console.log(results);
@@ -53,7 +53,7 @@ export default class SearchBar extends Component {
             cart={ cart }
           />
         </div>
-        <div>
+        {/* <div>
           {products === 0 && state === true
             ? <p>Nenhum produto foi encontrado</p>
             : products.map((product, { id }) => (
@@ -63,16 +63,16 @@ export default class SearchBar extends Component {
                 addToCart={ addToCart }
               />
             ))}
-        </div>
+            </div> */}
       </div>
     );
   }
 }
 
 SearchBar.propTypes = {
-  addToCart: PropTypes.func.isRequired,
+  // addToCart: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.array).isRequired,
-  state: PropTypes.bool.isRequired,
+  // state: PropTypes.bool.isRequired,
   searchText: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,

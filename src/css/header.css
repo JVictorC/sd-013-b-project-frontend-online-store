@@ -11,10 +11,11 @@
   background-color: #fff159;
   display: flex;
   justify-content: space-around;
+  padding: 1em;
 }
 
 .searchText {
-  width: 100%;
+  width: 98%;
 }
 
 .logotipo {
@@ -22,12 +23,14 @@
 }
 
 .research{
-  background-color: rgb(161, 103, 103);
-}
-
-.btn-car{
-  background-color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn-car{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
 }

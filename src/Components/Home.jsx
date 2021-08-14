@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Categories from './Categories';
 import SearchBar from './SearchBar';
+import ProductArea from './ProductArea';
 import * as api from '../services/api';
 
 export default class Home extends Component {
@@ -53,22 +54,31 @@ export default class Home extends Component {
     console.log(products);
     return (
       <div>
-        <SearchBar
-          addToCart={ addToCart }
-          cart={ cart }
-          handleChange={ this.handleChange }
-          handleClick={ this.handleClick }
-          searchText={ searchText }
-          products={ products }
-          state={ state }
-        />
-        <Categories
-          addToCart={ addToCart }
-          cart={ cart }
-          categories={ categories }
-          products={ products }
-          handleClick={ this.handleClick }
-        />
+        <div>
+          <SearchBar
+            // addToCart={ addToCart }
+            cart={ cart }
+            handleChange={ this.handleChange }
+            handleClick={ this.handleClick }
+            searchText={ searchText }
+            // products={ products }
+            // state={ state }
+          />
+        </div>
+        <div className="body">
+          <Categories
+            addToCart={ addToCart }
+            cart={ cart }
+            categories={ categories }
+            products={ products }
+            handleClick={ this.handleClick }
+          />
+          <ProductArea
+            products={ products }
+            state={ state }
+            addToCart={ addToCart }
+          />
+        </div>
       </div>
     );
   }
