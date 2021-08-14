@@ -12,20 +12,20 @@ export default class CardProduct extends Component {
           <h3>{ title }</h3>
           <p>{ price }</p>
           <img src={ thumbnail } alt="foto" className="img-product" />
+          <Link
+            to={ { pathname: `/product-details/${id}`, state: products } }
+            data-testid="product-detail-link"
+          >
+            Detalhes
+          </Link>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ () => addToCart(products) }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
-        <Link
-          to={ { pathname: `/product-details/${id}`, state: products } }
-          data-testid="product-detail-link"
-        >
-          Detalhes
-        </Link>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ () => addToCart(products) }
-        >
-          Adicionar ao Carrinho
-        </button>
       </div>
     );
   }

@@ -16,6 +16,9 @@
 .product-area {
   background-color: #ebebeb;
   width: 82%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .title-categories {
