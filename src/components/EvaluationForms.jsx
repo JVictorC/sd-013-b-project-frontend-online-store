@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EvaluationForms extends React.Component {
   constructor(props) {
@@ -80,7 +81,7 @@ class EvaluationForms extends React.Component {
           />
         </label>
         <label htmlFor="assessment_3">
-          2
+          3
           <input
             type="radio"
             id="assessment_3"
@@ -116,4 +117,7 @@ class EvaluationForms extends React.Component {
   }
 }
 
+EvaluationForms.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 export default EvaluationForms;

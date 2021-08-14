@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class QuantityControlButton extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class QuantityControlButton extends React.Component {
   }
 
   handleClick = () => {
-    const { onClick, title  } = this.props;
+    const { onClick, title } = this.props;
     onClick(title);
   }
 
@@ -26,4 +27,10 @@ class QuantityControlButton extends React.Component {
   }
 }
 
+QuantityControlButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  testid: PropTypes.string.isRequired,
+  symbol: PropTypes.string.isRequired,
+};
 export default QuantityControlButton;

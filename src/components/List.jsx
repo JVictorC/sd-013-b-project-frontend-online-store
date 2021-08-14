@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import QuantityControlButton from './QuantityControlButton';
 
-class Liste extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,4 +80,7 @@ class Liste extends React.Component {
   }
 }
 
-export default Liste;
+List.propTypes = {
+  product: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+export default List;
