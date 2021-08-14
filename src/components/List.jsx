@@ -42,7 +42,10 @@ class Liste extends React.Component {
 
   render() {
     const { product } = this.props;
-    const { productQuantity } = this.state;
+    const { productQuantity, cartProducts } = this.state;
+    const targetProduct = cartProducts
+      .filter((matchingProd) => matchingProd.title === product.title);
+
     return (
       <li>
         <QuantityControlButton
@@ -52,7 +55,7 @@ class Liste extends React.Component {
           symbol="-"
         />
         <span data-testid="shopping-cart-product-quantity">
-          {` ${productQuantity} `}
+          {` ${targetProduct[0].qts} `}
         </span>
         <QuantityControlButton
           onClick={ this.handleIncrease }
