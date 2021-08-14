@@ -1,5 +1,6 @@
 import React from 'react';
 import CartList from '../components/CartList';
+import PropTypes from 'prop-types';
 
 class CarrinhoDeCompra extends React.Component {
   constructor(props) {
@@ -109,5 +110,9 @@ class CarrinhoDeCompra extends React.Component {
     );
   }
 }
+
+CarrinhoDeCompra.propTypes = {
+  products: PropTypes.object,
+}.isRequired;
 
 export default CarrinhoDeCompra;
