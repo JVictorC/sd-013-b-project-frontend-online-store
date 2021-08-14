@@ -35,17 +35,23 @@ export default class AddCart extends React.Component {
           <div key={ id } data-testid="product">
             <h3 data-testid="shopping-cart-product-name">{ title }</h3>
             <img src={ thumbnail } alt="Produto" />
-            <p>{ `R$: ${price}` }</p>
+            <p>
+              { totalItem[id] === 0
+                ? `Preço de 1 item: R$ ${price}`
+                : `Preço de ${totalItem[id]} items: R$ ${price * totalItem[id]}` }
+            </p>
             <p
               data-testid="shopping-cart-product-quantity"
             >
+              {' '}
+              Total de items no carrinho:
               {totalItem[id]}
             </p>
-            <p>{`Quantidade em estoque: ${available[index] - totalItem[id]}`}</p>
+            <p>{`Quantidade em estoque: ${available[index] <= 0 ? 0 : available[index] - totalItem[id]}`}</p>
             <button
               data-testid="product-increase-quantity"
               type="button"
-              onClick={ () => onClickAdd(id) }
+              onClick={ () => onClickAdd(id, index) }
               name={ id }
               disabled={ available[index] - totalItem[id] === 0 }
             >
@@ -54,9 +60,9 @@ export default class AddCart extends React.Component {
             <button
               data-testid="product-decrease-quantity"
               type="button"
-              onClick={ () => onClickRemove(id) }
+              onClick={ () => onClickRemove(id, index) }
               name={ id }
-              disabled={ totalItem[id] === 0 }
+              disabled={ totalItem[id] === 1 }
             >
               <RemoveCircleOutlineIcon />
             </button>

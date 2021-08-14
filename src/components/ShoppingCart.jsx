@@ -15,22 +15,38 @@ export default class ShoppingCart extends React.Component {
     this.productsAvailable = this.productsAvailable.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.updateFromStorage = this.updateFromStorage.bind(this);
+
   }
 
   componentDidMount() {
     this.sumcartPrices();
     this.productsAvailable();
+    this.updateFromStorage();
   }
 
-  handleAddClick(id) {
-    this.setState(({ itemsQuantity }) => ({
+  componentDidUpdate() {
+    const { amountPrice } = this.state;
+    if (amountPrice !== 0) {
+      localStorage.setItem('amountPrice', amountPrice);
+    }
+  }
+
+  async handleAddClick(id, index) {
+    const { cartList } = this.state;
+    const itemPrice = cartList.map((item) => item.price);
+    await this.setState(({ itemsQuantity, amountPrice }) => ({
       itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] + 1 },
+      amountPrice: amountPrice + (itemPrice[index] * itemsQuantity[id]),
     }));
   }
 
-  handleRemoveClick(id) {
+  handleRemoveClick(id, index) {
+    const { cartList, amountPrice } = this.state;
+    const itemPrice = cartList.map((item) => item.price);
     this.setState(({ itemsQuantity }) => ({
       itemsQuantity: { ...itemsQuantity, [id]: itemsQuantity[id] - 1 },
+      amountPrice: amountPrice - itemPrice[index],
     }));
   }
 
@@ -43,11 +59,25 @@ export default class ShoppingCart extends React.Component {
   }
 
   async sumcartPrices() {
-    const { cartList } = this.state;
-    const cartPrice = cartList.reduce((acc, { price }) => acc + price, 0);
+    const { cartList, itemsQuantity } = this.state;
+    // const cartPrice = cartList.reduce((acc, { price }) => acc + price, 0);
+    const cartPrice = cartList.reduce((acc, { id, price }) => {
+      acc += price * itemsQuantity[id];
+      return Math.round(acc * 100) / 100;
+    }, 0);
+
     this.setState(({ amountPrice }) => (
-      { amountPrice: amountPrice + parseFloat(cartPrice) }
+      { amountPrice: Math.round((amountPrice + cartPrice) * 100) / 100 }
     ));
+  }
+
+  updateFromStorage() {
+    if (localStorage.getItem('amountPrice')) {
+      const savedAmountPrice = localStorage.getItem('amountPrice');
+      this.setState({
+        amountPrice: savedAmountPrice,
+      });
+    }
   }
 
   render() {
