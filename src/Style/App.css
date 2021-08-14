@@ -72,8 +72,7 @@
   max-width: 80%;
 }
 
-.product-list img {
-  margin: 15px auto;
+.img-thumbnail {
   width: 50%;
 }
 

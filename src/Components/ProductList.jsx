@@ -48,7 +48,11 @@ export default class ProductList extends Component {
           {products.map((product) => (
             <li data-testid="product" key={ product.id } className="product">
               <p className="lead">{product.title}</p>
-              <img src={ product.thumbnail } alt={ product.title } />
+              <img
+                src={ product.thumbnail }
+                alt={ product.title }
+                className="img-thumbnail"
+              />
               {product.shipping.free_shipping
                 ? (
                   <div data-testid="free-shipping">
