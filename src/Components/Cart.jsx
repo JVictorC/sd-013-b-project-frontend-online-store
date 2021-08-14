@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import {
+  AiOutlinePlus, AiOutlineMinus, AiOutlineHome, AiFillRocket,
+} from 'react-icons/ai';
+import { FaSadCry } from 'react-icons/fa';
+
 import { GrClose } from 'react-icons/gr';
+import Footer from './Footer';
+import '../Style/Cart.css';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -36,58 +42,102 @@ class Cart extends React.Component {
     const { card, increase, decrease } = this.props;
     return (
       <div className="cart">
-        <Link
-          to="/"
-        >
-          <span role="img" aria-label="home">🏠</span>
-        </Link>
-        {
-          card.length === 0
-            ? (
-              <h1 data-testid="shopping-cart-empty-message">
-                Seu carrinho está vazio
-              </h1>
-            )
-            : <h1>Seu carrinho</h1>
-        }
-        {
-          card.map(({ title, price, thumbnail, id, quantity }) => (
-            <div key={ id }>
-              <p data-testid="shopping-cart-product-name">{title}</p>
-              <img src={ thumbnail } alt={ title } />
-              <p>
-                { price }
-              </p>
-              <div className="d-flex">
-                <button
-                  onClick={ decrease }
-                  type="button"
-                  data-testid="product-decrease-quantity"
-                  id={ id }
+        <header>
+          {
+            card.length === 0
+              ? (
+                <h1
+                  className="display-6 text-success"
+                  data-testid="shopping-cart-empty-message"
                 >
-                  <AiOutlineMinus id={ id } />
-                </button>
-                <p data-testid="shopping-cart-product-quantity">{quantity}</p>
-                <button
-                  onClick={ increase }
-                  type="button"
-                  data-testid="product-increase-quantity"
-                  id={ id }
+                  Seu carrinho está vazio
+                  <FaSadCry className="mx-3" />
+                </h1>
+              )
+              : (
+                <h1 className="display-6 text-success">
+                  Seu carrinho
+                  <AiFillRocket className="mx-3" />
+                </h1>
+              )
+          }
+          <Link
+            to="/"
+          >
+            <span role="img" aria-label="home">
+              <AiOutlineHome className="fs-2 text-success m-2" />
+            </span>
+          </Link>
+        </header>
+        <main>
+          {
+            card.map(({ title, price, thumbnail, id, quantity }) => (
+              <div key={ id } className="item">
+                <p
+                  data-testid="shopping-cart-product-name"
+                  className="fs-4 lead m-3"
                 >
-                  <AiOutlinePlus id={ id } />
+                  {title}
+
+                </p>
+                <img src={ thumbnail } alt={ title } className="img-thumbnail" />
+                <p className="fs-3 lead m-3">
+                  { `R$: ${price}` }
+                </p>
+                <div className="d-flex quantity">
+                  <button
+                    onClick={ decrease }
+                    type="button"
+                    data-testid="product-decrease-quantity"
+                    className="btn btn-outline-warning px-4"
+                    id={ id }
+                  >
+                    <AiOutlineMinus id={ id } />
+                  </button>
+                  <p
+                    data-testid="shopping-cart-product-quantity"
+                    className="lead fs-2 text-success"
+                  >
+                    {quantity}
+
+                  </p>
+                  <button
+                    onClick={ increase }
+                    type="button"
+                    data-testid="product-increase-quantity"
+                    className="btn btn-outline-info px-4"
+                    id={ id }
+                  >
+                    <AiOutlinePlus id={ id } />
+                  </button>
+                </div>
+                <button
+                  onClick={ (e) => this.hadlerClick(e, id) }
+                  type="button"
+                  id={ id }
+                  className="btn btn-outline-danger button-large"
+                >
+                  <GrClose id={ id } />
                 </button>
               </div>
-              <button onClick={ (e) => this.hadlerClick(e, id) } type="button" id={ id }>
-                <GrClose id={ id } />
-              </button>
-            </div>
-          ))
-        }
-        <p>
-          Valor total da compra:
-          {this.totalCart()}
-        </p>
-        <Link data-testid="checkout-products" to="/checkout">Finalizar Compra</Link>
+            ))
+          }
+          <div className="total">
+            <p className="lead fs-3">
+              Valor total da compra:
+              {` R$: ${this.totalCart()} `}
+            </p>
+            <Link
+              data-testid="checkout-products"
+              to="/checkout"
+              className="btn btn-success button-large"
+            >
+              Finalizar Compra
+
+            </Link>
+          </div>
+        </main>
+        <Footer />
       </div>
     );
   }
