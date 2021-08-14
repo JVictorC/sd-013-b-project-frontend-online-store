@@ -1,0 +1,33 @@
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+.a{
+  background-color: blue;
+}
+
+.Search-bar {
+  background-color: #fff159;
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchText {
+  width: 100%;
+}
+
+.logotipo {
+  width: 8em;
+}
+
+.research{
+  background-color: rgb(161, 103, 103);
+}
+
+.btn-car{
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

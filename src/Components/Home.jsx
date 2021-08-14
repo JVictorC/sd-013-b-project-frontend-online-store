@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CartButton from './CartButton';
 import Categories from './Categories';
 import SearchBar from './SearchBar';
 import * as api from '../services/api';
@@ -69,9 +68,6 @@ export default class Home extends Component {
           categories={ categories }
           products={ products }
           handleClick={ this.handleClick }
-        />
-        <CartButton
-          cart={ cart }
         />
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
 
 export default class CartButton extends Component {
   render() {
@@ -10,7 +11,7 @@ export default class CartButton extends Component {
         to={ { pathname: '/carrinho', cart } }
         data-testid="shopping-cart-button"
       >
-        Carrinho
+        <HiOutlineShoppingCart className="" />
       </Link>
     );
   }
