@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import BackButton from '../components/BackButton';
 import DetailsCard from '../components/DetailsCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import EvaluationForms from '../components/EvaluationForms';
 
 class ProductDetails extends React.Component {
   render() {
+    const evaluation = JSON.parse(localStorage.getItem('evaluation'));
     const {
       history,
       location: { state: product },
@@ -33,6 +35,19 @@ class ProductDetails extends React.Component {
 
             <DetailsCard product={ product } />
           </div>
+          <EvaluationForms title={ product.title } />
+          {/* {evaluation.map((i) => {
+            if (i.title === product.title) {
+              return (
+                <div key={ i.email }>
+                  <h1>{ i.email }</h1>
+                  <h1>{ i.message }</h1>
+                  <h1>{ i.assessment }</h1>
+                </div>
+              );
+            }
+            return undefined;
+          })} */}
         </main>
       </div>
     );
