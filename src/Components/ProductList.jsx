@@ -4,11 +4,17 @@ import ProductCard from './ProductCard';
 
 export default class ProductList extends Component {
   render() {
-    const { products, searchbar } = this.props;
+    const { products, searchbar, callback } = this.props;
     // const { productsActual } = this.state;
-    const searchListComponent = products.map((product) => (
-      <ProductCard key={ product.id } product={ product } query={ searchbar } />
-    ));
+    const searchListComponent = products.map((product) => {
+      const { id } = product;
+      return (<ProductCard
+        callback={ callback }
+        key={ id }
+        product={ product }
+        query={ searchbar }
+      />);
+    });
     return (
       <div>
         { searchListComponent }
@@ -20,4 +26,5 @@ export default class ProductList extends Component {
 ProductList.propTypes = {
   products: PropTypes.objectOf.isRequired,
   searchbar: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
 };
