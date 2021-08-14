@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 class Product extends Component {
   render() {
-    const { title, thumbnail, price, id,
-      shipping: { free_shipping: freeShip },
-    } = this.props;
+    const { obj, onClick } = this.props;
+    const { title, thumbnail, price, id, shipping: { free_shipping: freeShip } } = obj;
     const details = { pathname: `/details/${id}`,
       state: { title, thumbnail, price },
     };
@@ -21,6 +20,13 @@ class Product extends Component {
           <span>{ price }</span>
         </div>
         <div>
+          <button
+            type="submit"
+            data-testid="product-add-to-cart"
+            onClick={ () => { onClick(obj); } }
+          >
+            Adicionar ao Carrinho
+          </button>
           <span data-testid={ freeShip ? 'free-shipping' : '' }>
             { freeShip ? 'FRETE GRÁTIS!' : '' }
           </span>
@@ -30,12 +36,16 @@ class Product extends Component {
   }
 }
 Product.propTypes = {
-  title: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
-  shipping: PropTypes.shape({
-    free_shipping: PropTypes.bool,
+  obj: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
+
 export default Product;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class InputDigital extends Component {
   render() {
-    const { onChange, queryValue, onSubmit } = this.props;
+    const { onChange, queryValue, onSubmit, func, cart } = this.props;
     return (
       <form onSubmit={ onSubmit }>
         <input
@@ -17,10 +17,13 @@ class InputDigital extends Component {
           data-testid="query-button"
           type="submit"
         >
-          Buscar
+          Pesquisar
         </button>
         <div className="cart-btn">
-          <button type="submit">
+          <button
+            type="submit"
+            onClick={ () => { func(cart); } }
+          >
             <Link
               to="/cart"
               data-testid="shopping-cart-button"
@@ -38,6 +41,8 @@ InputDigital.propTypes = {
   onChange: PropTypes.func,
   queryValue: PropTypes.string,
   onSubmit: PropTypes.func,
+  func: PropTypes.func,
+  cart: PropTypes.array,
 }.isRequired;
 
 export default InputDigital;
