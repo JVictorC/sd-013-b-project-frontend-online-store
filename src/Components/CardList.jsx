@@ -8,19 +8,21 @@ export default class CardList extends Component {
     const { productsList, handleCart } = this.props;
     const mapCart = productsList.map((product) => (
       <div key={ product.id } data-testid="product" className="product-card">
-        <p>{ product.title }</p>
+        <p className="product-title">{ product.title }</p>
         <img src={ product.thumbnail } alt="product" />
         <p>
           R$
-          { product.price }
+          <span className="product-price-number">{ product.price }</span>
         </p>
-        <Link
-          to={ { pathname: `/details/${product.id}`, state: { product } } }
-          data-testid="product-detail-link"
-        >
-          Ver detalhes
-        </Link>
-        <ButtonCart handleCartItems={ () => handleCart(product) } />
+        <div className="product-card-links">
+          <Link
+            to={ { pathname: `/details/${product.id}`, state: { product } } }
+            data-testid="product-detail-link"
+          >
+            Ver detalhes
+          </Link>
+          <ButtonCart handleCartItems={ () => handleCart(product) } />
+        </div>
       </div>
     ));
     return (

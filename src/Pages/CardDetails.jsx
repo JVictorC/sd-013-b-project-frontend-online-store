@@ -19,6 +19,7 @@ export default class CardDetails extends Component {
           Preço: R$
           { price }
         </p>
+        {/* <ButtonCart product={ product } handleCartItems={ handleCartItems } /> */}
         <ButtonCart
           data-testid="product-detail-add-to-cart"
           product={ product }

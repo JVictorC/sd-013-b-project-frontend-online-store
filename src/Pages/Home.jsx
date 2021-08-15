@@ -6,6 +6,8 @@ import SideBar from '../Components/SideBar';
 import ButtonSearch from '../Components/ButtonSearch';
 import CardList from '../Components/CardList';
 import * as api from '../services/api';
+import shoppingCartIcon from '../images/shopping-cart.png';
+import './pageStyles.css';
 
 // REQUISITO 3 FEITO POR TODOS VIA PAIR PROGRAMING;
 
@@ -59,24 +61,34 @@ export default class Home extends Component {
     const { searchValueHome, productsArray, categoryId } = this.state;
     const { cartQuantity } = this.props;
     return (
-      <div>
+      <div className="home">
         <SearchBar onInputChange={ this.handleChange } />
         <ButtonSearch
           searchValueHome={ searchValueHome }
           onButtonClick={ this.handleClick }
           categoryId={ categoryId }
         />
-        <Link
-          data-testid="shopping-cart-button"
-          to="/shopCart"
-        >
-          Cart-Items-
-        </Link>
-        <p data-testid="shopping-cart-size">
-          { cartQuantity }
-        </p>
-        <SideBar handleCategoriesId={ this.handleCategoriesId } />
-        <CardList productsList={ productsArray } handleCart={ this.handleCart } />
+        <div className="cart-link">
+          <div className="shopping-cart-element">
+            <Link
+              data-testid="shopping-cart-button"
+              to="/shopCart"
+            >
+              <img className="cart-icon" src={ shoppingCartIcon } alt="cart" />
+            </Link>
+            <p data-testid="shopping-cart-size">
+              { cartQuantity }
+            </p>
+          </div>
+          <p>
+            Ainda não sabe como presentear o love nesse Dia dos Namorados?
+            A gente dá uma ajudinha e ela chama 20% de desconto em toda a loja!
+          </p>
+        </div>
+        <div className="main-home">
+          <SideBar handleCategoriesId={ this.handleCategoriesId } />
+          <CardList productsList={ productsArray } handleCart={ this.handleCart } />
+        </div>
       </div>
     );
   }

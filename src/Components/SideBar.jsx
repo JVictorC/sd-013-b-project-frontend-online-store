@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import './styles.css';
 
 export default class SideBar extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class SideBar extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <>
+      <div className="sidebar">
         { categories.map((category) => (
           <div key={ category.name }>
             <label htmlFor={ category.id }>
@@ -43,7 +44,7 @@ export default class SideBar extends Component {
             </label>
           </div>
         ))}
-      </>
+      </div>
     );
   }
 }
