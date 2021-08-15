@@ -3,9 +3,9 @@ body {
 }
 
 .shop-title {
+  align-content: center;
   color:rgba(15, 14, 14, 0.897);
   display: flex;
-  align-content: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
@@ -13,32 +13,32 @@ body {
 
 .search-bar {
   display: block;
+  height: 100%;
   margin: auto;
   width: 40%;
-  height: 100%;
 }
 
 .search-input {
-  width: 100%;
-  border-radius: 5px;
   border: 1px transparent;
-  padding: 4px;
+  border-radius: 5px;
   margin-bottom: 5px;
+  padding: 4px;
+  width: 100%;
 }
 
 /* button style reference taken from: https://fdossena.com/?p=html5cool/buttons/i.frag (with a few changes) */
 .btn {
-  display:inline-block;
-  padding:0.5em 3em;
   border:0.16em solid #FFFFFF;
-  margin:0 0.3em 0.3em 0;
   box-sizing: border-box;
-  text-decoration:none;
-  text-transform:uppercase;
+  color:#363333;
+  display:inline-block;
   font-family:'Roboto',sans-serif;
   font-weight:400;
-  color:#363333;
+  margin:0 0.3em 0.3em 0;
+  text-decoration:none;
+  text-transform:uppercase;
   text-align:center;
+  padding:0.5em 3em;
 }
 
 .search-label {
@@ -46,14 +46,14 @@ body {
 }
 
 .sidebar {
-  position: fixed;
+  background-color: white;
+  bottom: 0px;
   display: flex;
   flex-direction: column;
-  top: 0px;
   left: 0px;
-  bottom: 0px;
   overflow-y: scroll;
-  background-color: white;
+  position: fixed;
+  top: 0px;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -79,22 +79,22 @@ img {
 }
 
 .main > div:nth-child(1) {
-  width: 200px;
-  position: fixed;
+  bottom: 0px; 
   display: flex;
   flex-direction: column;
-  top: 100px;
+  position: fixed;
   right: 50px;
-  bottom: 0px; 
+  top: 100px;
+  width: 200px;
 }
 
 .main > div:nth-child(2) {
+  bottom: 0px; 
+  display: flex;
+  flex-direction: column;
   height: fit-content;
   width: 200px;
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 170px;
   right: 50px;
-  bottom: 0px; 
+  top: 170px;
 }
