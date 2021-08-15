@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import CardDetails from './components/CardDetails';
 import Cart from './components/Cart';
 import NotFound from './components/NotFound';
+import CheckoutPage from './components/CheckoutPage';
 
 export default class App extends Component {
   constructor(props) {
@@ -57,6 +58,10 @@ export default class App extends Component {
               exact
               path="/cart"
               render={ ((props) => <Cart { ...props } list={ cartList } />) }
+            />
+            <Route
+              path="/checkout"
+              render={ ((props) => <CheckoutPage { ...props } list={ cartList } />) }
             />
             <Route component={ NotFound } />
           </Switch>

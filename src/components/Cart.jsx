@@ -69,6 +69,7 @@ export default class Cart extends Component {
         { (empty ? this.renderEmpty() : this.renderList()) }
         <button type="button" onClick={ this.clearList }>X</button>
         <Link to="/">Voltar</Link>
+        <Link to="/checkout" data-testid="checkout-products">Finalizar Compra</Link>
       </section>
     );
   }
