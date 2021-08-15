@@ -28,4 +28,5 @@ ProductList.propTypes = {
   products: PropTypes.objectOf.isRequired,
   searchbar: PropTypes.string.isRequired,
   callback: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf.isRequired,
 };

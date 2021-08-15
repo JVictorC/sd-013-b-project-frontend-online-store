@@ -65,6 +65,7 @@ export default class ProductDetails extends Component {
             pathname: '/shoppingcart',
             data: newCart,
           } }
+          data-testid="shopping-cart-button"
         >
           Carrinho de compras
         </Link>

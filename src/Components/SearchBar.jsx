@@ -55,4 +55,5 @@ SearchBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   callback: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf.isRequired,
 };
