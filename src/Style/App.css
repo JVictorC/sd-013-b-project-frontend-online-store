@@ -28,8 +28,9 @@
 }
 
 .category-container {
+  font-size: 15px;
   max-width: 350px;
-  width: 20%;
+  width: 23%;
 }
 
 .Link-Cart {
@@ -46,11 +47,10 @@
 }
 
 .categorys input {
-  margin: 15px;
+  margin: 10px;
 }
 
 .categorys label:hover {
-  font-size: 20px;
   transform: scale(1.05);
 }
 
@@ -69,7 +69,7 @@
 }
 
 .product-container {
-  max-width: 80%;
+  max-width: 77%;
 }
 
 .img-thumbnail {
@@ -82,7 +82,7 @@
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  margin: 30px;
+  margin: 15px;
   padding: 15px;
   text-align: center;
   width: 300px;
