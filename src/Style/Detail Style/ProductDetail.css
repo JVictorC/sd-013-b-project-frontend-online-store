@@ -9,7 +9,7 @@
 
 .item-detail {
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.493);
   display: flex;
   flex-flow: column wrap;
   height: 80vh;
@@ -21,4 +21,15 @@
 
 .item-detail .img-thumbnail {
   width: 30%;
+}
+
+.form-avaliation {
+  display: flex;
+  flex-flow: column wrap;
+  padding: 30px;
+}
+
+.div-form {
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.493);
+  width: 80%;
 }

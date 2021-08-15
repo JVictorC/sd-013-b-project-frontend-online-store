@@ -101,8 +101,8 @@ export default class ProductDetails extends Component {
         </header>
         <main>
           <div className="item-detail">
-            <h1 data-testid="product-detail-name" className="display-4">{title}</h1>
-            <p className="display-6">
+            <h1 data-testid="product-detail-name" className="display-4 lead">{title}</h1>
+            <p className="display-6 lead">
               Preço: R$
               {price}
             </p>
@@ -110,7 +110,11 @@ export default class ProductDetails extends Component {
             { freeshipping
               ? (
                 <div data-testid="free-shipping">
-                  <span role="img" aria-label="shipping">
+                  <span
+                    role="img"
+                    aria-label="shipping"
+                    className="border border-warning p-2 lead rounded"
+                  >
                     📦 Frete Grátis
                   </span>
                 </div>
@@ -120,6 +124,7 @@ export default class ProductDetails extends Component {
             <button
               data-testid="product-detail-add-to-cart"
               type="button"
+              className="btn btn-outline-primary"
               onClick={
                 () => this.hadlerClick(productDetailsSelect)
               }
@@ -127,7 +132,7 @@ export default class ProductDetails extends Component {
               Adicionar ao Carrinho
             </button>
           </div>
-          <div>
+          <div className="div-form">
             <AvaliationsArea />
           </div>
         </main>

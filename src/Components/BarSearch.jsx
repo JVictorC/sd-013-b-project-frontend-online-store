@@ -65,7 +65,6 @@ class BarSearch extends Component {
             className="text-success fs-1 teste"
           >
             {QuantityItemCard}
-
           </p>
           <AiOutlineShoppingCart className="text-success fs-1" />
         </Link>
