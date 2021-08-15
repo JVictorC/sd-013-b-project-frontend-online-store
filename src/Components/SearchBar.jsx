@@ -10,7 +10,8 @@ export default class SearchBar extends Component {
       state,
       handleClick,
       handleChange,
-      callback } = this.props;
+      callback,
+      cart } = this.props;
 
     return (
       <div>
@@ -39,6 +40,7 @@ export default class SearchBar extends Component {
             callback={ callback }
             products={ products }
             searchbar={ searchbar }
+            cart={ cart }
           />
         )}
       </div>
@@ -53,4 +55,5 @@ SearchBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   callback: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf.isRequired,
 };
