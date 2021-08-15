@@ -19,9 +19,7 @@ export default class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    const { newCart } = this.state;
     this.productsRequisition();
-    console.log(newCart);
   }
 
   handleClick() {
