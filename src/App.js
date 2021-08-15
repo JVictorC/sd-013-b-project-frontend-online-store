@@ -10,13 +10,15 @@ export default class App extends Component {
     return (
       <div className="main-container">
         <h1 className="shop-title">FrontEnd Online Store</h1>
-        <div className="test">
+        <div className="main">
           <BrowserRouter>
-            <CartButton />
             <header className="header">
               <ProductsLibrary />
             </header>
-            <Route exact path="/shoppingcart" component={ ShoppingCart } />
+            <div className="main">
+              <CartButton />
+              <Route exact path="/shoppingcart" component={ ShoppingCart } />
+            </div>
           </BrowserRouter>
         </div>
       </div>
