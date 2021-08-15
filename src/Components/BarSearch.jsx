@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
+import Loading from './Loading';
 
 class BarSearch extends Component {
   constructor(props) {

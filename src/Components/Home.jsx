@@ -7,6 +7,7 @@ import BarSearch from './BarSearch';
 import Category from './Category';
 import ProductList from './ProductList';
 import Footer from './Footer';
+import Loading from './Loading';
 
 class Home extends Component {
   constructor(props) {
@@ -16,24 +17,28 @@ class Home extends Component {
       products: [],
       categorySelect: undefined,
       card,
+      loading: false,
     };
     this.getProducts = this.getProducts.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addToCard = this.addToCard.bind(this);
   }
 
-  async handleClick({ target }) {
-    const response = await getProductsFromCategoryAndQuery(
-      target.id,
-      null,
-      true,
-    );
+  handleClick({ target }) {
+    this.setState({ loading: true }, async () => {
+      const response = await getProductsFromCategoryAndQuery(
+        target.id,
+        null,
+        true,
+      );
 
-    const { results } = await response;
+      const { results } = await response;
 
-    this.setState({
-      categorySelect: target.id,
-      products: results,
+      this.setState({
+        categorySelect: target.id,
+        products: results,
+        loading: false,
+      });
     });
   }
 
@@ -65,7 +70,7 @@ class Home extends Component {
   }
 
   render() {
-    const { products, card } = this.state;
+    const { products, card, loading } = this.state;
     const { QuantityItemCard } = this.props;
     return (
       <div className="grid-container">
@@ -75,11 +80,17 @@ class Home extends Component {
         />
         <main className="Product-Show">
           <Category handleClick={ this.handleClick } />
-          <ProductList
-            products={ products }
-            addToCard={ this.addToCard }
-            card={ card }
-          />
+          {
+            loading
+              ? <Loading />
+              : (
+                <ProductList
+                  products={ products }
+                  addToCard={ this.addToCard }
+                  card={ card }
+                />
+              )
+          }
         </main>
         <Footer />
       </div>

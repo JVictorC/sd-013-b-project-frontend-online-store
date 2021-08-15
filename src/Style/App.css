@@ -55,7 +55,7 @@
 }
 
 .Product-Show {
-  align-items: baseline;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
   margin-top: 200px;
@@ -136,4 +136,29 @@ footer nav {
   display: flex;
   flex-flow: column wrap;
 
+}
+
+.container-loading {
+  align-items: center;
+  display: flex;
+  font-size: 150px;
+  justify-content: center;
+  width: 75%;
+}
+
+.loading {
+  animation: myRotation 1s infinite linear;
+  color: green;
+  font-size: 100px;
+}
+
+@keyframes myRotation {
+
+  to {
+    transform: rotate(0deg);
+  }
+
+  from {
+    transform: rotate(360deg);
+  }
 }
