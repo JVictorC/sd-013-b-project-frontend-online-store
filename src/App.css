@@ -6,7 +6,7 @@ body {
   align-content: center;
   color: rgba(15, 14, 14, 0.897);
   display: flex;
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto , sans-serif;
   font-size: 40px;
   justify-content: center;
 }
@@ -26,8 +26,8 @@ body {
   width: 100%;
 }
 
-/* button style reference taken from: 
-https://fdossena.com/?p=html5cool/buttons/i.frag 
+/* button style reference taken from:
+https://fdossena.com/?p=html5cool/buttons/i.frag
 (with a few changes) */
 
 .btn {
@@ -35,12 +35,12 @@ https://fdossena.com/?p=html5cool/buttons/i.frag
   box-sizing: border-box;
   color: #363333;
   display: inline-block;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto , sans-serif;
   font-weight: 400;
   margin: 0 0.3em 0.3em 0;
   padding: 0.5em 3em;
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
