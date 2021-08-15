@@ -72,6 +72,7 @@ export default class ProductsLibrary extends Component {
           searchbar={ searchbar }
           products={ products }
           state={ state }
+          cart={ cart }
         />
       </div>
     );

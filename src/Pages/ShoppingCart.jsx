@@ -14,6 +14,7 @@ export default class ShoppingCart extends Component {
 
   render() {
     const { location: { data } } = this.props;
+    console.log(data);
     const cartRendering = data.map((product) => {
       const quantity = this.countProducts(data, product);
       return (

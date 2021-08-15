@@ -24,11 +24,18 @@ export default class ProductCard extends Component {
   }
 
   render() {
-    const { product } = this.props;
+    const { product, cart } = this.props;
+    const { basicInfo } = this.state;
     const { title, price, thumbnail, id } = product;
     return (
       <div>
-        <Link to={ `/${id}` } data-testid="product-detail-link">
+        <Link
+          to={ {
+            pathname: `/${id}`,
+            data: { basicInfo, cart },
+          } }
+          data-testid="product-detail-link"
+        >
           <div data-testid="product">
             <h2>{ title }</h2>
             <h4>{ price }</h4>
@@ -59,4 +66,5 @@ ProductCard.propTypes = {
     id: PropTypes.string,
   }).isRequired,
   callback: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf.isRequired,
 };

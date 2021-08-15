@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 export default class ProductList extends Component {
   render() {
-    const { products, searchbar, callback } = this.props;
+    const { products, searchbar, callback, cart } = this.props;
     // const { productsActual } = this.state;
     const searchListComponent = products.map((product) => {
       const { id } = product;
@@ -13,6 +13,7 @@ export default class ProductList extends Component {
         key={ id }
         product={ product }
         query={ searchbar }
+        cart={ cart }
       />);
     });
     return (
