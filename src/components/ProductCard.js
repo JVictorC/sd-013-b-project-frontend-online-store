@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
+import ShippingStatus from './ShippingStatus';
 
 class ProductCard extends React.Component {
   render() {
     const { product, onClickButton } = this.props;
-    const { title, thumbnail, price, id } = product;
+    const { title, thumbnail, price, id, shipping } = product;
     const toLink = {
       pathname: `/product-details/${id}`,
       state: { product },
@@ -23,6 +24,7 @@ class ProductCard extends React.Component {
           </div>
         </Link>
         <p>{price}</p>
+        <ShippingStatus status={ shipping.free_shipping } />
         <div>
           <button
             onClick={ () => onClickButton(product) }
@@ -45,6 +47,9 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
     category_id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
 };
 
