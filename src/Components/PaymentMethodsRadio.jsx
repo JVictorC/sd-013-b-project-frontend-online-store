@@ -5,11 +5,11 @@ class PaymentMethodsRadio extends Component {
   render() {
     const { id, name, title, children } = this.props;
     return (
-      <label htmlFor={ id }>
-        <input type="radio" name={ name } id={ id } />
-        <div className="colum-display">
+      <label htmlFor={ id } className="form-check-label label-radio">
+        <input type="radio" name={ name } id={ id } className="form-check-input" />
+        <div className="colum-display input-radio">
           {children}
-          <span>{title}</span>
+          <span className="mx-3">{title}</span>
         </div>
       </label>
     );

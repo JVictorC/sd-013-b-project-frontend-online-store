@@ -28,10 +28,11 @@ export default class FormProduct extends Component {
     const { rate } = this.state;
     return (
       <div>
-        <form action="SUBMIT">
-          <label htmlFor="product-evaluator">
+        <form action="SUBMIT" className="form-avaliation">
+          <label className="form-label" htmlFor="product-evaluator">
             Avalie nosso Produto
             <input
+              className="form-control"
               value={ rate }
               onChange={ this.handleChange }
               name="rate"
@@ -42,9 +43,10 @@ export default class FormProduct extends Component {
               required
             />
           </label>
-          <label htmlFor="email-input">
+          <label className="form-label" htmlFor="email-input">
             Email:
             <input
+              className="form-control"
               placeholder="name@email.com"
               name="email"
               type="email"
@@ -53,9 +55,10 @@ export default class FormProduct extends Component {
               required
             />
           </label>
-          <label htmlFor="product-detail">
+          <label className="form-label" htmlFor="product-detail">
             Deixe um Comentário
             <textarea
+              className="form-control"
               onChange={ this.handleChange }
               name="text"
               data-testid="product-detail-evaluation"
@@ -65,7 +68,12 @@ export default class FormProduct extends Component {
               rows="10"
             />
           </label>
-          <input type="button" value="Avaliar" onClick={ this.sendState } />
+          <input
+            className="form-control btn btn-outline-success"
+            type="button"
+            value="Avaliar"
+            onClick={ this.sendState }
+          />
         </form>
       </div>
     );
