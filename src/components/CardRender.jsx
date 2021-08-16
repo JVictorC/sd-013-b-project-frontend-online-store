@@ -52,6 +52,7 @@ export default class CardRender extends React.Component {
               price={ price }
               id={ id }
               buttonId="product-add-to-cart"
+              className="card-footer-item button is-success m-2"
             />
           </footer>
         </div>

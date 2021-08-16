@@ -6,7 +6,7 @@ export default class CommentBox extends React.Component {
     const { getComment } = this.props;
 
     return (
-      <label htmlFor="product-detail-evaluation">
+      <div className="is-flex input-border">
         <textarea
           id="product-detail-evaluation"
           data-testid="product-detail-evaluation"
@@ -14,8 +14,9 @@ export default class CommentBox extends React.Component {
           rows="4"
           placeholder="Mensagem (opcional)"
           onChange={ getComment }
+          className="p-2"
         />
-      </label>
+      </div>
     );
   }
 }

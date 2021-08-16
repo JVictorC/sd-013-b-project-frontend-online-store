@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiFillCheckCircle } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 export default class BtnSubmitEvaluation extends React.Component {
@@ -25,7 +26,9 @@ export default class BtnSubmitEvaluation extends React.Component {
         id="submit"
         type="submit"
         onClick={ this.handleClick }
+        className="button is-normal is-rounded is-focused is-warning"
       >
+        <AiFillCheckCircle size="1.5em" className="mr-3" />
         Avaliar
       </button>
     );

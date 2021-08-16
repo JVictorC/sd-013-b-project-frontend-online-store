@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { BiDetail } from 'react-icons/bi';
 import PropTypes from 'prop-types';
 
 export default class BtnAddToCart extends React.Component {
@@ -32,10 +31,10 @@ export default class BtnAddToCart extends React.Component {
   }
 
   render() {
-    const { buttonId } = this.props;
+    const { buttonId, className } = this.props;
     return (
       <button
-        className="card-footer-item button is-success m-2"
+        className={ className }
         id="product-add-to-cart"
         data-testid={ buttonId }
         type="button"
@@ -54,6 +53,7 @@ BtnAddToCart.defaultProps = {
   thumbnail: undefined,
   price: undefined,
   buttonId: undefined,
+  className: undefined,
 };
 
 BtnAddToCart.propTypes = {
@@ -62,4 +62,5 @@ BtnAddToCart.propTypes = {
   thumbnail: PropTypes.string,
   price: PropTypes.number,
   buttonId: PropTypes.string,
+  className: PropTypes.string,
 };

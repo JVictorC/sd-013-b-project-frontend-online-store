@@ -28,7 +28,7 @@ export default class EvaluationRender extends React.Component {
     const BITS = 16;
     return (
       <section>
-        <div>
+        <div className="">
           { (match.length !== 0)
             ? (match.map((evaluation) => {
               const { email, comment, rating } = evaluation;

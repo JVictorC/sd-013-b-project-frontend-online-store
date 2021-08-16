@@ -5,10 +5,10 @@ export default class EvaluationCard extends React.Component {
   render() {
     const { email, comment, rating } = this.props;
     return (
-      <div>
-        <h5>{ email }</h5>
-        <p>{ comment }</p>
-        <p>{ rating }</p>
+      <div className="has-background-white my-1 ml-6 p-3 is-inline-block">
+        <p className="title is-6 is-uppercase">{ email }</p>
+        <p className="title is-6 is-uppercase">{ ` Nota: ${rating}` }</p>
+        <p className="subtitle is-6 mt-1">{ comment }</p>
       </div>
     );
   }

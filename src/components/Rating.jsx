@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 export default class Rating extends React.Component {
@@ -6,8 +7,10 @@ export default class Rating extends React.Component {
     const { getRating } = this.props;
 
     return (
-      <label htmlFor="rating">
+      <div className="is-flex input-border is-align-items-center">
+        <FaStar size="1.5em" className="is-flex ml-2" />
         <input
+          placeholder="Nota"
           type="number"
           id="rating"
           step={ 0.5 }
@@ -15,8 +18,9 @@ export default class Rating extends React.Component {
           max={ 5 }
           onChange={ getRating }
           required
+          className="p-2"
         />
-      </label>
+      </div>
     );
   }
 }

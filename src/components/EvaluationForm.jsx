@@ -37,7 +37,9 @@ export default class EvaluationForm extends React.Component {
     const { comment, rating, email } = this.state;
     return (
       <section>
-        <form>
+        <form
+          className="coloumn is-flex my-3 is-justify-content-space-around"
+        >
           <EmailBox getEmail={ this.getEmail } />
           <Rating getRating={ this.getRating } />
           <CommentBox getComment={ this.getComment } />
