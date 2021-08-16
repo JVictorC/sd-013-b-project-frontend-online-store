@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FeedbackForm from '../Components/FeedbackForm';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -19,9 +20,7 @@ export default class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    const { newCart } = this.state;
     this.productsRequisition();
-    console.log(newCart);
   }
 
   handleClick() {
@@ -69,6 +68,7 @@ export default class ProductDetails extends Component {
         >
           Carrinho de compras
         </Link>
+        <FeedbackForm />
       </div>
     );
   }

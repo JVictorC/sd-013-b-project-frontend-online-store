@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// Iniciando req 7
 export default class ProductCard extends Component {
   constructor(props) {
     super(props);
-    const { product: { title, price, id } } = this.props;
+    const { product: { title, price, id, thumbnail } } = this.props;
     this.state = {
       basicInfo: {
         title,
         price,
         id,
+        thumbnail,
       },
     };
     this.handleClick = this.handleClick.bind(this);

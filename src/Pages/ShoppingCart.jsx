@@ -14,12 +14,13 @@ export default class ShoppingCart extends Component {
 
   render() {
     const { location: { data } } = this.props;
-    console.log(data);
     const cartRendering = data.map((product) => {
       const quantity = this.countProducts(data, product);
+      console.log(product);
       return (
         <div key={ product.id }>
           <h3 data-testid="shopping-cart-product-name">{product.title}</h3>
+          <img src={ product.thumbnail } alt="product.png" />
           <h5 data-testid="shopping-cart-product-quantity">{ quantity }</h5>
           <h5>{product.price}</h5>
         </div>);
