@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 class AddToCartButton extends React.Component {
   constructor(props) {
     super(props);
-    const { product: { title: name, thumbnail, price: productPrice } } = this.props;
+    const { product: { id, title: name, thumbnail, price: productPrice } } = this.props;
     this.state = {
+      itemId: id,
       title: name,
       image: thumbnail,
       price: productPrice,
       qts: 1,
-      variablePrice: productPrice,
+      totalPrice: productPrice,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -19,7 +20,7 @@ class AddToCartButton extends React.Component {
   handleClick() {
     let product = [];
     let counter = 0;
-    const { title } = this.state;
+    const { itemId } = this.state;
 
     // REFERÊNCIA - https://abre.ai/c9iQ
     // Object.prototype.hasOwnProperty.call - VERIFICA SE JÁ EXISTE A PROPRIEDADE NO LOCAL STORAGE
@@ -28,7 +29,7 @@ class AddToCartButton extends React.Component {
     }
 
     product.forEach((element) => {
-      if (element.title === title) {
+      if (element.itemId === itemId) {
         counter += 1;
       }
     });

@@ -6,18 +6,18 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productQuantity: 1,
-      cartProducts: JSON.parse(localStorage.getItem('product')),
+      productQuantity: props.product.qts,
+      product: props.product,
     };
   }
 
-  handleDecrease = (title) => {
-    const { cartProducts } = this.state;
+  handleDecrease = (id) => {
+    const cartProducts = JSON.parse(localStorage.getItem('product'));
     cartProducts.forEach((product, index) => {
       const { price } = cartProducts[index];
-      if (product.title === title && cartProducts[index].qts > 1) {
+      if (product.itemId === id && cartProducts[index].qts > 1) {
         cartProducts[index].qts -= 1;
-        cartProducts[index].variablePrice = price * cartProducts[index].qts;
+        cartProducts[index].totalPrice = price * cartProducts[index].qts;
         this.setState({
           productQuantity: cartProducts[index].qts,
         });
@@ -26,13 +26,13 @@ class List extends React.Component {
     });
   }
 
-  handleIncrease = (title) => {
-    const { cartProducts } = this.state;
+  handleIncrease = (id) => {
+    const cartProducts = JSON.parse(localStorage.getItem('product'));
     cartProducts.forEach((product, index) => {
       const { price } = cartProducts[index];
-      if (product.title === title) {
+      if (product.itemId === id) {
         cartProducts[index].qts += 1;
-        cartProducts[index].variablePrice = price * cartProducts[index].qts;
+        cartProducts[index].totalPrice = price * cartProducts[index].qts;
         this.setState({
           productQuantity: cartProducts[index].qts,
         });
@@ -41,40 +41,39 @@ class List extends React.Component {
     });
   }
 
+  handleClick = () => {
+    const { onClick, product } = this.props;
+    onClick(product.itemId);
+  }
+
   render() {
-    const { product } = this.props;
-    const { productQuantity, cartProducts } = this.state;
-    const targetProduct = cartProducts
-      .filter((matchingProd) => matchingProd.title === product.title);
+    const { productQuantity, product } = this.state;
 
     return (
       <li>
         <QuantityControlButton
           onClick={ this.handleDecrease }
-          title={ product.title }
+          id={ product.itemId }
           testid="product-decrease-quantity"
           symbol="-"
         />
         <span data-testid="shopping-cart-product-quantity">
-          {` ${targetProduct[0].qts} `}
+          {` ${productQuantity} `}
         </span>
         <QuantityControlButton
           onClick={ this.handleIncrease }
-          title={ product.title }
+          id={ product.itemId }
           testid="product-increase-quantity"
           symbol="+"
         />
 
-        {/* <IncreaseButton onClick={ this.handleIncrease } title={ product.title } />
-        <IncreaseButton onClick={ this.handleIncrease } title={ product.title } /> */}
-
         <span data-testid="shopping-cart-product-name">
           { `  ${product.title}` }
         </span>
-
         <span>
           { ` ----- Preço:  ${product.price * productQuantity}` }
         </span>
+        <button type="button" onClick={ this.handleClick }>X</button>
       </li>
     );
   }

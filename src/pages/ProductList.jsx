@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import CategoryList from '../components/CategoryList';
 import Products from '../components/Products';
@@ -30,7 +29,7 @@ class ProductList extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
 
     if (event.target.name === 'categoryId') {
-      this.handleSearch();
+      this.getSearchApi(event.target.value, '');
     }
   }
 
@@ -62,7 +61,6 @@ class ProductList extends React.Component {
 
   render() {
     const { categoryState, productResults } = this.state;
-    const { onClick } = this.props;
 
     return (
       <div className="product-list-page">
@@ -78,7 +76,7 @@ class ProductList extends React.Component {
           </div>
 
           <section>
-            <Products list={ productResults } onClick={ onClick } />
+            <Products list={ productResults } />
           </section>
         </main>
 
@@ -88,7 +86,4 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
 export default ProductList;

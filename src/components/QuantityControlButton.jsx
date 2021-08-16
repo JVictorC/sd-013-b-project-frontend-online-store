@@ -9,8 +9,8 @@ class QuantityControlButton extends React.Component {
   }
 
   handleClick = () => {
-    const { onClick, title } = this.props;
-    onClick(title);
+    const { onClick, id } = this.props;
+    onClick(id);
   }
 
   render() {
@@ -28,7 +28,7 @@ class QuantityControlButton extends React.Component {
 }
 
 QuantityControlButton.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   testid: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,

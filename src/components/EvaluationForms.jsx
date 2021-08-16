@@ -39,80 +39,83 @@ class EvaluationForms extends React.Component {
 
   render() {
     return (
-      <form>
+      <fieldset>
 
-        <label htmlFor="email">
-          <input
-            placeholder="Email"
-            id="email"
-            onChange={ this.handleChange }
-            name="email"
-            type="email"
-          />
-        </label>
+        <form>
 
-        <label htmlFor="message">
-          <textarea
-            placeholder="Mensagem (opcional)"
-            data-testid="product-detail-evaluation"
-            id="message"
-            name="message"
-            onChange={ this.handleChange }
-          />
-        </label>
-        1
-        <label htmlFor="assessment_1">
-          <input
-            type="radio"
-            id="assessment_1"
-            value={ 1 }
-            name="assessment"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="assessment_2">
-          2
-          <input
-            type="radio"
-            id="assessment_2"
-            value={ 2 }
-            name="assessment"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="assessment_3">
-          3
-          <input
-            type="radio"
-            id="assessment_3"
-            value={ 3 }
-            name="assessment"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="assessment_4">
-          4
-          <input
-            type="radio"
-            id="assessment_4"
-            value={ 4 }
-            name="assessment"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="assessment_5">
-          5
-          <input
-            type="radio"
-            id="assessment_5"
-            value={ 5 }
-            name="assessment"
-            onChange={ this.handleChange }
-            checked
-          />
-        </label>
-        <button onClick={ this.handleClick } type="submit">Avaliar</button>
-      </form>
+          <label htmlFor="email">
+            <input
+              placeholder="Email"
+              id="email"
+              onChange={ this.handleChange }
+              name="email"
+              type="email"
+            />
+          </label>
+
+          <label htmlFor="message">
+            <textarea
+              placeholder="Mensagem (opcional)"
+              data-testid="product-detail-evaluation"
+              id="message"
+              name="message"
+              onChange={ this.handleChange }
+            />
+          </label>
+          1
+          <label htmlFor="assessment_1">
+            <input
+              type="radio"
+              id="assessment_1"
+              value={ 1 }
+              name="assessment"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="assessment_2">
+            2
+            <input
+              type="radio"
+              id="assessment_2"
+              value={ 2 }
+              name="assessment"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="assessment_3">
+            3
+            <input
+              type="radio"
+              id="assessment_3"
+              value={ 3 }
+              name="assessment"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="assessment_4">
+            4
+            <input
+              type="radio"
+              id="assessment_4"
+              value={ 4 }
+              name="assessment"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="assessment_5">
+            5
+            <input
+              type="radio"
+              id="assessment_5"
+              value={ 5 }
+              name="assessment"
+              onChange={ this.handleChange }
+              checked
+            />
+          </label>
+          <button onClick={ this.handleClick } type="submit">Avaliar</button>
+        </form>
+      </fieldset>
     );
   }
 }
