@@ -27,15 +27,6 @@ export default class CardLibrary extends React.Component {
     }
   }
 
-  /*
-  componentDidUpdate(prevs) {
-    const { searchText, selectedCategory } = this.state;
-    if (searchText !== prevs.searchText || selectedCategory !== prevs.selectedCategory) {
-      this.fetchData(selectedCategory, searchText);
-    }
-  }
-  */
-
   handleClick({ target }) {
     const { searchText, selectedCategory } = this.state;
     this.setState({ searchText: target.value }, () => {
@@ -62,10 +53,14 @@ export default class CardLibrary extends React.Component {
   render() {
     const { results } = this.state;
     return (
-      <div>
-        <SearchBar getSearch={ this.handleClick } />
-        <Sidebar captureValueSelect={ this.captureValueSelect } />
-        <CardList results={ results } />
+      <div className="columns">
+        <div className="column is-one-quarter mt-5">
+          <Sidebar captureValueSelect={ this.captureValueSelect } />
+        </div>
+        <div className="column mt-5">
+          <SearchBar getSearch={ this.handleClick } />
+          <CardList results={ results } />
+        </div>
       </div>
     );
   }

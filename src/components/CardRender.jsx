@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiDetail } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BtnAddToCart from './BtnAddToCart';
@@ -9,24 +10,50 @@ export default class CardRender extends React.Component {
     const { title, price, category_id: categoryId, thumbnail, id } = results;
     const query = title.replace(/[&/\\#,+()$~%.'":*?<>{}]/g, '').replace(/ /g, '+');
     return (
-      <div>
-        <img alt="imagem" src={ thumbnail } data-testid="product" />
-        <div>
-          <h4>{ title }</h4>
-          <p>{ price }</p>
-          <Link
-            to={ `/product/${categoryId}/${query}` }
-            data-testid="product-detail-link"
-          >
-            VER DETALHES
-          </Link>
-          <BtnAddToCart
-            title={ title }
-            thumbnail={ thumbnail }
-            price={ price }
-            id={ id }
-            buttonId="product-add-to-cart"
-          />
+      <div className="cartao has-background-warning-light card">
+        <div className="card is-flex is-justify-content-center">
+          <div className="card-image">
+            <figure className="image is-128x128 mt-2 imagem">
+              <img
+                alt={ title }
+                src={ thumbnail }
+                data-testid="product"
+              />
+            </figure>
+          </div>
+        </div>
+        <p
+          className="subtitleis-6
+          m-3 has-text-black-bis has-text-centered has-text-weight-bold"
+        >
+          { title }
+        </p>
+        <p
+          className="has-text-danger-dark
+          has-text-centered has-text-weight-bold "
+        >
+          { `R$: ${price}` }
+        </p>
+        <div className="card">
+          <footer className="card-footer">
+            <button type="button" className="card-footer-item button is-link m-2">
+              <BiDetail size="1.5em" color="white" className="mr-3" />
+              <Link
+                className="has-text-white"
+                to={ `/product/${categoryId}/${query}` }
+                data-testid="product-detail-link"
+              >
+                Detalhes
+              </Link>
+            </button>
+            <BtnAddToCart
+              title={ title }
+              thumbnail={ thumbnail }
+              price={ price }
+              id={ id }
+              buttonId="product-add-to-cart"
+            />
+          </footer>
         </div>
       </div>
     );

@@ -5,6 +5,8 @@ import * as api from '../services/api';
 import EvaluationForm from '../components/EvaluationForm';
 import EvaluationRender from '../components/EvaluationRender';
 import BtnAddToCart from '../components/BtnAddToCart';
+import Header from '../components/Header';
+import '../Homepage.css';
 
 export default class CardDetails extends React.Component {
   constructor(props) {
@@ -33,6 +35,7 @@ export default class CardDetails extends React.Component {
 
     return (
       <section>
+        <Header />
         <div>
           <h1 data-testid="product-detail-name">{ title }</h1>
           <h2>{ `Preço: R$${price}` }</h2>

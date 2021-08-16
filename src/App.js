@@ -4,6 +4,7 @@ import Cart from './pages/Cart';
 import Homepage from './pages/Homepage';
 import CardDetails from './pages/CardDetails';
 import Pusharse from './pages/Pusharse';
+import 'bulma/css/bulma.min.css';
 
 function App() {
   return (

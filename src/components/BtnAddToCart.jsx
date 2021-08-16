@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
+import { BiDetail } from 'react-icons/bi';
 import PropTypes from 'prop-types';
 
 export default class BtnAddToCart extends React.Component {
@@ -33,12 +35,14 @@ export default class BtnAddToCart extends React.Component {
     const { buttonId } = this.props;
     return (
       <button
+        className="card-footer-item button is-success m-2"
         id="product-add-to-cart"
         data-testid={ buttonId }
         type="button"
         onClick={ this.addToCart }
       >
-        ADICIONAR AO CARRINHO
+        <FaShoppingCart size="1.5em" color="white" className="mr-3" />
+        Comprar
       </button>
     );
   }

@@ -1,0 +1,34 @@
+.shopping-header {
+  align-items: center;
+  background-color: #963b3b;
+  display: flex;
+  height: 100px;
+  justify-content: left;
+}
+
+.page-title {
+  color: #f8f9fa;
+  font-size: 50px;
+  font-weight: 500;
+  margin-left: 5%;
+  text-align: center;
+}
+
+.logo-image {
+  height: 100px;
+  margin-left: 8%;
+  width: 200px;
+}
+
+.cartao {
+  border: 2px solid #963b3b;
+  border-radius: 5px;
+  height: 300px;
+  margin: 5px;
+  margin-top: 50px;
+  width: 300px;
+}
+
+.border {
+  border-bottom: 1px solid #963b3b;
+}

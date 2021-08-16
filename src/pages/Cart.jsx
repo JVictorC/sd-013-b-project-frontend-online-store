@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartRender from '../components/CartRender';
+import Header from '../components/Header';
+import '../Homepage.css';
 
 export default class Cart extends React.Component {
   constructor() {
@@ -105,7 +107,8 @@ export default class Cart extends React.Component {
     }
 
     return (
-      <div>
+      <section>
+        <Header />
         <Link to="/">Voltar</Link>
         <h1>Carrinho de compras</h1>
         <CartRender
@@ -114,7 +117,7 @@ export default class Cart extends React.Component {
           sum={ sum }
           label="Finalizar compra"
         />
-      </div>
+      </section>
     );
   }
 }

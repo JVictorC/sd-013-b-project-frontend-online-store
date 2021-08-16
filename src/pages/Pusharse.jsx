@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import CartRender from '../components/CartRender';
 import PusharseForm from '../components/PusharseForm';
+import '../Homepage.css';
+import Header from '../components/Header';
 
 export default class Pusharse extends React.Component {
   constructor() {
@@ -52,6 +54,7 @@ export default class Pusharse extends React.Component {
     const { items, sum } = this.state;
     return (
       <section>
+        <Header />
         <Link to="/">Voltar</Link>
         <h2>Revise seus produtos: </h2>
         <CartRender

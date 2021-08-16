@@ -8,15 +8,17 @@ export default class CardList extends React.Component {
 
     if (results.length === 0) {
       return (
-        <div>
-          <p>Nenhum produto foi encontrado</p>
+        <div className="mt-5 is-flex is-justify-content-center">
+          <p className="mt-5 title is-3">Nenhum produto foi encontrado</p>
         </div>
       );
     }
 
     return (
-      <div>
-        { results.map((item) => <CardRender key={ item.id } results={ item } />)}
+      <div className="">
+        <div className="is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+          { results.map((item) => <CardRender key={ item.id } results={ item } />)}
+        </div>
       </div>
     );
   }
