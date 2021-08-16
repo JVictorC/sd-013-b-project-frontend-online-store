@@ -8,6 +8,7 @@ import EvaluationForm from '../components/EvaluationForm';
 import EvaluationRender from '../components/EvaluationRender';
 import BtnAddToCart from '../components/BtnAddToCart';
 import Header from '../components/Header';
+import DetailsLi from '../components/DetailsLi';
 import '../Homepage.css';
 
 export default class CardDetails extends React.Component {
@@ -16,6 +17,7 @@ export default class CardDetails extends React.Component {
 
     this.state = {
       product: [],
+      details: [],
     };
   }
 
@@ -29,10 +31,26 @@ export default class CardDetails extends React.Component {
       .then((response) => {
         this.setState({ product: response.results[0] });
       });
+    this.getDescription();
+  }
+
+  async getDescription() {
+    const { product: { catalog_product_id } } = this.state;
+    const response = await api.getProductsDescription(catalog_product_id);
+    console.log(response);
+    if (response.id !== 'null') {
+      this.setState({ details: response.attributes });
+      const { details } = this.state;
+      const ten = 8;
+      const tenDetails = details.slice(0, ten);
+      this.setState({ details: tenDetails });
+    } else {
+      this.setState({ details: [] });
+    }
   }
 
   render() {
-    const { product } = this.state;
+    const { product, details } = this.state;
     const { title, price, thumbnail, id } = product;
 
     return (
@@ -48,14 +66,14 @@ export default class CardDetails extends React.Component {
             type="button"
             className="button is-link mt-2 mb-2 ml-6 is-flex is-small is-rounded"
           >
-            <BsArrowReturnLeft size="1,5em" className="mr-2 mt-1" />
+            <BsArrowReturnLeft size="1.5em" className="mr-2 mt-1" />
             <Link to="/" className="has-text-white">VOLTAR</Link>
           </button>
           <button
             type="button"
-            className="button mr-6 is-success mt-3 is-small is-rounded"
+            className="button mr-6 is-success mt-2 is-small is-rounded"
           >
-            <FaShoppingCart size="1,5em" className="mr-2" />
+            <FaShoppingCart size="1.5em" className="mr-2" />
             <Link
               data-testid="shopping-cart-button"
               className="has-text-white "
@@ -95,9 +113,12 @@ export default class CardDetails extends React.Component {
               />
             </div>
           </div>
-          <div className="is-flex">
-            <div className="coloumn is-one-fifth has-text-centered">
+          <div className="is-flex mt-3">
+            <div className="coloumn is-one-fifth has-text-centered max-size">
               <p className="title is-4">Especificações técnicas:</p>
+              <ul className="lista-ul">
+                { details.map((item) => <DetailsLi key={ item.id } detail={ item } />)}
+              </ul>
             </div>
           </div>
         </div>

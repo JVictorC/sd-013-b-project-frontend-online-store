@@ -13,18 +13,19 @@ export default class CardRender extends React.Component {
       <div className="cartao has-background-warning-light card">
         <div className="card is-flex is-justify-content-center">
           <div className="card-image">
-            <figure className="image is-128x128 mt-2 imagem">
+            <figure className="image is-128x128 mt-2">
               <img
                 alt={ title }
                 src={ thumbnail }
                 data-testid="product"
+                className="image is-128x128"
               />
             </figure>
           </div>
         </div>
         <p
-          className="subtitleis-6
-          m-3 has-text-black-bis has-text-centered has-text-weight-bold"
+          className="subtitle is-6
+          m-3 has-text-black-bis has-text-centered has-text-weight-bold overflow"
         >
           { title }
         </p>
@@ -42,6 +43,7 @@ export default class CardRender extends React.Component {
                 className="has-text-white"
                 to={ `/product/${categoryId}/${query}` }
                 data-testid="product-detail-link"
+                productId={ id }
               >
                 Detalhes
               </Link>

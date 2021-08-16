@@ -55,3 +55,18 @@ input {
 textarea {
   min-width: 300px;
 }
+
+.overflow {
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.lista-ul.w3-hoverable li:hover {
+  background-color: #ccc;
+}
+
+.lista-hover-red:hover {
+  background-color: #f44336;
+  color: white;
+}
+
