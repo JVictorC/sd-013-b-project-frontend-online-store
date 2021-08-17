@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Category from '../components/Category';
 import ProductsList from '../components/ProductsList';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import ShippingFree from '../components/ShippingFree';
 
 class Home extends Component {
   constructor(props) {
@@ -53,6 +54,9 @@ class Home extends Component {
           products={ products }
           getProductData={ getProductData }
           addItemsToCart={ addItemsToCart }
+        />
+        <ShippingFree
+          products={ products }
         />
       </div>
     );
