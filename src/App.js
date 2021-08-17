@@ -12,12 +12,22 @@ export default class App extends Component {
     this.state = {
       productData: '',
       cartItems: [],
+      totalPrice: 0,
     };
   }
 
   getProductData = (product) => {
     this.setState({ productData: product });
   };
+
+  sumTotalPrice = (arrayProducts) => {
+    if (!arrayProducts.length) return this.setState({ totalPrice: 0 });
+
+    let summed = arrayProducts.map(({ actualAmount, price }) => actualAmount * price, 0)
+      .reduce((acc, value) => acc + value);
+    summed = parseFloat(summed.toFixed(2));
+    this.setState({ totalPrice: summed });
+  }
 
   addItemsToCart = (product) => {
     const { cartItems } = this.state;
@@ -26,6 +36,7 @@ export default class App extends Component {
     if (!itemAmount) {
       product.actualAmount = 1;
       this.setState({ cartItems: [...cartItems, product] });
+      this.sumTotalPrice([...cartItems, product]);
       return;
     }
 
@@ -34,12 +45,39 @@ export default class App extends Component {
         const deepCopy = [...cartItems];
         deepCopy[index].actualAmount += 1;
         this.setState({ cartItems: deepCopy });
+        this.sumTotalPrice(deepCopy);
       }
     });
   };
 
+  handleAmount = (operation, index) => {
+    const { cartItems } = this.state;
+    const deepCopy = [...cartItems];
+
+    if (operation === 'increase') {
+      deepCopy[index].actualAmount += 1;
+      this.setState({ cartItems: deepCopy });
+      this.sumTotalPrice(deepCopy);
+      return;
+    }
+
+    if (deepCopy[index].actualAmount > 1) {
+      deepCopy[index].actualAmount -= 1;
+      this.setState({ cartItems: deepCopy });
+      this.sumTotalPrice(deepCopy);
+    }
+  }
+
+  removeProduct = (index) => {
+    const { cartItems } = this.state;
+    const deepCopy = [...cartItems];
+    deepCopy.splice(index, 1);
+    this.setState({ cartItems: deepCopy });
+    this.sumTotalPrice(deepCopy);
+  }
+
   render() {
-    const { productData, cartItems } = this.state;
+    const { productData, cartItems, totalPrice } = this.state;
     return (
       <Router>
         <Switch>
@@ -56,7 +94,12 @@ export default class App extends Component {
           <Route
             exact
             path="/shoppingKart"
-            render={ () => <ShoppingKart cartItems={ cartItems } /> }
+            render={ () => (<ShoppingKart
+              cartItems={ cartItems }
+              totalPrice={ totalPrice }
+              removeProduct={ this.removeProduct }
+              handleAmount={ this.handleAmount }
+            />) }
           />
           <Route
             exact
@@ -65,6 +108,7 @@ export default class App extends Component {
               <ProductDetails
                 productData={ productData }
                 getProductData={ this.getProductData }
+                addItemsToCart={ this.addItemsToCart }
               />
             ) }
           />
