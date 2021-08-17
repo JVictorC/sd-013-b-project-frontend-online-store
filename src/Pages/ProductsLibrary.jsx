@@ -59,8 +59,11 @@ export default class ProductsLibrary extends Component {
   render() {
     const { searchbar, products, state, category, cart } = this.state;
     return (
+
       <div className="main">
         <h1 className="shop-title">FrontEnd Online Store</h1>
+
+      <div>
         <CartButton cart={ cart } />
         <CategoriesList
           category={ category }
@@ -75,6 +78,11 @@ export default class ProductsLibrary extends Component {
           products={ products }
           state={ state }
           cart={ cart }
+        />
+        <CategoriesList
+          category={ category }
+          products={ products }
+          handleClick={ this.handleClick }
         />
       </div>
     );
