@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CartItem from './CartItem';
 
@@ -8,12 +9,13 @@ class Cart extends React.Component {
     return (
       <div className="product-in-cart">
         {parse.map((product) => <CartItem key={ product.id } product={ product } />)}
+        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
       </div>
     );
   }
 
   render() {
-    if (localStorage.key('cart')) {
+    if (localStorage.getItem('cart')) {
       return this.getProductFromStorage();
     }
     return (<h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>);
