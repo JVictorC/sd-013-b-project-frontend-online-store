@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router';
 // import { Home, NotFound, ProductDetails, Cart } from './components';
 
 import Home from './components/Home';
+import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
 import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/details/:id" component={ ProductDetails } />
         <Route exact path="/" component={ Home } />
         <Route exact path="/cart" component={ Cart } />
+        <Route exact path="/checkout" component={ Checkout } />
         <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
