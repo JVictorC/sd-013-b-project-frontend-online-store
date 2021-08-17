@@ -14,11 +14,13 @@ export default class SearchBar extends Component {
       cart } = this.props;
 
     return (
-      <div>
+      <div className="search-bar">
         <label
           htmlFor="home-initial-message"
           data-testid="home-initial-message"
+          className="search-label"
         >
+          Digite algum termo de pesquisa ou escolha uma categoria.
           <input
             type="text"
             data-testid="query-input"
@@ -26,11 +28,16 @@ export default class SearchBar extends Component {
             name="searchbar"
             value={ searchbar }
             onChange={ handleChange }
+            className="search-input"
           />
-          Digite algum termo de pesquisa ou escolha uma categoria.
-          <br />
         </label>
-        <button type="button" data-testid="query-button" onClick={ handleClick }>
+        <br />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ handleClick }
+          className="btn"
+        >
           Pesquisar
         </button>
         {products.length === 0 && state === true ? (

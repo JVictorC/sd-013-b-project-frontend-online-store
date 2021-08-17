@@ -52,6 +52,11 @@ export default class ProductCard extends Component {
             Adicionar ao carrinho
           </button>
         </div>
+        <div data-testid="product" className="produto">
+          <h2>{ title }</h2>
+          <img alt="Product disc" src={ thumbnail } />
+          <h2>{ price }</h2>
+        </div>
       </div>
     );
   }

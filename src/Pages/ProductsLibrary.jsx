@@ -59,12 +59,15 @@ export default class ProductsLibrary extends Component {
     const { searchbar, products, state, category, cart } = this.state;
     return (
       <div>
+<<<<<<< HEAD:src/Pages/ProductsLibrary.jsx
         <CartButton cart={ cart } />
         <CategoriesList
           category={ category }
           products={ products }
           handleClick={ this.handleClick }
         />
+=======
+>>>>>>> main-group-2-style:src/Components/ProductsLibrary.jsx
         <SearchBar
           callback={ this.handleCartState }
           handleChange={ this.handleChange }
@@ -73,6 +76,11 @@ export default class ProductsLibrary extends Component {
           products={ products }
           state={ state }
           cart={ cart }
+        />
+        <CategoriesList
+          category={ category }
+          products={ products }
+          handleClick={ this.handleClick }
         />
       </div>
     );

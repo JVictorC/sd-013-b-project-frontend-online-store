@@ -17,7 +17,7 @@ export default class ProductList extends Component {
       />);
     });
     return (
-      <div>
+      <div className="product-list">
         { searchListComponent }
       </div>
     );

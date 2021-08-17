@@ -28,7 +28,11 @@ export default class ShoppingCart extends Component {
     const em = <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>;
     return (
       <div>
+<<<<<<< HEAD
         {data.length === 0 ? em : cartRendering}
+=======
+        <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
+>>>>>>> main-group-2-style
       </div>
     );
   }
