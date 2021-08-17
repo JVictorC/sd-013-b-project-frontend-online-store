@@ -18,7 +18,7 @@ export default class CategoriesList extends Component {
       </label>
     ));
     return (
-      <div>
+      <div className="sidebar">
         { category !== [] ? categories : <ProductInvalid /> }
       </div>
     );

@@ -3,6 +3,7 @@ import { getProductsFromCategoryAndQuery, getCategories } from '../services/api'
 import CategoriesList from '../Components/CategoriesList';
 import SearchBar from '../Components/SearchBar';
 import CartButton from '../Components/CartButton';
+import '../App.css';
 
 export default class ProductsLibrary extends Component {
   constructor(props) {
@@ -58,7 +59,8 @@ export default class ProductsLibrary extends Component {
   render() {
     const { searchbar, products, state, category, cart } = this.state;
     return (
-      <div>
+      <div className="main">
+        <h1 className="shop-title">FrontEnd Online Store</h1>
         <CartButton cart={ cart } />
         <CategoriesList
           category={ category }
