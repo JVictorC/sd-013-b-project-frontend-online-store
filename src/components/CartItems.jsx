@@ -13,6 +13,14 @@ export default class CartItems extends Component {
     };
   }
 
+  shouldComponentUpdate(_prev, prev2) {
+    const { item } = this.props;
+    const availableQuantity = item.available_quantity;
+    const { quantity } = prev2;
+    if (availableQuantity >= quantity && quantity > 0) return true;
+    return false;
+  }
+
   handleChange({ target }) {
     const { value } = target;
     if (value < 0) {
