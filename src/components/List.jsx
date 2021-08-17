@@ -11,36 +11,43 @@ class List extends React.Component {
     };
   }
 
+  // AUMENTA A QUATIDADE DE PRODUTO
   handleDecrease = (id) => {
+    const { handleCurrentAmount } = this.props;
     const cartProducts = JSON.parse(localStorage.getItem('product'));
     cartProducts.forEach((product, index) => {
       const { price } = cartProducts[index];
       if (product.itemId === id && cartProducts[index].qts > 1) {
         cartProducts[index].qts -= 1;
-        cartProducts[index].totalPrice = price * cartProducts[index].qts;
+        cartProducts[index].amount = price * cartProducts[index].qts;
         this.setState({
           productQuantity: cartProducts[index].qts,
         });
       }
       localStorage.setItem('product', JSON.stringify(cartProducts));
+      handleCurrentAmount();
     });
   }
 
+  // DIMINUI A QUATIDADE DE PRODUTO
   handleIncrease = (id) => {
+    const { handleCurrentAmount } = this.props;
     const cartProducts = JSON.parse(localStorage.getItem('product'));
     cartProducts.forEach((product, index) => {
-      const { price } = cartProducts[index];
-      if (product.itemId === id) {
+      const { price, availableQuantity } = cartProducts[index];
+      if (product.itemId === id && cartProducts[index].qts < availableQuantity) {
         cartProducts[index].qts += 1;
-        cartProducts[index].totalPrice = price * cartProducts[index].qts;
+        cartProducts[index].amount = price * cartProducts[index].qts;
         this.setState({
           productQuantity: cartProducts[index].qts,
         });
         localStorage.setItem('product', JSON.stringify(cartProducts));
       }
+      handleCurrentAmount();
     });
   }
 
+  // PASSA UM ID DE UM PRODUTO PARA SER DELETADO
   handleClick = () => {
     const { onClick, product } = this.props;
     onClick(product.itemId);
@@ -81,5 +88,7 @@ class List extends React.Component {
 
 List.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
+  onClick: PropTypes.func.isRequired,
+  handleCurrentAmount: PropTypes.func.isRequired,
 };
 export default List;

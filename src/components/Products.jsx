@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 class Products extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, onClick } = this.props;
 
     return (
       <div className="products">
@@ -12,6 +12,7 @@ class Products extends React.Component {
           <ProductCard
             key={ element.id }
             product={ element }
+            onClick={ onClick }
           />
         ))}
       </div>
@@ -21,6 +22,7 @@ class Products extends React.Component {
 
 Products.propTypes = {
   list: PropTypes.arrayOf(PropTypes.any).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Products;

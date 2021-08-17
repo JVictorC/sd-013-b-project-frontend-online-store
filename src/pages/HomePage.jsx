@@ -5,7 +5,7 @@ import Products from '../components/Products';
 import Search from '../components/Search';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
-class ProductList extends React.Component {
+class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,10 +13,8 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
       productResults: [],
+      productQuantity: 0,
     };
-
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   // FAZ A REQUISIÇÃO PRA LISTAR AS CATEGORIAS DISPONÍVEIS AO RENDERIZAR
@@ -24,8 +22,16 @@ class ProductList extends React.Component {
     this.getCategoriesApi();
   }
 
+  // MUDA A QUANTIDADE TOTAL DE PRODUTOS
+  handleClick = () => {
+    const product = JSON.parse(localStorage.getItem('product'));
+    this.setState({
+      productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
+    });
+  }
+
   // CAPTURA O VALOR DO INPUT - CATEGORIA OU TERMO - NO ESTADO
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
 
     if (event.target.name === 'categoryId') {
@@ -34,7 +40,7 @@ class ProductList extends React.Component {
   }
 
   // ATIVADA NO ONCLICK DO BOTÃO DE BUSCA. ENVIA A CATEGORIA E TERMO DO ESTADO PARA API
-  handleSearch() {
+  handleSearch = () => {
     const { categoryId, query } = this.state;
 
     this.getSearchApi(categoryId, query);
@@ -60,7 +66,7 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { categoryState, productResults } = this.state;
+    const { categoryState, productResults, productQuantity } = this.state;
 
     return (
       <div className="product-list-page">
@@ -73,10 +79,11 @@ class ProductList extends React.Component {
             <Search onChange={ this.handleChange } onClick={ this.handleSearch } />
 
             <ShoppingCartButton />
+            <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
           </div>
 
           <section>
-            <Products list={ productResults } />
+            <Products onClick={ this.handleClick } list={ productResults } />
           </section>
         </main>
 
@@ -86,4 +93,4 @@ class ProductList extends React.Component {
   }
 }
 
-export default ProductList;
+export default HomePage;

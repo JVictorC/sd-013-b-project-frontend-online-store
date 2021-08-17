@@ -4,8 +4,7 @@ import AddToCartButton from './AddToCartButton';
 
 class DetailsCard extends React.Component {
   render() {
-    const { product } = this.props;
-
+    const { product, onClick } = this.props;
     return (
       <div
         className="detail-specs-card"
@@ -25,7 +24,11 @@ class DetailsCard extends React.Component {
           );
         }) }
 
-        <AddToCartButton product={ product } testid="product-detail-add-to-cart" />
+        <AddToCartButton
+          onClick={ onClick }
+          product={ product }
+          testid="product-detail-add-to-cart"
+        />
       </div>
     );
   }
@@ -33,6 +36,7 @@ class DetailsCard extends React.Component {
 
 DetailsCard.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default DetailsCard;

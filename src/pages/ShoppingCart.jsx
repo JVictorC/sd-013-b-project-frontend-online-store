@@ -7,27 +7,41 @@ class ShoppingCart extends React.Component {
     super(props);
     this.state = {
       cartProducts: JSON.parse(localStorage.getItem('product')),
-      teste: JSON.parse(localStorage.getItem('product'))
-        .reduce((a, b) => a + b.totalPrice, 0),
+      currentAmount: 0,
     };
   }
 
+  /* componentDidMount() {
+    this.handleCurrentAmount();
+    this.handleClick();
+  } */
+
+  // MUDA O VALOR TOTAL DE ACORDO COM A QUANTIDADE TOTAL DE PRODUTOS
+  handleCurrentAmount = () => {
+    const cartProducts = JSON.parse(localStorage.getItem('product'));
+    this.setState({
+      currentAmount: cartProducts.reduce((acc, curr) => acc + curr.amount, 0),
+    });
+  }
+
+  // DELETA UM ITEM DA LISTA DE ACORDO COM ID DO PARÂMENTRO
   handleClick = (itemId) => {
     const { cartProducts } = this.state;
-    cartProducts.forEach((produc, index) => {
-      console.log(itemId);
-      if (produc.itemId === itemId) {
+    cartProducts.forEach((product, index) => {
+      if (product.itemId === itemId) {
         cartProducts.splice(index, 1);
+        console.log(itemId);
       }
-    });
-    localStorage.setItem('product', JSON.stringify(cartProducts));
-    this.setState({
-      cartProducts: JSON.parse(localStorage.getItem('product')),
+      localStorage.setItem('product', JSON.stringify(cartProducts));
+      this.setState({
+        cartProducts: JSON.parse(localStorage.getItem('product')),
+        currentAmount: cartProducts.reduce((acc, curr) => acc + curr.amount, 0),
+      });
     });
   };
 
   render() {
-    const { cartProducts, teste } = this.state;
+    const { cartProducts, currentAmount } = this.state;
 
     if (cartProducts === null || cartProducts.length < 1) {
       return (
@@ -38,17 +52,23 @@ class ShoppingCart extends React.Component {
       );
     } return (
       <div>
-        <Link to="/">Voltar</Link>
         <ul>
           {cartProducts.map((product) => (
             <List
               key={ product.itemId }
               product={ product }
               onClick={ this.handleClick }
+              handleCurrentAmount={ this.handleCurrentAmount }
             />
           ))}
         </ul>
-        <h1>{ teste }</h1>
+        <Link
+          data-testid="checkout-products"
+          to="/shopping-cart/checkout"
+        >
+          Checkout
+        </Link>
+        <h1>{ currentAmount }</h1>
       </div>
     );
   }

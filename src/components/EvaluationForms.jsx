@@ -12,39 +12,34 @@ class EvaluationForms extends React.Component {
     };
   }
 
+  // CAPTURA OS VALORES DOS INPUT
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleClick = (event) => {
+  // ARMAZENA OS DADOS DA AVALIÇÃO NO LOCAL STORAGE
+  handleSubmit = (event) => {
     event.preventDefault();
-    /* const { title } = this.props; */
     let evaluation = [];
-    /* let counter = 0; */
-
+    // REFERÊNCIA - https://abre.ai/c9iQ
+    // Object.prototype.hasOwnProperty.call - VERIFICA SE JÁ EXISTE A PROPRIEDADE NO LOCAL STORAGE
     if (Object.prototype.hasOwnProperty.call(localStorage, 'evaluation')) {
       evaluation = JSON.parse(localStorage.getItem('evaluation'));
     }
 
-    /* evaluation.forEach((element) => {
-      if (element.title === title) {
-        counter += 1;
-      }
-    }); */
-
     evaluation.push(this.state);
     localStorage.setItem('evaluation', JSON.stringify(evaluation));
-    /* if (counter === 0) localStorage.setItem('evaluation', JSON.stringify(evaluation)); */
   }
 
   render() {
     return (
       <fieldset>
 
-        <form>
+        <form onSubmit={ this.handleSubmit }>
 
           <label htmlFor="email">
             <input
+              required
               placeholder="Email"
               id="email"
               onChange={ this.handleChange }
@@ -110,10 +105,9 @@ class EvaluationForms extends React.Component {
               value={ 5 }
               name="assessment"
               onChange={ this.handleChange }
-              checked
             />
           </label>
-          <button onClick={ this.handleClick } type="submit">Avaliar</button>
+          <button type="submit">Avaliar</button>
         </form>
       </fieldset>
     );

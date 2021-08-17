@@ -4,23 +4,27 @@ import PropTypes from 'prop-types';
 class AddToCartButton extends React.Component {
   constructor(props) {
     super(props);
-    const { product: { id, title: name, thumbnail, price: productPrice } } = this.props;
+    const { product: {
+      available_quantity: quantity,
+      shipping: { free_shipping: shipping },
+      id, title: name, thumbnail, price: productPrice } } = this.props;
     this.state = {
       itemId: id,
       title: name,
       image: thumbnail,
       price: productPrice,
       qts: 1,
-      totalPrice: productPrice,
+      amount: productPrice,
+      availableQuantity: quantity,
+      freeShipping: shipping,
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    let product = [];
-    let counter = 0;
+  // ARMAZENA OS PRODUTOS NO LOCAL STORAGE
+  handleClick = () => {
+    const { onClick } = this.props;
     const { itemId } = this.state;
+    let product = [];
 
     // REFERÊNCIA - https://abre.ai/c9iQ
     // Object.prototype.hasOwnProperty.call - VERIFICA SE JÁ EXISTE A PROPRIEDADE NO LOCAL STORAGE
@@ -28,14 +32,11 @@ class AddToCartButton extends React.Component {
       product = JSON.parse(localStorage.getItem('product'));
     }
 
-    product.forEach((element) => {
-      if (element.itemId === itemId) {
-        counter += 1;
-      }
-    });
-
-    product.push(this.state);
-    if (counter === 0) localStorage.setItem('product', JSON.stringify(product));
+    if (!product.some((element) => element.itemId === itemId)) {
+      product.push(this.state);
+      localStorage.setItem('product', JSON.stringify(product));
+      onClick();
+    }
   }
 
   render() {
@@ -58,5 +59,6 @@ class AddToCartButton extends React.Component {
 AddToCartButton.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
   testid: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 export default AddToCartButton;

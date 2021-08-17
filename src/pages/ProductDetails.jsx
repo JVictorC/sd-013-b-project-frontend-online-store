@@ -6,6 +6,33 @@ import ShoppingCartButton from '../components/ShoppingCartButton';
 import EvaluationForms from '../components/EvaluationForms';
 
 class ProductDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productQuantity: 0,
+    };
+  }
+
+  /* componentDidMount() {
+    this.handleClick();
+  } */
+
+  // MUDA A QUANTIDADE TOTAL DE PRODUTOS
+  handleClick = () => {
+    const product = JSON.parse(localStorage.getItem('product'));
+    this.setState({
+      productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
+    });
+  }
+
+  // EXIBE SE O FRETE É GRÁTIS SE DISPONIVEL
+  availableQuantity = () => {
+    const { location: { state: { shipping } } } = this.props;
+    if (shipping.free_shipping) {
+      return <span data-testid="free-shipping">Frete Grátis</span>;
+    }
+  }
+
   render() {
     const {
       history,
@@ -13,16 +40,20 @@ class ProductDetails extends React.Component {
       match: { params: { name } },
     } = this.props;
 
+    const { productQuantity } = this.state;
+
     return (
       <div className="detail-page">
         <nav className="detail-nav">
           <BackButton history={ history } />
           <ShoppingCartButton />
+          <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
         </nav>
 
         <main className="detail-main">
           <div className="detail-title-div">
             <h1 data-testid="product-detail-name">{ name }</h1>
+            { this.availableQuantity() }
           </div>
 
           <div className="details">
@@ -32,7 +63,7 @@ class ProductDetails extends React.Component {
               <img src={ product.thumbnail } alt={ product.title } />
             </div>
 
-            <DetailsCard product={ product } />
+            <DetailsCard onClick={ this.handleClick } product={ product } />
           </div>
           <EvaluationForms title={ product.title } />
         </main>
