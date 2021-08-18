@@ -31,7 +31,6 @@ export default class SearchBar extends Component {
             className="search-input"
           />
         </label>
-        <br />
         <button
           type="button"
           data-testid="query-button"

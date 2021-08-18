@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FaShoppingCart } from 'react-icons/fa';
 
 export default class CartButton extends Component {
   render() {
@@ -16,7 +16,7 @@ export default class CartButton extends Component {
           } }
           data-testid="shopping-cart-button"
         >
-          <FaShoppingCart size={ 70 } color="black" />
+          <AiOutlineShoppingCart size={ 70 } color="black" />
         </Link>
       </div>
     );

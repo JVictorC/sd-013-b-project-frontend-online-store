@@ -3,6 +3,7 @@ import { getProductsFromCategoryAndQuery, getCategories } from '../services/api'
 import CategoriesList from '../Components/CategoriesList';
 import SearchBar from '../Components/SearchBar';
 import CartButton from '../Components/CartButton';
+import '../App.css';
 
 export default class ProductsLibrary extends Component {
   constructor(props) {
@@ -59,29 +60,24 @@ export default class ProductsLibrary extends Component {
     const { searchbar, products, state, category, cart } = this.state;
     return (
       <div>
-<<<<<<< HEAD:src/Pages/ProductsLibrary.jsx
-        <CartButton cart={ cart } />
-        <CategoriesList
-          category={ category }
-          products={ products }
-          handleClick={ this.handleClick }
-        />
-=======
->>>>>>> main-group-2-style:src/Components/ProductsLibrary.jsx
-        <SearchBar
-          callback={ this.handleCartState }
-          handleChange={ this.handleChange }
-          handleClick={ this.handleClick }
-          searchbar={ searchbar }
-          products={ products }
-          state={ state }
-          cart={ cart }
-        />
-        <CategoriesList
-          category={ category }
-          products={ products }
-          handleClick={ this.handleClick }
-        />
+        <h1 className="shop-title">FrontEnd Online Store</h1>
+        <div className="main">
+          <CartButton cart={ cart } />
+          <CategoriesList
+            category={ category }
+            products={ products }
+            handleClick={ this.handleClick }
+          />
+          <SearchBar
+            callback={ this.handleCartState }
+            handleChange={ this.handleChange }
+            handleClick={ this.handleClick }
+            searchbar={ searchbar }
+            products={ products }
+            state={ state }
+            cart={ cart }
+          />
+        </div>
       </div>
     );
   }
