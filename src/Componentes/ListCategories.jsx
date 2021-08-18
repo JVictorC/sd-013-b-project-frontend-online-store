@@ -39,10 +39,10 @@ class ListCategories extends Component {
     const { categories, products } = this.state;
     const { handleChange } = this.props;
     return (
-      <div>
-        <form onChange={ handleChange } name="category">
+      <div className="ListCategories">
+        <form onChange={ handleChange } name="category" className="category">
           { categories.map(({ name, id }) => (
-            <div key={ id }>
+            <div key={ id } className="categories">
               <label htmlFor={ id }>
                 <input
                   type="checkbox"
@@ -56,7 +56,9 @@ class ListCategories extends Component {
             </div>
           )) }
         </form>
-        <ProductList products={ products } />
+        <div className="ProductList">
+          <ProductList products={ products } />
+        </div>
       </div>
     );
   }
