@@ -15,7 +15,7 @@ body {
   display: block;
   height: 100%;
   margin: auto;
-  width: 40%;  
+  width: 40%;
 }
 
 .search-input {
@@ -107,7 +107,7 @@ img {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  right: 100px;
   position: fixed;
+  right: 100px;
   top: 100px;
 }
