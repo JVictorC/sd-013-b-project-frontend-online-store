@@ -59,23 +59,25 @@ export default class ProductsLibrary extends Component {
   render() {
     const { searchbar, products, state, category, cart } = this.state;
     return (
-      <div className="main">
+      <div>
         <h1 className="shop-title">FrontEnd Online Store</h1>
-        <CartButton cart={ cart } />
-        <CategoriesList
-          category={ category }
-          products={ products }
-          handleClick={ this.handleClick }
-        />
-        <SearchBar
-          callback={ this.handleCartState }
-          handleChange={ this.handleChange }
-          handleClick={ this.handleClick }
-          searchbar={ searchbar }
-          products={ products }
-          state={ state }
-          cart={ cart }
-        />
+        <div className="main">
+          <CartButton cart={ cart } />
+          <CategoriesList
+            category={ category }
+            products={ products }
+            handleClick={ this.handleClick }
+          />
+          <SearchBar
+            callback={ this.handleCartState }
+            handleChange={ this.handleChange }
+            handleClick={ this.handleClick }
+            searchbar={ searchbar }
+            products={ products }
+            state={ state }
+            cart={ cart }
+          />
+        </div>
       </div>
     );
   }

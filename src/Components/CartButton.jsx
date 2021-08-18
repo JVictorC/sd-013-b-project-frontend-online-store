@@ -8,7 +8,7 @@ export default class CartButton extends Component {
     const { cart } = this.props;
     // console.log(cart);
     return (
-      <div>
+      <div className="shop-cart">
         <Link
           to={ {
             pathname: '/shoppingcart',

@@ -20,6 +20,7 @@ export default class SearchBar extends Component {
           data-testid="home-initial-message"
           className="search-label"
         >
+          Digite algum termo de pesquisa ou escolha uma categoria.
           <input
             type="text"
             data-testid="query-input"
@@ -29,9 +30,8 @@ export default class SearchBar extends Component {
             onChange={ handleChange }
             className="search-input"
           />
-          Digite algum termo de pesquisa ou escolha uma categoria.
-          <br />
         </label>
+        <br />
         <button
           type="button"
           data-testid="query-button"
