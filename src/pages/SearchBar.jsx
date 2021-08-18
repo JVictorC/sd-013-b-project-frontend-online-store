@@ -47,7 +47,11 @@ class SearchBar extends React.Component {
               </h3>
             </div>
             <div className="inputCamp">
-              <input data-testid="query-input" type="text" onChange={ this.handleChange } />
+              <input
+                data-testid="query-input"
+                type="text"
+                onChange={ this.handleChange }
+              />
               <button
                 data-testid="query-button"
                 type="button"
@@ -59,7 +63,7 @@ class SearchBar extends React.Component {
           </div>
           <div className="carrinho">
             <Link to="shoppingcart" data-testid="shopping-cart-button">
-              <img src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v2.png"/>
+              <img src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v2.png" alt="" />
             </Link>
             <p className="numberCart">{localStorage.length}</p>
           </div>

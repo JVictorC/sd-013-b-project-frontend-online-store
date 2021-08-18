@@ -57,7 +57,7 @@ class ListCategories extends Component {
           )) }
         </form>
         <div className="ProductList">
-          <ProductList products={ products }/>
+          <ProductList products={ products } />
         </div>
       </div>
     );
