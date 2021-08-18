@@ -7,7 +7,7 @@ import {
   saveProductToLocalStorage,
 } from '../../utils/localStorageHelpers';
 
-// import './style.css';
+import './style.css';
 
 class Product extends React.Component {
   handleClick = () => {
@@ -24,26 +24,40 @@ class Product extends React.Component {
     const { product } = this.props;
 
     return (
-      <div data-testid="product" key={ product.id }>
-        <h2>{product.title}</h2>
-        <img src={ product.thumbnail } alt={ `imagem de ${product.title}` } />
-        <p>{product.price}</p>
-        <Link
-          data-testid="product-detail-link"
-          to={ `/product/${product.id}` }
-          onClick={ () => saveProductToLocalStorage(product) }
-        >
-          Detalhes
-        </Link>
+      <div className="product-card" data-testid="product" key={ product.id }>
+        <div className="product-info">
+          <img
+            className="product-image"
+            src={ product.thumbnail }
+            alt={ `imagem de ${product.title}` }
+          />
+          <p>{product.title}</p>
+          <p>
+            R$
+            {' '}
+            {product.price}
+          </p>
+          <Link
+            className="product-details"
+            data-testid="product-detail-link"
+            to={ `/product/${product.id}` }
+            onClick={ () => saveProductToLocalStorage(product) }
+          >
+            DETALHES
+          </Link>
+        </div>
         <button
+          className="cart-button"
           type="button"
           data-testid="product-add-to-cart"
           onClick={ this.handleClick }
         >
-          Adicionar ao Carrinho
+          ADICIONAR AO CARRINHO
         </button>
         {product.freeShipping && (
-          <p data-testid="free-shipping">IT&apos;S FREE SHIPPING!</p>
+          <p className="free-shipping" data-testid="free-shipping">
+            IT&apos;S FREE SHIPPING!
+          </p>
         )}
       </div>
     );

@@ -4,11 +4,7 @@
   padding: 0;
 }
 
-.App {
-  display: flex;
-  padding: 0 10%;
-}
-
-.home-page {
-  display: flex;
+.main-content {
+  margin-left: 20vw;
+  text-align: center;
 }

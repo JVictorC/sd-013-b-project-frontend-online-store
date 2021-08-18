@@ -1,0 +1,30 @@
+.filter-item {
+  padding: .8em 2em;
+  position: relative;
+  display: flex;
+  transition: background-color .1s ease;
+  font-size: 0.9em;
+}
+
+.filter-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-item::after {
+  content: '';
+  position: absolute;
+  width: 75%;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.item-selector {
+  display: none;
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, 0.2);
+}

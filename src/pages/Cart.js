@@ -57,8 +57,8 @@ class Cart extends React.Component {
     this.setState({ cartItems: [...newItems] });
 
     this.getTotalPrice(newItems);
-    this.updateItemCount();
     setArrayToLocalStorage(newItems);
+    this.updateItemCount();
   };
 
   updateItemAmount = (quantity, itemId) => {
@@ -70,8 +70,8 @@ class Cart extends React.Component {
 
     this.setState({ cartItems: [...newItems] });
     this.getTotalPrice(newItems);
-    this.updateItemCount();
     setArrayToLocalStorage(newItems);
+    this.updateItemCount();
   };
 
   render() {

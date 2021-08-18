@@ -1,0 +1,39 @@
+:root {
+  --radius: 8px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 0;
+  width: 100%;
+}
+
+.search-input {
+  width: 50%;
+  height: 2.5em;
+  border: 2px inset rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius) 0 0 var(--radius);
+  padding: 0 .5em;
+}
+
+.search-input:focus-visible {
+  outline: none;
+  background-color: #f7f7f7;
+}
+
+.search-button {
+  background: #27c8a4;
+  cursor: pointer;
+  height: 2.5em;
+  width: 2.5em;
+  border: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  display: grid;
+  place-items: center;
+}
+
+.search-button:active {
+  filter: brightness(1.1);
+}

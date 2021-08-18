@@ -6,7 +6,7 @@ import Product from '../Product';
 
 import { getItemsFromLocalStorage } from '../../utils/localStorageHelpers';
 
-// import './style.css';
+import './style.css';
 
 class ProductList extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ class ProductList extends React.Component {
     const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
 
     this.setState({ itemCount });
-  }
+  };
 
   render() {
     const { itemCount } = this.state;
@@ -47,13 +47,15 @@ class ProductList extends React.Component {
     return (
       <div>
         <CartLink itemCount={ itemCount } />
-        {productList.map((product) => (
-          <Product
-            key={ product.id }
-            product={ product }
-            updateItemCount={ this.updateItemCount }
-          />
-        ))}
+        <div className="products">
+          {productList.map((product) => (
+            <Product
+              key={ product.id }
+              product={ product }
+              updateItemCount={ this.updateItemCount }
+            />
+          ))}
+        </div>
       </div>
     );
   }
