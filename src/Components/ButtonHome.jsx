@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default class ButtonHome extends Component {
   render() {
     return (
-      <div>
+      <div className="button-home">
         <Link to="/">Home</Link>
       </div>
     );

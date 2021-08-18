@@ -75,6 +75,30 @@
   cursor: pointer;
 }
 
+.button-home {
+  background-color: rgb(255, 76, 41);
+  border: none;
+  border-radius: 3px;
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  padding: 5px;
+  text-transform: uppercase;
+  transition: 300ms ease;
+  width: 5em;
+}
+
+.button-home a {
+  color: rgb(240, 248, 255);
+  text-decoration: none;
+}
+
+.button-home:hover {
+  background-color: rgba(255, 77, 41, 0.9);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   background-color: #fafafa;
   width: 10px;

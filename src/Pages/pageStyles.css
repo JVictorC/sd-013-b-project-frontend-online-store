@@ -114,3 +114,135 @@ body {
   justify-content: flex-start;
   width: 6em;
 }
+
+.card-details-page {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.card-details-container {
+  align-items: center;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  flex-direction: column;
+  height: 30em;
+  justify-content: space-around;
+  margin-top: 5em;
+  padding: 7px;
+  transition: 400ms ease;
+  width: 30%;
+}
+
+.card-details-container:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.card-details-links {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.card-details-links button {
+  background-color: rgba(255, 77, 41, 0.9);
+  border: none;
+  border-radius: 4px;
+  color: rgb(240, 248, 255);
+  font-size: 1em;
+  height: 2.2em;
+  padding: 5px;
+  text-decoration: none;
+  transition: 400ms ease;
+}
+
+.card-details-links a {
+  background-color: rgb(51, 71, 86);
+  border-radius: 4px;
+  color: rgb(240, 248, 255);
+  display: flex;
+  font-size: 1em;
+  justify-content: center;
+  padding: 5px;
+  text-decoration: none;
+  transition: 400ms ease;
+  width: 8em;
+}
+
+.shopping-cart-size-container {
+  height: 1em;
+  padding: 5px;
+}
+
+.card-details-links button:hover {
+  background-color: rgb(255, 76, 41);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.card-details-links a:hover {
+  background-color: rgb(8, 32, 50);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+
+.rate-product-container {
+  align-items: center;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  flex-direction: column;
+  height: 30em;
+  justify-content: space-between;
+  margin-top: 5em;
+  padding: 10px;
+  transition: 400ms ease;
+  width: 30%;
+}
+
+.rate-product-container:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.rate-product-container input {
+  border: 1px solid rgb(51, 71, 86);
+  border-radius: 4px;
+  margin-left: 1em;
+}
+
+.rate-product-container p {
+  display: inline-block;
+}
+
+.rate-product-container button {
+  background-color: rgba(255, 77, 41, 0.9);
+  border: none;
+  border-radius: 4px;
+  color: rgb(240, 248, 255);
+  font-size: 1em;
+  height: 2.2em;
+  padding: 5px;
+  text-decoration: none;
+  transition: 400ms ease;
+}
+
+.rate-product-container button:hover {
+  background-color: rgb(255, 76, 41);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.product-details-home-button {
+  background-color: rgb(8, 32, 50);
+  padding: 8px;
+  width: 98.8%;
+}
+
+.product-details-home-button .button-home {
+  margin-left: 8.2em;
+}
