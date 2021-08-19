@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CartLink from '../components/CartLink';
-import HomeIcon from '../components/HomeIcon';
-import EvaluatingForm from '../components/EvaluatingForm';
-import EvaluationsZone from '../components/EvaluationsZone';
+import CartLink from '../../components/CartLink';
+import HomeIcon from '../../components/HomeIcon';
+import EvaluatingForm from '../../components/EvaluatingForm';
+import EvaluationsZone from '../../components/EvaluationsZone';
 
 import {
   getItemsFromLocalStorage,
   getItemFromLocalStorage,
   saveItemToLocalStorage,
-} from '../utils/localStorageHelpers';
+} from '../../utils/localStorageHelpers';
+
+import './style.css';
 
 class ProductDetails extends React.Component {
   constructor() {

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-import PurchaseForm from '../components/PurchaseForm';
-import PurchaseScreenItem from '../components/PurchaseScreenItem';
-import HomeIcon from '../components/HomeIcon';
+import PurchaseForm from '../../components/PurchaseForm';
+import PurchaseScreenItem from '../../components/PurchaseScreenItem';
+import HomeIcon from '../../components/HomeIcon';
 
 import {
   getItemFromLocalStorage,
   getItemsFromLocalStorage,
-} from '../utils/localStorageHelpers';
+} from '../../utils/localStorageHelpers';
+
+import './style.css';
 
 class PurchaseScreen extends React.Component {
   constructor() {
@@ -35,13 +37,17 @@ class PurchaseScreen extends React.Component {
     const items = getItemsFromLocalStorage('cartItems');
     const totalPrice = getItemFromLocalStorage('totalPrice');
 
+    const fixedPrice = Number(totalPrice.toFixed(2));
+
     this.setState({
       items,
-      totalPrice,
+      totalPrice: fixedPrice,
     });
   };
 
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
+
     this.setState({
       items: [],
       name: '',
@@ -68,7 +74,7 @@ class PurchaseScreen extends React.Component {
     return (
       <>
         <HomeIcon />
-        <div>
+        <div className="purchase-screen">
           {purchaseFinished ? <Redirect to="/" /> : null}
           {items.map((element) => (
             <PurchaseScreenItem
@@ -79,7 +85,7 @@ class PurchaseScreen extends React.Component {
               thumbnail={ element.thumbnail }
             />
           ))}
-          <p>{`Total a pagar: ${totalPrice}`}</p>
+          <p className="total-price">{`Total: R$ ${totalPrice}`}</p>
           <PurchaseForm
             name={ name }
             email={ email }

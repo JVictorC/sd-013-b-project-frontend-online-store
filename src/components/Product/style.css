@@ -53,6 +53,7 @@
 .free-shipping {
   color: rgba(0, 0, 0, 0.6);
   left: 1em;
+  pointer-events: none;
   position: absolute;
   top: 1em;
 }
@@ -66,5 +67,13 @@
 }
 
 .at-cart {
-  outline: 3px solid rgba(0, 0, 0, 0.1);
+  color: rgb(24, 122, 0);
+  pointer-events: none;
+  position: absolute;
+  right: 1.5em;
+  top: 1.5em;
+}
+
+.at-cart-icon {
+  font-size: 1.5em;
 }
