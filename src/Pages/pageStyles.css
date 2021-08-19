@@ -1,5 +1,6 @@
 body {
   background-color: #eaeded;
+  overflow-x: hidden;
 }
 
 .main-home {
@@ -240,7 +241,7 @@ body {
 .product-details-home-button {
   background-color: rgb(8, 32, 50);
   padding: 8px;
-  width: 98.8%;
+  width: 100vw;
 }
 
 .product-details-home-button .button-home {
