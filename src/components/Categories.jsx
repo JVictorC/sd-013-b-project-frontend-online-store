@@ -5,15 +5,15 @@ export default class Categories extends React.Component {
   render() {
     const { categories: { name, id } } = this.props;
     return (
-      <div className="field is-flex">
+      <div className="field">
         <label
-          className="label "
+          className="label"
           key={ id }
           htmlFor={ id }
         >
           { name }
           <input
-            className="radio"
+            className="radio ml-1"
             type="radio"
             data-testid="category"
             id={ id }

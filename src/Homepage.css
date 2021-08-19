@@ -58,6 +58,7 @@ textarea {
 
 .overflow {
   max-height: 40px;
+  min-height: 50px;
   overflow: hidden;
 }
 
@@ -68,5 +69,10 @@ textarea {
 .lista-hover-red:hover {
   background-color: #f44336;
   color: white;
+}
+
+.size-fixed {
+  margin-left: 20px;
+  max-width: 310px;
 }
 

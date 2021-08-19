@@ -54,7 +54,7 @@ export default class CardLibrary extends React.Component {
     const { results } = this.state;
     return (
       <div className="columns">
-        <div className="column is-one-quarter mt-5">
+        <div className="column size-fixed mt-5">
           <Sidebar captureValueSelect={ this.captureValueSelect } />
         </div>
         <div className="column mt-5">

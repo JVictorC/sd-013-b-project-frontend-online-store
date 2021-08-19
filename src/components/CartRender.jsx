@@ -9,16 +9,18 @@ export default class CartRender extends React.Component {
 
     return (
       <section>
-        {items.map((item) => (<CartItem
-          id={ item.id }
-          title={ item.title }
-          thumbnail={ item.thumbnail }
-          quantity={ item.quantity }
-          price={ item.price }
-          key={ item.id }
-          onClick={ onClick }
-          buttonId="product-detail-add-to-cart"
-        />))}
+        <ol className="ml-6">
+          {items.map((item) => (<CartItem
+            id={ item.id }
+            title={ item.title }
+            thumbnail={ item.thumbnail }
+            quantity={ item.quantity }
+            price={ item.price }
+            key={ item.id }
+            onClick={ onClick }
+            buttonId="product-detail-add-to-cart"
+          />))}
+        </ol>
         <div className="total-price">
           <h2>
             <span>{ `Preço total da compra: R$${Math.round(sum)}` }</span>

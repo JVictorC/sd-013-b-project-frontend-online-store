@@ -26,8 +26,8 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   return data;
 }
 
-export async function getProductsDescription(productId) {
-  const url = `https://api.mercadolibre.com/catalog_products/${productId}`;
+export async function getProductsDescription(catalogoid) {
+  const url = `https://api.mercadolibre.com/catalog_products/${catalogoid}`;
   const fetchApi = await fetch(url);
   const data = await fetchApi.json();
 

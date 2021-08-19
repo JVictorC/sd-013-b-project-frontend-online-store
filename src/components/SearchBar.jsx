@@ -51,10 +51,12 @@ export default class SearchBar extends React.Component {
           </div>
         </div>
         <div className="">
-          <button type="button" className="button is-primary is-light mr-5 mt-5">
-            <Link data-testid="shopping-cart-button" to="/cart">Carrinho</Link>
-            <FaShoppingCart size="1.5em" color="blue" />
-          </button>
+          <Link data-testid="shopping-cart-button" to="/cart">
+            <button type="button" className="button is-primary is-light mr-5 mt-5">
+              Carrinho
+              <FaShoppingCart size="1.5em" color="blue" />
+            </button>
+          </Link>
         </div>
       </div>
     );

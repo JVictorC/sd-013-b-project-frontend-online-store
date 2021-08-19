@@ -28,10 +28,10 @@ export default class Sidebar extends React.Component {
     const { captureValueSelect } = this.props;
 
     return (
-      <div className="tile is-parent is-vertical">
+      <div className="">
         <form
           onChange={ captureValueSelect }
-          className="tile is-child notification has-background-danger-light"
+          className="has-background-danger-light"
         >
           <p className="title">Categorias</p>
           {

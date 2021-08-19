@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsArrowReturnLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import CartRender from '../components/CartRender';
 import Header from '../components/Header';
@@ -109,8 +110,29 @@ export default class Cart extends React.Component {
     return (
       <section>
         <Header />
-        <Link to="/">Voltar</Link>
-        <h1>Carrinho de compras</h1>
+        <div
+          className="navbar
+          has-background-danger-light
+          is-flex
+          is-justify-content-space-between"
+        >
+          <Link to="/" className="has-text-white">
+            <button
+              type="button"
+              className="button is-link mt-3 mb-2 ml-6 is-flex is-small is-rounded"
+            >
+              <BsArrowReturnLeft size="1.5em" className="mr-2 mt-1" />
+              Voltar
+            </button>
+          </Link>
+        </div>
+        <div className="header-background p-1">
+          <p
+            className="title is-4 has-text-white has-text-centered "
+          >
+            Carrinho de compras
+          </p>
+        </div>
         <CartRender
           onClick={ this.onClick }
           items={ items }

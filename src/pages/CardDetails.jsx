@@ -37,7 +37,6 @@ export default class CardDetails extends React.Component {
   async getDescription() {
     const { product: { catalog_product_id } } = this.state;
     const response = await api.getProductsDescription(catalog_product_id);
-    console.log(response);
     if (response.id !== 'null') {
       this.setState({ details: response.attributes });
       const { details } = this.state;
@@ -45,7 +44,9 @@ export default class CardDetails extends React.Component {
       const tenDetails = details.slice(0, ten);
       this.setState({ details: tenDetails });
     } else {
-      this.setState({ details: [] });
+      this.setState(
+        { details: [{ name: '', value_name: 'Sem especificações técnicas' }] },
+      );
     }
   }
 
@@ -62,26 +63,28 @@ export default class CardDetails extends React.Component {
           is-flex
           is-justify-content-space-between"
         >
-          <button
-            type="button"
-            className="button is-link mt-2 mb-2 ml-6 is-flex is-small is-rounded"
-          >
-            <BsArrowReturnLeft size="1.5em" className="mr-2 mt-1" />
-            <Link to="/" className="has-text-white">VOLTAR</Link>
-          </button>
-          <button
-            type="button"
-            className="button mr-6 is-success mt-2 is-small is-rounded"
-          >
-            <FaShoppingCart size="1.5em" className="mr-2" />
-            <Link
-              data-testid="shopping-cart-button"
-              className="has-text-white "
-              to="/cart"
+          <Link to="/" className="has-text-white">
+            <button
+              type="button"
+              className="button is-link mt-2 mb-2 ml-6 is-flex is-small is-rounded"
             >
+              <BsArrowReturnLeft size="1.5em" className="mr-2 mt-1" />
+              Voltar
+            </button>
+          </Link>
+          <Link
+            data-testid="shopping-cart-button"
+            className="has-text-white "
+            to="/cart"
+          >
+            <button
+              type="button"
+              className="button mr-6 is-success mt-2 is-small is-rounded"
+            >
+              <FaShoppingCart size="1.5em" className="mr-2" />
               CARRINHO
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
         <div className="columns mt-3 is-flex is-justify-content-space-evenly ">
           <div className="is-flex is-justify-content-center">
@@ -89,7 +92,7 @@ export default class CardDetails extends React.Component {
               <img
                 alt="Product"
                 src={ thumbnail }
-                className="is-size-3 is-block mx-auto border"
+                className="is-size-3 is-block mx-auto border image is-128x128"
               />
               <p
                 data-testid="product-detail-name"

@@ -8,6 +8,6 @@ export default class DetailsLi extends React.Component {
       <li className="lista-hover-red">
         { `${name} - ${value_name}` }
       </li>
-    ) 
+    );
   }
 }

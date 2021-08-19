@@ -6,18 +6,12 @@ export default class CartItem extends React.Component {
     const { onClick, title, thumbnail, quantity, price, id } = this.props;
 
     return (
-      <div className="cart-items">
-        <button
-          type="submit"
-          id={ `${id}-remove` }
-          onClick={ onClick }
-        >
-          Retirar
-        </button>
+      <li className="is-flex p-3 m-6 is-align-items-center">
         <img src={ thumbnail } alt={ title } />
         <p data-testid="shopping-cart-product-name">
           {title}
         </p>
+        <p className="ml-5 mr-5">{ `Preco: R$: ${Math.round(price * quantity)}` }</p>
         <button
           type="submit"
           data-testid="product-decrease-quantity"
@@ -35,8 +29,14 @@ export default class CartItem extends React.Component {
         >
           +
         </button>
-        <p>{Math.round(price * quantity)}</p>
-      </div>
+        <button
+          type="submit"
+          id={ `${id}-remove` }
+          onClick={ onClick }
+        >
+          Retirar
+        </button>
+      </li>
     );
   }
 }

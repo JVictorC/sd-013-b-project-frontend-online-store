@@ -25,7 +25,8 @@ export default class CardRender extends React.Component {
         </div>
         <p
           className="subtitle is-6
-          m-3 has-text-black-bis has-text-centered has-text-weight-bold overflow"
+          m-3 has-text-black-bis has-text-centered has-text-weight-bold
+          overflow"
         >
           { title }
         </p>
