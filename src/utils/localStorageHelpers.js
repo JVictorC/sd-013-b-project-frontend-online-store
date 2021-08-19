@@ -8,8 +8,8 @@ export const getItemsFromLocalStorage = (key) => {
   return [];
 };
 
-export const getItemFromLocalStorage = () => {
-  const item = localStorage.getItem('productDetails');
+export const getItemFromLocalStorage = (key) => {
+  const item = localStorage.getItem(key);
 
   if (item) {
     return JSON.parse(item);
@@ -18,10 +18,6 @@ export const getItemFromLocalStorage = () => {
   return {};
 };
 
-export const setArrayToLocalStorage = (array) => {
-  localStorage.setItem('cartItems', JSON.stringify(array));
-};
-
-export const saveProductToLocalStorage = (product) => {
-  localStorage.setItem('productDetails', JSON.stringify(product));
+export const saveItemToLocalStorage = (key, item) => {
+  localStorage.setItem(key, JSON.stringify(item));
 };

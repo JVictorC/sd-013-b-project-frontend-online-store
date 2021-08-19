@@ -9,7 +9,7 @@ import EvaluationsZone from '../components/EvaluationsZone';
 import {
   getItemsFromLocalStorage,
   getItemFromLocalStorage,
-  setArrayToLocalStorage,
+  saveItemToLocalStorage,
 } from '../utils/localStorageHelpers';
 
 class ProductDetails extends React.Component {
@@ -34,29 +34,24 @@ class ProductDetails extends React.Component {
 
     const newItems = [...items, evaluation];
 
-    localStorage.setItem('evaluations', JSON.stringify(newItems));
+    saveItemToLocalStorage('evaluations', newItems);
 
     this.setState((prevState) => ({
       evaluations: [...prevState.evaluations, evaluation],
     }));
-  }
+  };
 
   getEvaluationsById = (id) => {
-    const evaluationsById = localStorage.getItem('evaluations');
-    let parsedEvaluations = JSON.parse(evaluationsById);
+    const evaluations = getItemsFromLocalStorage('evaluations');
 
-    if (evaluationsById === null) {
-      parsedEvaluations = [];
-    }
-
-    const filteredEvaluations = parsedEvaluations.filter((element) => (
-      element.id === id
-    ));
+    const filteredEvaluations = evaluations.filter(
+      (element) => element.id === id,
+    );
 
     this.setState({
       evaluations: filteredEvaluations,
     });
-  }
+  };
 
   updateItemCount = () => {
     const items = getItemsFromLocalStorage('cartItems');
@@ -67,7 +62,7 @@ class ProductDetails extends React.Component {
   };
 
   getProductFromLocalStorage = () => {
-    const savedProduct = getItemFromLocalStorage();
+    const savedProduct = getItemFromLocalStorage('productDetails');
 
     this.getEvaluationsById(savedProduct.id);
 
@@ -82,7 +77,7 @@ class ProductDetails extends React.Component {
     if (!items.some((item) => item.id === product.id)) {
       const newItems = [...items, { ...product, amount: 1 }];
 
-      setArrayToLocalStorage(newItems);
+      saveItemToLocalStorage('cartItems', newItems);
       this.updateItemCount();
     }
   };

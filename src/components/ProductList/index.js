@@ -31,7 +31,7 @@ class ProductList extends React.Component {
 
   render() {
     const { itemCount } = this.state;
-    const { productList } = this.props;
+    const { productList, history } = this.props;
 
     if (!productList.length) {
       return (
@@ -51,6 +51,7 @@ class ProductList extends React.Component {
           {productList.map((product) => (
             <Product
               key={ product.id }
+              history={ history }
               product={ product }
               updateItemCount={ this.updateItemCount }
             />
@@ -63,6 +64,7 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default ProductList;

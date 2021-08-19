@@ -11,9 +11,14 @@ class CartLink extends React.Component {
     const { itemCount } = this.props;
 
     return (
-      <Link className="cart-link" to="/cart" data-testid="shopping-cart-button">
+      <Link
+        key={ itemCount }
+        className="cart-link"
+        to="/cart"
+        data-testid="shopping-cart-button"
+      >
         <AiOutlineShoppingCart />
-        <span data-testid="shopping-cart-size">{ itemCount }</span>
+        <span data-testid="shopping-cart-size">{itemCount}</span>
       </Link>
     );
   }

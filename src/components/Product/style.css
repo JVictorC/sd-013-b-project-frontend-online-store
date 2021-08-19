@@ -6,11 +6,17 @@
   flex-direction: column;
   font-size: 0.8em;
   justify-content: space-between;
+  position: relative;
   text-align: center;
-  width: 18em;
+  width: 20em;
+}
+
+.product-card:hover {
+  outline: 3px solid rgba(0, 0, 0, 0.1);
 }
 
 .product-info {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -41,9 +47,24 @@
 }
 
 .cart-button:active {
-  filter: brightness(0.8);
+  filter: brightness(0.95);
 }
 
 .free-shipping {
-  display: none;
+  color: rgba(0, 0, 0, 0.6);
+  left: 1em;
+  position: absolute;
+  top: 1em;
+}
+
+.shipping-icon {
+  font-size: 1.5em;
+}
+
+.free-shipping > p {
+  font-size: 0.6em;
+}
+
+.at-cart {
+  outline: 3px solid rgba(0, 0, 0, 0.1);
 }

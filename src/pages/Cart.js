@@ -6,7 +6,7 @@ import HomeIcon from '../components/HomeIcon';
 
 import {
   getItemsFromLocalStorage,
-  setArrayToLocalStorage,
+  saveItemToLocalStorage,
 } from '../utils/localStorageHelpers';
 
 class Cart extends React.Component {
@@ -37,8 +37,10 @@ class Cart extends React.Component {
       0,
     );
 
-    this.setState({ totalPrice });
-    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    const fixedTotalPrice = Number(totalPrice.toFixed(2));
+
+    this.setState({ totalPrice: fixedTotalPrice });
+    saveItemToLocalStorage('totalPrice', fixedTotalPrice);
   };
 
   removeItemFromCart = (id) => {
@@ -49,7 +51,7 @@ class Cart extends React.Component {
     this.setState({ cartItems: [...newItems] });
 
     this.getTotalPrice(newItems);
-    setArrayToLocalStorage(newItems);
+    saveItemToLocalStorage('cartItems', newItems);
   };
 
   updateItemAmount = (quantity, itemId) => {
@@ -62,7 +64,7 @@ class Cart extends React.Component {
 
     this.setState({ cartItems: [...newItems] });
     this.getTotalPrice(newItems);
-    setArrayToLocalStorage(newItems);
+    saveItemToLocalStorage('cartItems', newItems);
   };
 
   render() {
@@ -91,11 +93,7 @@ class Cart extends React.Component {
               Seu carrinho está vazio
             </p>
           )}
-          <p className="total-price">
-            Total: R$
-            {' '}
-            {totalPrice}
-          </p>
+          <p className="total-price">{`Total: R$ ${totalPrice}`}</p>
           <Link
             className="purchase"
             to="/purchase"
