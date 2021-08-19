@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FaShippingFast } from 'react-icons/fa';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 import {
   getItemsFromLocalStorage,
@@ -77,10 +78,8 @@ class Product extends React.Component {
     const { isAtCart } = this.state;
     const { product } = this.props;
 
-    const productClass = isAtCart ? 'product-card at-cart' : 'product-card';
-
     return (
-      <div className={ productClass } data-testid="product" key={ product.id }>
+      <div className="product-card" data-testid="product" key={ product.id }>
         <div
           className="product-info"
           data-testid="product-detail-link"
@@ -115,6 +114,11 @@ class Product extends React.Component {
           <div className="free-shipping">
             <FaShippingFast className="shipping-icon" />
             <p data-testid="free-shipping">FRETE GRÁTIS</p>
+          </div>
+        )}
+        {isAtCart && (
+          <div className="at-cart">
+            <AiOutlineShoppingCart className="at-cart-icon" />
           </div>
         )}
       </div>

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import CartItem from '../components/CartItem';
-import HomeIcon from '../components/HomeIcon';
+import CartItem from '../../components/CartItem';
+import HomeIcon from '../../components/HomeIcon';
 
 import {
   getItemsFromLocalStorage,
   saveItemToLocalStorage,
-} from '../utils/localStorageHelpers';
+} from '../../utils/localStorageHelpers';
+
+import './style.css';
 
 class Cart extends React.Component {
   constructor() {
