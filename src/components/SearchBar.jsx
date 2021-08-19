@@ -7,6 +7,7 @@ export default class SearchBar extends Component {
     return (
       <div>
         <input
+          className="search"
           data-testid="query-input"
           type="text"
           value={ searchText }

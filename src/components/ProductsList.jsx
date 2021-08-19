@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  Card, CardImg, CardBody,
+  CardTitle, Button,
 } from 'reactstrap';
 
 export default class ProductsList extends Component {
@@ -25,31 +25,39 @@ export default class ProductsList extends Component {
     const { getProductData, addItemsToCart } = this.props;
 
     return (
-      products.map((product, props) => (
+      products.map((product) => (
 
-        <div data-testid="product" className="product-card" key={ product.id }>
-          <h4>{product.title}</h4>
-          <CardImg
-            top width="100%"
-            src={ product.thumbnail }
-            alt={ product.title }
-            style={ { width: '150px' } }
-          />
-          <span>{`R$${product.price}`}</span>
-          <Link
-            to={ `/product/${product.id}` }
-            onClick={ () => getProductData(product) }
-            data-testid="product-detail-link"
-          >
-            Ver detalhes
-          </Link>
-          <button
-            data-testid="product-add-to-cart"
-            type="submit"
-            onClick={ () => addItemsToCart(product) }
-          >
-            Adicionar ao carrinho
-          </button>
+        <div data-testid="product" key={ product.id }>
+          <section>
+
+          <Card className="product-card">
+            <CardTitle tag="h6">{product.title}</CardTitle>
+            <CardImg
+              top
+              width="100%"
+              src={ product.thumbnail }
+              alt={ product.title }
+              style={ { width: '150px' } }
+            />
+            <CardBody>
+              <p>{`R$${product.price}`}</p>
+              <Link
+                to={ `/product/${product.id}` }
+                onClick={ () => getProductData(product) }
+                data-testid="product-detail-link"
+              >
+                <p>Ver detalhes</p>
+              </Link>
+              <Button
+                data-testid="product-add-to-cart"
+                type="submit"
+                onClick={ () => addItemsToCart(product) }
+              >
+                Adicionar ao carrinho
+              </Button>
+            </CardBody>
+          </Card>
+          </section>
         </div>
       ))
     );

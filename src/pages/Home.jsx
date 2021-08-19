@@ -41,20 +41,24 @@ class Home extends Component {
     const { searchText, products } = this.state;
     const { getProductData, addItemsToCart } = this.props;
     return (
-      <div>
-        <SearchBar
-          handleChange={ this.handleChange }
-          searchText={ searchText }
-          handleSearchButton={ this.handleSearchButton }
-        />
-        <Link to="/shoppingKart" data-testid="shopping-cart-button">Carrinho</Link>
-        <Category handleRadioButton={ this.handleRadioButton } />
-        <ProductsList
-          products={ products }
-          getProductData={ getProductData }
-          addItemsToCart={ addItemsToCart }
-        />
-      </div>
+      <>
+        <div className="header">
+          <SearchBar
+            handleChange={ this.handleChange }
+            searchText={ searchText }
+            handleSearchButton={ this.handleSearchButton }
+          />
+          <Link to="/shoppingKart" data-testid="shopping-cart-button">Carrinho</Link>
+        </div>
+        <div className="main">
+          <Category handleRadioButton={ this.handleRadioButton } />
+          <ProductsList
+            products={ products }
+            getProductData={ getProductData }
+            addItemsToCart={ addItemsToCart }
+          />
+        </div>
+      </>
     );
   }
 }

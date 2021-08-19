@@ -5,19 +5,21 @@ export default class ReviewProduct extends Component {
   render() {
     const { cartItems } = this.props;
     return cartItems.map(({ title, price, actualAmount, id }) => (
-      <div key={ id }>
-        <span>
+      <div className="review-product-container" key={ id }>
+        <p>
           {title}
           -
           {price}
-        </span>
-        <span>
+        </p>
+        <p>
+          Quantidade:
+          {' '}
           {actualAmount}
-        </span>
-        <span>
+        </p>
+        <p>
           TOTAL:
           {actualAmount * price}
-        </span>
+        </p>
       </div>
     ));
   }

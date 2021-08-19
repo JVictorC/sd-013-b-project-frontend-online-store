@@ -77,8 +77,10 @@ export default class ShoppingKart extends Component {
   );
 
   render() {
-    return (
-      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+    const emptyCartMessage = (
+      <span data-testid="shopping-cart-empty-message">
+        Seu carrinho está vazio
+      </span>
     );
 
     const { cartItems } = this.state;
@@ -90,3 +92,7 @@ export default class ShoppingKart extends Component {
     );
   }
 }
+
+ShoppingKart.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.object),
+}.isRequired;

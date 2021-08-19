@@ -2,6 +2,42 @@
   text-align: center;
 }
 
+.category {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-product-container {
+  border: 1px solid;
+}
+
+.product-card {
+  display: flex;
+}
+
+.main {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.form-group {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: nowrap;
+  flex-direction: column;
+}
+
+.form-buy {
+  display: flex;
+  justify-content: space-around;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
