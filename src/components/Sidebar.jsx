@@ -28,7 +28,7 @@ export default class Sidebar extends React.Component {
     const { captureValueSelect } = this.props;
 
     return (
-      <div className="">
+      <div className="x">
         <form
           onChange={ captureValueSelect }
           className="has-background-danger-light"
