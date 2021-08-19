@@ -5,7 +5,7 @@ import CategoryItem from '../CategoryItem';
 
 import * as api from '../../services/api';
 
-// import './style.css';
+import './style.css';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -31,17 +31,19 @@ class CategoryList extends React.Component {
     const { selectedCategory, onChange } = this.props;
 
     return (
-      <ul>
-        {categories.map(({ id, name }) => (
-          <CategoryItem
-            key={ id }
-            categoryName={ name }
-            categoryId={ id }
-            selectedCategory={ selectedCategory }
-            onChange={ onChange }
-          />
-        ))}
-      </ul>
+      <div className="sidebar">
+        <ul className="filter">
+          {categories.map(({ id, name }) => (
+            <CategoryItem
+              key={ id }
+              categoryName={ name }
+              categoryId={ id }
+              selectedCategory={ selectedCategory }
+              onChange={ onChange }
+            />
+          ))}
+        </ul>
+      </div>
     );
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import './style.css';
+import { FaSearch } from 'react-icons/fa';
+
+import './style.css';
 
 class SearchBar extends React.Component {
   handleClick = (event) => {
@@ -15,19 +17,21 @@ class SearchBar extends React.Component {
     const { searchTerm, onChange } = this.props;
 
     return (
-      <form>
+      <form className="search-form">
         <input
+          className="search-input"
           type="text"
           value={ searchTerm }
           onChange={ onChange }
           data-testid="query-input"
         />
         <button
+          className="search-button"
           type="submit"
           onClick={ this.handleClick }
           data-testid="query-button"
         >
-          Vai!
+          <FaSearch />
         </button>
       </form>
     );

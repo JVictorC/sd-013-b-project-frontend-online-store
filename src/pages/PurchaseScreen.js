@@ -1,8 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+
 import PurchaseForm from '../components/PurchaseForm';
 import PurchaseScreenItem from '../components/PurchaseScreenItem';
-import { getItemsFromLocalStorage } from '../utils/localStorageHelpers';
+import HomeIcon from '../components/HomeIcon';
+
+import {
+  getItemFromLocalStorage,
+  getItemsFromLocalStorage,
+} from '../utils/localStorageHelpers';
 
 class PurchaseScreen extends React.Component {
   constructor() {
@@ -10,6 +16,7 @@ class PurchaseScreen extends React.Component {
 
     this.state = {
       items: [],
+      totalPrice: 0,
       name: '',
       email: '',
       cpf: '',
@@ -25,10 +32,12 @@ class PurchaseScreen extends React.Component {
   }
 
   fetchProducts = () => {
-    const items = getItemsFromLocalStorage();
+    const items = getItemsFromLocalStorage('cartItems');
+    const totalPrice = getItemFromLocalStorage('totalPrice');
 
     this.setState({
       items,
+      totalPrice,
     });
   };
 
@@ -43,7 +52,7 @@ class PurchaseScreen extends React.Component {
       adress: '',
       purchaseFinished: true,
     });
-  }
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -51,37 +60,38 @@ class PurchaseScreen extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
 
   render() {
-    const { items } = this.state;
+    const { items, totalPrice } = this.state;
     const { name, email, cpf, phone, postalCode, adress, purchaseFinished } = this.state;
     return (
-      <div>
-        {purchaseFinished ? <Redirect to="/" /> : null }
-        {items.map((element) => (
-          <PurchaseScreenItem
-            key={ element.title }
-            title={ element.title }
-            price={ element.price }
-            amount={ element.amount }
-            thumbnail={ element.thumbnail }
+      <>
+        <HomeIcon />
+        <div>
+          {purchaseFinished ? <Redirect to="/" /> : null}
+          {items.map((element) => (
+            <PurchaseScreenItem
+              key={ element.title }
+              title={ element.title }
+              price={ element.price }
+              amount={ element.amount }
+              thumbnail={ element.thumbnail }
+            />
+          ))}
+          <p>{`Total a pagar: ${totalPrice}`}</p>
+          <PurchaseForm
+            name={ name }
+            email={ email }
+            cpf={ cpf }
+            phone={ phone }
+            postalCode={ postalCode }
+            adress={ adress }
+            onClick={ this.handleClick }
+            onChange={ this.handleChange }
           />
-        ))}
-        <p>
-          { `Total a pagar: ${localStorage.getItem('totalPrice')}` }
-        </p>
-        <PurchaseForm
-          name={ name }
-          email={ email }
-          cpf={ cpf }
-          phone={ phone }
-          postalCode={ postalCode }
-          adress={ adress }
-          onClick={ this.handleClick }
-          onChange={ this.handleChange }
-        />
-      </div>
+        </div>
+      </>
     );
   }
 }

@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import './style.css';
+import './style.css';
 
 class CategoryItem extends React.Component {
   render() {
     const { categoryName, categoryId, selectedCategory, onChange } = this.props;
+    const isSelected = selectedCategory === categoryId;
 
     return (
       <li>
-        <input
-          id={ categoryId }
-          type="radio"
-          name="category"
-          value={ categoryId }
-          checked={ selectedCategory === categoryId }
-          onChange={ onChange }
-        />
-        <label htmlFor={ categoryId } data-testid="category">
+        <label
+          className={ isSelected ? 'filter-item selected' : 'filter-item' }
+          htmlFor={ categoryId }
+          data-testid="category"
+        >
+          <input
+            className="item-selector"
+            id={ categoryId }
+            type="radio"
+            name="category"
+            value={ categoryId }
+            checked={ isSelected }
+            onChange={ onChange }
+          />
           {categoryName}
         </label>
       </li>
