@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery as ApiProducts } from '../services/api';
 
 import ProductCard from '../components/ProductCard';
+import img from '../image/Search.png';
 import CategoryFilter from '../components/CategoryFilter';
 import CartButton from '../components/CartButton';
+import MainProductList from '../components/MainProductList';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -46,33 +48,30 @@ class ProductList extends React.Component {
     const { products, searchInput } = this.state;
     const { onClickButton } = this.props;
     return (
-      <div>
-        <input
-          data-testid="query-input"
-          value={ searchInput }
-          onChange={ this.handleSearchInput }
-        />
-        <button
-          type="button"
-          data-testid="query-button"
-          onClick={ this.handleSearchButton }
-        >
-          Pesquisar
-        </button>
-        <CartButton />
-        <h4 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h4>
-        <div>
+      <div className="home">
+        <div className="category-div">
           <CategoryFilter onChange={ this.handleCategoryChange } />
         </div>
-        <div>
-          {products
-            .map((product) => (<ProductCard
-              onClickButton={ onClickButton }
-              key={ product.id }
-              product={ product }
-            />))}
+        <div className="content-div">
+          <div className="nav-search">
+            <div className="input-button">
+              <input
+                placeholder="   Buscar produtos, items e muito mais..."
+                data-testid="query-input"
+                value={ searchInput }
+                onChange={ this.handleSearchInput }
+              />
+              <button
+                type="button"
+                data-testid="query-button"
+                onClick={ this.handleSearchButton }
+              >
+                🔎
+              </button>
+            </div>
+            <CartButton />
+          </div>
+          <MainProductList products={ products } onClickButton={ onClickButton } />
         </div>
       </div>
     );

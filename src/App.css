@@ -1,48 +1,40 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input-button {
+  min-width: 90%;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
+.nav-search {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
 }
 
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.nav-search input {
+  border-radius: 20px;
+  min-width: 80%;
+  height: 20px;
+}
+
+.nav-search button {
+  height: 25px;
+  border-radius: 10px;
+}
+
+.category-list {
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
+  max-width: 100%;
 }
 
-.category-li {
+.category-list li {
   list-style: none;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  text-transform: uppercase;
+  font-size: medium;
+  margin: 3px;
 }
 
 .div-productdetail-img {
@@ -69,4 +61,53 @@
 .div-productdetail-nav {
   display: flex;
   justify-content: space-between;
+}
+
+.home {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.category-div {
+  min-width: 27.5%;
+  background-color: #F8F8FF;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.content-div {
+  flex-basis: 2;
+  background-color: #77929b;
+  min-width: 69.5%;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.shopcart-img {
+  max-width: 25px;
+}
+
+.category-list h5 {
+  text-transform: uppercase;
+  font-size: large;
+  color: #303030;
+  margin: 8px;
+  text-align: center;
+}
+
+.category-list hr {
+  margin-bottom: 12px;
+  width: 50%;
+  margin-left: 24.5%;
+  height: 1px;
+  background-color: black;
+}
+
+.open{
+  width: 0;
+  visibility: hidden;
 }

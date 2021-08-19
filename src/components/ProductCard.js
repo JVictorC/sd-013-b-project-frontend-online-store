@@ -13,7 +13,7 @@ class ProductCard extends React.Component {
       state: { product },
     };
     return (
-      <div>
+      <div className="product-div">
         <Link
           data-testid="product-detail-link"
           to={ toLink }
