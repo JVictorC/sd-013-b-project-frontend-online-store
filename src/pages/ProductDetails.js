@@ -45,8 +45,6 @@ class ProductDetails extends React.Component {
     const evaluationsById = localStorage.getItem('evaluations');
     let parsedEvaluations = JSON.parse(evaluationsById);
 
-    console.log(parsedEvaluations);
-
     if (evaluationsById === null) {
       parsedEvaluations = [];
     }

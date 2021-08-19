@@ -1,24 +1,24 @@
 .filter-item {
-  padding: .8em 2em;
-  position: relative;
   display: flex;
-  transition: background-color .1s ease;
   font-size: 0.9em;
+  padding: 0.8em 2em;
+  position: relative;
+  transition: background-color 0.1s ease;
 }
 
 .filter-item:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.filter-item::after {
-  content: '';
-  position: absolute;
-  width: 75%;
-  height: 1px;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
+.filter-item:after {
   background: rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: 75%;
 }
 
 .item-selector {

@@ -21,6 +21,14 @@ class Product extends React.Component {
 
       setArrayToLocalStorage(newItems);
       updateItemCount();
+    } else {
+      setArrayToLocalStorage(items.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, amount: item.amount + 1 };
+        }
+        return item;
+      }));
+      updateItemCount();
     }
   };
 

@@ -1,24 +1,24 @@
 .cart-item {
-  display: flex;
   align-items: center;
+  display: flex;
+  gap: 1em;
   justify-content: center;
   padding: 1em 2em;
-  gap: 1em;
   position: relative;
 }
 
-.cart-item::after {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 1px;
+.cart-item:after {
   background-color: rgba(0, 0, 0, 0.2);
   bottom: 0;
+  content: '';
+  height: 1px;
+  position: absolute;
+  width: 100%;
 }
 
 .remove-item {
-  border: none;
   background: none;
+  border: none;
   color: red;
   font-size: 1.2em;
 }
@@ -33,18 +33,17 @@
 }
 
 .quantity-container {
-  display: flex;
   align-items: stretch;
+  display: flex;
 }
 
 .quantity-container button {
-  display: grid;
-  place-items: center;
-  border: none;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  display: grid;
   font-size: 1em;
   padding: 0.2em 0.5em;
+  place-items: center;
 }
 
 .quantity-container button:active {
@@ -56,16 +55,16 @@
 }
 
 .quantity-container p {
-  display: grid;
-  place-items: center;
   background: white;
-  border-top: 1px;
   border-bottom: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
   border-left: 0;
   border-right: 0;
   border-style: solid;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px;
+  display: grid;
   padding: 0.2em;
+  place-items: center;
   width: 2.5em;
 }
 
