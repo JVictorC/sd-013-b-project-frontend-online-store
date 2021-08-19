@@ -3,40 +3,13 @@ import PropTypes from 'prop-types';
 import Evaluation from '../Evaluation';
 
 class EvaluationsZone extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      evaluations: [],
-    };
-  }
-
-  componentDidMount() {
-    const { id } = this.props;
-    this.getEvaluationsById(id);
-  }
-
-  getEvaluationsById = (id) => {
-    const evaluationsById = localStorage.getItem('evaluations');
-    let parsedEvaluations = JSON.parse(evaluationsById);
-    if (evaluationsById === null) {
-      parsedEvaluations = [];
-    }
-    const filteredEvaluations = parsedEvaluations.filter((element) => (
-      element.id === id
-    ));
-    this.setState({
-      evaluations: filteredEvaluations,
-    });
-  }
-
   render() {
-    const { evaluations } = this.state;
+    const { evaluations } = this.props;
     return (
       <div>
-        { evaluations.map((element) => (
+        {evaluations.map((element, index) => (
           <Evaluation
-            key={ element.user }
+            key={ index }
             user={ element.user }
             rating={ element.rating }
             comment={ element.comment }
@@ -48,7 +21,7 @@ class EvaluationsZone extends React.Component {
 }
 
 EvaluationsZone.propTypes = {
-  id: PropTypes.string.isRequired,
+  evaluations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default EvaluationsZone;

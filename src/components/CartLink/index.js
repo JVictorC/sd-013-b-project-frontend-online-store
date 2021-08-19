@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { GrCart } from 'react-icons/gr';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 import './style.css';
 
@@ -12,7 +12,7 @@ class CartLink extends React.Component {
 
     return (
       <Link className="cart-link" to="/cart" data-testid="shopping-cart-button">
-        <GrCart />
+        <AiOutlineShoppingCart />
         <span data-testid="shopping-cart-size">{ itemCount }</span>
       </Link>
     );

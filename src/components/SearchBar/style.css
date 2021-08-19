@@ -24,7 +24,7 @@
 }
 
 .search-button {
-  background: #27c8a4;
+  background: #e2e2e2;
   cursor: pointer;
   height: 2.5em;
   width: 2.5em;
@@ -35,5 +35,5 @@
 }
 
 .search-button:active {
-  filter: brightness(1.1);
+  filter: brightness(0.8);
 }

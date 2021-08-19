@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import StarRatings from 'react-star-ratings';
+
+import './style.css';
 
 class EvaluatingForm extends React.Component {
   constructor() {
@@ -11,29 +15,19 @@ class EvaluatingForm extends React.Component {
     };
   }
 
-  getItemsFromLocalStorage = () => {
-    const items = localStorage.getItem('evaluations');
+  handleClick = (event, addEvaluation) => {
+    event.preventDefault();
 
-    if (items) {
-      return JSON.parse(items);
-    }
+    const { id } = this.props;
 
-    return [];
-  };
-
-  handleClick = () => {
-    const items = this.getItemsFromLocalStorage();
-
-    const newItems = [...items, { ...this.state, ...this.props }];
-
-    localStorage.setItem('evaluations', JSON.stringify(newItems));
+    addEvaluation({ ...this.state, id });
 
     this.setState({
       rating: 0,
       comment: '',
       user: '',
     });
-  }
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -41,46 +35,68 @@ class EvaluatingForm extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
+
+  handleStarChange = (rating) => {
+    this.setState({
+      rating,
+    });
+  };
 
   render() {
     const { rating, comment, user } = this.state;
+    const { addEvaluation } = this.props;
+
     return (
-      <div>
-        <form>
-          <input
-            name="user"
-            type="text"
-            value={ user }
-            onChange={ this.handleChange }
-          />
-          <input
-            required
-            name="rating"
-            type="number"
-            step={ 1 }
-            min={ 0 }
-            max={ 5 }
-            value={ rating }
-            onChange={ this.handleChange }
-          />
-          <input
+      <div className="evaluation-section">
+        <h1>Avaliações</h1>
+        <form className="evaluation-form">
+          <div className="email-rating">
+            <input
+              id="user"
+              name="user"
+              type="text"
+              value={ user }
+              onChange={ this.handleChange }
+              placeholder="Email"
+            />
+
+            <StarRatings
+              rating={ rating }
+              starRatedColor="rgb(255, 194, 25)"
+              starHoverColor="rgb(255, 194, 25)"
+              changeRating={ this.handleStarChange }
+              numberOfStars={ 5 }
+              name="rating"
+              starDimension="2em"
+              starSpacing="0.5em"
+            />
+          </div>
+
+          <textarea
+            id="comment"
             name="comment"
-            type="textarea"
             value={ comment }
             onChange={ this.handleChange }
             data-testid="product-detail-evaluation"
+            placeholder="Comentários"
           />
+
           <button
             type="submit"
-            onClick={ this.handleClick }
+            onClick={ (event) => this.handleClick(event, addEvaluation) }
           >
-            Enviar
+            AVALIAR
           </button>
         </form>
       </div>
     );
   }
 }
+
+EvaluatingForm.propTypes = {
+  id: PropTypes.string.isRequired,
+  addEvaluation: PropTypes.func.isRequired,
+};
 
 export default EvaluatingForm;

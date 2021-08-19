@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   getItemsFromLocalStorage,
   saveProductToLocalStorage,
+  setArrayToLocalStorage,
 } from '../../utils/localStorageHelpers';
 
 import './style.css';
@@ -13,11 +14,14 @@ class Product extends React.Component {
   handleClick = () => {
     const { product, updateItemCount } = this.props;
 
-    const items = getItemsFromLocalStorage();
-    const newItems = [...items, { ...product, amount: 1 }];
+    const items = getItemsFromLocalStorage('cartItems');
 
-    localStorage.setItem('cartItems', JSON.stringify(newItems));
-    updateItemCount();
+    if (!items.some((item) => item.id === product.id)) {
+      const newItems = [...items, { ...product, amount: 1 }];
+
+      setArrayToLocalStorage(newItems);
+      updateItemCount();
+    }
   };
 
   render() {
@@ -38,7 +42,7 @@ class Product extends React.Component {
             {product.price}
           </p>
           <Link
-            className="product-details"
+            className="product-detail-link"
             data-testid="product-detail-link"
             to={ `/product/${product.id}` }
             onClick={ () => saveProductToLocalStorage(product) }

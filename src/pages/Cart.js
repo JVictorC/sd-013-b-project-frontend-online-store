@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import CartItem from '../components/CartItem';
-import CartLink from '../components/CartLink';
+import HomeIcon from '../components/HomeIcon';
 
 import {
   getItemsFromLocalStorage,
@@ -16,30 +16,20 @@ class Cart extends React.Component {
     this.state = {
       cartItems: [],
       totalPrice: 0,
-      itemCount: 0,
     };
   }
 
   componentDidMount() {
     this.fetchProducts();
-    this.updateItemCount();
   }
 
   fetchProducts = () => {
-    const cartItems = getItemsFromLocalStorage();
+    const cartItems = getItemsFromLocalStorage('cartItems');
 
     this.setState({ cartItems });
 
     this.getTotalPrice(cartItems);
   };
-
-  updateItemCount = () => {
-    const items = getItemsFromLocalStorage();
-
-    const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
-
-    this.setState({ itemCount });
-  }
 
   getTotalPrice = (items) => {
     const totalPrice = items.reduce(
@@ -60,58 +50,60 @@ class Cart extends React.Component {
 
     this.getTotalPrice(newItems);
     setArrayToLocalStorage(newItems);
-    this.updateItemCount();
   };
 
   updateItemAmount = (quantity, itemId) => {
     const { cartItems } = this.state;
 
-    const newItems = cartItems.map((item) => (
-      item.id === itemId ? { ...item, amount: quantity } : item
-    ));
+    const newItems = cartItems.map((item) => {
+      if (item.id === itemId) return { ...item, amount: quantity };
+      return item;
+    });
 
     this.setState({ cartItems: [...newItems] });
     this.getTotalPrice(newItems);
     setArrayToLocalStorage(newItems);
-    this.updateItemCount();
   };
 
   render() {
-    const { cartItems, totalPrice, itemCount } = this.state;
+    const { cartItems, totalPrice } = this.state;
 
     return (
-      <div>
-        <CartLink itemCount={ itemCount } />
-        {cartItems.length !== 0 ? (
-          cartItems.map((element) => (
-            <CartItem
-              key={ element.id }
-              id={ element.id }
-              title={ element.title }
-              thumbnail={ element.thumbnail }
-              amount={ element.amount }
-              availableQuantity={ element.availableQuantity }
-              removeItemFromCart={ this.removeItemFromCart }
-              updateItemAmount={ this.updateItemAmount }
-              updateItemCount={ this.updateItemCount }
-            />
-          ))
-        ) : (
-          <p data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
+      <div className="cart-content">
+        <HomeIcon />
+        <div className="cart-items">
+          {cartItems.length !== 0 ? (
+            cartItems.map((element) => (
+              <CartItem
+                key={ element.id }
+                id={ element.id }
+                title={ element.title }
+                price={ element.price }
+                thumbnail={ element.thumbnail }
+                amount={ element.amount }
+                availableQuantity={ element.availableQuantity }
+                removeItemFromCart={ this.removeItemFromCart }
+                updateItemAmount={ this.updateItemAmount }
+              />
+            ))
+          ) : (
+            <p data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio
+            </p>
+          )}
+          <p className="total-price">
+            Total: R$
+            {' '}
+            {totalPrice}
           </p>
-        )}
-        <p>
-          Total:
-          {' '}
-          {totalPrice}
-        </p>
-        <Link
-          to="/purchase"
-          data-testid="checkout-products"
-        >
-          Ir para tela de finalização...
-        </Link>
+          <Link
+            className="purchase"
+            to="/purchase"
+            data-testid="checkout-products"
+          >
+            FINALIZAR COMPRA
+          </Link>
+        </div>
       </div>
     );
   }

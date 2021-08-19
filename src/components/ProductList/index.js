@@ -22,7 +22,7 @@ class ProductList extends React.Component {
   }
 
   updateItemCount = () => {
-    const items = getItemsFromLocalStorage();
+    const items = getItemsFromLocalStorage('cartItems');
 
     const itemCount = items.reduce((acc, { amount }) => acc + amount, 0);
 

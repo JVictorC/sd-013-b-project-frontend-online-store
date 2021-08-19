@@ -1,0 +1,44 @@
+.evaluation-form {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  margin: 2em 0;
+}
+
+.evaluation-form > label {
+  font-size: 1.2em;
+}
+
+.email-rating {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+.email-rating > input {
+  padding: 0.5em;
+}
+
+.evaluation-form > input,
+.evaluation-form > textarea {
+  display: block;
+  padding: 0.5em;
+}
+
+.evaluation-form > textarea {
+  height: 10em;
+  resize: none;
+}
+
+.evaluation-form > button {
+  display: flex;
+  width: max-content;
+  border: none;
+  background: #e2e2e2;
+  color: #2b2b2b;
+  padding: 0.8em 1.5em;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 0.5em;
+}

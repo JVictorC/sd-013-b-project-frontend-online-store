@@ -7,11 +7,14 @@
   text-align: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   font-size: 0.8em;
+  border-radius: 5px;
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   gap: 1em;
   padding: 1em 1.5em;
 }
@@ -19,25 +22,26 @@
 .product-image {
   align-self: center;
   width: 60%;
-  margin: 1em 0;
+  margin-top: 1em;
 }
 
-.product-details {
+.product-detail-link {
   font-size: .7em;
 }
 
 .cart-button {
   width: 100%;
   height: 3.5em;
-  background: #27c8a4;
-  color: black;
+  background: #e2e2e2;
   border: none;
   cursor: pointer;
   margin-top: auto;
+  color: #2b2b2b;
+  border-radius: 0 0 5px 5px;
 }
 
 .cart-button:active {
-  filter: brightness(1.1);
+  filter: brightness(0.8);
 }
 
 .free-shipping {

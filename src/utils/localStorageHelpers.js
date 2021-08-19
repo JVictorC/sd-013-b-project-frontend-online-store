@@ -1,5 +1,5 @@
-export const getItemsFromLocalStorage = () => {
-  const items = localStorage.getItem('cartItems');
+export const getItemsFromLocalStorage = (key) => {
+  const items = localStorage.getItem(key);
 
   if (items) {
     return JSON.parse(items);
