@@ -1,41 +1,70 @@
-.App {
-  text-align: center;
-}
-
-.shoppingCart {
-  width: 50px;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.cardList {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  align-content: center;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  width: 20%;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.card img {
+  width:70%;
+}
+
+.container {
+  display: flex;
+}
+
+.categoriesList {
+  width: 20vw;
+}
+
+.cart {
+  position: absolute;
+  right: 40px;
+  top:20px;
+}
+
+.inputSearch {
+  width: 60vw;
+  padding: 8px 0;
+  margin-right: 2px;
+}
+
+.searchBar {
+  display: flex;
   justify-content: center;
-  min-height: 100vh;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.shoppingCart{
+  display: flex;
+  padding: 5px;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
+.quantity {
+  padding: 0 5px;
+}
 
-  from {
-    transform: rotate(0deg);
-  }
+.cardItems {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 70vw;
+  margin: 5px 0;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.button {
+  border: none;
+  background-color: white;
+  font-weight:500;
+  font-size: 30px;
 }

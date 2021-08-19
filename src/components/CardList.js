@@ -17,7 +17,7 @@ class CardList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="cardList">
         {this.renderCardList()}
       </div>
     );

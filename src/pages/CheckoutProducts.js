@@ -13,10 +13,10 @@ export default class CheckoutProducts extends React.Component {
       <div>
         <h4>Revise seus Produtos</h4>
         { cart.map(({ id, title, price, quantity, thumbnail }) => (
-          <div key={ id }>
-            <img src={ thumbnail } alt="" />
-            <span>{title}</span>
-            <span>{`R$ ${price * quantity}`}</span>
+          <div key={ id } className="cardItems">
+            <img src={ thumbnail } alt="" className="shoppingCart" width="100vw" />
+            <span className="shoppingCart">{title}</span>
+            <span className="shoppingCart">{`R$ ${price * quantity}`}</span>
           </div>
         )) }
         <h4>{`Total: ${this.totalPrice(cart)}`}</h4>

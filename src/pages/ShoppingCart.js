@@ -6,30 +6,42 @@ class ShoppingCart extends React.Component {
   renderProducts() {
     const { cart, onSubClick, onAddClick } = this.props;
     return cart.map((product) => (
-      <div key={ product.id }>
+      <div key={ product.id } className="cardItems">
         <div>
-          <img src={ product.thumbnail } alt={ product.title } />
+          <img src={ product.thumbnail } alt={ product.title } width="100vw" />
         </div>
-        <div data-testid="shopping-cart-product-name">{ product.title }</div>
-        <div>
+        <div
+          data-testid="shopping-cart-product-name"
+          className="shoppingCart"
+        >
+          { product.title }
+        </div>
+        <div className="shoppingCart">
           <button
             data-testid="product-decrease-quantity"
             type="button"
             onClick={ () => onSubClick(product.id) }
+            className="button"
           >
-            -
+            { '<' }
           </button>
-          <div data-testid="shopping-cart-product-quantity">{ product.quantity }</div>
+          <div
+            data-testid="shopping-cart-product-quantity"
+            className="quantity"
+          >
+            { product.quantity }
+          </div>
           <button
             data-testid="product-increase-quantity"
             type="button"
             onClick={ () => onAddClick(product.id) }
+            className="button"
           >
-            +
+            { '>' }
           </button>
         </div>
-        <div>{ product.price }</div>
-        <div>{ product.price * product.quantity }</div>
+        <div className="shoppingCart">{`Preço unt: ${product.price}`}</div>
+        <div className="shoppingCart">{`Total: ${product.price * product.quantity}`}</div>
       </div>
     ));
   }
@@ -44,6 +56,7 @@ class ShoppingCart extends React.Component {
       <div>
         {cart.length > 0 ? (
           <div>
+            <h1>Carrinho</h1>
             { this.renderProducts() }
             <Link to="/shopping-cart/checkout-products">
               <button

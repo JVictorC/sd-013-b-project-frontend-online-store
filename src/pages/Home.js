@@ -74,10 +74,15 @@ class Home extends React.Component {
     return (
       <div>
         <SearchBar onSubmit={ this.onSearchSubmit } />
-        {products.length > 0
-          ? <CardList addToCart={ addToCart } products={ products } /> : message}
-        {!loading
-        && <CategoriesList categories={ categories } setCategory={ this.setCategory } />}
+        <div className="container">
+          {!loading
+          && <CategoriesList
+            categories={ categories }
+            setCategory={ this.setCategory }
+          />}
+          {products.length > 0
+            ? <CardList addToCart={ addToCart } products={ products } /> : message}
+        </div>
       </div>
     );
   }

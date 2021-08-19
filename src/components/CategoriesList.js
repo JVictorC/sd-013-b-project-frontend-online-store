@@ -5,10 +5,10 @@ export default class CategoriesList extends React.Component {
   render() {
     const { categories, setCategory } = this.props;
     return (
-      <div>
+      <aside>
         {
           categories.map((categorie) => (
-            <div key={ categorie.id }>
+            <div key={ categorie.id } className="categoriesList">
               <label htmlFor={ categorie.id }>
                 <input
                   name="category"
@@ -22,7 +22,7 @@ export default class CategoriesList extends React.Component {
             </div>
           ))
         }
-      </div>
+      </aside>
     );
   }
 }

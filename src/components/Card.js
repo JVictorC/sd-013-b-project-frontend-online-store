@@ -8,7 +8,7 @@ class Card extends React.Component {
     const { title, price, thumbnail, id } = product;
 
     return (
-      <div>
+      <div className="card">
         <Link
           to={ { pathname: `/product-details/${id}`, product } }
           data-testid="product-detail-link"

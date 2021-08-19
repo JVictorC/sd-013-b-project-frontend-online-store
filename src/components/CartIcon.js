@@ -18,13 +18,13 @@ class CartIcon extends React.Component {
     const { cart } = this.props;
     this.saveCart(cart);
     return (
-      <Link to="/shopping-cart" data-testid="shopping-cart-button">
+      <Link to="/shopping-cart" data-testid="shopping-cart-button" className="cart">
         <Badge
           data-testid="shopping-cart-size"
           badgeContent={ this.quantityItems() }
           color="secondary"
         >
-          <ShoppingCartIcon style={ { fontSize: 70 } } />
+          <ShoppingCartIcon style={ { fontSize: 50 } } />
         </Badge>
       </Link>
     );
