@@ -6,7 +6,7 @@ export default class ButtonHome extends Component {
   render() {
     return (
       <div className="button-home">
-        <Link to="/">Home</Link>
+        <Link to="/"><span>Home</span></Link>
       </div>
     );
   }
