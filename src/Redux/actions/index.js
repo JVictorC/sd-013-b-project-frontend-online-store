@@ -4,7 +4,7 @@ export const SET_CATEGORIES = 'SET_CATEGORIES;';
 
 const setCategories = (payload) => ({ type: SET_CATEGORIES, payload });
 
-export const fetchCategories = () => (dispatch) => {
-  const categories = getCategories().then((response) => response.json());
+export const fetchCategories = () => async (dispatch) => {
+  const categories = await getCategories();
   dispatch(setCategories(categories));
 };
